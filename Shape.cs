@@ -17,4 +17,10 @@ namespace PowerPoint
         private string _shapeName;
         private Point2 _info;
     }
+    
+    public enum ShapeType
+    {
+        LINE,
+        RECTANGLE
+    }
 }
