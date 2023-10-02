@@ -14,8 +14,14 @@ namespace PowerPoint
             return _info;
         }
 
+        public int GetID()
+        {
+            return _id;
+        }
+        
         private string _shapeName;
         private Point2 _info;
+        private int _id;
     }
     
     public enum ShapeType
