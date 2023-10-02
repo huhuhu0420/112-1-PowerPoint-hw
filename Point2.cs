@@ -4,7 +4,13 @@ namespace PowerPoint
 {
     public struct Point2
     {
-        public Point topLeft;
-        public Point downRight;
+        public Point TopLeft
+        { 
+            get; set; 
+        }
+        public Point DownRight 
+        { 
+            get; set;
+        }
     }
 }

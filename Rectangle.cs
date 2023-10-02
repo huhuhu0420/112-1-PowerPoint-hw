@@ -1,5 +1,6 @@
 ﻿namespace PowerPoint
 {
-    public class Rectangle : Shape { 
+    public class Rectangle : Shape 
+    { 
     }
 }

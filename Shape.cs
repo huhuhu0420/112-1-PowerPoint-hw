@@ -4,24 +4,36 @@ namespace PowerPoint
 {
     public class Shape
     {
+        /// <summary>
+        /// get name
+        /// </summary>
+        /// <returns></returns>
         public string GetShapeName()
         {
             return _shapeName;
         }
 
+        /// <summary>
+        /// get info
+        /// </summary>
+        /// <returns></returns>
         public Point2 GetInfo()
         {
             return _info;
         }
 
-        public int GetID()
+        /// <summary>
+        /// get id
+        /// </summary>
+        /// <returns></returns>
+        public int GetId()
         {
             return _id;
         }
-        
-        private string _shapeName;
+
+        private string _shapeName = "";
         private Point2 _info;
-        private int _id;
+        private int _id = 0;
     }
     
     public enum ShapeType

@@ -2,6 +2,11 @@
 {
     public class ShapeFactory
     {
+        /// <summary>
+        /// create shape
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public Shape CreateShape(ShapeType type)
         {
             switch (type)

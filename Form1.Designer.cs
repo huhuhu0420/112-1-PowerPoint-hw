@@ -31,7 +31,7 @@ namespace PowerPoint
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.delete = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.形狀 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.shape = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.information = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -49,7 +49,7 @@ namespace PowerPoint
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { this.delete, this.形狀, this.information });
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { this.delete, this.shape, this.information });
             this.dataGridView1.Location = new System.Drawing.Point(645, 68);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridView1.Name = "dataGridView1";
@@ -65,12 +65,12 @@ namespace PowerPoint
             this.delete.ReadOnly = true;
             this.delete.Width = 65;
             // 
-            // 形狀
+            // shape
             // 
-            this.形狀.HeaderText = "形狀";
-            this.形狀.Name = "形狀";
-            this.形狀.ReadOnly = true;
-            this.形狀.Width = 65;
+            this.shape.HeaderText = "shape";
+            this.shape.Name = "shape";
+            this.shape.ReadOnly = true;
+            this.shape.Width = 65;
             // 
             // information
             // 
@@ -163,7 +163,7 @@ namespace PowerPoint
             this.PerformLayout();
         }
 
-        private System.Windows.Forms.DataGridViewTextBoxColumn 形狀;
+        private System.Windows.Forms.DataGridViewTextBoxColumn shape;
         private System.Windows.Forms.DataGridViewTextBoxColumn information;
 
         private System.Windows.Forms.DataGridViewTextBoxColumn delete;
