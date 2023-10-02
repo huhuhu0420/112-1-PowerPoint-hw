@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace PowerPoint
 {
@@ -21,9 +22,10 @@ namespace PowerPoint
         /// get info
         /// </summary>
         /// <returns></returns>
-        public Point2 GetInfo()
+        public string GetInfo()
         {
-            return _info;
+            return "{" + _info.TopLeft.X + "," + _info.TopLeft.Y + "}" 
+                + "{" + _info.DownRight.X + "," + _info.DownRight.Y + "}";
         }
 
         /// <summary>
@@ -35,9 +37,25 @@ namespace PowerPoint
             return _id;
         }
 
-        private string _shapeName = "";
-        private Point2 _info;
-        private int _id = 0;
+        public string ShapeName
+        {
+            get
+            {
+                return GetShapeName();
+            }
+        }
+
+        public string Info
+        {
+            get
+            {
+                return GetInfo();
+            }
+        }
+
+        protected string _shapeName = "";
+        protected Point2 _info = new Point2();
+        protected int _id = 0;
     }
     
     public enum ShapeType

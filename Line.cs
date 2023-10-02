@@ -4,8 +4,9 @@
     {
         public Line(int id) : base(id)
         {
-            
+            _shapeName = "線";
         }
-        
     }
+
+
 }

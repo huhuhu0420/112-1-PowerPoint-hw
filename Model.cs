@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace PowerPoint
 {
@@ -12,7 +13,12 @@ namespace PowerPoint
             _shapes.Add(_shapeFactory.CreateShape(type));
         }
 
-        private List<Shape> _shapes = new List<Shape>();
+        public ref BindingList<Shape> GetShapes()
+        {
+            return ref _shapes;
+        }
+
+        private BindingList<Shape> _shapes = new BindingList<Shape>();
         private ShapeFactory _shapeFactory = new ShapeFactory();
     }
 }

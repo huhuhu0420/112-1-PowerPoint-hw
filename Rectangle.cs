@@ -4,7 +4,7 @@
     {
         public Rectangle(int id) : base(id)
         {
-            
+            _shapeName = "矩形";
         }
     }
 }
