@@ -18,6 +18,7 @@ namespace PowerPoint
         {
             InitializeComponent();
             dataGridView1.DataSource = _model.GetShapes();
+            dataGridView1.CellClick += dataGridView1_CellClick;
         }
 
         private void InsertButton_Click(object sender, EventArgs e)

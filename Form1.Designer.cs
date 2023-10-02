@@ -1,7 +1,4 @@
-﻿
-using System.Windows.Forms;
-
-namespace PowerPoint
+﻿namespace PowerPoint
 {
     partial class Form1
     {
@@ -52,15 +49,15 @@ namespace PowerPoint
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { this.delete, this.shapeName, this.information });
-            this.dataGridView1.Location = new System.Drawing.Point(645, 68);
+            this.dataGridView1.Location = new System.Drawing.Point(666, 68);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(275, 429);
+            this.dataGridView1.Size = new System.Drawing.Size(254, 429);
             this.dataGridView1.TabIndex = 0;
-            dataGridView1.CellClick += new DataGridViewCellEventHandler(dataGridView1_CellClick);
             // 
             // delete
             // 
@@ -114,7 +111,7 @@ namespace PowerPoint
             // InsertButton
             // 
             this.InsertButton.Font = new System.Drawing.Font("Noto Sans", 7.8F);
-            this.InsertButton.Location = new System.Drawing.Point(658, 31);
+            this.InsertButton.Location = new System.Drawing.Point(685, 31);
             this.InsertButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.InsertButton.Name = "InsertButton";
             this.InsertButton.Size = new System.Drawing.Size(55, 29);
