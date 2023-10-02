@@ -8,9 +8,18 @@ namespace PowerPoint
         /// <summary>
         /// insert shape
         /// </summary>
-        public void InsertRow(ShapeType type)
+        public void InsertShape(ShapeType type)
         {
             _shapes.Add(_shapeFactory.CreateShape(type));
+        }
+        
+        /// <summary>
+        /// remove shape
+        /// </summary>
+        /// <param name="index"></param>
+        public void RemoveShape(int index)
+        {
+            _shapes.RemoveAt(index);
         }
 
         public ref BindingList<Shape> GetShapes()

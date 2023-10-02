@@ -1,4 +1,6 @@
 ﻿
+using System.Windows.Forms;
+
 namespace PowerPoint
 {
     partial class Form1
@@ -58,6 +60,7 @@ namespace PowerPoint
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(275, 429);
             this.dataGridView1.TabIndex = 0;
+            dataGridView1.CellClick += new DataGridViewCellEventHandler(dataGridView1_CellClick);
             // 
             // delete
             // 

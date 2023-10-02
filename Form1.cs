@@ -22,7 +22,19 @@ namespace PowerPoint
 
         private void InsertButton_Click(object sender, EventArgs e)
         {
-            _model.InsertRow((ShapeType)(comboBox1.SelectedIndex));
+            _model.InsertShape((ShapeType)(comboBox1.SelectedIndex));
+        }
+        
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0)
+            {
+                _model.RemoveShape(e.RowIndex);
+                // Debug.WriteLine(e.RowIndex.ToString());
+            }
         }
     }
 }
