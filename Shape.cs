@@ -4,6 +4,10 @@ namespace PowerPoint
 {
     public class Shape
     {
+        public Shape (int id) {
+            _id = id;
+        }
+
         /// <summary>
         /// get name
         /// </summary>

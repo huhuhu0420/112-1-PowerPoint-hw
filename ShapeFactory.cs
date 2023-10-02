@@ -12,11 +12,13 @@
             switch (type)
             {
                 case ShapeType.LINE:
-                    return new Line();
+                    return new Line(_serialNumber++);
                 case ShapeType.RECTANGLE:
-                    return new Rectangle();
+                    return new Rectangle(_serialNumber++);
             }
-            return new Line();
+            return new Line(_serialNumber++);
         }
+
+        private static int _serialNumber = 0;
     }
 }
