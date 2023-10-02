@@ -118,7 +118,7 @@
             this.InsertButton.TabIndex = 4;
             this.InsertButton.Text = "新增";
             this.InsertButton.UseVisualStyleBackColor = true;
-            this.InsertButton.Click += new System.EventHandler(this.InsertButton_Click);
+            this.InsertButton.Click += new System.EventHandler(this.InsertButtonClick);
             // 
             // InformationToolStripMenuItem
             // 

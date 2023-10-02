@@ -4,7 +4,8 @@
     {
         public Rectangle(int id) : base(id)
         {
-            _shapeName = "矩形";
+            const string RECTANGLENAME = "矩形";
+            _shapeName = RECTANGLENAME;
         }
     }
 }

@@ -18,15 +18,25 @@ namespace PowerPoint
         {
             InitializeComponent();
             dataGridView1.DataSource = _model.GetShapes();
-            dataGridView1.CellClick += dataGridView1_CellClick;
+            dataGridView1.CellClick += DataGridView1CellClick;
         }
 
-        private void InsertButton_Click(object sender, EventArgs e)
+        /// <summary>
+        /// click insert btn
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void InsertButtonClick(object sender, EventArgs e)
         {
             _model.InsertShape((ShapeType)(comboBox1.SelectedIndex));
         }
         
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        /// <summary>
+        /// click datagrid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DataGridView1CellClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
 

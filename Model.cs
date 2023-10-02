@@ -22,6 +22,10 @@ namespace PowerPoint
             _shapes.RemoveAt(index);
         }
 
+        /// <summary>
+        /// get shape
+        /// </summary>
+        /// <returns></returns>
         public ref BindingList<Shape> GetShapes()
         {
             return ref _shapes;

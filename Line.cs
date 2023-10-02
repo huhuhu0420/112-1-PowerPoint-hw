@@ -4,7 +4,8 @@
     {
         public Line(int id) : base(id)
         {
-            _shapeName = "線";
+            const string LINENAME = "線";
+            _shapeName = LINENAME;
         }
     }
 
