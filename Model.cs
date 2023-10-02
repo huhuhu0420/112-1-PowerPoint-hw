@@ -7,9 +7,8 @@ namespace PowerPoint
         /// <summary>
         /// insert shape
         /// </summary>
-        public void InsertShape()
+        public void InsertRow(ShapeType type)
         {
-            ShapeType type = ShapeType.LINE;
             _shapes.Add(_shapeFactory.CreateShape(type));
         }
 

@@ -35,7 +35,7 @@ namespace PowerPoint
             this.information = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.InsertButton = new System.Windows.Forms.Button();
             this.InformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -54,6 +54,7 @@ namespace PowerPoint
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(275, 429);
             this.dataGridView1.TabIndex = 0;
@@ -61,13 +62,15 @@ namespace PowerPoint
             // delete
             // 
             this.delete.HeaderText = "刪除";
+            this.delete.MinimumWidth = 6;
             this.delete.Name = "delete";
             this.delete.ReadOnly = true;
             this.delete.Width = 65;
             // 
             // shape
             // 
-            this.shape.HeaderText = "shape";
+            this.shape.HeaderText = "形狀";
+            this.shape.MinimumWidth = 6;
             this.shape.Name = "shape";
             this.shape.ReadOnly = true;
             this.shape.Width = 65;
@@ -75,8 +78,10 @@ namespace PowerPoint
             // information
             // 
             this.information.HeaderText = "資訊";
+            this.information.MinimumWidth = 6;
             this.information.Name = "information";
             this.information.ReadOnly = true;
+            this.information.Width = 125;
             // 
             // button1
             // 
@@ -97,16 +102,17 @@ namespace PowerPoint
             this.comboBox1.Size = new System.Drawing.Size(110, 28);
             this.comboBox1.TabIndex = 3;
             // 
-            // button3
+            // InsertButton
             // 
-            this.button3.Font = new System.Drawing.Font("Noto Sans", 7.8F);
-            this.button3.Location = new System.Drawing.Point(658, 31);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(55, 29);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "新增";
-            this.button3.UseVisualStyleBackColor = true;
+            this.InsertButton.Font = new System.Drawing.Font("Noto Sans", 7.8F);
+            this.InsertButton.Location = new System.Drawing.Point(658, 31);
+            this.InsertButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.InsertButton.Name = "InsertButton";
+            this.InsertButton.Size = new System.Drawing.Size(55, 29);
+            this.InsertButton.TabIndex = 4;
+            this.InsertButton.Text = "新增";
+            this.InsertButton.UseVisualStyleBackColor = true;
+            this.InsertButton.Click += new System.EventHandler(this.InsertButton_Click);
             // 
             // InformationToolStripMenuItem
             // 
@@ -123,6 +129,7 @@ namespace PowerPoint
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.InformationToolStripMenuItem });
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -146,7 +153,7 @@ namespace PowerPoint
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(932, 510);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.InsertButton);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
@@ -163,14 +170,9 @@ namespace PowerPoint
             this.PerformLayout();
         }
 
-        private System.Windows.Forms.DataGridViewTextBoxColumn shape;
-        private System.Windows.Forms.DataGridViewTextBoxColumn information;
-
-        private System.Windows.Forms.DataGridViewTextBoxColumn delete;
-
         private System.Windows.Forms.Button button2;
 
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button InsertButton;
 
         private System.Windows.Forms.ComboBox comboBox1;
 
@@ -184,6 +186,12 @@ namespace PowerPoint
         private System.Windows.Forms.DataGridView dataGridView1;
 
         #endregion
+
+        private System.Windows.Forms.DataGridViewTextBoxColumn delete;
+        private System.Windows.Forms.DataGridViewTextBoxColumn shape;
+        private System.Windows.Forms.DataGridViewTextBoxColumn information;
+        
+        private Model _model = new Model();
     }
 }
 
