@@ -1,4 +1,7 @@
-﻿namespace PowerPoint
+﻿using System;
+using System.Drawing;
+
+namespace PowerPoint
 {
     public class ShapeFactory
     {
@@ -9,16 +12,18 @@
         /// <returns></returns>
         public Shape CreateShape(ShapeType type)
         {
+            Point2 info = new Point2(new Point(random.Next(0, 30), random.Next(0, 30)),
+                                    new Point(random.Next(0, 30), random.Next(0, 30)));
             switch (type)
             {
                 case ShapeType.LINE:
-                    return new Line(_serialNumber++);
+                    return new Line(info);
                 case ShapeType.RECTANGLE:
-                    return new Rectangle(_serialNumber++);
+                    return new Rectangle(info);
             }
-            return new Line(_serialNumber++);
+            return new Line(info);
         }
 
-        private static int _serialNumber = 0;
+        Random random = new Random();
     }
 }

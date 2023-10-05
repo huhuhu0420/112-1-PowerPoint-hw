@@ -2,7 +2,7 @@
 {
     public class Rectangle : Shape 
     {
-        public Rectangle(int id) : base(id)
+        public Rectangle(Point2 info) : base(info)
         {
             const string RECTANGLENAME = "矩形";
             _shapeName = RECTANGLENAME;

@@ -2,7 +2,7 @@
 {
     public class Line : Shape
     {
-        public Line(int id) : base(id)
+        public Line(Point2 info) : base(info)
         {
             const string LINENAME = "線";
             _shapeName = LINENAME;

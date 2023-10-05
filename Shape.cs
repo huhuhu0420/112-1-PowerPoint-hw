@@ -5,8 +5,8 @@ namespace PowerPoint
 {
     public class Shape
     {
-        public Shape (int id) {
-            _id = id;
+        public Shape (Point2 info) {
+            _info = info;
         }
 
         /// <summary>
@@ -24,17 +24,8 @@ namespace PowerPoint
         /// <returns></returns>
         public string GetInfo()
         {
-            return "{" + _info.TopLeft.X + "," + _info.TopLeft.Y + "}" 
-                + "{" + _info.DownRight.X + "," + _info.DownRight.Y + "}";
-        }
-
-        /// <summary>
-        /// get id
-        /// </summary>
-        /// <returns></returns>
-        public int GetId()
-        {
-            return _id;
+            return "(" + _info.TopLeft.X + "," + _info.TopLeft.Y + ")" + ", "
+                + "(" + _info.DownRight.X + "," + _info.DownRight.Y + ")";
         }
 
         public string ShapeName
@@ -55,7 +46,6 @@ namespace PowerPoint
 
         protected string _shapeName = "";
         protected Point2 _info = new Point2();
-        protected int _id = 0;
     }
     
     public enum ShapeType
