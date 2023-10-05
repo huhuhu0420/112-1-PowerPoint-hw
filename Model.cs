@@ -26,12 +26,12 @@ namespace PowerPoint
         /// get shape
         /// </summary>
         /// <returns></returns>
-        public ref BindingList<Shape> GetShapes()
+        public BindingList<Shape> GetShapes()
         {
-            return ref _shapes;
+            return _shapes;
         }
 
-        private BindingList<Shape> _shapes = new BindingList<Shape>();
-        private ShapeFactory _shapeFactory = new ShapeFactory();
+        private readonly BindingList<Shape> _shapes = new BindingList<Shape>();
+        private readonly ShapeFactory _shapeFactory = new ShapeFactory();
     }
 }

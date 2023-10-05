@@ -18,7 +18,7 @@ namespace PowerPoint
         {
             InitializeComponent();
             dataGridView1.DataSource = _model.GetShapes();
-            dataGridView1.CellClick += DataGridView1CellClick;
+            dataGridView1.CellClick += ClickDataGridView1Cell;
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace PowerPoint
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void DataGridView1CellClick(object sender, DataGridViewCellEventArgs e)
+        private void ClickDataGridView1Cell(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
 

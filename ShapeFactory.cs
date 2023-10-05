@@ -12,8 +12,9 @@ namespace PowerPoint
         /// <returns></returns>
         public Shape CreateShape(ShapeType type)
         {
-            Point2 info = new Point2(new Point(random.Next(0, 30), random.Next(0, 30)),
-                                    new Point(random.Next(0, 30), random.Next(0, 30)));
+            const int MAX = 30;
+            Point2 info = new Point2(new Point(_random.Next(0, MAX), _random.Next(0, MAX)),
+                                    new Point(_random.Next(0, MAX), _random.Next(0, MAX)));
             switch (type)
             {
                 case ShapeType.LINE:
@@ -24,6 +25,6 @@ namespace PowerPoint
             return new Line(info);
         }
 
-        Random random = new Random();
+        readonly Random _random = new Random();
     }
 }

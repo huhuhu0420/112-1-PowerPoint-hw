@@ -5,7 +5,8 @@ namespace PowerPoint
 {
     public class Shape
     {
-        public Shape (Point2 info) {
+        public Shape (Point2 info) 
+        {
             _info = info;
         }
 
@@ -24,8 +25,19 @@ namespace PowerPoint
         /// <returns></returns>
         public string GetInfo()
         {
-            return "(" + _info.TopLeft.X + "," + _info.TopLeft.Y + ")" + ", "
-                + "(" + _info.DownRight.X + "," + _info.DownRight.Y + ")";
+            Point point1 = _info.TopLeft;
+            Point point2 = _info.DownRight;
+            return FormatCoordinate(point1) + Constant.COMMA + FormatCoordinate(point2);
+        }
+
+        /// <summary>
+        /// format coordinate
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
+        private string FormatCoordinate(Point point)
+        {
+            return Constant.PARENTHESIS1 + point.X + Constant.COMMA + point.Y + Constant.PARENTHESIS2;
         }
 
         public string ShapeName

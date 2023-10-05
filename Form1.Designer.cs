@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.delete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.shapeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.information = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this._shapeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._information = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.InsertButton = new System.Windows.Forms.Button();
@@ -48,7 +48,7 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { this.delete, this.shapeName, this.information });
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { this._delete, this._shapeName, this._information });
             this.dataGridView1.Location = new System.Drawing.Point(666, 68);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridView1.Name = "dataGridView1";
@@ -61,33 +61,33 @@
             // 
             // delete
             // 
-            this.delete.HeaderText = "刪除";
-            this.delete.MinimumWidth = 6;
-            this.delete.Name = "delete";
-            this.delete.ReadOnly = true;
-            this.delete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.delete.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.delete.Text = "刪除";
-            this.delete.UseColumnTextForButtonValue = true;
-            this.delete.Width = 65;
+            this._delete.HeaderText = "刪除";
+            this._delete.MinimumWidth = 6;
+            this._delete.Name = "delete";
+            this._delete.ReadOnly = true;
+            this._delete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this._delete.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this._delete.Text = "刪除";
+            this._delete.UseColumnTextForButtonValue = true;
+            this._delete.Width = 65;
             // 
             // shapeName
             // 
-            this.shapeName.DataPropertyName = "ShapeName";
-            this.shapeName.HeaderText = "形狀";
-            this.shapeName.MinimumWidth = 6;
-            this.shapeName.Name = "shapeName";
-            this.shapeName.ReadOnly = true;
-            this.shapeName.Width = 65;
+            this._shapeName.DataPropertyName = "ShapeName";
+            this._shapeName.HeaderText = "形狀";
+            this._shapeName.MinimumWidth = 6;
+            this._shapeName.Name = "shapeName";
+            this._shapeName.ReadOnly = true;
+            this._shapeName.Width = 65;
             // 
             // information
             // 
-            this.information.DataPropertyName = "Info";
-            this.information.HeaderText = "資訊";
-            this.information.MinimumWidth = 6;
-            this.information.Name = "information";
-            this.information.ReadOnly = true;
-            this.information.Width = 125;
+            this._information.DataPropertyName = "Info";
+            this._information.HeaderText = "資訊";
+            this._information.MinimumWidth = 6;
+            this._information.Name = "information";
+            this._information.ReadOnly = true;
+            this._information.Width = 125;
             // 
             // button1
             // 
@@ -193,9 +193,9 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridViewButtonColumn delete;
-        private System.Windows.Forms.DataGridViewTextBoxColumn shapeName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn information;
+        private System.Windows.Forms.DataGridViewButtonColumn _delete;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _shapeName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _information;
         
         private Model _model = new Model();
     }
