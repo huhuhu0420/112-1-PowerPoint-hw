@@ -13,5 +13,6 @@ namespace PowerPoint
         public const string COMMA = ", ";
         public const string LINE = "線";
         public const string RECTANGLE = "矩形";
+        public const string CIRCLE = "圓形";
     }
 }

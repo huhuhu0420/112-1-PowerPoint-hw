@@ -21,6 +21,8 @@ namespace PowerPoint
                     return new Line(info);
                 case ShapeType.RECTANGLE:
                     return new Rectangle(info);
+                case ShapeType.CIRCLE:
+                    return new Circle(info);
             }
             return new Line(info);
         }

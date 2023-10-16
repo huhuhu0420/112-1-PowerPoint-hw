@@ -63,6 +63,7 @@ namespace PowerPoint
     public enum ShapeType
     {
         LINE,
-        RECTANGLE
+        RECTANGLE,
+        CIRCLE
     }
 }
