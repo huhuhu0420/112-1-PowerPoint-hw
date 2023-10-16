@@ -174,7 +174,7 @@
             this.lineButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.lineButton.Name = "lineButton";
             this.lineButton.Size = new System.Drawing.Size(23, 22);
-            this.lineButton.Text = "📏";
+            this.lineButton.Text = "📏"; 
             // 
             // squareButton
             // 
