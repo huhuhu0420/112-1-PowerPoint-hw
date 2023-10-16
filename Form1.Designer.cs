@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.shapeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,9 +40,9 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.button2 = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.lineButton = new System.Windows.Forms.ToolStripButton();
+            this.squareButton = new System.Windows.Forms.ToolStripButton();
+            this.circleButton = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -162,38 +161,36 @@
             // toolStrip1
             // 
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.toolStripButton3, this.toolStripButton2, this.toolStripButton1 });
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.lineButton, this.squareButton, this.circleButton });
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(932, 25);
             this.toolStrip1.TabIndex = 6;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripButton3
+            // lineButton
             // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton3.Text = "📏";
+            this.lineButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.lineButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.lineButton.Name = "lineButton";
+            this.lineButton.Size = new System.Drawing.Size(23, 22);
+            this.lineButton.Text = "📏";
             // 
-            // toolStripButton2
+            // squareButton
             // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton2.Text = "⬜";
+            this.squareButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.squareButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.squareButton.Name = "squareButton";
+            this.squareButton.Size = new System.Drawing.Size(23, 22);
+            this.squareButton.Text = "⬜";
             // 
-            // toolStripButton1
+            // circleButton
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "○";
+            this.circleButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.circleButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.circleButton.Name = "circleButton";
+            this.circleButton.Size = new System.Drawing.Size(23, 22);
+            this.circleButton.Text = "○";
             // 
             // Form1
             // 
@@ -221,11 +218,11 @@
             this.PerformLayout();
         }
 
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.ToolStripButton lineButton;
 
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton squareButton;
 
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton circleButton;
 
         private System.Windows.Forms.ToolStrip toolStrip1;
 
