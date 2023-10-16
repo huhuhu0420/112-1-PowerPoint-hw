@@ -13,18 +13,18 @@ namespace PowerPoint
         public Shape CreateShape(ShapeType type)
         {
             const int MAX = 30;
-            Point2 info = new Point2(new Point(_random.Next(0, MAX), _random.Next(0, MAX)),
-                                    new Point(_random.Next(0, MAX), _random.Next(0, MAX)));
+            PointF point1 = new Point(_random.Next(0, MAX), _random.Next(0, MAX));
+            PointF point2 = new Point(_random.Next(0, MAX), _random.Next(0, MAX));
             switch (type)
             {
                 case ShapeType.LINE:
-                    return new Line(info);
+                    return new Line(point1, point2);
                 case ShapeType.RECTANGLE:
-                    return new Rectangle(info);
+                    return new Rectangle(point1, point2);
                 case ShapeType.CIRCLE:
-                    return new Circle(info);
+                    return new Circle(point1, point2);
             }
-            return new Line(info);
+            return new Line(point1, point2);
         }
 
         readonly Random _random = new Random();

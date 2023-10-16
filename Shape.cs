@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Drawing;
+using System.Windows;
 
 namespace PowerPoint
 {
     public class Shape
     {
-        public Shape (Point2 info) 
+        public Shape (PointF point1, PointF point2)
         {
-            _info = info;
+            _point1 = point1;
+            _point2 = point2;
         }
 
         /// <summary>
@@ -25,9 +27,7 @@ namespace PowerPoint
         /// <returns></returns>
         public string GetInfo()
         {
-            Point point1 = _info.TopLeft;
-            Point point2 = _info.DownRight;
-            return FormatCoordinate(point1) + Constant.COMMA + FormatCoordinate(point2);
+            return FormatCoordinate(_point1) + Constant.COMMA + FormatCoordinate(_point2);
         }
 
         /// <summary>
@@ -35,14 +35,14 @@ namespace PowerPoint
         /// </summary>
         /// <param name="point"></param>
         /// <returns></returns>
-        private string FormatCoordinate(Point point)
+        private string FormatCoordinate(PointF point)
         {
             return Constant.PARENTHESIS1 + point.X + Constant.COMMA + point.Y + Constant.PARENTHESIS2;
         }
 
         public void Draw(IGraphics graphics)
         {
-            graphics.Draw(_info);
+            graphics.Draw(_point1, _point2);
         }
 
         public string ShapeName
@@ -62,7 +62,8 @@ namespace PowerPoint
         }
 
         protected string _shapeName = "";
-        protected Point2 _info = new Point2();
+        protected PointF _point1;
+        protected PointF _point2;
     }
     
     public enum ShapeType

@@ -1,8 +1,10 @@
+using System.Drawing;
+
 namespace PowerPoint
 {
     public interface IGraphics
     {
         void ClearAll();
-        void Draw(Point2 info);
+        void Draw(PointF point1, PointF point2);
     }
 }
