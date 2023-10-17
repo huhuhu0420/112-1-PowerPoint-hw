@@ -5,6 +5,6 @@ namespace PowerPoint
     public interface IGraphics
     {
         void ClearAll();
-        void Draw(PointF point1, PointF point2);
+        void Draw(PointD point1, PointD point2);
     }
 }

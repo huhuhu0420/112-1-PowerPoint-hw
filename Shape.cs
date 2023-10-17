@@ -1,15 +1,21 @@
 ﻿using System;
 using System.Drawing;
+using System.Security.Authentication.ExtendedProtection;
 using System.Windows;
 
 namespace PowerPoint
 {
     public class Shape
     {
-        public Shape (PointF point1, PointF point2)
+        public Shape (PointD point1, PointD point2)
         {
-            _point1 = point1;
-            _point2 = point2;
+            Point1 = point1;
+            Point2 = point2;
+        }
+
+        public Shape()
+        {
+            
         }
 
         /// <summary>
@@ -27,7 +33,7 @@ namespace PowerPoint
         /// <returns></returns>
         public string GetInfo()
         {
-            return FormatCoordinate(_point1) + Constant.COMMA + FormatCoordinate(_point2);
+            return FormatCoordinate(Point1) + Constant.COMMA + FormatCoordinate(Point2);
         }
 
         /// <summary>
@@ -35,14 +41,14 @@ namespace PowerPoint
         /// </summary>
         /// <param name="point"></param>
         /// <returns></returns>
-        private string FormatCoordinate(PointF point)
+        private string FormatCoordinate(PointD point)
         {
             return Constant.PARENTHESIS1 + point.X + Constant.COMMA + point.Y + Constant.PARENTHESIS2;
         }
 
         public void Draw(IGraphics graphics)
         {
-            graphics.Draw(_point1, _point2);
+            graphics.Draw(Point1, Point2);
         }
 
         public string ShapeName
@@ -61,9 +67,33 @@ namespace PowerPoint
             }
         }
 
+        public PointD Point1
+        {
+            get
+            {
+                return _point1;
+            }
+            set
+            {
+                _point1 = value;
+            }
+        }
+
+        public PointD Point2
+        {
+            get
+            {
+                return _point2;
+            }
+            set
+            {
+                _point2 = value;
+            }
+        }
+
         protected string _shapeName = "";
-        protected PointF _point1;
-        protected PointF _point2;
+        protected PointD _point1 = new PointD(0, 0);
+        protected PointD _point2 = new PointD(0, 0);
     }
     
     public enum ShapeType
