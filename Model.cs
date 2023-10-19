@@ -65,9 +65,9 @@ namespace PowerPoint
         {
             graphics.ClearAll();
             foreach (Line aLine in _lines)
-                aLine.Draw(graphics);
+                aLine.DrawLine(graphics);
             if (_isPressed)
-                _hint.Draw(graphics);
+                _hint.DrawLine(graphics);
         }
         
         void NotifyModelChanged()
