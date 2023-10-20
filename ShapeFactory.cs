@@ -12,7 +12,7 @@ namespace PowerPoint
         /// <returns></returns>
         public Shape CreateShape(ShapeType type)
         {
-            const int MAX = 30;
+            const int MAX = 200;
             PointD point1 = new PointD(_random.Next(0, MAX), _random.Next(0, MAX));
             PointD point2 = new PointD(_random.Next(0, MAX), _random.Next(0, MAX));
             switch (type)
