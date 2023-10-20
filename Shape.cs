@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Security.Authentication.ExtendedProtection;
 using System.Windows;
@@ -46,9 +47,9 @@ namespace PowerPoint
             return Constant.PARENTHESIS1 + point.X + Constant.COMMA + point.Y + Constant.PARENTHESIS2;
         }
 
-        public void DrawLine(IGraphics graphics)
+        public void Draw(IGraphics graphics)
         {
-            graphics.DrawLine(Point1, Point2);
+            graphics.Draw(Point1, Point2, Type);
         }
 
         public string ShapeName
@@ -89,6 +90,12 @@ namespace PowerPoint
             {
                 _point2 = value;
             }
+        }
+
+        public ShapeType Type
+        {
+            get;
+            set;
         }
 
         protected string _shapeName = "";
