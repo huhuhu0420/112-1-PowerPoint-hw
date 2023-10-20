@@ -80,16 +80,25 @@ namespace PowerPoint
         public void HandleLineButtonClick()
         {
             _presentationModel.Type = ShapeType.LINE;
+            squareButton.Checked = false;
+            circleButton.Checked = false;
+            lineButton.Checked = true;
         }
 
         public void HandleRectangleButtonClick()
         {
             _presentationModel.Type = ShapeType.RECTANGLE;
+            squareButton.Checked = true;
+            circleButton.Checked = false;
+            lineButton.Checked = false;
         }
 
         public void HandleCircleButtonClick()
         {
             _presentationModel.Type = ShapeType.CIRCLE;
+            squareButton.Checked = false;
+            circleButton.Checked = true;
+            lineButton.Checked = false;
         }
     }
 }
