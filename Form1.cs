@@ -17,7 +17,7 @@ namespace PowerPoint
         public Form1()
         {
             InitializeComponent();
-            dataGridView1.DataSource = _model.GetShapes();
+            dataGridView1.DataSource = _presentationModel.GetShapes();
             dataGridView1.CellClick += ClickDataGridView1Cell;
             _presentationModel._modelChanged += HandleInvalidate;
         }
@@ -29,7 +29,7 @@ namespace PowerPoint
         /// <param name="e"></param>
         private void InsertButtonClick(object sender, EventArgs e)
         {
-            _model.InsertShape((ShapeType)(comboBox1.SelectedIndex));
+            _presentationModel.InsertShape((ShapeType)(comboBox1.SelectedIndex));
         }
         
         /// <summary>
@@ -44,7 +44,7 @@ namespace PowerPoint
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
                 e.RowIndex >= 0)
             {
-                _model.RemoveShape(e.RowIndex);
+                _presentationModel.RemoveShape(e.RowIndex);
                 // Debug.WriteLine(e.RowIndex.ToString());
             }
         }

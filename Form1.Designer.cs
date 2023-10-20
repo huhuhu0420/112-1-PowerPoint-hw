@@ -266,8 +266,7 @@ namespace PowerPoint
         private System.Windows.Forms.DataGridViewTextBoxColumn information;
         #endregion
         
-        private static Model _model = new Model();
-        private PresentationModel.PresentationModel _presentationModel = new PresentationModel.PresentationModel(_model);
+        private PresentationModel.PresentationModel _presentationModel = new PresentationModel.PresentationModel();
     }
 }
 

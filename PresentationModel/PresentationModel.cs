@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Windows.Forms;
@@ -6,14 +7,13 @@ namespace PowerPoint.PresentationModel
 {
     public class PresentationModel
     {
-        Model _model;
+        Model _model = new Model();
         public event Model.ModelChangedEventHandler _modelChanged;
         private bool _isPressed = false;
         private ShapeType _shpaeType = ShapeType.CIRCLE;
 
-        public PresentationModel(Model model)
+        public PresentationModel()
         {
-            this._model = model;
             _model._modelChanged += HandleModelChanged;
         }
 
@@ -32,13 +32,13 @@ namespace PowerPoint.PresentationModel
             _model.Draw(graphic);
             if (_isPressed)
             {
-                _model.DrawHint(graphic, _shpaeType);
+                _model.DrawHint(graphic);
             }
         }
 
         public void PointerPressed(PointD point)
         {
-            _model.PointerPressed(point);
+            _model.PointerPressed(point, _shpaeType);
             _isPressed = true;
         }
         
@@ -63,6 +63,21 @@ namespace PowerPoint.PresentationModel
         {
             _isPressed = false;
             _model.Clear();
+        }
+
+        public BindingList<Shape> GetShapes()
+        {
+            return _model.GetShapes();
+        }
+
+        public void RemoveShape(int index)
+        {
+            _model.RemoveShape(index);
+        }
+
+        public void InsertShape(ShapeType type)
+        {
+            _model.InsertShape(type);
         }
 
     }
