@@ -13,8 +13,8 @@ namespace PowerPoint
         public Shape CreateShape(ShapeType type)
         {
             const int MAX = 200;
-            PointD point1 = new PointD(_random.Next(0, MAX), _random.Next(0, MAX));
-            PointD point2 = new PointD(_random.Next(0, MAX), _random.Next(0, MAX));
+            PointDouble point1 = new PointDouble(_random.Next(0, MAX), _random.Next(0, MAX));
+            PointDouble point2 = new PointDouble(_random.Next(0, MAX), _random.Next(0, MAX));
             switch (type)
             {
                 case ShapeType.LINE:

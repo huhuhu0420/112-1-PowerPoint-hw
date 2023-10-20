@@ -19,7 +19,7 @@ namespace PowerPoint
             InitializeComponent();
             dataGridView1.DataSource = _presentationModel.GetShapes();
             dataGridView1.CellClick += ClickDataGridView1Cell;
-            _presentationModel._modelChanged += HandleInvalidate;
+            _presentationModel.ModelChanged += HandleInvalidate;
         }
 
         /// <summary>
@@ -54,11 +54,10 @@ namespace PowerPoint
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void HandleCanvasPressed(object sender,
-            System.Windows.Forms.MouseEventArgs e)
+        public void HandleCanvasPressed(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            _presentationModel.PointerPressed(new PointD(e.X, e.Y));
-            Debug.Print("press");
+            _presentationModel.PressedPointer(new PointDouble(e.X, e.Y));
+            // Debug.Print("press");
         }
         
         /// <summary>
@@ -66,15 +65,14 @@ namespace PowerPoint
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void HandleCanvasReleased(object sender,
-            System.Windows.Forms.MouseEventArgs e)
+        public void HandleCanvasReleased(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            _presentationModel.PointerReleased(new PointD(e.X, e.Y));
+            _presentationModel.ReleasedPointer(new PointDouble(e.X, e.Y));
             Cursor = Cursors.Arrow;
             squareButton.Checked = false;
             circleButton.Checked = false;
             lineButton.Checked = false;
-            Debug.Print("release");
+            // Debug.Print("release");
         }
         
         /// <summary>
@@ -82,10 +80,9 @@ namespace PowerPoint
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void HandleCanvasMoved(object sender,
-            System.Windows.Forms.MouseEventArgs e)
+        public void HandleCanvasMoved(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            _presentationModel.PointerMoved(new PointD(e.X, e.Y));
+            _presentationModel.MovedPointer(new PointDouble(e.X, e.Y));
         }
         
         /// <summary>
@@ -93,11 +90,11 @@ namespace PowerPoint
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void HandleCanvasPaint(object sender,
-            System.Windows.Forms.PaintEventArgs e)
+        public void HandleCanvasPaint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
             _presentationModel.Draw(e.Graphics);
         }
+
         /// <summary>
         /// handle
         /// </summary>

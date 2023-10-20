@@ -7,10 +7,10 @@ using System.Windows.Forms;
 namespace PowerPoint.PresentationModel
 {
     public class PresentationModel
-    {
-        Model _model = new Model();
-        public event Model.ModelChangedEventHandler _modelChanged;
+    {   
+        public event Model.ModelChangedEventHandler ModelChanged;
         private bool _isPressed = false;
+        readonly Model _model = new Model();
 
         public ShapeType Type
         {
@@ -29,7 +29,7 @@ namespace PowerPoint.PresentationModel
         /// </summary>
         public PresentationModel()
         {
-            _model._modelChanged += HandleModelChanged;
+            _model.ModelChanged += HandleModelChanged;
         }
 
         /// <summary>
@@ -37,10 +37,7 @@ namespace PowerPoint.PresentationModel
         /// </summary>
         public void HandleModelChanged()
         {
-            if (_modelChanged != null)
-            {
-                _modelChanged();
-            }
+            ModelChanged?.Invoke();
         }
 
         /// <summary>
@@ -50,7 +47,7 @@ namespace PowerPoint.PresentationModel
         public void Draw(System.Drawing.Graphics graphics)
         {
             var graphic = new WindowsFormsGraphicsAdaptor(graphics); 
-            Debug.Print("draw1");
+            // Debug.Print("draw1");
             _model.Draw(graphic);
             if (_isPressed)
             {
@@ -62,11 +59,11 @@ namespace PowerPoint.PresentationModel
         /// press
         /// </summary>
         /// <param name="point"></param>
-        public void PointerPressed(PointD point)
+        public void PressedPointer(PointDouble point)
         {
             if (IsDrawing)
             {
-                _model.PointerPressed(point, Type);
+                _model.PressedPointer(point, Type);
                 _isPressed = true;
                 
             }
@@ -76,13 +73,13 @@ namespace PowerPoint.PresentationModel
         /// move
         /// </summary>
         /// <param name="point"></param>
-        public void PointerMoved(PointD point)
+        public void MovedPointer(PointDouble point)
         {
             if (IsDrawing)
             {
                 if (_isPressed)
                 {
-                    _model.PointerMoved(point);
+                    _model.MovedPointer(point);
                 }
             }
         }
@@ -91,13 +88,14 @@ namespace PowerPoint.PresentationModel
         /// release
         /// </summary>
         /// <param name="point"></param>
-        public void PointerReleased(PointD point)
+        public void ReleasedPointer(PointDouble point)
         {
             if (IsDrawing)
             {
-                if (_isPressed) {
+                if (_isPressed) 
+                {
                     _isPressed = false;
-                    _model.PointerReleased(point, Type);
+                    _model.ReleasedPointer(point, Type);
                 }
                 IsDrawing = false;
             }

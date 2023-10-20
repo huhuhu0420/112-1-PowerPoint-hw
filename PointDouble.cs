@@ -1,8 +1,8 @@
 namespace PowerPoint
 {
-    public class PointD
+    public class PointDouble
     {
-        public PointD(double x, double y)
+        public PointDouble(double x, double y)
         {
             X = x;
             Y = y;

@@ -60,7 +60,7 @@
     <Compile Include="IGraphics.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="Model.cs" />
-    <Compile Include="PointD.cs" />
+    <Compile Include="PointDouble.cs" />
     <Compile Include="PresentationModel\PresentationModel.cs" />
     <Compile Include="PresentationModel\WindowsFormsGraphicsAdaptor.cs" />
     <Compile Include="Program.cs" />

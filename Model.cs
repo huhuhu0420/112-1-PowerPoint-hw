@@ -7,6 +7,9 @@ namespace PowerPoint
 {
     public class Model
     {
+        public event ModelChangedEventHandler ModelChanged;
+        public delegate void ModelChangedEventHandler();
+
         /// <summary>
         /// insert shape
         /// </summary>
@@ -34,14 +37,13 @@ namespace PowerPoint
         {
             return _shapes;
         }
-
         
         /// <summary>
         /// press
         /// </summary>
         /// <param name="point"></param>
         /// <param name="type"></param>
-        public void PointerPressed(PointD point, ShapeType type)
+        public void PressedPointer(PointDouble point, ShapeType type)
         {
             if (point.X > 0 && point.Y > 0)
             {
@@ -57,7 +59,7 @@ namespace PowerPoint
         /// move
         /// </summary>
         /// <param name="point"></param>
-        public void PointerMoved(PointD point)
+        public void MovedPointer(PointDouble point)
         {
             _hint.Point2.X = point.X;
             _hint.Point2.Y = point.Y;
@@ -69,7 +71,7 @@ namespace PowerPoint
         /// </summary>
         /// <param name="point"></param>
         /// <param name="type"></param>
-        public void PointerReleased(PointD point, ShapeType type)
+        public void ReleasedPointer(PointDouble point, ShapeType type)
         {
             Shape hint = _shapeFactory.CreateShape(type);
             hint.Point1.X = _firstPoint.X;
@@ -115,19 +117,14 @@ namespace PowerPoint
         /// </summary>
         void NotifyModelChanged()
         {
-            if (_modelChanged != null)
-                _modelChanged();
+            ModelChanged?.Invoke();
             // Debug.Print("model change");
         }
 
         private readonly BindingList<Shape> _shapes = new BindingList<Shape>();
         private readonly ShapeFactory _shapeFactory = new ShapeFactory();
-
-        Shape _hint = new Shape();
+        readonly Shape _hint = new Shape();
         
-        private PointD _firstPoint = new PointD(0, 0);
-        public event ModelChangedEventHandler _modelChanged;
-
-        public delegate void ModelChangedEventHandler();
+        private readonly PointDouble _firstPoint = new PointDouble(0, 0);
     }
 }

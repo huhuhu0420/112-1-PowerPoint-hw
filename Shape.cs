@@ -8,7 +8,7 @@ namespace PowerPoint
 {
     public class Shape
     {
-        public Shape (PointD point1, PointD point2)
+        public Shape (PointDouble point1, PointDouble point2)
         {
             Point1 = point1;
             Point2 = point2;
@@ -42,7 +42,7 @@ namespace PowerPoint
         /// </summary>
         /// <param name="point"></param>
         /// <returns></returns>
-        private string FormatCoordinate(PointD point)
+        private string FormatCoordinate(PointDouble point)
         {
             return Constant.PARENTHESIS1 + point.X + Constant.COMMA + point.Y + Constant.PARENTHESIS2;
         }
@@ -72,7 +72,7 @@ namespace PowerPoint
             }
         }
 
-        public PointD Point1
+        public PointDouble Point1
         {
             get
             {
@@ -84,7 +84,7 @@ namespace PowerPoint
             }
         }
 
-        public PointD Point2
+        public PointDouble Point2
         {
             get
             {
@@ -103,8 +103,8 @@ namespace PowerPoint
         }
 
         protected string _shapeName = "";
-        protected PointD _point1 = new PointD(0, 0);
-        protected PointD _point2 = new PointD(0, 0);
+        protected PointDouble _point1 = new PointDouble(0, 0);
+        protected PointDouble _point2 = new PointDouble(0, 0);
     }
     
     public enum ShapeType
