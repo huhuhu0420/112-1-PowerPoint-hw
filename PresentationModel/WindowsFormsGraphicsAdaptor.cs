@@ -14,7 +14,7 @@ namespace PowerPoint.PresentationModel
         }
         public void DrawLine(PointD point1, PointD point2)
         {
-            _graphics.DrawLine(Pens.Black, (float) point1.X, (float) point1.Y, (float) point2.X,
+            _graphics.DrawLine(Pens.DodgerBlue, (float) point1.X, (float) point1.Y, (float) point2.X,
                 (float) point2.Y);
         }
     }

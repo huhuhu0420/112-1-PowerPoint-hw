@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 
 namespace PowerPoint
@@ -32,48 +33,59 @@ namespace PowerPoint
             return _shapes;
         }
 
-        public void PointerPressed(PointF point)
+        public void PointerPressed(PointD point)
         {
             if (point.X > 0 && point.Y > 0)
             {
                 _firstPoint.X = point.X;
                 _firstPoint.Y = point.Y;
-                _isPressed = true;
                 _hint.Point1.X = _firstPoint.X;
                 _hint.Point1.Y = _firstPoint.Y;
             }
         }
         
-        public void PointerMoved(double x, double y)
+        public void PointerMoved(PointD point)
         {
-            if (_isPressed)
-            {
-                _hint.Point2.X = x;
-                _hint.Point2.Y = y;
-                NotifyModelChanged();
-            }
+            _hint.Point2.X = point.X;
+            _hint.Point2.Y = point.Y;
+            NotifyModelChanged();
+        }
+        
+        public void PointerReleased(PointD point)
+        {
+            Line hint = new Line();
+            hint.Point1.X = _firstPoint.X;
+            hint.Point1.Y = _firstPoint.Y;
+            hint.Point2.X = point.X;
+            hint.Point2.Y = point.Y;
+            _lines.Add(hint);
+            NotifyModelChanged();
+            Debug.Print(_lines.Count.ToString());
         }
 
         public void Clear()
         {
-            _isPressed = false;
             _lines.Clear();
             NotifyModelChanged();
         }
         
         public void Draw(IGraphics graphics)
         {
-            graphics.ClearAll();
             foreach (Line aLine in _lines)
                 aLine.DrawLine(graphics);
-            if (_isPressed)
-                _hint.DrawLine(graphics);
+            Debug.Print("draw");
+        }
+
+        public void DrawHint(IGraphics graphics)
+        {
+            _hint.DrawLine(graphics);
         }
         
         void NotifyModelChanged()
         {
             if (_modelChanged != null)
                 _modelChanged();
+            Debug.Print("model change");
         }
 
         private readonly BindingList<Shape> _shapes = new BindingList<Shape>();
@@ -83,7 +95,6 @@ namespace PowerPoint
         List<Line> _lines = new List<Line>();
         
         private PointD _firstPoint = new PointD(0, 0);
-        private bool _isPressed = false;
         public event ModelChangedEventHandler _modelChanged;
 
         public delegate void ModelChangedEventHandler();

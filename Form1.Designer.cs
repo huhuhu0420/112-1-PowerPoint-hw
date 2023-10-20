@@ -1,4 +1,6 @@
-﻿namespace PowerPoint
+﻿using System.Windows.Forms;
+
+namespace PowerPoint
 {
     partial class Form1
     {
@@ -43,6 +45,7 @@
             this.lineButton = new System.Windows.Forms.ToolStripButton();
             this.squareButton = new System.Windows.Forms.ToolStripButton();
             this.circleButton = new System.Windows.Forms.ToolStripButton();
+            this.panel1 = new DoubleBufferedPanel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -174,7 +177,7 @@
             this.lineButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.lineButton.Name = "lineButton";
             this.lineButton.Size = new System.Drawing.Size(23, 22);
-            this.lineButton.Text = "📏"; 
+            this.lineButton.Text = "📏";
             // 
             // squareButton
             // 
@@ -192,11 +195,24 @@
             this.circleButton.Size = new System.Drawing.Size(23, 22);
             this.circleButton.Text = "○";
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel1.Location = new System.Drawing.Point(166, 56);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(494, 442);
+            this.panel1.TabIndex = 7;
+            this.panel1.MouseDown += HandleCanvasPressed;
+            this.panel1.MouseUp += HandleCanvasReleased;
+            this.panel1.MouseMove += HandleCanvasMoved;
+            this.panel1.Paint += HandleCanvasPaint;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(932, 510);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.InsertButton);
@@ -217,6 +233,8 @@
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private DoubleBufferedPanel panel1;
 
         private System.Windows.Forms.ToolStripButton lineButton;
 
@@ -248,7 +266,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn information;
         #endregion
         
-        private Model _model = new Model();
+        private static Model _model = new Model();
+        private PresentationModel.PresentationModel _presentationModel = new PresentationModel.PresentationModel(_model);
     }
 }
 
