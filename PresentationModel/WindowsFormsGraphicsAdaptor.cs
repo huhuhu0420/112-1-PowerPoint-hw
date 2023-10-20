@@ -9,9 +9,20 @@ namespace PowerPoint.PresentationModel
         {
             this._graphics = graphics;
         }
+        
+        /// <summary>
+        /// clear
+        /// </summary>
         public void ClearAll()
         {
         }
+        
+        /// <summary>
+        /// draw
+        /// </summary>
+        /// <param name="point1"></param>
+        /// <param name="point2"></param>
+        /// <param name="type"></param>
         public void Draw(PointD point1, PointD point2, ShapeType type)
         {
             switch (type)

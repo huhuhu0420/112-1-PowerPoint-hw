@@ -24,11 +24,17 @@ namespace PowerPoint.PresentationModel
             set;
         }
 
+        /// <summary>
+        /// model
+        /// </summary>
         public PresentationModel()
         {
             _model._modelChanged += HandleModelChanged;
         }
 
+        /// <summary>
+        /// model change
+        /// </summary>
         public void HandleModelChanged()
         {
             if (_modelChanged != null)
@@ -37,6 +43,10 @@ namespace PowerPoint.PresentationModel
             }
         }
 
+        /// <summary>
+        /// draw
+        /// </summary>
+        /// <param name="graphics"></param>
         public void Draw(System.Drawing.Graphics graphics)
         {
             var graphic = new WindowsFormsGraphicsAdaptor(graphics); 
@@ -48,6 +58,10 @@ namespace PowerPoint.PresentationModel
             }
         }
 
+        /// <summary>
+        /// press
+        /// </summary>
+        /// <param name="point"></param>
         public void PointerPressed(PointD point)
         {
             if (IsDrawing)
@@ -58,6 +72,10 @@ namespace PowerPoint.PresentationModel
             }
         }
         
+        /// <summary>
+        /// move
+        /// </summary>
+        /// <param name="point"></param>
         public void PointerMoved(PointD point)
         {
             if (IsDrawing)
@@ -69,6 +87,10 @@ namespace PowerPoint.PresentationModel
             }
         }
 
+        /// <summary>
+        /// release
+        /// </summary>
+        /// <param name="point"></param>
         public void PointerReleased(PointD point)
         {
             if (IsDrawing)
@@ -81,22 +103,37 @@ namespace PowerPoint.PresentationModel
             }
         }
 
+        /// <summary>
+        /// clear
+        /// </summary>
         public void Clear()
         {
             _isPressed = false;
             _model.Clear();
         }
 
+        /// <summary>
+        /// get 
+        /// </summary>
+        /// <returns></returns>
         public BindingList<Shape> GetShapes()
         {
             return _model.GetShapes();
         }
 
+        /// <summary>
+        /// remove shape
+        /// </summary>
+        /// <param name="index"></param>
         public void RemoveShape(int index)
         {
             _model.RemoveShape(index);
         }
 
+        /// <summary>
+        /// insert
+        /// </summary>
+        /// <param name="type"></param>
         public void InsertShape(ShapeType type)
         {
             _model.InsertShape(type);

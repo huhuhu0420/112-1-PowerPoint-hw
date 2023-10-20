@@ -35,6 +35,12 @@ namespace PowerPoint
             return _shapes;
         }
 
+        
+        /// <summary>
+        /// press
+        /// </summary>
+        /// <param name="point"></param>
+        /// <param name="type"></param>
         public void PointerPressed(PointD point, ShapeType type)
         {
             if (point.X > 0 && point.Y > 0)
@@ -47,6 +53,10 @@ namespace PowerPoint
             }
         }
         
+        /// <summary>
+        /// move
+        /// </summary>
+        /// <param name="point"></param>
         public void PointerMoved(PointD point)
         {
             _hint.Point2.X = point.X;
@@ -54,6 +64,11 @@ namespace PowerPoint
             NotifyModelChanged();
         }
         
+        /// <summary>
+        /// release
+        /// </summary>
+        /// <param name="point"></param>
+        /// <param name="type"></param>
         public void PointerReleased(PointD point, ShapeType type)
         {
             Shape hint = _shapeFactory.CreateShape(type);
@@ -65,13 +80,20 @@ namespace PowerPoint
             NotifyModelChanged();
             // Debug.Print(_lines.Count.ToString());
         }
-
+        
+        /// <summary>
+        /// clear
+        /// </summary>
         public void Clear()
         {
             _shapes.Clear();
             NotifyModelChanged();
         }
         
+        /// <summary>
+        /// draw
+        /// </summary>
+        /// <param name="graphics"></param>
         public void Draw(IGraphics graphics)
         {
             foreach (Shape aLine in _shapes)
@@ -79,11 +101,18 @@ namespace PowerPoint
             // Debug.Print("draw");
         }
 
+        /// <summary>
+        /// drae
+        /// </summary>
+        /// <param name="graphics"></param>
         public void DrawHint(IGraphics graphics)
         {
             _hint.Draw(graphics);
         }
         
+        /// <summary>
+        /// notify
+        /// </summary>
         void NotifyModelChanged()
         {
             if (_modelChanged != null)

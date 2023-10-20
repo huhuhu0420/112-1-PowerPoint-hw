@@ -47,6 +47,10 @@ namespace PowerPoint
             return Constant.PARENTHESIS1 + point.X + Constant.COMMA + point.Y + Constant.PARENTHESIS2;
         }
 
+        /// <summary>
+        /// draw
+        /// </summary>
+        /// <param name="graphics"></param>
         public void Draw(IGraphics graphics)
         {
             graphics.Draw(Point1, Point2, Type);

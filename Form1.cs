@@ -49,6 +49,11 @@ namespace PowerPoint
             }
         }
 
+        /// <summary>
+        /// handle
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void HandleCanvasPressed(object sender,
             System.Windows.Forms.MouseEventArgs e)
         {
@@ -56,6 +61,11 @@ namespace PowerPoint
             Debug.Print("press");
         }
         
+        /// <summary>
+        /// handle
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void HandleCanvasReleased(object sender,
             System.Windows.Forms.MouseEventArgs e)
         {
@@ -66,21 +76,39 @@ namespace PowerPoint
             lineButton.Checked = false;
             Debug.Print("release");
         }
+        
+        /// <summary>
+        /// handle
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void HandleCanvasMoved(object sender,
             System.Windows.Forms.MouseEventArgs e)
         {
             _presentationModel.PointerMoved(new PointD(e.X, e.Y));
         }
+        
+        /// <summary>
+        /// handle
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void HandleCanvasPaint(object sender,
             System.Windows.Forms.PaintEventArgs e)
         {
             _presentationModel.Draw(e.Graphics);
         }
+        /// <summary>
+        /// handle
+        /// </summary>
         public void HandleInvalidate()
         {
             Invalidate(true);
         }
 
+        /// <summary>
+        /// click
+        /// </summary>
         public void HandleLineButtonClick()
         {
             _presentationModel.Type = ShapeType.LINE;
@@ -91,6 +119,9 @@ namespace PowerPoint
             Cursor = Cursors.Cross;
         }
 
+        /// <summary>
+        /// click
+        /// </summary>
         public void HandleRectangleButtonClick()
         {
             _presentationModel.Type = ShapeType.RECTANGLE;
@@ -101,6 +132,9 @@ namespace PowerPoint
             Cursor = Cursors.Cross;
         }
 
+        /// <summary>
+        /// click
+        /// </summary>
         public void HandleCircleButtonClick()
         {
             _presentationModel.Type = ShapeType.CIRCLE;
