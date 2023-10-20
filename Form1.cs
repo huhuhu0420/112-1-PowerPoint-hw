@@ -60,6 +60,10 @@ namespace PowerPoint
             System.Windows.Forms.MouseEventArgs e)
         {
             _presentationModel.PointerReleased(new PointD(e.X, e.Y));
+            Cursor = Cursors.Arrow;
+            squareButton.Checked = false;
+            circleButton.Checked = false;
+            lineButton.Checked = false;
             Debug.Print("release");
         }
         public void HandleCanvasMoved(object sender,
@@ -80,25 +84,31 @@ namespace PowerPoint
         public void HandleLineButtonClick()
         {
             _presentationModel.Type = ShapeType.LINE;
+            _presentationModel.IsDrawing = true;
             squareButton.Checked = false;
             circleButton.Checked = false;
             lineButton.Checked = true;
+            Cursor = Cursors.Cross;
         }
 
         public void HandleRectangleButtonClick()
         {
             _presentationModel.Type = ShapeType.RECTANGLE;
+            _presentationModel.IsDrawing = true;
             squareButton.Checked = true;
             circleButton.Checked = false;
             lineButton.Checked = false;
+            Cursor = Cursors.Cross;
         }
 
         public void HandleCircleButtonClick()
         {
             _presentationModel.Type = ShapeType.CIRCLE;
+            _presentationModel.IsDrawing = true;
             squareButton.Checked = false;
             circleButton.Checked = true;
             lineButton.Checked = false;
+            Cursor = Cursors.Cross;
         }
     }
 }

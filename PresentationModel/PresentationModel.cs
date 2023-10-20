@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
@@ -12,6 +13,12 @@ namespace PowerPoint.PresentationModel
         private bool _isPressed = false;
 
         public ShapeType Type
+        {
+            get;
+            set;
+        }
+
+        public bool IsDrawing
         {
             get;
             set;
@@ -43,24 +50,34 @@ namespace PowerPoint.PresentationModel
 
         public void PointerPressed(PointD point)
         {
-            _model.PointerPressed(point, Type);
-            _isPressed = true;
+            if (IsDrawing)
+            {
+                _model.PointerPressed(point, Type);
+                _isPressed = true;
+                
+            }
         }
         
         public void PointerMoved(PointD point)
         {
-            if (_isPressed)
+            if (IsDrawing)
             {
-                _model.PointerMoved(point);
+                if (_isPressed)
+                {
+                    _model.PointerMoved(point);
+                }
             }
         }
 
         public void PointerReleased(PointD point)
         {
-            if (_isPressed)
+            if (IsDrawing)
             {
-                _isPressed = false;
-                _model.PointerReleased(point, Type);
+                if (_isPressed) {
+                    _isPressed = false;
+                    _model.PointerReleased(point, Type);
+                }
+                IsDrawing = false;
             }
         }
 
