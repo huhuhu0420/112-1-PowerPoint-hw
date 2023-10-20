@@ -10,7 +10,12 @@ namespace PowerPoint.PresentationModel
         Model _model = new Model();
         public event Model.ModelChangedEventHandler _modelChanged;
         private bool _isPressed = false;
-        private ShapeType _shpaeType = ShapeType.CIRCLE;
+
+        public ShapeType Type
+        {
+            get;
+            set;
+        }
 
         public PresentationModel()
         {
@@ -38,7 +43,7 @@ namespace PowerPoint.PresentationModel
 
         public void PointerPressed(PointD point)
         {
-            _model.PointerPressed(point, _shpaeType);
+            _model.PointerPressed(point, Type);
             _isPressed = true;
         }
         
@@ -55,7 +60,7 @@ namespace PowerPoint.PresentationModel
             if (_isPressed)
             {
                 _isPressed = false;
-                _model.PointerReleased(point, _shpaeType);
+                _model.PointerReleased(point, Type);
             }
         }
 

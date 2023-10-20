@@ -76,5 +76,20 @@ namespace PowerPoint
         {
             Invalidate(true);
         }
+
+        public void HandleLineButtonClick()
+        {
+            _presentationModel.Type = ShapeType.LINE;
+        }
+
+        public void HandleRectangleButtonClick()
+        {
+            _presentationModel.Type = ShapeType.RECTANGLE;
+        }
+
+        public void HandleCircleButtonClick()
+        {
+            _presentationModel.Type = ShapeType.CIRCLE;
+        }
     }
 }
