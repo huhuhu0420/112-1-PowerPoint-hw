@@ -23,7 +23,7 @@ namespace PowerPoint.PresentationModel
         /// <param name="point1"></param>
         /// <param name="point2"></param>
         /// <param name="type"></param>
-        public void Draw(PointDouble point1, PointDouble point2, ShapeType type)
+        public void Draw(Point point1, Point point2, ShapeType type)
         {
             switch (type)
             {

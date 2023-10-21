@@ -8,7 +8,7 @@ namespace PowerPoint
 {
     public class Shape
     {
-        public Shape (PointDouble point1, PointDouble point2)
+        public Shape (Point point1, Point point2)
         {
             Point1 = point1;
             Point2 = point2;
@@ -42,7 +42,7 @@ namespace PowerPoint
         /// </summary>
         /// <param name="point"></param>
         /// <returns></returns>
-        private string FormatCoordinate(PointDouble point)
+        private string FormatCoordinate(Point point)
         {
             return Constant.PARENTHESIS1 + point.X + Constant.COMMA + point.Y + Constant.PARENTHESIS2;
         }
@@ -72,28 +72,34 @@ namespace PowerPoint
             }
         }
 
-        public PointDouble Point1
+        /// <summary>
+        /// set
+        /// </summary>
+        /// <param name="point"></param>
+        public void SetPoint1(Point point)
         {
-            get
-            {
-                return _point1;
-            }
-            set
-            {
-                _point1 = value;
-            }
+            Point1 = point;
         }
 
-        public PointDouble Point2
+        /// <summary>
+        /// set
+        /// </summary>
+        /// <param name="point"></param>
+        public void SetPoint2(Point point)
         {
-            get
-            {
-                return _point2;
-            }
-            set
-            {
-                _point2 = value;
-            }
+            Point2 = point;
+        }
+
+        public Point Point1
+        {
+            get;
+            set;
+        }
+
+        public Point Point2
+        {
+            get;
+            set;
         }
 
         public ShapeType Type
@@ -103,8 +109,8 @@ namespace PowerPoint
         }
 
         protected string _shapeName = "";
-        protected PointDouble _point1 = new PointDouble(0, 0);
-        protected PointDouble _point2 = new PointDouble(0, 0);
+        protected Point _point1 = new Point(0, 0);
+        protected Point _point2 = new Point(0, 0);
     }
     
     public enum ShapeType

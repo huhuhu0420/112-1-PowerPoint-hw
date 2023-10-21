@@ -60,7 +60,6 @@
     <Compile Include="IGraphics.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="Model.cs" />
-    <Compile Include="PointDouble.cs" />
     <Compile Include="PresentationModel\PresentationModel.cs" />
     <Compile Include="PresentationModel\WindowsFormsGraphicsAdaptor.cs" />
     <Compile Include="Program.cs" />
@@ -81,6 +80,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

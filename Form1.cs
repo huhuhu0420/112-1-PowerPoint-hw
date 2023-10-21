@@ -19,7 +19,10 @@ namespace PowerPoint
             InitializeComponent();
             dataGridView1.DataSource = _presentationModel.GetShapes();
             dataGridView1.CellClick += ClickDataGridView1Cell;
-            _presentationModel.ModelChanged += HandleModelChanged;
+            _presentationModel._modelChanged += HandleModelChanged;
+            this.lineButton.Click += (sender, e) => HandleLineButtonClick();
+            this.squareButton.Click += (sender, e) => HandleRectangleButtonClick();
+            this.circleButton.Click += (sender, e) => HandleCircleButtonClick();
         }
 
         /// <summary>
@@ -56,7 +59,7 @@ namespace PowerPoint
         /// <param name="e"></param>
         public void HandleCanvasPressed(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            _presentationModel.PressedPointer(new PointDouble(e.X, e.Y));
+            _presentationModel.PressedPointer(new Point(e.X, e.Y));
             // Debug.Print("press");
         }
         
@@ -67,7 +70,7 @@ namespace PowerPoint
         /// <param name="e"></param>
         public void HandleCanvasReleased(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            _presentationModel.ReleasedPointer(new PointDouble(e.X, e.Y));
+            _presentationModel.ReleasedPointer(new Point(e.X, e.Y));
             Cursor = Cursors.Arrow;
             squareButton.Checked = false;
             circleButton.Checked = false;
@@ -82,7 +85,7 @@ namespace PowerPoint
         /// <param name="e"></param>
         public void HandleCanvasMoved(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            _presentationModel.MovedPointer(new PointDouble(e.X, e.Y));
+            _presentationModel.MovedPointer(new Point(e.X, e.Y));
         }
         
         /// <summary>

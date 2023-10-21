@@ -179,7 +179,6 @@ namespace PowerPoint
             this.lineButton.Name = "lineButton";
             this.lineButton.Size = new System.Drawing.Size(23, 22);
             this.lineButton.Text = "📏";
-            this.lineButton.Click += (sender, e) =>  HandleLineButtonClick();
             // 
             // squareButton
             // 
@@ -188,7 +187,6 @@ namespace PowerPoint
             this.squareButton.Name = "squareButton";
             this.squareButton.Size = new System.Drawing.Size(23, 22);
             this.squareButton.Text = "⬜";
-            this.squareButton.Click += (sender, e) =>  HandleRectangleButtonClick();
             // 
             // circleButton
             // 
@@ -197,7 +195,6 @@ namespace PowerPoint
             this.circleButton.Name = "circleButton";
             this.circleButton.Size = new System.Drawing.Size(23, 22);
             this.circleButton.Text = "○";
-            this.circleButton.Click += (sender, e) =>  HandleCircleButtonClick();
             // 
             // panel1
             // 

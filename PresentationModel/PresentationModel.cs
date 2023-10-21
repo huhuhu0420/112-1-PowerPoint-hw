@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 
@@ -8,7 +9,7 @@ namespace PowerPoint.PresentationModel
 {
     public class PresentationModel
     {   
-        public event Model.ModelChangedEventHandler ModelChanged;
+        public event Model.ModelChangedEventHandler _modelChanged;
         private bool _isPressed = false;
         readonly Model _model = new Model();
 
@@ -29,7 +30,7 @@ namespace PowerPoint.PresentationModel
         /// </summary>
         public PresentationModel()
         {
-            _model.ModelChanged += HandleModelChanged;
+            _model._modelChanged += HandleModelChanged;
         }
 
         /// <summary>
@@ -37,7 +38,11 @@ namespace PowerPoint.PresentationModel
         /// </summary>
         public void HandleModelChanged()
         {
-            ModelChanged?.Invoke();
+            if (_modelChanged != null)
+            {
+                _modelChanged();
+            }
+            //ModelChanged?.Invoke();
         }
 
         /// <summary>
@@ -59,7 +64,7 @@ namespace PowerPoint.PresentationModel
         /// press
         /// </summary>
         /// <param name="point"></param>
-        public void PressedPointer(PointDouble point)
+        public void PressedPointer(Point point)
         {
             if (IsDrawing)
             {
@@ -73,7 +78,7 @@ namespace PowerPoint.PresentationModel
         /// move
         /// </summary>
         /// <param name="point"></param>
-        public void MovedPointer(PointDouble point)
+        public void MovedPointer(Point point)
         {
             if (IsDrawing)
             {
@@ -88,7 +93,7 @@ namespace PowerPoint.PresentationModel
         /// release
         /// </summary>
         /// <param name="point"></param>
-        public void ReleasedPointer(PointDouble point)
+        public void ReleasedPointer(Point point)
         {
             if (IsDrawing)
             {

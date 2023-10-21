@@ -7,7 +7,7 @@ namespace PowerPoint
 {
     public class Model
     {
-        public event ModelChangedEventHandler ModelChanged;
+        public event ModelChangedEventHandler _modelChanged;
         public delegate void ModelChangedEventHandler();
 
         /// <summary>
@@ -43,14 +43,13 @@ namespace PowerPoint
         /// </summary>
         /// <param name="point"></param>
         /// <param name="type"></param>
-        public void PressedPointer(PointDouble point, ShapeType type)
+        public void PressedPointer(Point point, ShapeType type)
         {
             if (point.X > 0 && point.Y > 0)
             {
                 _firstPoint.X = point.X;
                 _firstPoint.Y = point.Y;
-                _hint.Point1.X = _firstPoint.X;
-                _hint.Point1.Y = _firstPoint.Y;
+                _hint.SetPoint1(_firstPoint);
                 _hint.Type = type;
             }
         }
@@ -59,10 +58,9 @@ namespace PowerPoint
         /// move
         /// </summary>
         /// <param name="point"></param>
-        public void MovedPointer(PointDouble point)
+        public void MovedPointer(Point point)
         {
-            _hint.Point2.X = point.X;
-            _hint.Point2.Y = point.Y;
+            _hint.SetPoint2(point);
             NotifyModelChanged();
         }
         
@@ -71,13 +69,11 @@ namespace PowerPoint
         /// </summary>
         /// <param name="point"></param>
         /// <param name="type"></param>
-        public void ReleasedPointer(PointDouble point, ShapeType type)
+        public void ReleasedPointer(Point point, ShapeType type)
         {
             Shape hint = _shapeFactory.CreateShape(type);
-            hint.Point1.X = _firstPoint.X;
-            hint.Point1.Y = _firstPoint.Y;
-            hint.Point2.X = point.X;
-            hint.Point2.Y = point.Y;
+            hint.SetPoint1(_firstPoint);
+            hint.SetPoint2(point);
             _shapes.Add(hint);
             NotifyModelChanged();
             // Debug.Print(_lines.Count.ToString());
@@ -117,14 +113,17 @@ namespace PowerPoint
         /// </summary>
         void NotifyModelChanged()
         {
-            ModelChanged?.Invoke();
-            // Debug.Print("model change");
+            if (_modelChanged != null)
+            {
+                _modelChanged();
+            }
+            // ModelChanged?.Invoke();  // better usage but cannot use cause it is bad smell :(
         }
 
         private readonly BindingList<Shape> _shapes = new BindingList<Shape>();
         private readonly ShapeFactory _shapeFactory = new ShapeFactory();
         readonly Shape _hint = new Shape();
         
-        private readonly PointDouble _firstPoint = new PointDouble(0, 0);
+        private Point _firstPoint = new Point(0, 0);
     }
 }
