@@ -19,7 +19,7 @@ namespace PowerPoint
             InitializeComponent();
             dataGridView1.DataSource = _presentationModel.GetShapes();
             dataGridView1.CellClick += ClickDataGridView1Cell;
-            _presentationModel.ModelChanged += HandleInvalidate;
+            _presentationModel.ModelChanged += HandleModelChanged;
         }
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace PowerPoint
         /// <summary>
         /// handle
         /// </summary>
-        public void HandleInvalidate()
+        public void HandleModelChanged()
         {
             Invalidate(true);
         }
