@@ -19,10 +19,7 @@ namespace PowerPoint
             InitializeComponent();
             dataGridView1.DataSource = _presentationModel.GetShapes();
             dataGridView1.CellClick += ClickDataGridView1Cell;
-            _presentationModel._modelChanged += HandleModelChanged;
-            this.lineButton.Click += (sender, e) => HandleLineButtonClick();
-            this.squareButton.Click += (sender, e) => HandleRectangleButtonClick();
-            this.circleButton.Click += (sender, e) => HandleCircleButtonClick();
+            _presentationModel._modelChanged += HandleModelChanged;            
         }
 
         /// <summary>
