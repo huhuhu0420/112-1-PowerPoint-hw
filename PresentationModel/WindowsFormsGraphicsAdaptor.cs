@@ -16,13 +16,25 @@ namespace PowerPoint.PresentationModel
         public void ClearAll()
         {
         }
-
+        
         /// <summary>
-        /// rect
+        /// draw
         /// </summary>
         /// <param name="point1"></param>
         /// <param name="point2"></param>
-        public void HandleRectangle(Point point1, Point point2)
+        /// <param name="type"></param>
+        public void DrawLine(Point point1, Point point2)
+        {
+            _graphics.DrawLine(Pens.DodgerBlue, (float)point1.X, (float)point1.Y, (float)point2.X,
+                (float)point2.Y);
+        }
+
+        /// <summary>
+        /// draw
+        /// </summary>
+        /// <param name="point1"></param>
+        /// <param name="point2"></param>
+        public void DrawRectangle(Point point1, Point point2)
         {
             float width = System.Math.Abs(point2.X - point1.X);
             float height = System.Math.Abs(point2.Y - point1.Y);
@@ -38,29 +50,16 @@ namespace PowerPoint.PresentationModel
             }
             _graphics.DrawRectangle(Pens.DodgerBlue, fix1, fix2, width, height);
         }
-        
+
         /// <summary>
         /// draw
         /// </summary>
         /// <param name="point1"></param>
         /// <param name="point2"></param>
-        /// <param name="type"></param>
-        public void Draw(Point point1, Point point2, ShapeType type)
+        public void DrawCircle(Point point1, Point point2)
         {
-            switch (type)
-            {
-                case ShapeType.LINE:
-                    _graphics.DrawLine(Pens.DodgerBlue, (float)point1.X, (float)point1.Y, (float)point2.X,
-                        (float)point2.Y);
-                    break;
-                case ShapeType.RECTANGLE:
-                    HandleRectangle(point1, point2);
-                    break;
-                case ShapeType.CIRCLE:
-                    _graphics.DrawEllipse(Pens.DodgerBlue, (float)point1.X, (float)point1.Y, (float)(point2.X - point1.X),
-                    (float)(point2.Y - point1.Y));
-                    break;
-            }
+            _graphics.DrawEllipse(Pens.DodgerBlue, (float)point1.X, (float)point1.Y, (float)(point2.X - point1.X),
+            (float)(point2.Y - point1.Y));
         }
     }
 }

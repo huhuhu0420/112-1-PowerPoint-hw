@@ -15,5 +15,14 @@ namespace PowerPoint
             _shapeName = Constant.LINE;
             Type = ShapeType.LINE;
         }
+
+        /// <summary>
+        /// draw
+        /// </summary>
+        /// <param name="graphics"></param>
+        public override void Draw(IGraphics graphics)
+        {
+            graphics.DrawLine(Point1, Point2);
+        }
     }
 }

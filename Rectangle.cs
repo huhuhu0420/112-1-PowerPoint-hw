@@ -15,5 +15,14 @@ namespace PowerPoint
             _shapeName = Constant.RECTANGLE;
             Type = ShapeType.RECTANGLE;
         }
+
+        /// <summary>
+        /// draw
+        /// </summary>
+        /// <param name="graphics"></param>
+        public override void Draw(IGraphics graphics)
+        {
+            graphics.DrawRectangle(Point1, Point2);
+        }
     }
 }

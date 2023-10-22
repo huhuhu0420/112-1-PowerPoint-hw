@@ -51,9 +51,8 @@ namespace PowerPoint
         /// draw
         /// </summary>
         /// <param name="graphics"></param>
-        public void Draw(IGraphics graphics)
+        public virtual void Draw(IGraphics graphics)
         {
-            graphics.Draw(Point1, Point2, Type);
         }
 
         public string ShapeName

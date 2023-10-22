@@ -49,8 +49,8 @@ namespace PowerPoint
             {
                 _firstPoint.X = point.X;
                 _firstPoint.Y = point.Y;
+                _hint = _shapeFactory.CreateShape(type);
                 _hint.SetPoint1(_firstPoint);
-                _hint.Type = type;
             }
         }
         
@@ -106,6 +106,7 @@ namespace PowerPoint
         public void DrawHint(IGraphics graphics)
         {
             _hint.Draw(graphics);
+            Debug.Print("draw");
         }
         
         /// <summary>
@@ -122,7 +123,7 @@ namespace PowerPoint
 
         private readonly BindingList<Shape> _shapes = new BindingList<Shape>();
         private readonly ShapeFactory _shapeFactory = new ShapeFactory();
-        readonly Shape _hint = new Shape();
+        Shape _hint;
         
         private Point _firstPoint = new Point(0, 0);
     }

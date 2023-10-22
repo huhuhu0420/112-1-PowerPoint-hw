@@ -15,5 +15,14 @@ namespace PowerPoint
             _shapeName = Constant.CIRCLE;
             Type = ShapeType.CIRCLE;
         }
+
+        /// <summary>
+        /// draw
+        /// </summary>
+        /// <param name="graphics"></param>
+        public override void Draw(IGraphics graphics)
+        {
+            graphics.DrawCircle(Point1, Point2);
+        }
     }
 }
