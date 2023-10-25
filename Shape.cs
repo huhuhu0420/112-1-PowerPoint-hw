@@ -10,8 +10,8 @@ namespace PowerPoint
     {
         public Shape (Point point1, Point point2)
         {
-            Point1 = point1;
-            Point2 = point2;
+            _point1 = point1;
+            _point2 = point2;
         }
 
         public Shape()
@@ -34,7 +34,7 @@ namespace PowerPoint
         /// <returns></returns>
         public string GetInfo()
         {
-            return FormatCoordinate(Point1) + Constant.COMMA + FormatCoordinate(Point2);
+            return FormatCoordinate(_point1) + Constant.COMMA + FormatCoordinate(_point2);
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace PowerPoint
         /// <param name="point"></param>
         public void SetPoint1(Point point)
         {
-            Point1 = point;
+            _point1 = point;
         }
 
         /// <summary>
@@ -86,25 +86,7 @@ namespace PowerPoint
         /// <param name="point"></param>
         public void SetPoint2(Point point)
         {
-            Point2 = point;
-        }
-
-        public Point Point1
-        {
-            get;
-            set;
-        }
-
-        public Point Point2
-        {
-            get;
-            set;
-        }
-
-        public ShapeType Type
-        {
-            get;
-            set;
+            _point2 = point;
         }
 
         protected string _shapeName = "";
