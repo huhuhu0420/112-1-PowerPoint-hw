@@ -26,6 +26,27 @@ namespace PowerPoint
             }
             return new Line(point1, point2);
         }
+        
+        /// <summary>
+        /// create with point
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="point1"></param>
+        /// <param name="point2"></param>
+        /// <returns></returns>
+        public Shape CreateShape(ShapeType type, Point point1, Point point2)
+        {
+            switch (type)
+            {
+                case ShapeType.LINE:
+                    return new Line(point1, point2);
+                case ShapeType.RECTANGLE:
+                    return new Rectangle(point1, point2);
+                case ShapeType.CIRCLE:
+                    return new Circle(point1, point2);
+            }
+            return new Line(point1, point2);
+        }
 
         readonly Random _random = new Random();
     }

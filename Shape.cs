@@ -12,6 +12,14 @@ namespace PowerPoint
         {
             _point1 = point1;
             _point2 = point2;
+            if (_point1.X > _point2.X)
+            {
+                (_point1.X, _point2.X) = (_point2.X, _point1.X);
+            }
+            if (_point1.Y > _point2.Y)
+            {
+                (_point1.Y, _point2.Y) = (_point2.Y, _point1.Y);
+            }
         }
 
         public Shape()

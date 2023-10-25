@@ -71,9 +71,7 @@ namespace PowerPoint
         /// <param name="type"></param>
         public void ReleasedPointer(Point point, ShapeType type)
         {
-            Shape hint = _shapeFactory.CreateShape(type);
-            hint.SetPoint1(_firstPoint);
-            hint.SetPoint2(point);
+            Shape hint = _shapeFactory.CreateShape(type, _firstPoint, point);
             _shapes.Add(hint);
             NotifyModelChanged();
             // Debug.Print(_lines.Count.ToString());
@@ -106,7 +104,7 @@ namespace PowerPoint
         public void DrawHint(IGraphics graphics)
         {
             _hint.Draw(graphics);
-            Debug.Print("draw");
+            // Debug.Print("draw");
         }
         
         /// <summary>
