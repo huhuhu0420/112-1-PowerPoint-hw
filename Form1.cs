@@ -106,7 +106,7 @@ namespace PowerPoint
         /// <summary>
         /// click
         /// </summary>
-        public void HandleLineButtonClick()
+        public void HandleLineButtonClick(object sender, EventArgs e)
         {
             _presentationModel.Type = ShapeType.LINE;
             _presentationModel.IsDrawing = true;
@@ -119,7 +119,7 @@ namespace PowerPoint
         /// <summary>
         /// click
         /// </summary>
-        public void HandleRectangleButtonClick()
+        public void HandleRectangleButtonClick(object sender, EventArgs e)
         {
             _presentationModel.Type = ShapeType.RECTANGLE;
             _presentationModel.IsDrawing = true;
@@ -132,7 +132,7 @@ namespace PowerPoint
         /// <summary>
         /// click
         /// </summary>
-        public void HandleCircleButtonClick()
+        public void HandleCircleButtonClick(object sender, EventArgs e)
         {
             _presentationModel.Type = ShapeType.CIRCLE;
             _presentationModel.IsDrawing = true;
