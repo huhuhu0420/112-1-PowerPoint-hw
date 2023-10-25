@@ -14,11 +14,15 @@ namespace PowerPoint
             _point2 = point2;
             if (_point1.X > _point2.X)
             {
-                (_point1.X, _point2.X) = (_point2.X, _point1.X);
+                var temp = point1.X;
+                _point1.X = _point2.X;
+                _point2.X = temp;
             }
             if (_point1.Y > _point2.Y)
             {
-                (_point1.Y, _point2.Y) = (_point2.Y, _point1.Y);
+                var temp = point1.Y;
+                _point1.Y = _point2.Y;
+                _point2.Y = temp;
             }
         }
 

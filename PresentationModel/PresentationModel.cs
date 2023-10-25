@@ -142,5 +142,32 @@ namespace PowerPoint.PresentationModel
             _model.InsertShape(type);
         }
 
+        /// <summary>
+        /// canvas
+        /// </summary>
+        /// <param name="button"></param>
+        /// <param name="cursor"></param>
+        public void HandleCanvasRelease(ToolStripButton []button)
+        {
+            foreach (var aButton in button)
+            {
+                aButton.Checked = false;
+            }
+            
+        }
+
+        /// <summary>
+        /// btn
+        /// </summary>
+        /// <param name="button"></param>
+        /// <param name="index"></param>
+        public void HandleButtonClick(ToolStripButton []button, int index)
+        {
+            foreach (var aButton in button)
+            {
+                aButton.Checked = false;
+            }
+            button[index].Checked = true;
+        }
     }
 }

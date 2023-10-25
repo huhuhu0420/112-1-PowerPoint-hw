@@ -68,11 +68,9 @@ namespace PowerPoint
         public void HandleCanvasReleased(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             _presentationModel.ReleasedPointer(new Point(e.X, e.Y));
+            ToolStripButton[] buttonArray = { lineButton, squareButton, circleButton }; 
+            _presentationModel.HandleCanvasRelease(buttonArray);
             Cursor = Cursors.Arrow;
-            squareButton.Checked = false;
-            circleButton.Checked = false;
-            lineButton.Checked = false;
-            // Debug.Print("release");
         }
         
         /// <summary>
@@ -110,9 +108,8 @@ namespace PowerPoint
         {
             _presentationModel.Type = ShapeType.LINE;
             _presentationModel.IsDrawing = true;
-            squareButton.Checked = false;
-            circleButton.Checked = false;
-            lineButton.Checked = true;
+            ToolStripButton[] buttonArray = { lineButton, squareButton, circleButton };
+            _presentationModel.HandleButtonClick(buttonArray, (int)ShapeType.LINE);
             Cursor = Cursors.Cross;
         }
 
@@ -123,9 +120,8 @@ namespace PowerPoint
         {
             _presentationModel.Type = ShapeType.RECTANGLE;
             _presentationModel.IsDrawing = true;
-            squareButton.Checked = true;
-            circleButton.Checked = false;
-            lineButton.Checked = false;
+            ToolStripButton[] buttonArray = { lineButton, squareButton, circleButton };
+            _presentationModel.HandleButtonClick(buttonArray, (int)ShapeType.RECTANGLE);
             Cursor = Cursors.Cross;
         }
 
@@ -136,9 +132,8 @@ namespace PowerPoint
         {
             _presentationModel.Type = ShapeType.CIRCLE;
             _presentationModel.IsDrawing = true;
-            squareButton.Checked = false;
-            circleButton.Checked = true;
-            lineButton.Checked = false;
+            ToolStripButton[] buttonArray = { lineButton, squareButton, circleButton };
+            _presentationModel.HandleButtonClick(buttonArray, (int)ShapeType.CIRCLE);
             Cursor = Cursors.Cross;
         }
     }
