@@ -98,6 +98,7 @@ namespace PowerPoint
     {
         LINE,
         RECTANGLE,
-        CIRCLE
+        CIRCLE,
+        ARROW
     }
 }

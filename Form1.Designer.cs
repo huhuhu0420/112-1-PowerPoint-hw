@@ -46,7 +46,8 @@ namespace PowerPoint
             this.lineButton = new System.Windows.Forms.ToolStripButton();
             this.squareButton = new System.Windows.Forms.ToolStripButton();
             this.circleButton = new System.Windows.Forms.ToolStripButton();
-            this.panel1 = new DoubleBufferedPanel();
+            this.mouseButton = new System.Windows.Forms.ToolStripButton();
+            this.panel1 = new PowerPoint.DoubleBufferedPanel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -165,7 +166,7 @@ namespace PowerPoint
             // toolStrip1
             // 
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.lineButton, this.squareButton, this.circleButton });
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.lineButton, this.squareButton, this.circleButton, this.mouseButton });
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(932, 25);
@@ -179,7 +180,6 @@ namespace PowerPoint
             this.lineButton.Name = "lineButton";
             this.lineButton.Size = new System.Drawing.Size(23, 22);
             this.lineButton.Text = "📏";
-            this.lineButton.Click += HandleLineButtonClick;
             // 
             // squareButton
             // 
@@ -188,7 +188,6 @@ namespace PowerPoint
             this.squareButton.Name = "squareButton";
             this.squareButton.Size = new System.Drawing.Size(23, 22);
             this.squareButton.Text = "⬜";
-            this.squareButton.Click += HandleRectangleButtonClick;
             // 
             // circleButton
             // 
@@ -197,7 +196,14 @@ namespace PowerPoint
             this.circleButton.Name = "circleButton";
             this.circleButton.Size = new System.Drawing.Size(23, 22);
             this.circleButton.Text = "○";
-            this.circleButton.Click += HandleCircleButtonClick;
+            // 
+            // mouseButton
+            // 
+            this.mouseButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.mouseButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.mouseButton.Name = "mouseButton";
+            this.mouseButton.Size = new System.Drawing.Size(23, 22);
+            this.mouseButton.Text = "🖱";
             // 
             // panel1
             // 
@@ -206,10 +212,6 @@ namespace PowerPoint
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(494, 442);
             this.panel1.TabIndex = 7;
-            this.panel1.MouseDown += HandleCanvasPressed;
-            this.panel1.MouseUp += HandleCanvasReleased;
-            this.panel1.MouseMove += HandleCanvasMoved;
-            this.panel1.Paint += HandleCanvasPaint;
             // 
             // Form1
             // 
@@ -237,6 +239,8 @@ namespace PowerPoint
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.ToolStripButton mouseButton;
 
         private DoubleBufferedPanel panel1;
 
