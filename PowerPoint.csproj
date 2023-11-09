@@ -51,6 +51,7 @@
     <Compile Include="DoubleBufferPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="DrawingState.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,8 +59,10 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="IGraphics.cs" />
+    <Compile Include="IState.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="Model.cs" />
+    <Compile Include="NormalState.cs" />
     <Compile Include="PresentationModel\PresentationModel.cs" />
     <Compile Include="PresentationModel\WindowsFormsGraphicsAdaptor.cs" />
     <Compile Include="Program.cs" />
