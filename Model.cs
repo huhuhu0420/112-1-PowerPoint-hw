@@ -53,6 +53,28 @@ namespace PowerPoint
                 _hint.SetPoint1(_firstPoint);
             }
         }
+
+        /// <summary>
+        /// select
+        /// </summary>
+        /// <param name="point"></param>
+        public void SelectShape(Point point)
+        {
+            for (int i = _shapes.Count-1; i>=0; i--)
+            {
+                if (_shapes[i].IsInShape(point))
+                {
+                    Debug.Print(i.ToString());
+                    _select = _shapeFactory.CreateShape(_shapes[i].Type);
+                    break;
+                }
+            }
+        }
+
+        public void DrawSelect(IGraphics graphics)
+        {
+            _select.Draw(graphics);
+        }
         
         /// <summary>
         /// move
@@ -95,6 +117,10 @@ namespace PowerPoint
             foreach (Shape aLine in _shapes)
                 aLine.Draw(graphics);
             // Debug.Print("draw");
+            if (_select != null)
+            {
+                _select.Draw(graphics);
+            }
         }
 
         /// <summary>
@@ -122,7 +148,7 @@ namespace PowerPoint
         private readonly BindingList<Shape> _shapes = new BindingList<Shape>();
         private readonly ShapeFactory _shapeFactory = new ShapeFactory();
         Shape _hint;
-        
+        private Shape _select;
         private Point _firstPoint = new Point(0, 0);
     }
 }

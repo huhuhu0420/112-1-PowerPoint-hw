@@ -55,6 +55,24 @@ namespace PowerPoint
         {
         }
 
+        /// <summary>
+        /// draw select
+        /// </summary>
+        /// <param name="graphics"></param>
+        public virtual void DrawSelect(IGraphics graphics)
+        {
+        }
+
+        public bool IsInShape(Point point)
+        {
+            if (_point1.X <= point.X && point.X <= _point2.X && _point1.Y <= point.Y && point.Y < _point2.Y)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public string ShapeName
         {
             get
@@ -69,6 +87,12 @@ namespace PowerPoint
             {
                 return GetInfo();
             }
+        }
+
+        public ShapeType Type
+        {
+            get;
+            set;
         }
 
         /// <summary>

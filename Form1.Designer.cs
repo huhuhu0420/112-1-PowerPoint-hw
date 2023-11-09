@@ -231,7 +231,7 @@ namespace PowerPoint
 
         private System.Windows.Forms.ToolStripButton mouseButton;
 
-        private DoubleBufferedPanel panel1;
+        private PowerPoint.DoubleBufferedPanel panel1;
 
         private System.Windows.Forms.ToolStripButton lineButton;
 

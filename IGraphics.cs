@@ -14,20 +14,20 @@ namespace PowerPoint
         /// </summary>
         /// <param name="point1"></param>
         /// <param name="point2"></param>
-        void DrawLine(Point point1, Point point2);
+        void DrawLine(Pen pen, Point point1, Point point2);
 
         /// <summary>
         /// draw
         /// </summary>
         /// <param name="point1"></param>
         /// <param name="point2"></param>
-        void DrawRectangle(Point point1, Point point2);
+        void DrawRectangle(Pen pen, Point point1, Point point2);
 
         /// <summary>
         /// draw
         /// </summary>
         /// <param name="point1"></param>
         /// <param name="point2"></param>
-        void DrawCircle(Point point1, Point point2);
+        void DrawCircle(Pen pen, Point point1, Point point2);
     }
 }

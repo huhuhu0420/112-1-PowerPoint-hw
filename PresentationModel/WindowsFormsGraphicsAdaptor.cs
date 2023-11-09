@@ -23,9 +23,9 @@ namespace PowerPoint.PresentationModel
         /// <param name="point1"></param>
         /// <param name="point2"></param>
         /// <param name="type"></param>
-        public void DrawLine(Point point1, Point point2)
+        public void DrawLine(Pen pen, Point point1, Point point2)
         {
-            _graphics.DrawLine(Pens.DodgerBlue, (float)point1.X, (float)point1.Y, (float)point2.X,
+            _graphics.DrawLine(pen, (float)point1.X, (float)point1.Y, (float)point2.X,
                 (float)point2.Y);
         }
 
@@ -34,7 +34,7 @@ namespace PowerPoint.PresentationModel
         /// </summary>
         /// <param name="point1"></param>
         /// <param name="point2"></param>
-        public void DrawRectangle(Point point1, Point point2)
+        public void DrawRectangle(Pen pen, Point point1, Point point2)
         {
             float width = System.Math.Abs(point2.X - point1.X);
             float height = System.Math.Abs(point2.Y - point1.Y);
@@ -48,7 +48,7 @@ namespace PowerPoint.PresentationModel
             {
                 fix2 -= height;
             }
-            _graphics.DrawRectangle(Pens.DodgerBlue, fix1, fix2, width, height);
+            _graphics.DrawRectangle(pen, fix1, fix2, width, height);
         }
 
         /// <summary>
@@ -56,9 +56,9 @@ namespace PowerPoint.PresentationModel
         /// </summary>
         /// <param name="point1"></param>
         /// <param name="point2"></param>
-        public void DrawCircle(Point point1, Point point2)
+        public void DrawCircle(Pen pen, Point point1, Point point2)
         {
-            _graphics.DrawEllipse(Pens.DodgerBlue, (float)point1.X, (float)point1.Y, (float)(point2.X - point1.X),
+            _graphics.DrawEllipse(pen, (float)point1.X, (float)point1.Y, (float)(point2.X - point1.X),
             (float)(point2.Y - point1.Y));
         }
     }

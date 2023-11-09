@@ -72,6 +72,10 @@ namespace PowerPoint.PresentationModel
                 _isPressed = true;
                 
             }
+            else
+            {
+                _model.SelectShape(point);
+            }
         }
         
         /// <summary>

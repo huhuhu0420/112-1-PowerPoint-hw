@@ -7,6 +7,7 @@ namespace PowerPoint
         public Rectangle(Point point1, Point point2) : base(point1, point2)
         {
             _shapeName = Constant.RECTANGLE;
+            Type = ShapeType.RECTANGLE;
             _point1 = point1;
             _point2 = point2;
             if (_point1.X > _point2.X)
@@ -26,6 +27,7 @@ namespace PowerPoint
         public Rectangle()
         {
             _shapeName = Constant.RECTANGLE;
+            Type = ShapeType.RECTANGLE;
         }
 
         /// <summary>
@@ -34,7 +36,12 @@ namespace PowerPoint
         /// <param name="graphics"></param>
         public override void Draw(IGraphics graphics)
         {
-            graphics.DrawRectangle(_point1, _point2);
+            Pen pen = new Pen(Color.DodgerBlue, 3);
+            graphics.DrawRectangle(pen, _point1, _point2);
+        }
+
+        public override void DrawSelect(IGraphics graphics)
+        {
         }
     }
 }
