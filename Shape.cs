@@ -103,6 +103,15 @@ namespace PowerPoint
         {
             _point1 = point;
         }
+        
+        /// <summary>
+        /// get
+        /// </summary>
+        /// <param name="point"></param>
+        public Point GetPoint1()
+        {
+            return _point1;
+        }
 
         /// <summary>
         /// set
@@ -113,6 +122,15 @@ namespace PowerPoint
             _point2 = point;
         }
 
+        /// <summary>
+        /// get
+        /// </summary>
+        /// <returns></returns>
+        public Point GetPoint2()
+        {
+            return _point2;
+        }
+        
         protected string _shapeName = "";
         protected Point _point1 = new Point(0, 0);
         protected Point _point2 = new Point(0, 0);

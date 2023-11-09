@@ -42,6 +42,8 @@ namespace PowerPoint
 
         public override void DrawSelect(IGraphics graphics)
         {
+            Pen pen = new Pen(Color.DeepPink, 1);
+            graphics.DrawRectangle(pen, _point1, _point2);
         }
     }
 }

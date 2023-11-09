@@ -65,7 +65,7 @@ namespace PowerPoint
                 if (_shapes[i].IsInShape(point))
                 {
                     Debug.Print(i.ToString());
-                    _select = _shapeFactory.CreateShape(_shapes[i].Type);
+                    _select = _shapeFactory.CreateShape(_shapes[i].Type, _shapes[i].GetPoint1(), _shapes[i].GetPoint2());
                     break;
                 }
             }
@@ -119,7 +119,8 @@ namespace PowerPoint
             // Debug.Print("draw");
             if (_select != null)
             {
-                _select.Draw(graphics);
+                _select.DrawSelect(graphics);
+                Debug.Print("draw");
             }
         }
 
