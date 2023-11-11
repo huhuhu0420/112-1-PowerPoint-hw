@@ -59,8 +59,10 @@ namespace PowerPoint
         /// draw select
         /// </summary>
         /// <param name="graphics"></param>
-        public virtual void DrawSelect(IGraphics graphics)
+        public void DrawSelect(IGraphics graphics)
         {
+            Pen pen = new Pen(Color.DeepPink, 1);
+            graphics.DrawSelect(pen, _point1, _point2);
         }
 
         public bool IsInShape(Point point)

@@ -61,5 +61,27 @@ namespace PowerPoint.PresentationModel
             _graphics.DrawEllipse(pen, (float)point1.X, (float)point1.Y, (float)(point2.X - point1.X),
             (float)(point2.Y - point1.Y));
         }
+
+        /// <summary>
+        /// draw
+        /// </summary>
+        /// <param name="point1"></param>
+        /// <param name="point2"></param>
+        public void DrawSelect(Pen pen, Point point1, Point point2)
+        {
+            float width = System.Math.Abs(point2.X - point1.X);
+            float height = System.Math.Abs(point2.Y - point1.Y);
+            float fix1 = point1.X;
+            float fix2 = point1.Y;
+            if (point1.X > point2.X)
+            {
+                fix1 -= width;
+            }
+            if (point1.Y > point2.Y)
+            {
+                fix2 -= height;
+            }
+            _graphics.DrawRectangle(pen, fix1, fix2, width, height);
+        }
     }
 }

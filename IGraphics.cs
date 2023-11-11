@@ -29,5 +29,13 @@ namespace PowerPoint
         /// <param name="point1"></param>
         /// <param name="point2"></param>
         void DrawCircle(Pen pen, Point point1, Point point2);
+        
+        /// <summary>
+        /// draw
+        /// </summary>
+        /// <param name="pen"></param>
+        /// <param name="point1"></param>
+        /// <param name="point2"></param>
+        void DrawSelect(Pen pen, Point point1, Point point2);
     }
 }
