@@ -11,17 +11,35 @@ namespace PowerPoint
         {
             _model = model;
         }
+        
+        /// <summary>
+        /// down
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="point"></param>
+        /// <param name="type"></param>
         public void MouseDown(Context context, Point point, ShapeType type)
         {
             _model.PressedPointer(point, type);
             Debug.Print("drawing");
         }
         
+        /// <summary>
+        /// move
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="point"></param>
         public void MouseMove(Context context, Point point)
         {
             _model.MovedPointer(point);
         }
         
+        /// <summary>
+        /// up
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="point"></param>
+        /// <param name="type"></param>
         public void MouseUp(Context context, Point point, ShapeType type)
         {
             _model.ReleasedPointer(point, type);

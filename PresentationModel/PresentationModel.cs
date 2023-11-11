@@ -32,6 +32,10 @@ namespace PowerPoint.PresentationModel
             set;
         }
         
+        /// <summary>
+        /// set
+        /// </summary>
+        /// <param name="state"></param>
         public void SetModelState(ModelState state)
         {
             _model.SetModelState(state);

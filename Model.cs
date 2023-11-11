@@ -54,11 +54,20 @@ namespace PowerPoint
             _context.MouseDown(point, type);
         }
 
+        /// <summary>
+        /// move
+        /// </summary>
+        /// <param name="point"></param>
         public void MouseMove(Point point)
         {
             _context.MouseMove(point);
         }
         
+        /// <summary>
+        /// up
+        /// </summary>
+        /// <param name="point"></param>
+        /// <param name="type"></param>
         public void MouseUp(Point point, ShapeType type)
         {
             _context.MouseUp(point, type);

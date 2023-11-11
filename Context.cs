@@ -28,16 +28,30 @@ namespace PowerPoint
             return _state;
         }
         
+        /// <summary>
+        /// down
+        /// </summary>
+        /// <param name="point"></param>
+        /// <param name="type"></param>
         public void MouseDown(Point point, ShapeType type)
         {
             _state.MouseDown(this, point, type);
         }
 
+        /// <summary>
+        /// move
+        /// </summary>
+        /// <param name="point"></param>
         public void MouseMove(Point point)
         {
             _state.MouseMove(this, point);
         }
         
+        /// <summary>
+        /// up
+        /// </summary>
+        /// <param name="point"></param>
+        /// <param name="type"></param>
         public void MouseUp(Point point, ShapeType type)
         {
             _state.MouseUp(this, point, type);

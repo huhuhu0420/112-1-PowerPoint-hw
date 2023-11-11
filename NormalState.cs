@@ -12,6 +12,13 @@ namespace PowerPoint
         {
             _model = model;
         }
+        
+        /// <summary>
+        /// down
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="point"></param>
+        /// <param name="type"></param>
         public void MouseDown(Context context, Point point, ShapeType type)
         {
             _model.SelectShape(point);
@@ -19,10 +26,21 @@ namespace PowerPoint
             Debug.Print("notify");
         }
         
+        /// <summary>
+        /// move
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="point"></param>
         public void MouseMove(Context context, Point point)
         {
         }
         
+        /// <summary>
+        /// up
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="point"></param>
+        /// <param name="type"></param>
         public void MouseUp(Context context, Point point, ShapeType type)
         {
         }
