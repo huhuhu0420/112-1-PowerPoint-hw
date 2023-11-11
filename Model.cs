@@ -86,13 +86,19 @@ namespace PowerPoint
         /// <param name="point"></param>
         public void SelectShape(Point point)
         {
+            bool isSelect = false;
             for (int i = _shapes.Count-1; i>=0; i--)
             {
                 if (_shapes[i].IsInShape(point))
                 {
                     Debug.Print(i.ToString());
                     _select = _shapeFactory.CreateShape(_shapes[i].Type, _shapes[i].GetPoint1(), _shapes[i].GetPoint2());
+                    isSelect = true;
                     break;
+                }
+                if (!isSelect)
+                {
+                    _select = null;
                 }
             }
         }
