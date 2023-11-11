@@ -62,7 +62,9 @@ namespace PowerPoint
         public void DrawSelect(IGraphics graphics)
         {
             Pen pen = new Pen(Color.DeepPink, 1);
-            graphics.DrawSelect(pen, _point1, _point2);
+            Point point1 = new Point(_point1.X - 2, _point1.Y - 2);
+            Point point2 = new Point(_point2.X + 2, _point2.Y + 2);
+            graphics.DrawSelect(pen, point1, point2);
         }
 
         public bool IsInShape(Point point)

@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
+using System.Runtime.CompilerServices;
 
 namespace PowerPoint
 {
@@ -9,6 +10,11 @@ namespace PowerPoint
     {
         public event ModelChangedEventHandler _modelChanged;
         public delegate void ModelChangedEventHandler();
+
+        public Model()
+        {
+            _context = new Context(this);
+        }
 
         /// <summary>
         /// insert shape
@@ -157,7 +163,7 @@ namespace PowerPoint
         /// <summary>
         /// notify
         /// </summary>
-        void NotifyModelChanged()
+        public void NotifyModelChanged()
         {
             if (_modelChanged != null)
             {
@@ -183,6 +189,6 @@ namespace PowerPoint
         Shape _hint;
         private Shape _select;
         private Point _firstPoint = new Point(0, 0);
-        private Context _context = new Context();
+        private Context _context;
     }
 }

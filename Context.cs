@@ -4,6 +4,11 @@ namespace PowerPoint
 {
     public class Context
     {
+        public Context(Model model)
+        {
+            _model = model;
+            _state = new NormalState(_model);
+        }
         
         /// <summary>
         /// set
@@ -39,5 +44,6 @@ namespace PowerPoint
         }
         
         private IState _state;
+        private Model _model;
     }
 }

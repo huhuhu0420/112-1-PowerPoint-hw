@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Drawing;
 
 namespace PowerPoint
@@ -14,6 +15,8 @@ namespace PowerPoint
         public void MouseDown(Context context, Point point, ShapeType type)
         {
             _model.SelectShape(point);
+            _model.NotifyModelChanged();
+            Debug.Print("notify");
         }
         
         public void MouseMove(Context context, Point point)
