@@ -37,6 +37,21 @@ namespace PowerPoint
         {
             return _shapes;
         }
+
+        /// <summary>
+        /// mouse down
+        /// </summary>
+        /// <param name="point"></param>
+        /// <param name="type"></param>
+        public void MouseDown(Point point, ShapeType type, PresentationModel.PresentationModel.ModelState modelState)
+        {
+            _context.MouseDown(point, type);
+        }
+
+        public void MouseMove(Point point)
+        {
+            _context.MouseMove(point);
+        }
         
         /// <summary>
         /// press
@@ -114,13 +129,13 @@ namespace PowerPoint
         /// <param name="graphics"></param>
         public void Draw(IGraphics graphics)
         {
+            Debug.Print("draw");
             foreach (Shape aLine in _shapes)
                 aLine.Draw(graphics);
             // Debug.Print("draw");
             if (_select != null)
             {
                 _select.DrawSelect(graphics);
-                Debug.Print("draw");
             }
         }
 
@@ -145,11 +160,24 @@ namespace PowerPoint
             }
             // ModelChanged?.Invoke();  // better usage but cannot use cause it is bad smell :(
         }
+        
+        public void SetModelState(PresentationModel.PresentationModel.ModelState modelState)
+        {
+            if (modelState == PresentationModel.PresentationModel.ModelState.Normal)
+            {
+                _context.SetState(new NormalState(this));
+            }
+            else if (modelState == PresentationModel.PresentationModel.ModelState.Drawing)
+            {
+                _context.SetState(new DrawingState(this));
+            }
+        }
 
         private readonly BindingList<Shape> _shapes = new BindingList<Shape>();
         private readonly ShapeFactory _shapeFactory = new ShapeFactory();
         Shape _hint;
         private Shape _select;
         private Point _firstPoint = new Point(0, 0);
+        private Context _context = new Context();
     }
 }

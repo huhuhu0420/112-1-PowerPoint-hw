@@ -11,10 +11,10 @@ namespace PowerPoint.PresentationModel
     {   
         public event Model.ModelChangedEventHandler _modelChanged;
         private bool _isPressed = false;
-        private State _state = State.Normal;
+        private ModelState _modelState = ModelState.Normal;
         readonly Model _model = new Model();
         
-        public enum State
+        public enum ModelState
         {
             Normal,
             Drawing
@@ -32,11 +32,11 @@ namespace PowerPoint.PresentationModel
             set;
         }
         
-        public void SetState(State state)
+        public void SetModelState(ModelState state)
         {
-            _state = state;
+            _modelState = state;
         }
-
+        
         /// <summary>
         /// model
         /// </summary>
@@ -78,15 +78,9 @@ namespace PowerPoint.PresentationModel
         /// <param name="point"></param>
         public void PressedPointer(Point point)
         {
-            if (IsDrawing)
-            {
-                _model.PressedPointer(point, Type);
-                _isPressed = true;
-            }
-            else
-            {
-                _model.SelectShape(point);
-            }
+            _model.SetModelState(ModelState.Drawing);
+            _model.MouseDown(point, Type, _modelState);
+            _isPressed = true;
         }
         
         /// <summary>
@@ -95,12 +89,9 @@ namespace PowerPoint.PresentationModel
         /// <param name="point"></param>
         public void MovedPointer(Point point)
         {
-            if (IsDrawing)
+            if (_isPressed)
             {
-                if (_isPressed)
-                {
-                    _model.MovedPointer(point);
-                }
+                _model.MouseMove(point);
             }
         }
 

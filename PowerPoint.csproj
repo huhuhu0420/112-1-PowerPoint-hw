@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Circle.cs" />
     <Compile Include="Constant.cs" />
+    <Compile Include="Context.cs" />
     <Compile Include="DoubleBufferPanel.cs">
       <SubType>Component</SubType>
     </Compile>

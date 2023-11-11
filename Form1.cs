@@ -123,7 +123,7 @@ namespace PowerPoint
         public void HandleLineButtonClick(object sender, EventArgs e)
         {
             _presentationModel.Type = ShapeType.LINE;
-            _presentationModel.IsDrawing = true;
+            _presentationModel.SetModelState(PresentationModel.PresentationModel.ModelState.Drawing);
             ToolStripButton[] buttonArray = { lineButton, squareButton, circleButton, mouseButton };
             _presentationModel.HandleButtonClick(buttonArray, (int)ShapeType.LINE);
             Cursor = Cursors.Cross;
@@ -135,7 +135,7 @@ namespace PowerPoint
         public void HandleRectangleButtonClick(object sender, EventArgs e)
         {
             _presentationModel.Type = ShapeType.RECTANGLE;
-            _presentationModel.IsDrawing = true;
+            _presentationModel.SetModelState(PresentationModel.PresentationModel.ModelState.Drawing);
             ToolStripButton[] buttonArray = { lineButton, squareButton, circleButton, mouseButton };
             _presentationModel.HandleButtonClick(buttonArray, (int)ShapeType.RECTANGLE);
             Cursor = Cursors.Cross;
@@ -147,7 +147,7 @@ namespace PowerPoint
         public void HandleCircleButtonClick(object sender, EventArgs e)
         {
             _presentationModel.Type = ShapeType.CIRCLE;
-            _presentationModel.IsDrawing = true;
+            _presentationModel.SetModelState(PresentationModel.PresentationModel.ModelState.Drawing);
             ToolStripButton[] buttonArray = { lineButton, squareButton, circleButton, mouseButton };
             _presentationModel.HandleButtonClick(buttonArray, (int)ShapeType.CIRCLE);
             Cursor = Cursors.Cross;
@@ -158,7 +158,7 @@ namespace PowerPoint
         /// </summary>
         public void HandleMouseButtonClick(object sender, EventArgs e)
         {
-            _presentationModel.IsDrawing = false;
+            _presentationModel.SetModelState(PresentationModel.PresentationModel.ModelState.Normal);
             ToolStripButton[] buttonArray = { lineButton, squareButton, circleButton, mouseButton };
             _presentationModel.HandleButtonClick(buttonArray, (int)ShapeType.ARROW);
             Cursor = Cursors.Arrow;
