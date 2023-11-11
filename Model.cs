@@ -43,7 +43,7 @@ namespace PowerPoint
         /// </summary>
         /// <param name="point"></param>
         /// <param name="type"></param>
-        public void MouseDown(Point point, ShapeType type, PresentationModel.PresentationModel.ModelState modelState)
+        public void MouseDown(Point point, ShapeType type)
         {
             _context.MouseDown(point, type);
         }
@@ -134,7 +134,7 @@ namespace PowerPoint
         /// <param name="graphics"></param>
         public void Draw(IGraphics graphics)
         {
-            Debug.Print("draw");
+            // Debug.Print("draw");
             foreach (Shape aLine in _shapes)
                 aLine.Draw(graphics);
             // Debug.Print("draw");

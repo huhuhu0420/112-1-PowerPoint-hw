@@ -34,7 +34,7 @@ namespace PowerPoint.PresentationModel
         
         public void SetModelState(ModelState state)
         {
-            _modelState = state;
+            _model.SetModelState(state);
         }
         
         /// <summary>
@@ -78,8 +78,7 @@ namespace PowerPoint.PresentationModel
         /// <param name="point"></param>
         public void PressedPointer(Point point)
         {
-            _model.SetModelState(ModelState.Drawing);
-            _model.MouseDown(point, Type, _modelState);
+            _model.MouseDown(point, Type);
             _isPressed = true;
         }
         
@@ -104,7 +103,7 @@ namespace PowerPoint.PresentationModel
             if (_isPressed) 
             {
                 _isPressed = false;
-                _model.ReleasedPointer(point, Type);
+                _model.MouseUp(point, Type);
             }
         }
 
