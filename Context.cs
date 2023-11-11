@@ -25,12 +25,17 @@ namespace PowerPoint
         
         public void MouseDown(Point point, ShapeType type)
         {
-            _state.MouseDown(point, type);
+            _state.MouseDown(this, point, type);
         }
 
         public void MouseMove(Point point)
         {
-            _state.MouseMove(point);
+            _state.MouseMove(this, point);
+        }
+        
+        public void MouseUp(Point point, ShapeType type)
+        {
+            _state.MouseUp(this, point, type);
         }
         
         private IState _state;

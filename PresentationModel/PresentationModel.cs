@@ -101,14 +101,10 @@ namespace PowerPoint.PresentationModel
         /// <param name="point"></param>
         public void ReleasedPointer(Point point)
         {
-            if (IsDrawing)
+            if (_isPressed) 
             {
-                if (_isPressed) 
-                {
-                    _isPressed = false;
-                    _model.ReleasedPointer(point, Type);
-                }
-                IsDrawing = false;
+                _isPressed = false;
+                _model.ReleasedPointer(point, Type);
             }
         }
 

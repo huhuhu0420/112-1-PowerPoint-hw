@@ -11,12 +11,16 @@ namespace PowerPoint
         {
             _model = model;
         }
-        public void MouseDown(Point point, ShapeType type)
+        public void MouseDown(Context context, Point point, ShapeType type)
         {
             _model.SelectShape(point);
         }
         
-        public void MouseMove(Point point)
+        public void MouseMove(Context context, Point point)
+        {
+        }
+        
+        public void MouseUp(Context context, Point point, ShapeType type)
         {
         }
     }

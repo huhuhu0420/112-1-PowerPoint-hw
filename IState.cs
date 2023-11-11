@@ -4,7 +4,8 @@ namespace PowerPoint
 {
     public interface IState
     {
-        void MouseDown(Point point, ShapeType type);
-        void MouseMove(Point point);
+        void MouseDown(Context context, Point point, ShapeType type);
+        void MouseMove(Context context, Point point);
+        void MouseUp(Context context, Point point, ShapeType type);
     }
 }
