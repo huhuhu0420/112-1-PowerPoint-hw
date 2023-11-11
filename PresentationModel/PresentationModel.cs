@@ -11,7 +11,14 @@ namespace PowerPoint.PresentationModel
     {   
         public event Model.ModelChangedEventHandler _modelChanged;
         private bool _isPressed = false;
+        private State _state = State.Normal;
         readonly Model _model = new Model();
+        
+        public enum State
+        {
+            Normal,
+            Drawing
+        } 
 
         public ShapeType Type
         {
@@ -23,6 +30,11 @@ namespace PowerPoint.PresentationModel
         {
             get;
             set;
+        }
+        
+        public void SetState(State state)
+        {
+            _state = state;
         }
 
         /// <summary>
@@ -70,7 +82,6 @@ namespace PowerPoint.PresentationModel
             {
                 _model.PressedPointer(point, Type);
                 _isPressed = true;
-                
             }
             else
             {
