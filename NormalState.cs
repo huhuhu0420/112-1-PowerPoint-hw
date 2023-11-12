@@ -22,8 +22,6 @@ namespace PowerPoint
         public void MouseDown(Context context, Point point, ShapeType type)
         {
             _model.SelectShape(point);
-            _model.NotifyModelChanged();
-            Debug.Print("notify");
         }
         
         /// <summary>
@@ -33,6 +31,7 @@ namespace PowerPoint
         /// <param name="point"></param>
         public void MouseMove(Context context, Point point)
         {
+            _model.MoveShape(point);
         }
         
         /// <summary>
@@ -43,6 +42,16 @@ namespace PowerPoint
         /// <param name="type"></param>
         public void MouseUp(Context context, Point point, ShapeType type)
         {
+        }
+        
+        /// <summary>
+        /// draw
+        /// </summary>
+        /// <param name="graphics"></param>
+        /// <param name="isPressed"></param>
+        public void Draw(IGraphics graphics, bool isPressed)
+        {
+            _model.DrawShapes(graphics);
         }
     }
 }

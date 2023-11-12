@@ -26,5 +26,7 @@ namespace PowerPoint
         /// <param name="point"></param>
         /// <param name="type"></param>
         void MouseUp(Context context, Point point, ShapeType type);
+
+        void Draw(IGraphics graphics, bool isPressed);
     }
 }

@@ -39,6 +39,7 @@ namespace PowerPoint.PresentationModel
         public void SetModelState(ModelState state)
         {
             _model.SetModelState(state);
+            _modelState = state;
         }
         
         /// <summary>
@@ -70,10 +71,6 @@ namespace PowerPoint.PresentationModel
             var graphic = new WindowsFormsGraphicsAdaptor(graphics); 
             // Debug.Print("draw1");
             _model.Draw(graphic);
-            if (_isPressed)
-            {
-                _model.DrawHint(graphic);
-            }
         }
 
         /// <summary>
@@ -83,7 +80,6 @@ namespace PowerPoint.PresentationModel
         public void PressedPointer(Point point)
         {
             _model.MouseDown(point, Type);
-            _isPressed = true;
         }
         
         /// <summary>
@@ -92,10 +88,7 @@ namespace PowerPoint.PresentationModel
         /// <param name="point"></param>
         public void MovedPointer(Point point)
         {
-            if (_isPressed)
-            {
-                _model.MouseMove(point);
-            }
+            _model.MouseMove(point);
         }
 
         /// <summary>
@@ -104,11 +97,7 @@ namespace PowerPoint.PresentationModel
         /// <param name="point"></param>
         public void ReleasedPointer(Point point)
         {
-            if (_isPressed) 
-            {
-                _isPressed = false;
-                _model.MouseUp(point, Type);
-            }
+            _model.MouseUp(point, Type);
         }
 
         /// <summary>
@@ -116,7 +105,6 @@ namespace PowerPoint.PresentationModel
         /// </summary>
         public void Clear()
         {
-            _isPressed = false;
             _model.Clear();
         }
 

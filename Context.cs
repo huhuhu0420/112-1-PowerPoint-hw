@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Runtime.InteropServices;
 
 namespace PowerPoint
 {
@@ -35,6 +36,7 @@ namespace PowerPoint
         /// <param name="type"></param>
         public void MouseDown(Point point, ShapeType type)
         {
+            _isPressed = true;
             _state.MouseDown(this, point, type);
         }
 
@@ -44,6 +46,10 @@ namespace PowerPoint
         /// <param name="point"></param>
         public void MouseMove(Point point)
         {
+            if (!_isPressed)
+            {
+                return;
+            }
             _state.MouseMove(this, point);
         }
         
@@ -54,10 +60,21 @@ namespace PowerPoint
         /// <param name="type"></param>
         public void MouseUp(Point point, ShapeType type)
         {
+            _isPressed = false;
             _state.MouseUp(this, point, type);
+        }
+        
+        /// <summary>
+        /// draw
+        /// </summary>
+        /// <param name="graphics"></param>
+        public void Draw(IGraphics graphics)
+        {
+            _state.Draw(graphics, _isPressed);
         }
         
         private IState _state;
         private Model _model;
+        private bool _isPressed = false;
     }
 }

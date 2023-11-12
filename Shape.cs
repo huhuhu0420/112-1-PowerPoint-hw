@@ -135,6 +135,11 @@ namespace PowerPoint
             return _point2;
         }
         
+        public Point GetCenterPoint()
+        {
+            return new Point((_point1.X + _point2.X) / 2, (_point1.Y + _point2.Y) / 2);
+        }
+        
         protected string _shapeName = "";
         protected Point _point1 = new Point(0, 0);
         protected Point _point2 = new Point(0, 0);

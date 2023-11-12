@@ -72,6 +72,15 @@ namespace PowerPoint
         {
             _context.MouseUp(point, type);
         }
+
+        /// <summary>
+        /// draw
+        /// </summary>
+        /// <param name="graphics"></param>
+        public void Draw(IGraphics graphics)
+        {
+            _context.Draw(graphics);
+        }
         
         /// <summary>
         /// press
@@ -102,21 +111,20 @@ namespace PowerPoint
                 {
                     Debug.Print(i.ToString());
                     _select = _shapeFactory.CreateShape(_shapes[i].Type, _shapes[i].GetPoint1(), _shapes[i].GetPoint2());
+                    _lastPoint = point;
+                    _selectIndex = i;
                     isSelect = true;
                     break;
                 }
                 if (!isSelect)
                 {
                     _select = null;
+                    _selectIndex = -1;
                 }
             }
+            NotifyModelChanged();
         }
 
-        public void DrawSelect(IGraphics graphics)
-        {
-            _select.Draw(graphics);
-        }
-        
         /// <summary>
         /// move
         /// </summary>
@@ -124,6 +132,24 @@ namespace PowerPoint
         public void MovedPointer(Point point)
         {
             _hint.SetPoint2(point);
+            NotifyModelChanged();
+        }
+
+        public void MoveShape(Point point)
+        {
+            Size bias = new Size(point.X - _lastPoint.X, point.Y - _lastPoint.Y);
+            if (_selectIndex == -1)
+            {
+                return;
+            }
+            _shapes[_selectIndex].SetPoint1(_shapes[_selectIndex].GetPoint1() + bias);
+            _shapes[_selectIndex].SetPoint2(_shapes[_selectIndex].GetPoint2() + bias);
+            if (_select != null)
+            {
+                _select.SetPoint1(_select.GetPoint1() + bias);
+                _select.SetPoint2(_select.GetPoint2() + bias);
+            }
+            _lastPoint = point;
             NotifyModelChanged();
         }
         
@@ -153,12 +179,11 @@ namespace PowerPoint
         /// draw
         /// </summary>
         /// <param name="graphics"></param>
-        public void Draw(IGraphics graphics)
+        public void DrawShapes(IGraphics graphics)
         {
             // Debug.Print("draw");
             foreach (Shape aLine in _shapes)
                 aLine.Draw(graphics);
-            // Debug.Print("draw");
             if (_select != null)
             {
                 _select.DrawSelect(graphics);
@@ -198,12 +223,14 @@ namespace PowerPoint
                 _context.SetState(new DrawingState(this));
             }
         }
-
+        
         private readonly BindingList<Shape> _shapes = new BindingList<Shape>();
         private readonly ShapeFactory _shapeFactory = new ShapeFactory();
         Shape _hint;
         private Shape _select;
         private Point _firstPoint = new Point(0, 0);
+        private Point _lastPoint = new Point(0, 0);
+        private int _selectIndex = -1;
         private Context _context;
     }
 }

@@ -44,6 +44,21 @@ namespace PowerPoint
         {
             _model.ReleasedPointer(point, type);
             context.SetState(new NormalState(_model));
+            _model.SetModelState(PresentationModel.PresentationModel.ModelState.Normal);
+        }
+        
+        /// <summary>
+        /// draw
+        /// </summary>
+        /// <param name="graphics"></param>
+        /// <param name="isPressed"></param>
+        public void Draw(IGraphics graphics, bool isPressed)
+        {
+            if (isPressed)
+            {
+                _model.DrawHint(graphics);
+            }
+            _model.DrawShapes(graphics);
         }
     }
 }
