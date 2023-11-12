@@ -35,6 +35,7 @@ namespace PowerPoint
                 RemoveShapeByIndex(_selectIndex);
                 _select = null;
                 _selectIndex = -1;
+                NotifyModelChanged();
             }
         }
         
