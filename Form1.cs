@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,6 +38,7 @@ namespace PowerPoint
             this.panel1.MouseMove += HandleCanvasMoved;
             this.panel1.Paint += HandleCanvasPaint;
             this.KeyDown += FormKeyDown;
+            _brief = new Bitmap(this.panel1.Width, this.panel1.Height);
         }
         
         /// <summary>
@@ -50,6 +52,15 @@ namespace PowerPoint
             {
                 _presentationModel.DeleteShape();
             }
+        }
+        
+        /// <summary>
+        /// brief
+        /// </summary>
+        private void GenerateBrief()
+        {
+            this.panel1.DrawToBitmap(_brief, new System.Drawing.Rectangle(0, 0, this.panel1.Width, this.panel1.Height));
+            slide1.Image = new Bitmap(_brief, slide1.Size);
         }
 
         /// <summary>
@@ -129,6 +140,7 @@ namespace PowerPoint
         public void HandleModelChanged()
         {
             Invalidate(true);
+            GenerateBrief();
         }
 
         /// <summary>
@@ -177,5 +189,7 @@ namespace PowerPoint
             _presentationModel.HandleButtonClick(buttonArray, (int)ShapeType.ARROW);
             Cursor = Cursors.Arrow;
         }
+
+        private Bitmap _brief;
     }
 }

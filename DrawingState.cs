@@ -44,7 +44,6 @@ namespace PowerPoint
         {
             _model.ReleasedPointer(point, type);
             context.SetState(new NormalState(_model));
-            _model.SetModelState(PresentationModel.PresentationModel.ModelState.Normal);
         }
         
         /// <summary>

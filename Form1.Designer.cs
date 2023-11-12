@@ -35,7 +35,7 @@ namespace PowerPoint
             this.delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.shapeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.information = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
+            this.slide1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.InsertButton = new System.Windows.Forms.Button();
             this.InformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -98,14 +98,14 @@ namespace PowerPoint
             this.information.ReadOnly = true;
             this.information.Width = 125;
             // 
-            // button1
+            // slide1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 53);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(148, 107);
-            this.button1.TabIndex = 1;
-            this.button1.UseVisualStyleBackColor = true;
+            this.slide1.Location = new System.Drawing.Point(12, 53);
+            this.slide1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.slide1.Name = "slide1";
+            this.slide1.Size = new System.Drawing.Size(148, 107);
+            this.slide1.TabIndex = 1;
+            this.slide1.UseVisualStyleBackColor = true;
             // 
             // comboBox1
             // 
@@ -212,7 +212,7 @@ namespace PowerPoint
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.InsertButton);
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.slide1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F);
@@ -251,7 +251,7 @@ namespace PowerPoint
 
         private System.Windows.Forms.MenuStrip menuStrip1;
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button slide1;
 
         private System.Windows.Forms.DataGridView dataGridView1;
 
