@@ -24,12 +24,25 @@ namespace PowerPoint
             _shapes.Add(_shapeFactory.CreateShape(type));
             NotifyModelChanged();
         }
+
+        /// <summary>
+        /// remove
+        /// </summary>
+        public void RemoveShape()
+        {
+            if (_selectIndex != -1)
+            {
+                RemoveShapeByIndex(_selectIndex);
+                _select = null;
+                _selectIndex = -1;
+            }
+        }
         
         /// <summary>
         /// remove shape
         /// </summary>
         /// <param name="index"></param>
-        public void RemoveShape(int index)
+        public void RemoveShapeByIndex(int index)
         {
             _shapes.RemoveAt(index);
             NotifyModelChanged();

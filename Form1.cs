@@ -36,6 +36,20 @@ namespace PowerPoint
             this.panel1.MouseUp += HandleCanvasReleased;
             this.panel1.MouseMove += HandleCanvasMoved;
             this.panel1.Paint += HandleCanvasPaint;
+            this.KeyDown += FormKeyDown;
+        }
+        
+        /// <summary>
+        /// key down
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FormKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                _presentationModel.DeleteShape();
+            }
         }
 
         /// <summary>

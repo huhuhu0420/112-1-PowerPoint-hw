@@ -61,6 +61,14 @@ namespace PowerPoint.PresentationModel
             }
             //ModelChanged?.Invoke();
         }
+        
+        /// <summary>
+        /// delete
+        /// </summary>
+        public void DeleteShape()
+        {
+            _model.RemoveShape();
+        }
 
         /// <summary>
         /// draw
@@ -123,7 +131,7 @@ namespace PowerPoint.PresentationModel
         /// <param name="index"></param>
         public void RemoveShape(int index)
         {
-            _model.RemoveShape(index);
+            _model.RemoveShapeByIndex(index);
         }
 
         /// <summary>
