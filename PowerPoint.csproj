@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BindingToolStripButton.cs" />
     <Compile Include="Circle.cs" />
     <Compile Include="Constant.cs" />
     <Compile Include="Context.cs" />

@@ -1,5 +1,6 @@
 ﻿using System.Runtime.Remoting.Channels;
 using System.Windows.Forms;
+using WindowPowerPoint;
 
 namespace PowerPoint
 {
@@ -42,10 +43,10 @@ namespace PowerPoint
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.lineButton = new System.Windows.Forms.ToolStripButton();
-            this.squareButton = new System.Windows.Forms.ToolStripButton();
-            this.circleButton = new System.Windows.Forms.ToolStripButton();
-            this.mouseButton = new System.Windows.Forms.ToolStripButton();
+            this.lineButton = new BindingToolStripButton();
+            this.squareButton = new BindingToolStripButton();
+            this.circleButton = new BindingToolStripButton();
+            this.mouseButton = new BindingToolStripButton();
             this.panel1 = new PowerPoint.DoubleBufferedPanel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -230,15 +231,15 @@ namespace PowerPoint
             this.PerformLayout();
         }
 
-        private System.Windows.Forms.ToolStripButton mouseButton;
+        private BindingToolStripButton mouseButton;
 
         private PowerPoint.DoubleBufferedPanel panel1;
 
-        private System.Windows.Forms.ToolStripButton lineButton;
+        private BindingToolStripButton lineButton;
 
-        private System.Windows.Forms.ToolStripButton squareButton;
+        private BindingToolStripButton squareButton;
 
-        private System.Windows.Forms.ToolStripButton circleButton;
+        private BindingToolStripButton circleButton;
 
         private System.Windows.Forms.ToolStrip toolStrip1;
 

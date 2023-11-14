@@ -38,6 +38,10 @@ namespace PowerPoint
             this.panel1.MouseMove += HandleCanvasMoved;
             this.panel1.Paint += HandleCanvasPaint;
             this.KeyDown += FormKeyDown;
+            lineButton.DataBindings.Add(Constant.CHECKED, _presentationModel, Constant.ISLINECHECKED);
+            squareButton.DataBindings.Add(Constant.CHECKED, _presentationModel, Constant.ISRECTANGLECHECKED);
+            circleButton.DataBindings.Add(Constant.CHECKED, _presentationModel, Constant.ISCIRCLECHECKED);
+            mouseButton.DataBindings.Add(Constant.CHECKED, _presentationModel, Constant.ISMOUSECHECKED);
             _brief = new Bitmap(this.panel1.Width, this.panel1.Height);
         }
         
@@ -150,8 +154,7 @@ namespace PowerPoint
         {
             _presentationModel.Type = ShapeType.LINE;
             _presentationModel.SetModelState(PresentationModel.PresentationModel.ModelState.Drawing);
-            ToolStripButton[] buttonArray = { lineButton, squareButton, circleButton, mouseButton };
-            _presentationModel.HandleButtonClick(buttonArray, (int)ShapeType.LINE);
+            _presentationModel.HandleButtonClick((int)ShapeType.LINE);
             Cursor = Cursors.Cross;
         }
 
@@ -162,8 +165,7 @@ namespace PowerPoint
         {
             _presentationModel.Type = ShapeType.RECTANGLE;
             _presentationModel.SetModelState(PresentationModel.PresentationModel.ModelState.Drawing);
-            ToolStripButton[] buttonArray = { lineButton, squareButton, circleButton, mouseButton };
-            _presentationModel.HandleButtonClick(buttonArray, (int)ShapeType.RECTANGLE);
+            _presentationModel.HandleButtonClick((int)ShapeType.RECTANGLE);
             Cursor = Cursors.Cross;
         }
 
@@ -174,8 +176,7 @@ namespace PowerPoint
         {
             _presentationModel.Type = ShapeType.CIRCLE;
             _presentationModel.SetModelState(PresentationModel.PresentationModel.ModelState.Drawing);
-            ToolStripButton[] buttonArray = { lineButton, squareButton, circleButton, mouseButton };
-            _presentationModel.HandleButtonClick(buttonArray, (int)ShapeType.CIRCLE);
+            _presentationModel.HandleButtonClick((int)ShapeType.CIRCLE);
             Cursor = Cursors.Cross;
         }
 
@@ -185,8 +186,7 @@ namespace PowerPoint
         public void HandleMouseButtonClick(object sender, EventArgs e)
         {
             _presentationModel.SetModelState(PresentationModel.PresentationModel.ModelState.Normal);
-            ToolStripButton[] buttonArray = { lineButton, squareButton, circleButton, mouseButton };
-            _presentationModel.HandleButtonClick(buttonArray, (int)ShapeType.ARROW);
+            _presentationModel.HandleButtonClick((int)ShapeType.ARROW);
             Cursor = Cursors.Arrow;
         }
 
