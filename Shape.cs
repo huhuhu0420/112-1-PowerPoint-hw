@@ -69,7 +69,11 @@ namespace PowerPoint
 
         public bool IsInShape(Point point)
         {
-            if (_point1.X <= point.X && point.X <= _point2.X && _point1.Y <= point.Y && point.Y < _point2.Y)
+            int minX = _point1.X < _point2.X ? _point1.X : _point2.X;
+            int maxX = _point1.X > _point2.X ? _point1.X : _point2.X;
+            int minY = _point1.Y < _point2.Y ? _point1.Y : _point2.Y;
+            int maxY = _point1.Y > _point2.Y ? _point1.Y : _point2.Y;
+            if (minX <= point.X && point.X <= maxX && minY <= point.Y && point.Y <= maxY)
             {
                 return true;
             }
