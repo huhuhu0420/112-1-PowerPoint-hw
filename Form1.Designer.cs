@@ -43,10 +43,10 @@ namespace PowerPoint
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.lineButton = new BindingToolStripButton();
-            this.squareButton = new BindingToolStripButton();
-            this.circleButton = new BindingToolStripButton();
-            this.mouseButton = new BindingToolStripButton();
+            this.lineButton = new WindowPowerPoint.BindingToolStripButton();
+            this.squareButton = new WindowPowerPoint.BindingToolStripButton();
+            this.circleButton = new WindowPowerPoint.BindingToolStripButton();
+            this.mouseButton = new WindowPowerPoint.BindingToolStripButton();
             this.panel1 = new PowerPoint.DoubleBufferedPanel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -104,7 +104,7 @@ namespace PowerPoint
             this.slide1.Location = new System.Drawing.Point(12, 53);
             this.slide1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.slide1.Name = "slide1";
-            this.slide1.Size = new System.Drawing.Size(148, 107);
+            this.slide1.Size = new System.Drawing.Size(133, 107);
             this.slide1.TabIndex = 1;
             this.slide1.UseVisualStyleBackColor = true;
             // 
@@ -199,9 +199,9 @@ namespace PowerPoint
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panel1.Location = new System.Drawing.Point(166, 56);
+            this.panel1.Location = new System.Drawing.Point(153, 56);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(494, 442);
+            this.panel1.Size = new System.Drawing.Size(507, 442);
             this.panel1.TabIndex = 7;
             // 
             // Form1
