@@ -46,6 +46,15 @@ namespace PowerPoint
         public void RemoveShapeByIndex(int index)
         {
             _shapes.RemoveAt(index);
+            if (_selectIndex == index)
+            {
+                _select = null;
+                _selectIndex = -1;
+            }
+            else if (_selectIndex > index)
+            {
+                _selectIndex--;
+            }
             NotifyModelChanged();
         }
 
