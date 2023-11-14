@@ -113,8 +113,6 @@ namespace PowerPoint
         public void HandleCanvasReleased(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             _presentationModel.ReleasedPointer(new Point(e.X, e.Y));
-            ToolStripButton[] buttonArray = { lineButton, squareButton, circleButton }; 
-            _presentationModel.HandleCanvasRelease(buttonArray);
             Cursor = Cursors.Arrow;
         }
         
@@ -152,8 +150,6 @@ namespace PowerPoint
         /// </summary>
         public void HandleLineButtonClick(object sender, EventArgs e)
         {
-            _presentationModel.Type = ShapeType.LINE;
-            _presentationModel.SetModelState(PresentationModel.PresentationModel.ModelState.Drawing);
             _presentationModel.HandleButtonClick((int)ShapeType.LINE);
             Cursor = Cursors.Cross;
         }
@@ -163,8 +159,6 @@ namespace PowerPoint
         /// </summary>
         public void HandleRectangleButtonClick(object sender, EventArgs e)
         {
-            _presentationModel.Type = ShapeType.RECTANGLE;
-            _presentationModel.SetModelState(PresentationModel.PresentationModel.ModelState.Drawing);
             _presentationModel.HandleButtonClick((int)ShapeType.RECTANGLE);
             Cursor = Cursors.Cross;
         }
@@ -174,8 +168,6 @@ namespace PowerPoint
         /// </summary>
         public void HandleCircleButtonClick(object sender, EventArgs e)
         {
-            _presentationModel.Type = ShapeType.CIRCLE;
-            _presentationModel.SetModelState(PresentationModel.PresentationModel.ModelState.Drawing);
             _presentationModel.HandleButtonClick((int)ShapeType.CIRCLE);
             Cursor = Cursors.Cross;
         }
@@ -185,7 +177,6 @@ namespace PowerPoint
         /// </summary>
         public void HandleMouseButtonClick(object sender, EventArgs e)
         {
-            _presentationModel.SetModelState(PresentationModel.PresentationModel.ModelState.Normal);
             _presentationModel.HandleButtonClick((int)ShapeType.ARROW);
             Cursor = Cursors.Arrow;
         }

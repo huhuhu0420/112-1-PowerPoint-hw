@@ -141,35 +141,23 @@ namespace PowerPoint.PresentationModel
         }
 
         /// <summary>
-        /// canvas
-        /// </summary>
-        /// <param name="button"></param>
-        /// <param name="cursor"></param>
-        public void HandleCanvasRelease(ToolStripButton []button)
-        {
-            foreach (var aButton in button)
-            {
-                aButton.Checked = false;
-            }
-            
-        }
-
-        /// <summary>
         /// btn
         /// </summary>
         /// <param name="button"></param>
         /// <param name="index"></param>
         public void HandleButtonClick(int index)
         {
+            Type = (ShapeType)index;
+            SetModelState(ModelState.Drawing);
+            if (index == (int)ShapeType.ARROW)
+            {
+                SetModelState(ModelState.Normal);
+            }
             for (int i = 0; i < _isButtonChecked.Length; i++)
             {
                 _isButtonChecked[i] = false;
             }
             _isButtonChecked[index] = true;
-            for (int i = 0; i < _isButtonChecked.Length; i ++)
-            {
-                Debug.Print(_isButtonChecked[i].ToString(CultureInfo.InvariantCulture));
-            }
         }
         
         public bool IsLineButtonChecked
