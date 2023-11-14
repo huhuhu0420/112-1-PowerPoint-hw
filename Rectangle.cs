@@ -36,7 +36,7 @@ namespace PowerPoint
         /// <param name="graphics"></param>
         public override void Draw(IGraphics graphics)
         {
-            Pen pen = new Pen(Color.DodgerBlue, 3);
+            Pen pen = new Pen(Color.DodgerBlue, Constant.THREE);
             graphics.DrawRectangle(pen, _point1, _point2);
         }
     }

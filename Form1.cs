@@ -18,13 +18,13 @@ namespace PowerPoint
         public Form1()
         {
             InitializeComponent();
-            Handle();
+            HandleSomething();
         }
 
         /// <summary>
         /// handle
         /// </summary>
-        public void Handle()
+        public void HandleSomething()
         {
             dataGridView1.DataSource = _presentationModel.GetShapes();
             dataGridView1.CellClick += ClickDataGridView1Cell;
@@ -38,10 +38,10 @@ namespace PowerPoint
             this.panel1.MouseMove += HandleCanvasMoved;
             this.panel1.Paint += HandleCanvasPaint;
             this.KeyDown += FormKeyDown;
-            lineButton.DataBindings.Add(Constant.CHECKED, _presentationModel, Constant.ISLINECHECKED);
-            squareButton.DataBindings.Add(Constant.CHECKED, _presentationModel, Constant.ISRECTANGLECHECKED);
-            circleButton.DataBindings.Add(Constant.CHECKED, _presentationModel, Constant.ISCIRCLECHECKED);
-            mouseButton.DataBindings.Add(Constant.CHECKED, _presentationModel, Constant.ISMOUSECHECKED);
+            lineButton.DataBindings.Add(Constant.CHECKED, _presentationModel, Constant.IS_LINE_CHECKED);
+            squareButton.DataBindings.Add(Constant.CHECKED, _presentationModel, Constant.IS_RECTANGLE_CHECKED);
+            circleButton.DataBindings.Add(Constant.CHECKED, _presentationModel, Constant.IS_CIRCLE_CHECKED);
+            mouseButton.DataBindings.Add(Constant.CHECKED, _presentationModel, Constant.IS_MOUSE_CHECKED);
             _brief = new Bitmap(this.panel1.Width, this.panel1.Height);
         }
         

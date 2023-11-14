@@ -15,9 +15,11 @@ namespace PowerPoint
         public const string RECTANGLE = "矩形";
         public const string CIRCLE = "圓形";
         public const string CHECKED = "Checked";
-        public const string ISLINECHECKED = "IsLineButtonChecked";
-        public const string ISRECTANGLECHECKED = "IsRectangleButtonChecked";
-        public const string ISCIRCLECHECKED = "IsCircleButtonChecked";
-        public const string ISMOUSECHECKED = "IsMouseButtonChecked";
+        public const string IS_LINE_CHECKED = "IsLineButtonChecked";
+        public const string IS_RECTANGLE_CHECKED = "IsRectangleButtonChecked";
+        public const string IS_CIRCLE_CHECKED = "IsCircleButtonChecked";
+        public const string IS_MOUSE_CHECKED = "IsMouseButtonChecked";
+        public const int THREE = 3;
+        public const int TWO = 2;
     }
 }

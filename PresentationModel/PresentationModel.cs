@@ -8,7 +8,10 @@ using System.Windows.Forms;
 namespace PowerPoint.PresentationModel
 {
     public class PresentationModel
-    {   
+    {
+        public event Model.ModelChangedEventHandler _modelChanged;
+        readonly Model _model = new Model();
+
         public enum ModelState
         {
             Normal,
@@ -158,12 +161,12 @@ namespace PowerPoint.PresentationModel
         /// <param name="index"></param>
         public void HandleButtonClick(int index)
         {
-            for (int i=0; i<_isButtonChecked.Length; i++)
+            for (int i = 0; i < _isButtonChecked.Length; i++)
             {
                 _isButtonChecked[i] = false;
             }
             _isButtonChecked[index] = true;
-            for (int i=0; i<_isButtonChecked.Length; i++)
+            for (int i = 0; i < _isButtonChecked.Length; i ++)
             {
                 Debug.Print(_isButtonChecked[i].ToString(CultureInfo.InvariantCulture));
             }
@@ -171,26 +174,36 @@ namespace PowerPoint.PresentationModel
         
         public bool IsLineButtonChecked
         {
-            get { return _isButtonChecked[(int)ShapeType.LINE]; }
+            get 
+            {
+                return _isButtonChecked[(int)ShapeType.LINE]; 
+            }
         }
         
         public bool IsRectangleButtonChecked
         {
-            get { return _isButtonChecked[(int)ShapeType.RECTANGLE]; }
+            get 
+            { 
+                return _isButtonChecked[(int)ShapeType.RECTANGLE]; 
+            }
         }
         
         public bool IsCircleButtonChecked
         {
-            get { Debug.Print("circle");return _isButtonChecked[(int)ShapeType.CIRCLE]; }
+            get 
+            {
+                return _isButtonChecked[(int)ShapeType.CIRCLE]; 
+            }
         }
         
         public bool IsMouseButtonChecked
         {
-            get { return _isButtonChecked[(int)ShapeType.ARROW]; }
+            get
+            {
+                return _isButtonChecked[(int)ShapeType.ARROW]; 
+            }
         }
-        
-        public event Model.ModelChangedEventHandler _modelChanged;
-        readonly Model _model = new Model();
-        bool[] _isButtonChecked = {false, false, false, false};
+
+        readonly bool[] _isButtonChecked = { false, false, false, false };
     }
 }

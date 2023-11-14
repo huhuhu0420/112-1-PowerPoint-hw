@@ -5,7 +5,7 @@ namespace PowerPoint
 {
     public class DrawingState : IState
     {
-        Model _model;
+        readonly Model _model;
         
         public DrawingState(Model model)
         {
@@ -21,7 +21,7 @@ namespace PowerPoint
         public void MouseDown(Context context, Point point, ShapeType type)
         {
             _model.PressedPointer(point, type);
-            Debug.Print("drawing");
+            // Debug.Print("drawing");
         }
         
         /// <summary>

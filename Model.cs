@@ -122,28 +122,43 @@ namespace PowerPoint
         }
 
         /// <summary>
+        /// is in
+        /// </summary>
+        /// <param name="point"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public bool IsInShape(Point point, int index)
+        {
+            if (_shapes[index].IsInShape(point))
+            {
+                Debug.Print(index.ToString());
+                _select = _shapeFactory.CreateShape(_shapes[index].Type, _shapes[index].GetPoint1(), _shapes[index].GetPoint2());
+                _lastPoint = point;
+                _selectIndex = index;
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
         /// select
         /// </summary>
         /// <param name="point"></param>
         public void SelectShape(Point point)
         {
             bool isSelect = false;
-            for (int i = _shapes.Count-1; i>=0; i--)
+            for (int i = _shapes.Count - 1; i >= 0; i --)
             {
-                if (_shapes[i].IsInShape(point))
+                isSelect = IsInShape(point, i);
+                if (isSelect)
                 {
-                    Debug.Print(i.ToString());
-                    _select = _shapeFactory.CreateShape(_shapes[i].Type, _shapes[i].GetPoint1(), _shapes[i].GetPoint2());
-                    _lastPoint = point;
-                    _selectIndex = i;
-                    isSelect = true;
                     break;
                 }
-                if (!isSelect)
-                {
-                    _select = null;
-                    _selectIndex = -1;
-                }
+            }
+            if (!isSelect)
+            {
+                _select = null;
+                _selectIndex = -1;
             }
             NotifyModelChanged();
         }
@@ -158,6 +173,10 @@ namespace PowerPoint
             NotifyModelChanged();
         }
 
+        /// <summary>
+        /// move
+        /// </summary>
+        /// <param name="point"></param>
         public void MoveShape(Point point)
         {
             Size bias = new Size(point.X - _lastPoint.X, point.Y - _lastPoint.Y);
@@ -235,6 +254,10 @@ namespace PowerPoint
             // ModelChanged?.Invoke();  // better usage but cannot use cause it is bad smell :(
         }
         
+        /// <summary>
+        /// set state
+        /// </summary>
+        /// <param name="modelState"></param>
         public void SetModelState(PresentationModel.PresentationModel.ModelState modelState)
         {
             if (modelState == PresentationModel.PresentationModel.ModelState.Normal)
@@ -254,6 +277,6 @@ namespace PowerPoint
         private Point _firstPoint = new Point(0, 0);
         private Point _lastPoint = new Point(0, 0);
         private int _selectIndex = -1;
-        private Context _context;
+        private readonly Context _context;
     }
 }

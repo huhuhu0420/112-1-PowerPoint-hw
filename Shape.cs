@@ -62,11 +62,16 @@ namespace PowerPoint
         public void DrawSelect(IGraphics graphics)
         {
             Pen pen = new Pen(Color.DeepPink, 1);
-            Point point1 = new Point(_point1.X - 2, _point1.Y - 2);
-            Point point2 = new Point(_point2.X + 2, _point2.Y + 2);
+            Point point1 = new Point(_point1.X - Constant.TWO, _point1.Y - Constant.TWO);
+            Point point2 = new Point(_point2.X + Constant.TWO, _point2.Y + Constant.TWO);
             graphics.DrawSelect(pen, point1, point2);
         }
 
+        /// <summary>
+        /// is in
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
         public bool IsInShape(Point point)
         {
             int minX = _point1.X < _point2.X ? _point1.X : _point2.X;
@@ -139,9 +144,13 @@ namespace PowerPoint
             return _point2;
         }
         
+        /// <summary>
+        /// get center
+        /// </summary>
+        /// <returns></returns>
         public Point GetCenterPoint()
         {
-            return new Point((_point1.X + _point2.X) / 2, (_point1.Y + _point2.Y) / 2);
+            return new Point((_point1.X + _point2.X) / Constant.TWO, (_point1.Y + _point2.Y) / Constant.TWO);
         }
         
         protected string _shapeName = "";
