@@ -7,8 +7,9 @@ using System.Windows.Forms;
 
 namespace PowerPoint.PresentationModel
 {
-    public class PresentationModel
+    public class PresentationModel : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         public event Model.ModelChangedEventHandler _modelChanged;
         readonly Model _model = new Model();
 
@@ -60,6 +61,28 @@ namespace PowerPoint.PresentationModel
         }
         
         /// <summary>
+        /// handle prperty changed
+        /// </summary>
+        public void HandlePropertyChanged()
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(Constant.IS_LINE_CHECKED));
+                PropertyChanged(this, new PropertyChangedEventArgs(Constant.IS_RECTANGLE_CHECKED));
+                PropertyChanged(this, new PropertyChangedEventArgs(Constant.IS_CIRCLE_CHECKED));
+                PropertyChanged(this, new PropertyChangedEventArgs(Constant.IS_MOUSE_CHECKED));
+            }
+            if (_isButtonChecked[(int)ShapeType.ARROW])
+            {
+                SetModelState(ModelState.Normal);
+            }
+            else
+            {
+                SetModelState(ModelState.Drawing);
+            }
+        }
+        
+        /// <summary>
         /// delete
         /// </summary>
         public void DeleteShape()
@@ -103,6 +126,12 @@ namespace PowerPoint.PresentationModel
         public void ReleasedPointer(Point point)
         {
             _model.MouseUp(point, Type);
+            for (int i = 0; i < _isButtonChecked.Length; i++)
+            {
+                _isButtonChecked[i] = false;
+            }
+            _isButtonChecked[(int)ShapeType.ARROW] = true;
+            HandlePropertyChanged();
         }
 
         /// <summary>
@@ -158,6 +187,7 @@ namespace PowerPoint.PresentationModel
                 _isButtonChecked[i] = false;
             }
             _isButtonChecked[index] = true;
+            HandlePropertyChanged();
         }
         
         public bool IsLineButtonChecked
