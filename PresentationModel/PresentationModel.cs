@@ -24,12 +24,6 @@ namespace PowerPoint.PresentationModel
             get;
             set;
         }
-
-        public bool IsDrawing
-        {
-            get;
-            set;
-        }
         
         /// <summary>
         /// set
