@@ -40,6 +40,7 @@ namespace PowerPoint.PresentationModel
         public PresentationModel()
         {
             _model._modelChanged += HandleModelChanged;
+            _isButtonChecked[(int)ShapeType.ARROW] = true;
         }
 
         /// <summary>
