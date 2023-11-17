@@ -255,6 +255,15 @@ namespace PowerPoint
         }
         
         /// <summary>
+        /// get
+        /// </summary>
+        /// <returns></returns>
+        public int GetSelectIndex()
+        {
+            return _selectIndex;
+        }
+        
+        /// <summary>
         /// set state
         /// </summary>
         /// <param name="modelState"></param>

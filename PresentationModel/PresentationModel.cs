@@ -16,7 +16,8 @@ namespace PowerPoint.PresentationModel
         public enum ModelState
         {
             Normal,
-            Drawing
+            Drawing,
+            Selected
         } 
 
         public ShapeType Type
@@ -67,11 +68,7 @@ namespace PowerPoint.PresentationModel
                 PropertyChanged(this, new PropertyChangedEventArgs(Constant.IS_CIRCLE_CHECKED));
                 PropertyChanged(this, new PropertyChangedEventArgs(Constant.IS_MOUSE_CHECKED));
             }
-            if (_isButtonChecked[(int)ShapeType.ARROW])
-            {
-                SetModelState(ModelState.Normal);
-            }
-            else
+            if (!_isButtonChecked[(int)ShapeType.ARROW])
             {
                 SetModelState(ModelState.Drawing);
             }

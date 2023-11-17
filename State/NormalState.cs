@@ -22,6 +22,10 @@ namespace PowerPoint
         public void MouseDown(Context context, Point point, ShapeType type)
         {
             _model.SelectShape(point);
+            if (_model.GetSelectIndex() != -1)
+            {
+                context.SetState(new SelectedState(_model));
+            }
         }
         
         /// <summary>
@@ -31,7 +35,6 @@ namespace PowerPoint
         /// <param name="point"></param>
         public void MouseMove(Context context, Point point)
         {
-            _model.MoveShape(point);
         }
         
         /// <summary>
