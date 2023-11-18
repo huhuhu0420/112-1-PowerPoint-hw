@@ -98,6 +98,7 @@ namespace PowerPoint
         public void MouseMove(Point point)
         {
             _context.MouseMove(point);
+            _lastPoint = point;
         }
         
         /// <summary>
@@ -214,7 +215,6 @@ namespace PowerPoint
                 _select.SetPoint1(_select.GetPoint1() + bias);
                 _select.SetPoint2(_select.GetPoint2() + bias);
             }
-            _lastPoint = point;
             NotifyModelChanged();
         }
         
@@ -263,6 +263,30 @@ namespace PowerPoint
         {
             _hint.Draw(graphics);
             // Debug.Print("draw");
+        }
+
+        /// <summary>
+        /// resize
+        /// </summary>
+        /// <param name="point"></param>
+        /// <exception cref="NotImplementedException"></exception>
+        public void ResizeShape(Point point)
+        {
+            if (_selectIndex == -1)
+            {
+                return;
+            }
+            if (point.X < _shapes[_selectIndex].GetPoint1().X + 1)
+            {
+                point.X = _shapes[_selectIndex].GetPoint1().X + 1;
+            }
+            if (point.Y < _shapes[_selectIndex].GetPoint1().Y + 1)
+            {
+                point.Y = _shapes[_selectIndex].GetPoint1().Y + 1;
+            }
+            _shapes[_selectIndex].SetPoint2(point);
+            _select.SetPoint2(point);
+            NotifyModelChanged();
         }
         
         /// <summary>

@@ -165,6 +165,11 @@ namespace PowerPoint
             return false;
         }
         
+        public void Resize(Point point)
+        {
+            _point2 = point;
+        }
+        
         protected string _shapeName = "";
         protected Point _point1 = new Point(0, 0);
         protected Point _point2 = new Point(0, 0);

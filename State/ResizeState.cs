@@ -27,8 +27,14 @@ namespace PowerPoint.State
         /// </summary>
         /// <param name="context"></param>
         /// <param name="point"></param>
+        /// <param name="isPressed"></param>
         public void MouseMove(Context context, Point point, bool isPressed)
         {
+            if (isPressed)
+            {
+                _model.ResizeShape(point);
+                return;
+            }
             if (!_model.IsInShapeCorner(point))
             {
                 context.SetState(new SelectedState(_model));
