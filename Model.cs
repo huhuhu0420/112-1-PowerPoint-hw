@@ -9,12 +9,25 @@ namespace PowerPoint
 {
     public class Model
     {
-        public event ModelChangedEventHandler _modelChanged;
         public delegate void ModelChangedEventHandler();
+        public event ModelChangedEventHandler _modelChanged;
+        public event Context.StateChangedEventHandler _stateChanged;
 
         public Model()
         {
             _context = new Context(this);
+            _context._stateChanged += HandleStateChanged;
+        }
+        
+        /// <summary>
+        /// state changed
+        /// </summary>
+        public void HandleStateChanged(IState state)
+        {
+            if (_stateChanged != null)
+            {
+                _stateChanged(state);
+            }
         }
 
         /// <summary>
@@ -277,17 +290,25 @@ namespace PowerPoint
         /// set state
         /// </summary>
         /// <param name="modelState"></param>
-        public void SetModelState(PresentationModel.PresentationModel.ModelState modelState)
+        public void SetModelState(ModelState modelState)
         {
-            if (modelState == PresentationModel.PresentationModel.ModelState.Normal)
+            if (modelState == ModelState.Normal)
             {
                 _context.SetState(new NormalState(this));
             }
-            else if (modelState == PresentationModel.PresentationModel.ModelState.Drawing)
+            else if (modelState == ModelState.Drawing)
             {
                 _context.SetState(new DrawingState(this));
             }
         }
+
+        public enum ModelState
+        {
+            Normal,
+            Drawing,
+            Selected,
+            Resize
+        } 
         
         private readonly BindingList<Shape> _shapes = new BindingList<Shape>();
         private readonly ShapeFactory _shapeFactory = new ShapeFactory();

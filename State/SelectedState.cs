@@ -37,7 +37,6 @@ namespace PowerPoint.State
             if (_model.IsInShapeCorner(point))
             {
                 context.SetState(new ResizeState(_model));
-                Debug.Print("resize");
                 return;
             }
             if (isPressed)
@@ -65,6 +64,15 @@ namespace PowerPoint.State
         public void Draw(IGraphics graphics, bool isPressed)
         {
             _model.DrawShapes(graphics);
+        }
+        
+        /// <summary>
+        /// get
+        /// </summary>
+        /// <returns></returns>
+        public Model.ModelState GetState()
+        {
+            return Model.ModelState.Selected;
         }
 
     }

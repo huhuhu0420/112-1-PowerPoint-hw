@@ -6,6 +6,8 @@ namespace PowerPoint
 {
     public class Context
     {
+        public delegate void StateChangedEventHandler(IState state);
+        public event StateChangedEventHandler _stateChanged;
         public Context(Model model)
         {
             _model = model;
@@ -19,6 +21,10 @@ namespace PowerPoint
         public void SetState(IState state)
         {
             _state = state;
+            if (_stateChanged != null)
+            {
+                _stateChanged(state);
+            }
         }
         
         /// <summary>

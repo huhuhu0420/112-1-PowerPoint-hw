@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
+using PowerPoint.State;
 
 namespace PowerPoint.PresentationModel
 {
@@ -11,14 +12,9 @@ namespace PowerPoint.PresentationModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public event Model.ModelChangedEventHandler _modelChanged;
+        public delegate void CursorChangedEventHandler(Cursor cursor);
+        public event CursorChangedEventHandler CursorChanged;
         readonly Model _model = new Model();
-
-        public enum ModelState
-        {
-            Normal,
-            Drawing,
-            Selected
-        } 
 
         public ShapeType Type
         {
@@ -30,7 +26,7 @@ namespace PowerPoint.PresentationModel
         /// set
         /// </summary>
         /// <param name="state"></param>
-        public void SetModelState(ModelState state)
+        public void SetModelState(Model.ModelState state)
         {
             _model.SetModelState(state);
         }
@@ -41,6 +37,7 @@ namespace PowerPoint.PresentationModel
         public PresentationModel()
         {
             _model._modelChanged += HandleModelChanged;
+            _model._stateChanged += HandleStateChange;
             _isButtonChecked[(int)ShapeType.ARROW] = true;
         }
 
@@ -70,8 +67,29 @@ namespace PowerPoint.PresentationModel
             }
             if (!_isButtonChecked[(int)ShapeType.ARROW])
             {
-                SetModelState(ModelState.Drawing);
+                SetModelState(Model.ModelState.Drawing);
             }
+        }
+        
+        public void HandleStateChange(IState state)
+        {
+            if (state is SelectedState)
+            {
+                CursorChanged(Cursors.Arrow);
+            }
+            else if (state is NormalState)
+            {
+                CursorChanged(Cursors.Arrow);
+            }
+            else if (state is DrawingState)
+            {
+                CursorChanged(Cursors.Cross);
+            }
+            else if (state is ResizeState)
+            {
+                CursorChanged(Cursors.SizeNWSE);
+            }
+            Debug.Print(state.GetState().ToString());
         }
         
         /// <summary>
@@ -169,10 +187,10 @@ namespace PowerPoint.PresentationModel
         public void HandleButtonClick(int index)
         {
             Type = (ShapeType)index;
-            SetModelState(ModelState.Drawing);
+            SetModelState(Model.ModelState.Drawing);
             if (index == (int)ShapeType.ARROW)
             {
-                SetModelState(ModelState.Normal);
+                SetModelState(Model.ModelState.Normal);
             }
             for (int i = 0; i < _isButtonChecked.Length; i++)
             {

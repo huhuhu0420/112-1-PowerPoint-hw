@@ -33,5 +33,11 @@ namespace PowerPoint
         /// <param name="graphics"></param>
         /// <param name="isPressed"></param>
         void Draw(IGraphics graphics, bool isPressed);
+        
+        /// <summary>
+        /// get
+        /// </summary>
+        /// <returns></returns>
+        Model.ModelState GetState();
     }
 }

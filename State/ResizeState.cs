@@ -20,11 +20,6 @@ namespace PowerPoint.State
         /// <param name="type"></param>
         public void MouseDown(Context context, Point point, ShapeType type)
         {
-            _model.SelectShape(point);
-            if (_model.GetSelectIndex() == -1)
-            {
-                context.SetState(new NormalState(_model));
-            }
         }
 
         /// <summary>
@@ -37,7 +32,6 @@ namespace PowerPoint.State
             if (!_model.IsInShapeCorner(point))
             {
                 context.SetState(new SelectedState(_model));
-                Debug.Print("normal");
             }
         }
 
@@ -60,6 +54,15 @@ namespace PowerPoint.State
         public void Draw(IGraphics graphics, bool isPressed)
         {
             _model.DrawShapes(graphics);
+        }
+        
+        /// <summary>
+        /// get
+        /// </summary>
+        /// <returns></returns>
+        public Model.ModelState GetState()
+        {
+            return Model.ModelState.Resize;
         }
     }
 }

@@ -29,6 +29,7 @@ namespace PowerPoint
             dataGridView1.DataSource = _presentationModel.GetShapes();
             dataGridView1.CellClick += ClickDataGridView1Cell;
             _presentationModel._modelChanged += HandleModelChanged;            
+            _presentationModel.CursorChanged += CursorChanged;
             this.lineButton.Click += HandleLineButtonClick;
             this.squareButton.Click += HandleRectangleButtonClick;
             this.circleButton.Click += HandleCircleButtonClick;
@@ -113,7 +114,6 @@ namespace PowerPoint
         public void HandleCanvasReleased(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             _presentationModel.ReleasedPointer(new Point(e.X, e.Y));
-            Cursor = Cursors.Arrow;
         }
         
         /// <summary>
@@ -144,6 +144,11 @@ namespace PowerPoint
             Invalidate(true);
             GenerateBrief();
         }
+        
+        public void CursorChanged(Cursor cursor)
+        {
+            Cursor = cursor;
+        }
 
         /// <summary>
         /// click
@@ -151,7 +156,6 @@ namespace PowerPoint
         public void HandleLineButtonClick(object sender, EventArgs e)
         {
             _presentationModel.HandleButtonClick((int)ShapeType.LINE);
-            Cursor = Cursors.Cross;
         }
 
         /// <summary>
@@ -160,7 +164,6 @@ namespace PowerPoint
         public void HandleRectangleButtonClick(object sender, EventArgs e)
         {
             _presentationModel.HandleButtonClick((int)ShapeType.RECTANGLE);
-            Cursor = Cursors.Cross;
         }
 
         /// <summary>
@@ -169,7 +172,6 @@ namespace PowerPoint
         public void HandleCircleButtonClick(object sender, EventArgs e)
         {
             _presentationModel.HandleButtonClick((int)ShapeType.CIRCLE);
-            Cursor = Cursors.Cross;
         }
 
         /// <summary>
@@ -178,7 +180,6 @@ namespace PowerPoint
         public void HandleMouseButtonClick(object sender, EventArgs e)
         {
             _presentationModel.HandleButtonClick((int)ShapeType.ARROW);
-            Cursor = Cursors.Arrow;
         }
 
         private Bitmap _brief;

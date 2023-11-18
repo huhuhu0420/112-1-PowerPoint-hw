@@ -61,5 +61,14 @@ namespace PowerPoint.State
             }
             _model.DrawShapes(graphics);
         }
+        
+        /// <summary>
+        /// get
+        /// </summary>
+        /// <returns></returns>
+        public Model.ModelState GetState()
+        {
+            return Model.ModelState.Drawing;
+        }
     }
 }
