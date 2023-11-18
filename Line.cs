@@ -8,7 +8,7 @@ namespace PowerPoint
         { 
             _shapeName = Constant.LINE;
             Type = ShapeType.LINE;
-        }
+                    }
 
         public Line()
         {
@@ -25,5 +25,31 @@ namespace PowerPoint
             Pen pen = new Pen(Color.DodgerBlue, Constant.THREE);
             graphics.DrawLine(pen,_point1, _point2);
         }
+        
+        /// <summary>
+        /// set line type
+        /// </summary>
+        /// <param name="lineType"></param>
+        public void SetLineType(LineType lineType)
+        {
+            _lineType = lineType;
+        }
+        
+        /// <summary>
+        /// get line type
+        /// </summary>
+        /// <returns></returns>
+        public LineType GetLineType()
+        {
+            return _lineType;
+        }
+        
+        public enum LineType
+        {
+            LeftTop,
+            RightTop
+        }
+        
+        private LineType _lineType;
     }
 }
