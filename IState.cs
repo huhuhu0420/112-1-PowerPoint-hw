@@ -17,7 +17,7 @@ namespace PowerPoint
         /// </summary>
         /// <param name="context"></param>
         /// <param name="point"></param>
-        void MouseMove(Context context, Point point);
+        void MouseMove(Context context, Point point, bool isPressed);
         
         /// <summary>
         /// up

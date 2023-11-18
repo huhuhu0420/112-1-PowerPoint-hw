@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.CompilerServices;
+using PowerPoint.State;
 
 namespace PowerPoint
 {
@@ -131,10 +132,19 @@ namespace PowerPoint
         {
             if (_shapes[index].IsInShape(point))
             {
-                Debug.Print(index.ToString());
+                // Debug.Print(index.ToString());
                 _select = _shapeFactory.CreateShape(_shapes[index].Type, _shapes[index].GetPoint1(), _shapes[index].GetPoint2());
                 _lastPoint = point;
                 _selectIndex = index;
+                return true;
+            }
+            return false;
+        }
+        
+        public bool IsInShapeCorner(Point point)
+        {
+            if (_shapes[_selectIndex].IsInCorner(point))
+            {
                 return true;
             }
             return false;

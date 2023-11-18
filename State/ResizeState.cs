@@ -3,11 +3,11 @@ using System.Drawing;
 
 namespace PowerPoint.State
 {
-    public class SelectedState : IState
+    public class ResizeState : IState
     {
         private readonly Model _model;
         
-        public SelectedState (Model model)
+        public ResizeState (Model model)
         {
             _model = model;
         }
@@ -34,15 +34,10 @@ namespace PowerPoint.State
         /// <param name="point"></param>
         public void MouseMove(Context context, Point point, bool isPressed)
         {
-            if (_model.IsInShapeCorner(point))
+            if (!_model.IsInShapeCorner(point))
             {
-                context.SetState(new ResizeState(_model));
-                Debug.Print("resize");
-                return;
-            }
-            if (isPressed)
-            {
-                _model.MoveShape(point);
+                context.SetState(new SelectedState(_model));
+                Debug.Print("normal");
             }
         }
 
@@ -66,6 +61,5 @@ namespace PowerPoint.State
         {
             _model.DrawShapes(graphics);
         }
-
     }
 }

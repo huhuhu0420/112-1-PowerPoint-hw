@@ -74,6 +74,7 @@
     <Compile Include="ShapeFactory.cs" />
     <Compile Include="State\DrawingState.cs" />
     <Compile Include="State\NormalState.cs" />
+    <Compile Include="State\ResizeState.cs" />
     <Compile Include="State\SelectedState.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

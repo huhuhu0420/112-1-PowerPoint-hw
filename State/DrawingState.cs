@@ -1,7 +1,6 @@
-using System.Diagnostics;
 using System.Drawing;
 
-namespace PowerPoint
+namespace PowerPoint.State
 {
     public class DrawingState : IState
     {
@@ -29,9 +28,12 @@ namespace PowerPoint
         /// </summary>
         /// <param name="context"></param>
         /// <param name="point"></param>
-        public void MouseMove(Context context, Point point)
+        public void MouseMove(Context context, Point point, bool isPressed)
         {
-            _model.MovedPointer(point);
+            if (isPressed)
+            {
+                _model.MovedPointer(point);
+            }
         }
         
         /// <summary>

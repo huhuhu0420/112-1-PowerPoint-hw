@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Runtime.InteropServices;
+using PowerPoint.State;
 
 namespace PowerPoint
 {
@@ -46,11 +47,7 @@ namespace PowerPoint
         /// <param name="point"></param>
         public void MouseMove(Point point)
         {
-            if (!_isPressed)
-            {
-                return;
-            }
-            _state.MouseMove(this, point);
+            _state.MouseMove(this, point, _isPressed);
         }
         
         /// <summary>

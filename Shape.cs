@@ -152,6 +152,18 @@ namespace PowerPoint
         {
             return new Point((_point1.X + _point2.X) / Constant.TWO, (_point1.Y + _point2.Y) / Constant.TWO);
         }
+
+        public bool IsInCorner(Point point)
+        {
+            int maxX = _point1.X > _point2.X ? _point1.X : _point2.X;
+            int maxY = _point1.Y > _point2.Y ? _point1.Y : _point2.Y;
+            if (point.X >= maxX - 4 && point.X <= maxX + 4 && point.Y >= maxY - 4 && point.Y <= maxY + 4)
+            {
+                return true;
+            }
+
+            return false;
+        }
         
         protected string _shapeName = "";
         protected Point _point1 = new Point(0, 0);
