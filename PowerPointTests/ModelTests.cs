@@ -163,7 +163,10 @@ namespace PowerPoint.Tests
         [TestMethod()]
         public void NotifyModelChangedTest()
         {
-            Assert.Fail();
+            bool _isChanged = false;
+            _model._modelChanged += () => { _isChanged = true; };
+            _model.NotifyModelChanged();
+            Assert.IsTrue(_isChanged);
         }
         
         [TestMethod()]
