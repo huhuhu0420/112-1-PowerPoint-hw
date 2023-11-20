@@ -73,6 +73,10 @@ namespace PowerPoint.PresentationModel
         
         public void HandleStateChange(IState state)
         {
+            if (CursorChanged == null)
+            {
+                return;
+            }
             if (state is SelectedState)
             {
                 CursorChanged(Cursors.Arrow);
