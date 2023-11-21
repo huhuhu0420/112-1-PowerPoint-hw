@@ -13,9 +13,9 @@ namespace PowerPoint
         public event ModelChangedEventHandler _modelChanged;
         public event Context.StateChangedEventHandler _stateChanged;
 
-        public Model(ShapeFactory shapeFactory)
+        public Model()
         {
-            _shapeFactory = shapeFactory;
+            _shapeFactory = new ShapeFactory();
             _hint = new Shape();
             _firstPoint = new Point(0, 0);
             _lastPoint = new Point(0, 0);

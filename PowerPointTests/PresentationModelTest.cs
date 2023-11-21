@@ -17,8 +17,7 @@ namespace PowerPoint.PresentationModel.Tests
         [TestInitialize]
         public void Setup()
         {
-            _shapeFactory = new ShapeFactory();
-            _mockModel = new Mock<Model>(_shapeFactory);
+            _mockModel = new Mock<Model>();
             _presentationModel = new PresentationModel(_mockModel.Object);
             _privatePresentationModel = new PrivateObject(_presentationModel);
         }
