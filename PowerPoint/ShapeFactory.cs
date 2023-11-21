@@ -10,7 +10,7 @@ namespace PowerPoint
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public Shape CreateShape(ShapeType type)
+        public virtual Shape CreateShape(ShapeType type)
         {
             const int MAX = 440;
             Point point1 = new Point(_random.Next(0, MAX), _random.Next(0, MAX));
@@ -34,7 +34,7 @@ namespace PowerPoint
         /// <param name="point1"></param>
         /// <param name="point2"></param>
         /// <returns></returns>
-        public Shape CreateShape(ShapeType type, Point point1, Point point2)
+        public virtual Shape CreateShape(ShapeType type, Point point1, Point point2)
         {
             switch (type)
             {

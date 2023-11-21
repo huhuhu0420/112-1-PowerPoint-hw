@@ -13,9 +13,17 @@ namespace PowerPoint
         public event ModelChangedEventHandler _modelChanged;
         public event Context.StateChangedEventHandler _stateChanged;
 
-        public Model()
+        public Model(ShapeFactory shapeFactory)
         {
-            _context = new Context(this);
+            _shapeFactory = shapeFactory;
+            _hint = new Shape();
+            _firstPoint = new Point(0, 0);
+            _lastPoint = new Point(0, 0);
+        }
+
+        public void SetContext(Context context)
+        {
+            _context = context;
             _context._stateChanged += HandleStateChanged;
         }
         
@@ -115,7 +123,7 @@ namespace PowerPoint
         /// draw
         /// </summary>
         /// <param name="graphics"></param>
-        public void Draw(IGraphics graphics)
+        public virtual void Draw(IGraphics graphics)
         {
             _context.Draw(graphics);
         }
@@ -125,7 +133,7 @@ namespace PowerPoint
         /// </summary>
         /// <param name="point"></param>
         /// <param name="type"></param>
-        public void PressedPointer(Point point, ShapeType type)
+        public virtual void PressedPointer(Point point, ShapeType type)
         {
             if (point.X > 0 && point.Y > 0)
             {
@@ -142,7 +150,7 @@ namespace PowerPoint
         /// <param name="point"></param>
         /// <param name="index"></param>
         /// <returns></returns>
-        public bool IsInShape(Point point, int index)
+        public virtual bool IsInShape(Point point, int index)
         {
             if (_shapes[index].IsInShape(point))
             {
@@ -155,7 +163,7 @@ namespace PowerPoint
             return false;
         }
         
-        public bool IsInShapeCorner(Point point)
+        public virtual bool IsInShapeCorner(Point point)
         {
             if (_shapes[_selectIndex].IsInCorner(point))
             {
@@ -168,7 +176,7 @@ namespace PowerPoint
         /// select
         /// </summary>
         /// <param name="point"></param>
-        public void SelectShape(Point point)
+        public virtual void SelectShape(Point point)
         {
             bool isSelect = false;
             for (int i = _shapes.Count - 1; i >= 0; i --)
@@ -191,7 +199,7 @@ namespace PowerPoint
         /// move
         /// </summary>
         /// <param name="point"></param>
-        public void MovedPointer(Point point)
+        public virtual void MovedPointer(Point point)
         {
             _hint.SetPoint2(point);
             NotifyModelChanged();
@@ -201,7 +209,7 @@ namespace PowerPoint
         /// move
         /// </summary>
         /// <param name="point"></param>
-        public void MoveShape(Point point)
+        public virtual void MoveShape(Point point)
         {
             Size bias = new Size(point.X - _lastPoint.X, point.Y - _lastPoint.Y);
             if (_selectIndex == -1)
@@ -223,7 +231,7 @@ namespace PowerPoint
         /// </summary>
         /// <param name="point"></param>
         /// <param name="type"></param>
-        public void ReleasedPointer(Point point, ShapeType type)
+        public virtual void ReleasedPointer(Point point, ShapeType type)
         {
             Shape hint = _shapeFactory.CreateShape(type, _firstPoint, point);
             _shapes.Add(hint);
@@ -335,12 +343,12 @@ namespace PowerPoint
         } 
         
         private readonly BindingList<Shape> _shapes = new BindingList<Shape>();
-        private readonly ShapeFactory _shapeFactory = new ShapeFactory();
+        private readonly ShapeFactory _shapeFactory;
         Shape _hint;
         private Shape _select;
         private Point _firstPoint = new Point(0, 0);
         private Point _lastPoint = new Point(0, 0);
         private int _selectIndex = -1;
-        private readonly Context _context;
+        private Context _context;
     }
 }

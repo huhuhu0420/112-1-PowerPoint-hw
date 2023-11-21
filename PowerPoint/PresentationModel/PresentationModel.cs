@@ -16,6 +16,8 @@ namespace PowerPoint.PresentationModel
         public event CursorChangedEventHandler CursorChanged;
         readonly Model _model;
 
+        private WindowsFormsGraphicsAdaptor _graphic;
+
         public PresentationModel(Model model)
         {
             _model = model;
@@ -107,9 +109,9 @@ namespace PowerPoint.PresentationModel
         /// <param name="graphics"></param>
         public void Draw(System.Drawing.Graphics graphics)
         {
-            var graphic = new WindowsFormsGraphicsAdaptor(graphics); 
+            _graphic = new WindowsFormsGraphicsAdaptor(graphics); 
             // Debug.Print("draw1");
-            _model.Draw(graphic);
+            _model.Draw(_graphic);
         }
 
         /// <summary>

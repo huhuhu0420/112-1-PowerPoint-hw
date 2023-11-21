@@ -18,7 +18,7 @@ namespace PowerPoint
         /// set
         /// </summary>
         /// <param name="state"></param>
-        public void SetState(IState state)
+        public virtual void SetState(IState state)
         {
             _state = state;
             if (_stateChanged != null)
@@ -41,7 +41,7 @@ namespace PowerPoint
         /// </summary>
         /// <param name="point"></param>
         /// <param name="type"></param>
-        public void MouseDown(Point point, ShapeType type)
+        public virtual void MouseDown(Point point, ShapeType type)
         {
             _isPressed = true;
             _state.MouseDown(this, point, type);
@@ -51,7 +51,7 @@ namespace PowerPoint
         /// move
         /// </summary>
         /// <param name="point"></param>
-        public void MouseMove(Point point)
+        public virtual void MouseMove(Point point)
         {
             _state.MouseMove(this, point, _isPressed);
         }
@@ -61,7 +61,7 @@ namespace PowerPoint
         /// </summary>
         /// <param name="point"></param>
         /// <param name="type"></param>
-        public void MouseUp(Point point, ShapeType type)
+        public virtual void MouseUp(Point point, ShapeType type)
         {
             _isPressed = false;
             _state.MouseUp(this, point, type);
@@ -71,7 +71,7 @@ namespace PowerPoint
         /// draw
         /// </summary>
         /// <param name="graphics"></param>
-        public void Draw(IGraphics graphics)
+        public virtual void Draw(IGraphics graphics)
         {
             _state.Draw(graphics, _isPressed);
         }
