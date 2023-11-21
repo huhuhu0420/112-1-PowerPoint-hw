@@ -72,7 +72,9 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="ContextText.cs" />
     <Compile Include="ModelTests.cs" />
+    <Compile Include="NormalStateTest.cs" />
     <Compile Include="PresentationModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

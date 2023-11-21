@@ -256,7 +256,7 @@ namespace PowerPoint
         /// draw
         /// </summary>
         /// <param name="graphics"></param>
-        public void DrawShapes(IGraphics graphics)
+        public virtual void DrawShapes(IGraphics graphics)
         {
             // Debug.Print("draw");
             foreach (Shape aLine in _shapes)
@@ -271,7 +271,7 @@ namespace PowerPoint
         /// drae
         /// </summary>
         /// <param name="graphics"></param>
-        public void DrawHint(IGraphics graphics)
+        public virtual void DrawHint(IGraphics graphics)
         {
             _hint.Draw(graphics);
             // Debug.Print("draw");
@@ -317,7 +317,7 @@ namespace PowerPoint
         /// get
         /// </summary>
         /// <returns></returns>
-        public int GetSelectIndex()
+        public virtual int GetSelectIndex()
         {
             return _selectIndex;
         }
