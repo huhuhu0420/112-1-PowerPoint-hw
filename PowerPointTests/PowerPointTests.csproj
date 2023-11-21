@@ -73,10 +73,13 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ContextText.cs" />
+    <Compile Include="DrawingStateTest.cs" />
     <Compile Include="ModelTests.cs" />
     <Compile Include="NormalStateTest.cs" />
     <Compile Include="PresentationModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResizeStateTest.cs" />
+    <Compile Include="SelectedStateTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

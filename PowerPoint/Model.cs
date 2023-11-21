@@ -282,7 +282,7 @@ namespace PowerPoint
         /// </summary>
         /// <param name="point"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public void ResizeShape(Point point)
+        public virtual void ResizeShape(Point point)
         {
             if (_selectIndex == -1)
             {
