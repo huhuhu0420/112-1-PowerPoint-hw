@@ -33,7 +33,7 @@ namespace PowerPoint
         /// <summary>
         /// insert shape
         /// </summary>
-        public void InsertShape(ShapeType type)
+        public virtual void InsertShape(ShapeType type)
         {
             _shapes.Add(_shapeFactory.CreateShape(type));
             NotifyModelChanged();
@@ -42,7 +42,7 @@ namespace PowerPoint
         /// <summary>
         /// remove
         /// </summary>
-        public void RemoveShape()
+        public virtual void RemoveShape()
         {
             if (_selectIndex != -1)
             {
@@ -57,7 +57,7 @@ namespace PowerPoint
         /// remove shape
         /// </summary>
         /// <param name="index"></param>
-        public void RemoveShapeByIndex(int index)
+        public virtual void RemoveShapeByIndex(int index)
         {
             _shapes.RemoveAt(index);
             if (_selectIndex == index)
@@ -76,7 +76,7 @@ namespace PowerPoint
         /// get shape
         /// </summary>
         /// <returns></returns>
-        public BindingList<Shape> GetShapes()
+        public virtual BindingList<Shape> GetShapes()
         {
             return _shapes;
         }
@@ -86,7 +86,7 @@ namespace PowerPoint
         /// </summary>
         /// <param name="point"></param>
         /// <param name="type"></param>
-        public void MouseDown(Point point, ShapeType type)
+        public virtual void MouseDown(Point point, ShapeType type)
         {
             _context.MouseDown(point, type);
         }
@@ -95,7 +95,7 @@ namespace PowerPoint
         /// move
         /// </summary>
         /// <param name="point"></param>
-        public void MouseMove(Point point)
+        public virtual void MouseMove(Point point)
         {
             _context.MouseMove(point);
             _lastPoint = point;
@@ -106,7 +106,7 @@ namespace PowerPoint
         /// </summary>
         /// <param name="point"></param>
         /// <param name="type"></param>
-        public void MouseUp(Point point, ShapeType type)
+        public virtual void MouseUp(Point point, ShapeType type)
         {
             _context.MouseUp(point, type);
         }
@@ -234,7 +234,7 @@ namespace PowerPoint
         /// <summary>
         /// clear
         /// </summary>
-        public void Clear()
+        public virtual void Clear()
         {
             _shapes.Clear();
             NotifyModelChanged();
@@ -314,7 +314,7 @@ namespace PowerPoint
         /// set state
         /// </summary>
         /// <param name="modelState"></param>
-        public void SetModelState(ModelState modelState)
+        public virtual void SetModelState(ModelState modelState)
         {
             if (modelState == ModelState.Normal)
             {
