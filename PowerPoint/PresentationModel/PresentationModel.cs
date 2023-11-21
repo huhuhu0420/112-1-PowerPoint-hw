@@ -14,8 +14,15 @@ namespace PowerPoint.PresentationModel
         public event Model.ModelChangedEventHandler _modelChanged;
         public delegate void CursorChangedEventHandler(Cursor cursor);
         public event CursorChangedEventHandler CursorChanged;
-        readonly Model _model = new Model();
+        readonly Model _model;
 
+        public PresentationModel(Model model)
+        {
+            _model = model;
+            _model._modelChanged += HandleModelChanged;
+            _model._stateChanged += HandleStateChange;
+            _isButtonChecked[(int)ShapeType.ARROW] = true;
+        }
         public ShapeType Type
         {
             get;
@@ -31,16 +38,6 @@ namespace PowerPoint.PresentationModel
             _model.SetModelState(state);
         }
         
-        /// <summary>
-        /// model
-        /// </summary>
-        public PresentationModel()
-        {
-            _model._modelChanged += HandleModelChanged;
-            _model._stateChanged += HandleStateChange;
-            _isButtonChecked[(int)ShapeType.ARROW] = true;
-        }
-
         /// <summary>
         /// model change
         /// </summary>

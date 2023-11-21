@@ -14,9 +14,10 @@ namespace PowerPoint
         [STAThread]
         static void Main()
         {
+            Model _model = new Model();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Form1(_model));
         }
     }
 }

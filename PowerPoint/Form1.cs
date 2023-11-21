@@ -15,8 +15,10 @@ namespace PowerPoint
 {
     public partial class Form1 : Form
     {
-        public Form1()
+        public Form1(Model model)
         {
+            _model = model;
+            _presentationModel = new PresentationModel.PresentationModel(_model);
             InitializeComponent();
             HandleSomething();
         }
