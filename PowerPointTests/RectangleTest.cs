@@ -1,0 +1,50 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using System.Drawing;
+using PowerPoint;
+
+namespace PowerPoint.Tests
+{
+    [TestClass]
+    public class RectangleTests
+    {
+        private Mock<IGraphics> _mockGraphics;
+        private Rectangle _rectangle;
+
+        [TestInitialize]
+        public void Setup()
+        {
+            _mockGraphics = new Mock<IGraphics>();
+            _rectangle = new Rectangle();
+            _rectangle = new Rectangle(new Point(1, 1), new Point(2, 2));
+        }
+
+        [TestMethod]
+        public void DrawTest()
+        {
+            _rectangle.Draw(_mockGraphics.Object);
+
+            _mockGraphics.Verify(g => g.DrawRectangle(It.IsAny<Pen>(), It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
+        }
+
+        [TestMethod]
+        public void RectangleConstructorTest_WhenPoint1IsGreaterThanPoint2()
+        {
+            var rectangle = new Rectangle(new Point(2, 2), new Point(1, 1));
+
+            Assert.AreEqual(ShapeType.RECTANGLE, rectangle.Type);
+            Assert.AreEqual(new Point(1, 1), rectangle.GetPoint1());
+            Assert.AreEqual(new Point(2, 2), rectangle.GetPoint2());
+        }
+
+        [TestMethod]
+        public void RectangleConstructorTest_WhenPoint1IsLessThanPoint2()
+        {
+            var rectangle = new Rectangle(new Point(1, 1), new Point(2, 2));
+
+            Assert.AreEqual(ShapeType.RECTANGLE, rectangle.Type);
+            Assert.AreEqual(new Point(1, 1), rectangle.GetPoint1());
+            Assert.AreEqual(new Point(2, 2), rectangle.GetPoint2());
+        }
+    }
+}

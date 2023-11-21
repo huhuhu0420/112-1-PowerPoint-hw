@@ -72,14 +72,18 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="CircleTest.cs" />
     <Compile Include="ContextText.cs" />
     <Compile Include="DrawingStateTest.cs" />
+    <Compile Include="LineTest.cs" />
     <Compile Include="ModelTests.cs" />
     <Compile Include="NormalStateTest.cs" />
     <Compile Include="PresentationModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RectangleTest.cs" />
     <Compile Include="ResizeStateTest.cs" />
     <Compile Include="SelectedStateTest.cs" />
+    <Compile Include="WindowsFormsGraphicsAdaptorTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
