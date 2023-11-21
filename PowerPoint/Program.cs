@@ -14,7 +14,10 @@ namespace PowerPoint
         [STAThread]
         static void Main()
         {
-            Model _model = new Model();
+            ShapeFactory _shapeFactory = new ShapeFactory();
+            Model _model = new Model(_shapeFactory);
+            Context _context = new Context(_model);
+            _model.SetContext(_context);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1(_model));
