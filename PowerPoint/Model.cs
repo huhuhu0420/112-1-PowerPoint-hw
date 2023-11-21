@@ -165,6 +165,10 @@ namespace PowerPoint
         
         public virtual bool IsInShapeCorner(Point point)
         {
+            if (_selectIndex == -1)
+            {
+                return false;
+            }
             if (_shapes[_selectIndex].IsInCorner(point))
             {
                 return true;
