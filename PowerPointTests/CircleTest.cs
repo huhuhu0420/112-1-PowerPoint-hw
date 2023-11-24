@@ -11,6 +11,7 @@ namespace PowerPoint.Tests
         private Mock<IGraphics> _mockGraphics;
         private Circle _circle;
 
+        // test
         [TestInitialize]
         public void Setup()
         {
@@ -19,6 +20,7 @@ namespace PowerPoint.Tests
             _circle = new Circle(new Point(1, 1), new Point(2, 2));
         }
 
+        // test
         [TestMethod]
         public void DrawTest()
         {
@@ -27,6 +29,7 @@ namespace PowerPoint.Tests
             _mockGraphics.Verify(g => g.DrawCircle(It.IsAny<Pen>(), It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
         }
 
+        // test
         [TestMethod]
         public void CircleConstructorTest_WhenPoint1IsGreaterThanPoint2()
         {
@@ -37,6 +40,7 @@ namespace PowerPoint.Tests
             Assert.AreEqual(new Point(2, 2), circle.GetPoint2());
         }
 
+        // test
         [TestMethod]
         public void CircleConstructorTest_WhenPoint1IsLessThanPoint2()
         {

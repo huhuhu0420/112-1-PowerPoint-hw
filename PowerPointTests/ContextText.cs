@@ -12,7 +12,7 @@ namespace PowerPoint.Tests
         private Context _context;
 
         [TestInitialize]
-        public void Setup()
+        public void Initialize()
         {
             _mockModel = new Mock<Model>();
             _context = new Context(_mockModel.Object);
@@ -22,7 +22,10 @@ namespace PowerPoint.Tests
         public void SetStateTest()
         {
             var mockState = new Mock<IState>();
-            _context._stateChanged += (state) => { Assert.AreEqual(mockState.Object, state); };
+            _context._stateChanged += (state) =>
+            {
+                Assert.AreEqual(mockState.Object, state); 
+            };
             _context.SetState(mockState.Object);
 
             Assert.AreEqual(mockState.Object, _context.GetState());

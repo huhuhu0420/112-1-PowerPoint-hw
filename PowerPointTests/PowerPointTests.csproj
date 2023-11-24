@@ -83,7 +83,8 @@
     <Compile Include="RectangleTest.cs" />
     <Compile Include="ResizeStateTest.cs" />
     <Compile Include="SelectedStateTest.cs" />
-    <Compile Include="WindowsFormsGraphicsAdaptorTest.cs" />
+    <Compile Include="ShapeFactoryTest.cs" />
+    <Compile Include="ShapeTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
