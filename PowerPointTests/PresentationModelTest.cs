@@ -14,6 +14,7 @@ namespace PowerPoint.PresentationModel.Tests
         private ShapeFactory _shapeFactory;
         PrivateObject _privatePresentationModel;
 
+        // test
         [TestInitialize]
         public void Setup()
         {
@@ -22,6 +23,7 @@ namespace PowerPoint.PresentationModel.Tests
             _privatePresentationModel = new PrivateObject(_presentationModel);
         }
 
+        // test
         [TestMethod]
         public void SetModelStateTest()
         {
@@ -30,6 +32,7 @@ namespace PowerPoint.PresentationModel.Tests
             _mockModel.Verify(m => m.SetModelState(Model.ModelState.Drawing), Times.Once);
         }
         
+        // test
         [TestMethod]
         public void HandleModelChangedTest()
         {
@@ -39,6 +42,7 @@ namespace PowerPoint.PresentationModel.Tests
             Assert.IsTrue(isCalled);
         }
         
+        // test
         [TestMethod]
         public void HandlePropertyChangedTest()
         {
@@ -48,6 +52,7 @@ namespace PowerPoint.PresentationModel.Tests
             Assert.IsTrue(isCalled);
         }
         
+        // test
         [TestMethod]
         public void HandleStateChangeTest()
         {
@@ -61,6 +66,7 @@ namespace PowerPoint.PresentationModel.Tests
             Assert.IsTrue(isCalled);
         }
 
+        // test
         [TestMethod]
         public void DeleteShapeTest()
         {
@@ -68,6 +74,7 @@ namespace PowerPoint.PresentationModel.Tests
             _mockModel.Verify(m => m.RemoveShape(), Times.Once);
         }
 
+        // test
         [TestMethod]
         public void DrawTest()
         {
@@ -77,6 +84,7 @@ namespace PowerPoint.PresentationModel.Tests
             _mockModel.Verify(m => m.Draw(_graphic), Times.Once);
         }
 
+        // test
         [TestMethod]
         public void PressedPointerTest()
         {
@@ -87,6 +95,7 @@ namespace PowerPoint.PresentationModel.Tests
             _mockModel.Verify(m => m.MouseDown(point, It.IsAny<ShapeType>()), Times.Once);
         }
 
+        // test
         [TestMethod]
         public void MovedPointerTest()
         {
@@ -97,6 +106,7 @@ namespace PowerPoint.PresentationModel.Tests
             _mockModel.Verify(m => m.MouseMove(point), Times.Once);
         }
 
+        // test
         [TestMethod]
         public void ReleasedPointerTest()
         {
@@ -107,6 +117,7 @@ namespace PowerPoint.PresentationModel.Tests
             _mockModel.Verify(m => m.MouseUp(point, It.IsAny<ShapeType>()), Times.Once);
         }
 
+        // test
         [TestMethod]
         public void ClearTest()
         {
@@ -114,6 +125,7 @@ namespace PowerPoint.PresentationModel.Tests
             _mockModel.Verify(m => m.Clear(), Times.Once);
         }
         
+        // test
         [TestMethod]
         public void GetShapesTest()
         {
@@ -121,6 +133,7 @@ namespace PowerPoint.PresentationModel.Tests
             _mockModel.Verify(m => m.GetShapes(), Times.Once);
         }
 
+        // test
         [TestMethod]
         public void RemoveShapeTest()
         {
@@ -129,6 +142,7 @@ namespace PowerPoint.PresentationModel.Tests
             _mockModel.Verify(m => m.RemoveShapeByIndex(1), Times.Once);
         }
 
+        // test
         [TestMethod]
         public void InsertShapeTest()
         {
@@ -137,6 +151,7 @@ namespace PowerPoint.PresentationModel.Tests
             _mockModel.Verify(m => m.InsertShape(ShapeType.LINE), Times.Once);
         }
 
+        // test
         [TestMethod]
         public void HandleButtonClickTest()
         {
@@ -145,6 +160,7 @@ namespace PowerPoint.PresentationModel.Tests
             Assert.AreEqual(ShapeType.LINE, _presentationModel.Type);
         }
 
+        // test
         [TestMethod]
         public void IsLineButtonCheckedTest()
         {
@@ -153,6 +169,7 @@ namespace PowerPoint.PresentationModel.Tests
             Assert.IsTrue(_presentationModel.IsLineButtonChecked);
         }
         
+        // test
         [TestMethod]
         public void IsRectangleButtonCheckedTest()
         {
@@ -161,6 +178,7 @@ namespace PowerPoint.PresentationModel.Tests
             Assert.IsTrue(_presentationModel.IsRectangleButtonChecked);
         }
         
+        // test
         [TestMethod]
         public void IsCircleButtonCheckedTest()
         {
@@ -169,6 +187,7 @@ namespace PowerPoint.PresentationModel.Tests
             Assert.IsTrue(_presentationModel.IsCircleButtonChecked);
         }
         
+        // test
         [TestMethod]
         public void IsArrowButtonCheckedTest()
         {

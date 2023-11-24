@@ -11,6 +11,7 @@ namespace PowerPoint.Tests
         private Mock<Model> _mockModel;
         private Context _context;
 
+        // test
         [TestInitialize]
         public void Initialize()
         {
@@ -18,7 +19,9 @@ namespace PowerPoint.Tests
             _context = new Context(_mockModel.Object);
         }
 
+        // test
         [TestMethod]
+
         public void SetStateTest()
         {
             var mockState = new Mock<IState>();
@@ -31,7 +34,9 @@ namespace PowerPoint.Tests
             Assert.AreEqual(mockState.Object, _context.GetState());
         }
 
+        // test
         [TestMethod]
+
         public void MouseDownTest()
         {
             var mockState = new Mock<IState>();
@@ -43,7 +48,9 @@ namespace PowerPoint.Tests
             mockState.Verify(m => m.MouseDown(_context, point, ShapeType.LINE), Times.Once);
         }
 
+        // test
         [TestMethod]
+
         public void MouseMoveTest()
         {
             var mockState = new Mock<IState>();
@@ -55,7 +62,9 @@ namespace PowerPoint.Tests
             mockState.Verify(m => m.MouseMove(_context, point, It.IsAny<bool>()), Times.Once);
         }
 
+        // test
         [TestMethod]
+
         public void MouseUpTest()
         {
             var mockState = new Mock<IState>();
@@ -67,7 +76,9 @@ namespace PowerPoint.Tests
             mockState.Verify(m => m.MouseUp(_context, point, ShapeType.LINE), Times.Once);
         }
 
+        // test
         [TestMethod]
+
         public void DrawTest()
         {
             var mockState = new Mock<IState>();
@@ -79,7 +90,9 @@ namespace PowerPoint.Tests
             mockState.Verify(m => m.Draw(mockGraphics.Object, It.IsAny<bool>()), Times.Once);
         }
 
+        // test
         [TestMethod]
+
         public void GetStateTest()
         {
             var mockState = new Mock<IState>();

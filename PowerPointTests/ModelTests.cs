@@ -16,6 +16,7 @@ namespace PowerPoint.Tests
         private Mock<Context> _mockContext;
         private Mock<IGraphics> _mockGraphics;
 
+        // test
         [TestInitialize]
         public void Setup()
         {
@@ -26,6 +27,7 @@ namespace PowerPoint.Tests
             _mockGraphics = new Mock<IGraphics>();
         }
 
+        // test
         [TestMethod]
         public void HandleStateChangedTest()
         {
@@ -35,6 +37,7 @@ namespace PowerPoint.Tests
             Assert.IsTrue(isCalled);
         }
 
+        // test
         [TestMethod]
         public void InsertShapeTest()
         {
@@ -42,6 +45,7 @@ namespace PowerPoint.Tests
             Assert.AreEqual(1, _model.GetShapes().Count);
         }
 
+        // test
         [TestMethod]
         public void RemoveShapeTest()
         {
@@ -52,6 +56,7 @@ namespace PowerPoint.Tests
             Assert.AreEqual(0, _model.GetShapes().Count);
         }
         
+        // test
         [TestMethod]
         public void RemoveShapeByIndexTest()
         {
@@ -62,6 +67,7 @@ namespace PowerPoint.Tests
             Assert.AreEqual(0, _model.GetShapes().Count);
         }
 
+        // test
         [TestMethod]
         public void MouseDownTest()
         {
@@ -72,6 +78,7 @@ namespace PowerPoint.Tests
             _mockContext.Verify(m => m.MouseDown(point, ShapeType.LINE), Times.Once);
         }
 
+        // test
         [TestMethod]
         public void MouseMoveTest()
         {
@@ -82,6 +89,7 @@ namespace PowerPoint.Tests
             _mockContext.Verify(m => m.MouseMove(point), Times.Once);
         }
 
+        // test
         [TestMethod]
         public void MouseUpTest()
         {
@@ -92,6 +100,7 @@ namespace PowerPoint.Tests
             _mockContext.Verify(m => m.MouseUp(point, ShapeType.LINE), Times.Once);
         }
 
+        // test
         [TestMethod]
         public void DrawTest()
         {
@@ -99,6 +108,7 @@ namespace PowerPoint.Tests
             _mockGraphics.Verify(graphics => graphics.DrawLine( It.IsAny<Pen>(), It.IsAny<Point>(), It.IsAny<Point>()), Times.Never);
         }
 
+        // test
         [TestMethod]
         public void ClearTest()
         {
@@ -108,6 +118,7 @@ namespace PowerPoint.Tests
             Assert.AreEqual(0, _model.GetShapes().Count);
         }
 
+        // test
         [TestMethod]
         public void DrawShapesTest()
         {
@@ -119,6 +130,7 @@ namespace PowerPoint.Tests
             _mockGraphics.Verify(graphics => graphics.DrawLine( It.IsAny<Pen>(), It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
         }
 
+        // test
         [TestMethod]
         public void DrawHintTest()
         {
@@ -126,6 +138,7 @@ namespace PowerPoint.Tests
             _mockGraphics.Verify(graphics => graphics.DrawLine( It.IsAny<Pen>(), It.IsAny<Point>(), It.IsAny<Point>()), Times.Never);
         }
 
+        // test
         [TestMethod]
         public void SetModelStateTest()
         {
@@ -135,6 +148,7 @@ namespace PowerPoint.Tests
             _mockContext.Verify(m => m.SetState(It.IsAny<DrawingState>()), Times.Once);
         }
 
+        // test
         [TestMethod]
         public void PressedPointerTest()
         {
@@ -145,6 +159,7 @@ namespace PowerPoint.Tests
 
         }
 
+        // test
         [TestMethod]
         public void IsInShapeTest()
         {
@@ -158,6 +173,7 @@ namespace PowerPoint.Tests
             Assert.IsFalse(_model.IsInShape(point2, 0));
         }
 
+        // test
         [TestMethod]
         public void IsInShapeCornerTest()
         {
@@ -174,6 +190,7 @@ namespace PowerPoint.Tests
             Assert.IsFalse(_model.IsInShapeCorner(point));
         }
 
+        // test
         [TestMethod]
         public void SelectShapeTest()
         {
@@ -188,6 +205,7 @@ namespace PowerPoint.Tests
             Assert.AreEqual(0, _model.GetSelectIndex());
         }
 
+        // test
         [TestMethod]
         public void MovedPointTest()
         {
@@ -198,6 +216,7 @@ namespace PowerPoint.Tests
             Assert.AreEqual(point, _hint.GetPoint2());
         }
 
+        // test
         [TestMethod]
         public void MoveShapeTest()
         {
@@ -215,6 +234,7 @@ namespace PowerPoint.Tests
             _model.MoveShape(newPoint);
         }
 
+        // test
         [TestMethod]
         public void ReleasedPointerTest()
         {
@@ -228,6 +248,7 @@ namespace PowerPoint.Tests
             Assert.AreEqual(initialCount + 1, _model.GetShapes().Count);
         }
 
+        // test
         [TestMethod]
         public void ResizeShapeTest()
         {
@@ -251,6 +272,7 @@ namespace PowerPoint.Tests
             _model.ResizeShape(newPoint2);
         }
 
+        // test
         [TestMethod]
         public void NotifyModelChanged()
         {
@@ -260,6 +282,7 @@ namespace PowerPoint.Tests
             Assert.IsTrue(isCalled);
         }
         
+        // test
         [TestMethod]
         public void GetSelectIndexTest()
         {

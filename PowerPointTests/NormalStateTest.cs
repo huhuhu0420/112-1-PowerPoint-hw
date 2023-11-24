@@ -12,6 +12,7 @@ namespace PowerPoint.Tests
         private NormalState _normalState;
         private PrivateObject _privateModel;
 
+        // test
         [TestInitialize]
         public void Setup()
         {
@@ -20,6 +21,7 @@ namespace PowerPoint.Tests
             _privateModel = new PrivateObject(_mockModel.Object);
         }
 
+        // test
         [TestMethod]
         public void MouseDownTest()
         {
@@ -32,6 +34,7 @@ namespace PowerPoint.Tests
             _mockModel.Verify(m => m.SelectShape(point), Times.Once);
         }
 
+        // test
         [TestMethod]
         public void MouseMoveTest()
         {
@@ -43,6 +46,7 @@ namespace PowerPoint.Tests
             _mockModel.Verify(m => m.SelectShape(It.IsAny<Point>()), Times.Never);
         }
 
+        // test
         [TestMethod]
         public void MouseUpTest()
         {
@@ -54,6 +58,7 @@ namespace PowerPoint.Tests
             _mockModel.Verify(m => m.SelectShape(It.IsAny<Point>()), Times.Never);
         }
 
+        // test
         [TestMethod]
         public void DrawTest()
         {
@@ -64,6 +69,7 @@ namespace PowerPoint.Tests
             _mockModel.Verify(m => m.DrawShapes(mockGraphics.Object), Times.Once);
         }
 
+        // test
         [TestMethod]
         public void GetStateTest()
         {

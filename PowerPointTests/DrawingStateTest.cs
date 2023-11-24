@@ -11,6 +11,7 @@ namespace PowerPoint.State.Tests
         private Mock<Model> _mockModel;
         private DrawingState _drawingState;
 
+        // test
         [TestInitialize]
         public void Setup()
         {
@@ -18,6 +19,7 @@ namespace PowerPoint.State.Tests
             _drawingState = new DrawingState(_mockModel.Object);
         }
 
+        // test
         [TestMethod]
         public void MouseDownTest()
         {
@@ -29,6 +31,7 @@ namespace PowerPoint.State.Tests
             _mockModel.Verify(m => m.PressedPointer(point, type), Times.Once);
         }
 
+        // test
         [TestMethod]
         public void MouseMoveTest_WhenPressed()
         {
@@ -39,6 +42,7 @@ namespace PowerPoint.State.Tests
             _mockModel.Verify(m => m.MovedPointer(point), Times.Once);
         }
 
+        // test
         [TestMethod]
         public void MouseMoveTest_WhenNotPressed()
         {
@@ -49,6 +53,7 @@ namespace PowerPoint.State.Tests
             _mockModel.Verify(m => m.MovedPointer(point), Times.Never);
         }
 
+        // test
         [TestMethod]
         public void MouseUpTest()
         {
@@ -62,6 +67,7 @@ namespace PowerPoint.State.Tests
             mockContext.Verify(c => c.SetState(It.IsAny<NormalState>()), Times.Once);
         }
 
+        // test
         [TestMethod]
         public void DrawTest_WhenPressed()
         {
@@ -73,6 +79,7 @@ namespace PowerPoint.State.Tests
             _mockModel.Verify(m => m.DrawShapes(mockGraphics.Object), Times.Once);
         }
 
+        // test
         [TestMethod]
         public void DrawTest_WhenNotPressed()
         {
@@ -84,6 +91,7 @@ namespace PowerPoint.State.Tests
             _mockModel.Verify(m => m.DrawShapes(mockGraphics.Object), Times.Once);
         }
 
+        // test
         [TestMethod]
         public void GetStateTest()
         {

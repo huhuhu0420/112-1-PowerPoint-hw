@@ -8,12 +8,14 @@ namespace PowerPoint.Tests
     {
         private ShapeFactory _shapeFactory;
 
+        // test
         [TestInitialize]
         public void SetUp()
         {
             _shapeFactory = new ShapeFactory();
         }
 
+        // test
         [TestMethod]
         public void CreateShapeWithShapeTypeRectangleTest()
         {
@@ -22,6 +24,7 @@ namespace PowerPoint.Tests
             Assert.IsInstanceOfType(shape, typeof(Rectangle));
         }
 
+        // test
         [TestMethod]
         public void CreateShapeWithShapeTypeCircleTest()
         {
@@ -30,6 +33,7 @@ namespace PowerPoint.Tests
             Assert.IsInstanceOfType(shape, typeof(Circle));
         }
 
+        // test
         [TestMethod]
         public void CreateShapeWithUnknownShapeTypeTest()
         {
@@ -38,6 +42,7 @@ namespace PowerPoint.Tests
             Assert.IsInstanceOfType(shape, typeof(Line));
         }
 
+        // test
         [TestMethod]
         public void CreateShapeWithPointsAndShapeTypeRectangleTest()
         {
@@ -51,6 +56,7 @@ namespace PowerPoint.Tests
             Assert.AreEqual(point2, shape.GetPoint2());
         }
 
+        // test
         [TestMethod]
         public void CreateShapeWithPointsAndShapeTypeCircleTest()
         {
@@ -64,6 +70,7 @@ namespace PowerPoint.Tests
             Assert.AreEqual(point2, shape.GetPoint2());
         }
 
+        // test
         [TestMethod]
         public void CreateShapeWithPointsAndUnknownShapeTypeTest()
         {

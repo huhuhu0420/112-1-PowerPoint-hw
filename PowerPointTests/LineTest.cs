@@ -11,6 +11,7 @@ namespace PowerPoint.Tests
         private Mock<IGraphics> _mockGraphics;
         private Line _line;
 
+        // test
         [TestInitialize]
         public void Setup()
         {
@@ -19,6 +20,7 @@ namespace PowerPoint.Tests
             _line = new Line(new Point(1, 1), new Point(2, 2));
         }
 
+        // test
         [TestMethod]
         public void DrawTest()
         {
@@ -27,6 +29,7 @@ namespace PowerPoint.Tests
             _mockGraphics.Verify(g => g.DrawLine(It.IsAny<Pen>(), It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
         }
 
+        // test
         [TestMethod]
         public void LineConstructorTest_WhenPoint1IsGreaterThanPoint2()
         {
@@ -37,6 +40,7 @@ namespace PowerPoint.Tests
             Assert.AreEqual(new Point(1, 1), line.GetPoint2());
         }
 
+        // test
         [TestMethod]
         public void LineConstructorTest_WhenPoint1IsLessThanPoint2()
         {
@@ -47,6 +51,7 @@ namespace PowerPoint.Tests
             Assert.AreEqual(new Point(2, 2), line.GetPoint2());
         }
 
+        // test
         [TestMethod]
         public void SetLineTypeTest()
         {
@@ -55,6 +60,7 @@ namespace PowerPoint.Tests
             Assert.AreEqual(Line.LineType.LeftTop, _line.GetLineType());
         }
 
+        // test
         [TestMethod]
         public void GetLineTypeTest()
         {

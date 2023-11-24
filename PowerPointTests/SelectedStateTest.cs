@@ -11,6 +11,7 @@ namespace PowerPoint.State.Tests
         private Mock<Model> _mockModel;
         private SelectedState _selectedState;
 
+        // test
         [TestInitialize]
         public void Setup()
         {
@@ -18,6 +19,7 @@ namespace PowerPoint.State.Tests
             _selectedState = new SelectedState(_mockModel.Object);
         }
 
+        // test
         [TestMethod]
         public void MouseDownTest_WhenShapeIsSelected()
         {
@@ -32,6 +34,7 @@ namespace PowerPoint.State.Tests
             mockContext.Verify(c => c.SetState(It.IsAny<NormalState>()), Times.Never);
         }
 
+        // test
         [TestMethod]
         public void MouseDownTest_WhenNoShapeIsSelected()
         {
@@ -46,6 +49,7 @@ namespace PowerPoint.State.Tests
             mockContext.Verify(c => c.SetState(It.IsAny<NormalState>()), Times.Once);
         }
 
+        // test
         [TestMethod]
         public void MouseMoveTest_WhenPressed()
         {
@@ -58,6 +62,7 @@ namespace PowerPoint.State.Tests
             mockContext.Verify(c => c.SetState(It.IsAny<ResizeState>()), Times.Never);
         }
 
+        // test
         [TestMethod]
         public void MouseMoveTest_WhenNotPressedAndInShapeCorner()
         {
@@ -72,6 +77,7 @@ namespace PowerPoint.State.Tests
             mockContext.Verify(c => c.SetState(It.IsAny<ResizeState>()), Times.Once);
         }
 
+        // test
         [TestMethod]
         public void MouseMoveTest_WhenNotPressedAndNotInShapeCorner()
         {
@@ -86,6 +92,7 @@ namespace PowerPoint.State.Tests
             mockContext.Verify(c => c.SetState(It.IsAny<ResizeState>()), Times.Never);
         }
 
+        // test
         [TestMethod]
         public void MouseUpTest()
         {
@@ -96,6 +103,7 @@ namespace PowerPoint.State.Tests
             _selectedState.MouseUp(mockContext.Object, point, type);
         }
 
+        // test
         [TestMethod]
         public void DrawTest()
         {
@@ -106,6 +114,7 @@ namespace PowerPoint.State.Tests
             _mockModel.Verify(m => m.DrawShapes(mockGraphics.Object), Times.Once);
         }
 
+        // test
         [TestMethod]
         public void GetStateTest()
         {

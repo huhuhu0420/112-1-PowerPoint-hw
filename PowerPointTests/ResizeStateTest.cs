@@ -11,6 +11,7 @@ namespace PowerPoint.State.Tests
         private Mock<Model> _mockModel;
         private ResizeState _resizeState;
 
+        // test
         [TestInitialize]
         public void Setup()
         {
@@ -18,6 +19,7 @@ namespace PowerPoint.State.Tests
             _resizeState = new ResizeState(_mockModel.Object);
         }
         
+        // test
         [TestMethod]
         public void MouseDownTest()
         {
@@ -27,6 +29,7 @@ namespace PowerPoint.State.Tests
             _resizeState.MouseDown(mockContext.Object, point, ShapeType.LINE);
         }
 
+        // test
         [TestMethod]
         public void MouseMoveTest_WhenPressed()
         {
@@ -37,6 +40,7 @@ namespace PowerPoint.State.Tests
             _mockModel.Verify(m => m.ResizeShape(point), Times.Once);
         }
 
+        // test
         [TestMethod]
         public void MouseMoveTest_WhenNotPressedAndInShapeCorner()
         {
@@ -51,6 +55,7 @@ namespace PowerPoint.State.Tests
             mockContext.Verify(c => c.SetState(It.IsAny<SelectedState>()), Times.Never);
         }
 
+        // test
         [TestMethod]
         public void MouseMoveTest_WhenNotPressedAndNotInShapeCorner()
         {
@@ -65,6 +70,7 @@ namespace PowerPoint.State.Tests
             mockContext.Verify(c => c.SetState(It.IsAny<SelectedState>()), Times.Once);
         }
         
+        // test
         [TestMethod]
         public void MouseUpTest()
         {
@@ -75,6 +81,7 @@ namespace PowerPoint.State.Tests
             _resizeState.MouseUp(mockContext.Object, point, type);
         }
 
+        // test
         [TestMethod]
         public void DrawTest()
         {
@@ -85,6 +92,7 @@ namespace PowerPoint.State.Tests
             _mockModel.Verify(m => m.DrawShapes(mockGraphics.Object), Times.Once);
         }
 
+        // test
         [TestMethod]
         public void GetStateTest()
         {
