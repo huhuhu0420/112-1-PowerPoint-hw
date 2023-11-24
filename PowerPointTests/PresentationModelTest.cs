@@ -11,7 +11,6 @@ namespace PowerPoint.PresentationModel.Tests
     {
         private Mock<Model> _mockModel;
         private PresentationModel _presentationModel;
-        private ShapeFactory _shapeFactory;
         PrivateObject _privatePresentationModel;
 
         // test
