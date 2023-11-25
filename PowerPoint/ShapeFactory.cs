@@ -18,7 +18,9 @@ namespace PowerPoint
             switch (type)
             {
                 case ShapeType.LINE:
-                    return new Line(point1, point2);
+                    var line = new Line(point1, point2);
+                    line.SetLineType(Line.LineType.None);
+                    return line;
                 case ShapeType.RECTANGLE:
                     return new Rectangle(point1, point2);
                 case ShapeType.CIRCLE:

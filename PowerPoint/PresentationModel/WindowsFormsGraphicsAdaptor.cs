@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Drawing;
 
 namespace PowerPoint.PresentationModel
@@ -27,6 +28,30 @@ namespace PowerPoint.PresentationModel
         {
             _graphics.DrawLine(pen, (float)point1.X, (float)point1.Y, (float)point2.X,
                 (float)point2.Y);
+        }
+        
+        public void DrawLine(Pen pen, Point point1, Point point2, Line.LineType lineType)
+        {
+            Debug.Print(lineType.ToString());
+            switch (lineType)
+            {
+                case Line.LineType.LeftTop:
+                    _graphics.DrawLine(pen, (float)point1.X, (float)point1.Y, (float)point2.X,
+                        (float)point2.Y);
+                    break;
+                case Line.LineType.RightTop:
+                    _graphics.DrawLine(pen, (float)point2.X, (float)point1.Y, (float)point1.X,
+                        (float)point2.Y);
+                    break;
+                case Line.LineType.LeftBottom:
+                    _graphics.DrawLine(pen, (float)point1.X, (float)point2.Y, (float)point2.X,
+                        (float)point1.Y);
+                    break;
+                case Line.LineType.RightBottom:
+                    _graphics.DrawLine(pen, (float)point2.X, (float)point2.Y, (float)point1.X,
+                        (float)point1.Y);
+                    break;
+            }
         }
 
         /// <summary>

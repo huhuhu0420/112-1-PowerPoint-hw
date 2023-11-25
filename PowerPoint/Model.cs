@@ -216,6 +216,7 @@ namespace PowerPoint
         public virtual void ReleasedPointer(Point point, ShapeType type)
         {
             Shape hint = _shapeFactory.CreateShape(type, _firstPoint, point);
+            Debug.Print("release");
             _shapes.Add(hint);
             NotifyModelChanged();
             // Debug.Print(_lines.Count.ToString());

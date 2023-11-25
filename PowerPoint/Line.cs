@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Diagnostics;
+using System.Drawing;
 
 namespace PowerPoint
 {
@@ -8,12 +9,51 @@ namespace PowerPoint
         { 
             _shapeName = Constant.LINE;
             Type = ShapeType.LINE;
+            HandleLineType();
+            if (_point1.X > _point2.X)
+            {
+                var temp = point1.X;
+                _point1.X = _point2.X;
+                _point2.X = temp;
+            }
+            if (_point1.Y > _point2.Y)
+            {
+                var temp = point1.Y;
+                _point1.Y = _point2.Y;
+                _point2.Y = temp;
+            }
+            // Debug.Print(_lineType.ToString());
         }
 
         public Line()
         {
             _shapeName = Constant.LINE;
             Type = ShapeType.LINE;
+            _lineType = LineType.None;
+        }
+
+        public void HandleLineType()
+        {
+            int minX = _point1.X < _point2.X ? _point1.X : _point2.X;
+            int minY = _point1.Y < _point2.Y ? _point1.Y : _point2.Y;
+            int maxX = _point1.X > _point2.X ? _point1.X : _point2.X;
+            int maxY = _point1.Y > _point2.Y ? _point1.Y : _point2.Y;
+            if (minX == _point1.X && minY == _point1.Y)
+            {
+                _lineType = LineType.LeftTop;
+            }
+            else if (maxX == _point1.X && minY == _point1.Y)
+            {
+                _lineType = LineType.RightTop;
+            }
+            else if (minX == _point1.X && maxY == _point1.Y)
+            {
+                _lineType = LineType.LeftBottom;
+            }
+            else if (maxX == _point1.X && maxY == _point1.Y)
+            {
+                _lineType = LineType.RightBottom;
+            }
         }
 
         /// <summary>
@@ -23,7 +63,14 @@ namespace PowerPoint
         public override void Draw(IGraphics graphics)
         {
             Pen pen = new Pen(Color.DodgerBlue, Constant.THREE);
-            graphics.DrawLine(pen,_point1, _point2);
+            if (_lineType == LineType.None)
+            {
+                graphics.DrawLine(pen,_point1, _point2);
+            }
+            else
+            {
+                graphics.DrawLine(pen,_point1, _point2, _lineType);
+            }
         }
         
         /// <summary>
@@ -47,7 +94,10 @@ namespace PowerPoint
         public enum LineType
         {
             LeftTop,
-            RightTop
+            RightTop,
+            LeftBottom,
+            RightBottom,
+            None
         }
         
         private LineType _lineType;
