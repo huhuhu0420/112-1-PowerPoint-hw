@@ -241,6 +241,10 @@ namespace PowerPoint
                 aLine.Draw(graphics);
         }
         
+        /// <summary>
+        /// draw
+        /// </summary>
+        /// <param name="graphics"></param>
         public virtual void DrawSelect(IGraphics graphics)
         {
             if (_select != null)
