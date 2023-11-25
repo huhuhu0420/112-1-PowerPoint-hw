@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
@@ -169,7 +170,7 @@ namespace PowerPoint
             {
                 return false;
             }
-            if (_shapes[_selectIndex].IsInCorner(point))
+            if (_shapes[_selectIndex].IsInShapeCorner(point) != Location.None)
             {
                 return true;
             }
@@ -345,6 +346,19 @@ namespace PowerPoint
             Selected,
             Resize
         } 
+        
+        public enum Location
+        {
+            Left,
+            Right,
+            Top,
+            Bottom,
+            LeftTop,
+            LeftBottom,
+            RightTop,
+            RightBottom,
+            None
+        }
         
         private readonly BindingList<Shape> _shapes = new BindingList<Shape>();
         private readonly ShapeFactory _shapeFactory;

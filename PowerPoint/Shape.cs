@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Security.Authentication.ExtendedProtection;
@@ -12,11 +13,24 @@ namespace PowerPoint
         {
             _point1 = point1;
             _point2 = point2;
+            AddIsInShapeCorner();
         }
 
         public Shape()
         {
-            
+            AddIsInShapeCorner(); 
+        }
+        
+        public void AddIsInShapeCorner()
+        {
+            _isInShapeCorner.Add(Model.Location.LeftTop, point => IsInShapeLeftTop(point));
+            _isInShapeCorner.Add(Model.Location.RightBottom,(Point point) => IsInShapeRightBottom(point));
+            _isInShapeCorner.Add(Model.Location.RightTop, (Point point) => IsInShapeRightTop(point));
+            _isInShapeCorner.Add(Model.Location.LeftBottom, (Point point) => IsInShapeLeftBottom(point));
+            _isInShapeCorner.Add(Model.Location.Left, (Point point) => IsInShapeLeft(point));
+            _isInShapeCorner.Add(Model.Location.Right, (Point point) => IsInShapeRight(point));
+            _isInShapeCorner.Add(Model.Location.Top, (Point point) => IsInShapeTop(point));
+            _isInShapeCorner.Add(Model.Location.Bottom, (Point point) => IsInShapeBottom(point));
         }
 
         /// <summary>
@@ -153,7 +167,7 @@ namespace PowerPoint
             return new Point((_point1.X + _point2.X) / Constant.TWO, (_point1.Y + _point2.Y) / Constant.TWO);
         }
 
-        public bool IsInCorner(Point point)
+        public bool IsInShapeRightBottom(Point point)
         {
             int maxX = _point1.X > _point2.X ? _point1.X : _point2.X;
             int maxY = _point1.Y > _point2.Y ? _point1.Y : _point2.Y;
@@ -165,6 +179,111 @@ namespace PowerPoint
             return false;
         }
         
+        public bool IsInShapeLeftTop(Point point)
+        {
+            int minX = _point1.X < _point2.X ? _point1.X : _point2.X;
+            int minY = _point1.Y < _point2.Y ? _point1.Y : _point2.Y;
+            if (point.X >= minX - 4 && point.X <= minX + 4 && point.Y >= minY - 4 && point.Y <= minY + 4)
+            {
+                return true;
+            }
+
+            return false;
+        }
+        
+        public bool IsInShapeRightTop(Point point)
+        {
+            int maxX = _point1.X > _point2.X ? _point1.X : _point2.X;
+            int minY = _point1.Y < _point2.Y ? _point1.Y : _point2.Y;
+            if (point.X >= maxX - 4 && point.X <= maxX + 4 && point.Y >= minY - 4 && point.Y <= minY + 4)
+            {
+                return true;
+            }
+
+            return false;
+        }
+        
+        public bool IsInShapeLeftBottom(Point point)
+        {
+            int minX = _point1.X < _point2.X ? _point1.X : _point2.X;
+            int maxY = _point1.Y > _point2.Y ? _point1.Y : _point2.Y;
+            if (point.X >= minX - 4 && point.X <= minX + 4 && point.Y >= maxY - 4 && point.Y <= maxY + 4)
+            {
+                return true;
+            }
+
+            return false;
+        }
+        
+        public bool IsInShapeLeft(Point point)
+        {
+            int minX = _point1.X < _point2.X ? _point1.X : _point2.X;
+            int minY = _point1.Y < _point2.Y ? _point1.Y : _point2.Y;
+            int maxY = _point1.Y > _point2.Y ? _point1.Y : _point2.Y;
+            int midY = (minY + maxY) / Constant.TWO;
+            if (point.X >= minX - 4 && point.X <= minX + 4 && point.Y >= midY - 4 && point.Y <= midY + 4)
+            {
+                return true;
+            }
+
+            return false;
+        }
+        
+        public bool IsInShapeRight(Point point)
+        {
+            int maxX = _point1.X > _point2.X ? _point1.X : _point2.X;
+            int minY = _point1.Y < _point2.Y ? _point1.Y : _point2.Y;
+            int maxY = _point1.Y > _point2.Y ? _point1.Y : _point2.Y;
+            int midY = (minY + maxY) / Constant.TWO;
+            if (point.X >= maxX - 4 && point.X <= maxX + 4 && point.Y >= midY - 4 && point.Y <= midY + 4)
+            {
+                return true;
+            }
+
+            return false;
+        }
+        
+        public bool IsInShapeTop(Point point)
+        {
+            int minX = _point1.X < _point2.X ? _point1.X : _point2.X;
+            int maxX = _point1.X > _point2.X ? _point1.X : _point2.X;
+            int minY = _point1.Y < _point2.Y ? _point1.Y : _point2.Y;
+            int midX = (minX + maxX) / Constant.TWO;
+            if (point.X >= midX - 4 && point.X <= midX + 4 && point.Y >= minY - 4 && point.Y <= minY + 4)
+            {
+                return true;
+            }
+
+            return false;
+        }
+        
+        public bool IsInShapeBottom(Point point)
+        {
+            int minX = _point1.X < _point2.X ? _point1.X : _point2.X;
+            int maxX = _point1.X > _point2.X ? _point1.X : _point2.X;
+            int maxY = _point1.Y > _point2.Y ? _point1.Y : _point2.Y;
+            int midX = (minX + maxX) / Constant.TWO;
+            if (point.X >= midX - 4 && point.X <= midX + 4 && point.Y >= maxY - 4 && point.Y <= maxY + 4)
+            {
+                return true;
+            }
+
+            return false;
+        }
+        
+        public Model.Location IsInShapeCorner(Point point)
+        {
+            foreach (var isInShapeCorner in _isInShapeCorner)
+            {
+                if (isInShapeCorner.Value(point))
+                {
+                    return isInShapeCorner.Key;
+                }
+            }
+
+            return Model.Location.None;
+        }
+        
         public void Resize(Point point)
         {
             _point2 = point;
@@ -173,6 +292,7 @@ namespace PowerPoint
         protected string _shapeName = "";
         protected Point _point1 = new Point(0, 0);
         protected Point _point2 = new Point(0, 0);
+        public Dictionary<Model.Location, Func<Point, bool>> _isInShapeCorner = new Dictionary<Model.Location, Func<Point, bool>>();
     }
     
     public enum ShapeType
