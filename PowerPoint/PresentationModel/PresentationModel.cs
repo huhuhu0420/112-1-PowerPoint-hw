@@ -69,7 +69,36 @@ namespace PowerPoint.PresentationModel
                 SetModelState(Model.ModelState.Drawing);
             }
         }
+
+        /// <summary>
+        /// cursor
+        /// </summary>
+        /// <param name="state"></param>
+        public void HandleResizeState(IState state)
+        {
+            var location = ((ResizeState)state).GetLocation();
+            if (location == Model.Location.RightBottom || location == Model.Location.LeftTop)
+            {
+                CursorChanged(Cursors.SizeNWSE);
+            }
+            else if (location == Model.Location.LeftBottom || location == Model.Location.RightTop)
+            {
+                CursorChanged(Cursors.SizeNESW);
+            }
+            else if (location == Model.Location.Left || location == Model.Location.Right)
+            {
+                CursorChanged(Cursors.SizeWE);
+            }
+            else if (location == Model.Location.Top || location == Model.Location.Bottom)
+            {
+                CursorChanged(Cursors.SizeNS);
+            }
+        }
         
+        /// <summary>
+        /// cursor
+        /// </summary>
+        /// <param name="state"></param>
         public void HandleStateChange(IState state)
         {
             if (CursorChanged == null)
@@ -90,7 +119,7 @@ namespace PowerPoint.PresentationModel
             }
             else if (state is ResizeState)
             {
-                CursorChanged(Cursors.SizeNWSE);
+                HandleResizeState(state);
             }
             Debug.Print(state.GetState().ToString());
         }

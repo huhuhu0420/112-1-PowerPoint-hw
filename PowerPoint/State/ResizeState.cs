@@ -72,6 +72,15 @@ namespace PowerPoint.State
             return Model.ModelState.Resize;
         }
         
+        /// <summary>
+        /// get
+        /// </summary>
+        /// <param name="location"></param>
+        public Model.Location GetLocation()
+        {
+            return _location;
+        }
+        
         Model.Location _location;
     }
 }
