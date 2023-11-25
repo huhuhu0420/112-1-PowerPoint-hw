@@ -42,16 +42,6 @@ namespace PowerPoint
             _resizeShape[Location.RightTop] = ResizeShapeRightTop;
             _resizeShape[Location.RightBottom] = ResizeShapeRightBottom;
         }
-
-        /// <summary>
-        /// init
-        /// </summary>
-        /// <param name="context"></param>
-        public void SetContext(Context context)
-        {
-            _context = context;
-            _context._stateChanged += HandleStateChanged;
-        }
         
         /// <summary>
         /// state changed
@@ -151,7 +141,9 @@ namespace PowerPoint
             {
                 return Location.None;
             }
-            return _shapes[_selectIndex].IsInShapeCorner(point);
+            Location location = _shapes[_selectIndex].IsInShapeCorner(point);
+            _context.SetLocation(location);
+            return location;
         }
 
         /// <summary>
@@ -216,7 +208,6 @@ namespace PowerPoint
         public virtual void ReleasedPointer(Point point, ShapeType type)
         {
             Shape hint = _shapeFactory.CreateShape(type, _firstPoint, point);
-            Debug.Print("release");
             _shapes.Add(hint);
             NotifyModelChanged();
             // Debug.Print(_lines.Count.ToString());

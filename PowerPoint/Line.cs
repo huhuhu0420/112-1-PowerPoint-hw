@@ -9,6 +9,8 @@ namespace PowerPoint
         { 
             _shapeName = Constant.LINE;
             Type = ShapeType.LINE;
+            _point1 = point1;
+            _point2 = point2;
             HandleLineType();
             if (_point1.X > _point2.X)
             {
@@ -32,28 +34,12 @@ namespace PowerPoint
             _lineType = LineType.None;
         }
 
+        /// <summary>
+        /// type
+        /// </summary>
         public void HandleLineType()
         {
-            int minX = _point1.X < _point2.X ? _point1.X : _point2.X;
-            int minY = _point1.Y < _point2.Y ? _point1.Y : _point2.Y;
-            int maxX = _point1.X > _point2.X ? _point1.X : _point2.X;
-            int maxY = _point1.Y > _point2.Y ? _point1.Y : _point2.Y;
-            if (minX == _point1.X && minY == _point1.Y)
-            {
-                _lineType = LineType.LeftTop;
-            }
-            else if (maxX == _point1.X && minY == _point1.Y)
-            {
-                _lineType = LineType.RightTop;
-            }
-            else if (minX == _point1.X && maxY == _point1.Y)
-            {
-                _lineType = LineType.LeftBottom;
-            }
-            else if (maxX == _point1.X && maxY == _point1.Y)
-            {
-                _lineType = LineType.RightBottom;
-            }
+            _lineType = GetLineType();
         }
 
         /// <summary>
@@ -80,15 +66,6 @@ namespace PowerPoint
         public void SetLineType(LineType lineType)
         {
             _lineType = lineType;
-        }
-        
-        /// <summary>
-        /// get line type
-        /// </summary>
-        /// <returns></returns>
-        public LineType GetLineType()
-        {
-            return _lineType;
         }
         
         public enum LineType

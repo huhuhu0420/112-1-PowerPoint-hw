@@ -30,26 +30,29 @@ namespace PowerPoint.PresentationModel
                 (float)point2.Y);
         }
         
+        /// <summary>
+        /// draw line
+        /// </summary>
+        /// <param name="pen"></param>
+        /// <param name="point1"></param>
+        /// <param name="point2"></param>
+        /// <param name="lineType"></param>
         public void DrawLine(Pen pen, Point point1, Point point2, Line.LineType lineType)
         {
-            Debug.Print(lineType.ToString());
+            // Debug.Print(lineType.ToString());
             switch (lineType)
             {
                 case Line.LineType.LeftTop:
-                    _graphics.DrawLine(pen, (float)point1.X, (float)point1.Y, (float)point2.X,
-                        (float)point2.Y);
+                    _graphics.DrawLine(pen, (float)point1.X, (float)point1.Y, (float)point2.X, (float)point2.Y);
                     break;
                 case Line.LineType.RightTop:
-                    _graphics.DrawLine(pen, (float)point2.X, (float)point1.Y, (float)point1.X,
-                        (float)point2.Y);
+                    _graphics.DrawLine(pen, (float)point2.X, (float)point1.Y, (float)point1.X, (float)point2.Y);
                     break;
                 case Line.LineType.LeftBottom:
-                    _graphics.DrawLine(pen, (float)point1.X, (float)point2.Y, (float)point2.X,
-                        (float)point1.Y);
+                    _graphics.DrawLine(pen, (float)point1.X, (float)point2.Y, (float)point2.X, (float)point1.Y);
                     break;
                 case Line.LineType.RightBottom:
-                    _graphics.DrawLine(pen, (float)point2.X, (float)point2.Y, (float)point1.X,
-                        (float)point1.Y);
+                    _graphics.DrawLine(pen, (float)point2.X, (float)point2.Y, (float)point1.X, (float)point1.Y);
                     break;
             }
         }

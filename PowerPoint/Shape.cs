@@ -295,7 +295,49 @@ namespace PowerPoint
 
             return Model.Location.None;
         }
-        
+
+        /// <summary>
+        /// get
+        /// </summary>
+        /// <returns></returns>
+        public Line.LineType GetLineType()
+        {
+            int minX = _point1.X < _point2.X ? _point1.X : _point2.X;
+            int minY = _point1.Y < _point2.Y ? _point1.Y : _point2.Y;
+            int maxX = _point1.X > _point2.X ? _point1.X : _point2.X;
+            int maxY = _point1.Y > _point2.Y ? _point1.Y : _point2.Y;
+            return GetLineType2(minX, minY, maxX, maxY);
+        }
+
+        /// <summary>
+        /// get
+        /// </summary>
+        /// <param name="minX"></param>
+        /// <param name="minY"></param>
+        /// <param name="maxX"></param>
+        /// <param name="maxY"></param>
+        /// <returns></returns>
+        public Line.LineType GetLineType2(int minX, int minY, int maxX, int maxY)
+        {
+            if (minX == _point1.X && minY == _point1.Y)
+            {
+                return Line.LineType.LeftTop;
+            }
+            else if (maxX == _point1.X && minY == _point1.Y)
+            {
+                return Line.LineType.RightTop;
+            }
+            else if (minX == _point1.X && maxY == _point1.Y)
+            {
+                return Line.LineType.LeftBottom;
+            }
+            else if (maxX == _point1.X && maxY == _point1.Y)
+            {
+                return Line.LineType.RightBottom;
+            }
+            return Line.LineType.None;
+        }
+
         protected string _shapeName = "";
         protected Point _point1 = new Point(0, 0);
         protected Point _point2 = new Point(0, 0);

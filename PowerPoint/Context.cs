@@ -21,19 +21,14 @@ namespace PowerPoint
         public virtual void SetState(IState state)
         {
             _state = state;
+            if (_state is ResizeState)
+            {
+                ((ResizeState)_state).SetLocation(_location);
+            }
             if (_stateChanged != null)
             {
                 _stateChanged(state);
             }
-        }
-        
-        /// <summary>
-        /// get
-        /// </summary>
-        /// <returns></returns>
-        public IState GetState()
-        {
-            return _state;
         }
         
         /// <summary>
@@ -76,8 +71,18 @@ namespace PowerPoint
             _state.Draw(graphics, _isPressed);
         }
         
+        /// <summary>
+        /// set
+        /// </summary>
+        /// <param name="location"></param>
+        public virtual void SetLocation(Model.Location location)
+        {
+            _location = location;
+        }
+        
         private IState _state;
         private Model _model;
         private bool _isPressed = false;
+        private Model.Location _location;
     }
 }

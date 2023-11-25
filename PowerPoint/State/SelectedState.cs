@@ -37,7 +37,7 @@ namespace PowerPoint.State
             var location = _model.IsInShapeCorner(point);
             if (location != Model.Location.None)
             {
-                context.SetState(new ResizeState(_model, location));
+                context.SetState(new ResizeState(_model));
                 return;
             }
             if (isPressed)
@@ -76,6 +76,5 @@ namespace PowerPoint.State
         {
             return Model.ModelState.Selected;
         }
-
     }
 }

@@ -5,6 +5,16 @@ namespace PowerPoint
     public partial class Model
     {
         /// <summary>
+        /// init
+        /// </summary>
+        /// <param name="context"></param>
+        public void SetContext(Context context)
+        {
+            _context = context;
+            _context._stateChanged += HandleStateChanged;
+        }
+        
+        /// <summary>
         /// insert shape
         /// </summary>
         public virtual void InsertShape(ShapeType type)

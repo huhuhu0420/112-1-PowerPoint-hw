@@ -8,10 +8,9 @@ namespace PowerPoint.State
     {
         private readonly Model _model;
         
-        public ResizeState (Model model, Model.Location location)
+        public ResizeState (Model model)
         {
             _model = model;
-            _location = location;
         }
 
         /// <summary>
@@ -78,9 +77,9 @@ namespace PowerPoint.State
         /// get
         /// </summary>
         /// <param name="location"></param>
-        public Model.Location GetLocation()
+        public void SetLocation(Model.Location location)
         {
-            return _location;
+            _location = location;
         }
         
         /// <summary>
@@ -108,6 +107,6 @@ namespace PowerPoint.State
             return Cursors.Default;
         }
 
-        readonly Model.Location _location;
+        Model.Location _location;
     }
 }
