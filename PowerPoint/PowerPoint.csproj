@@ -66,6 +66,7 @@
     <Compile Include="Line.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="ModelPartial.cs" />
+    <Compile Include="ModelPartial2.cs" />
     <Compile Include="PresentationModel\PresentationModel.cs" />
     <Compile Include="PresentationModel\WindowsFormsGraphicsAdaptor.cs" />
     <Compile Include="Program.cs" />
