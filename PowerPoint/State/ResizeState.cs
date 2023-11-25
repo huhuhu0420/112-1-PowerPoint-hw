@@ -7,9 +7,10 @@ namespace PowerPoint.State
     {
         private readonly Model _model;
         
-        public ResizeState (Model model)
+        public ResizeState (Model model, Model.Location location)
         {
             _model = model;
+            _location = location;
         }
 
         /// <summary>
@@ -32,10 +33,10 @@ namespace PowerPoint.State
         {
             if (isPressed)
             {
-                _model.ResizeShape(point);
+                _model.ResizeShape(point, _location);
                 return;
             }
-            if (!_model.IsInShapeCorner(point))
+            if (_model.IsInShapeCorner(point) == Model.Location.None)
             {
                 context.SetState(new SelectedState(_model));
             }
@@ -70,5 +71,7 @@ namespace PowerPoint.State
         {
             return Model.ModelState.Resize;
         }
+        
+        Model.Location _location;
     }
 }

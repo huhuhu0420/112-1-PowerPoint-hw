@@ -20,6 +20,20 @@ namespace PowerPoint
             _hint = new Shape();
             _firstPoint = new Point(0, 0);
             _lastPoint = new Point(0, 0);
+            InitializeResizeShape();
+        }
+
+        public void InitializeResizeShape()
+        {
+            _resizeShape = new Dictionary<Location, Action<Point>>();
+            _resizeShape.Add(Location.LeftBottom, (point) => ResizeShapeLeftBottom(point));
+            _resizeShape.Add(Location.RightBottom, (point) => ResizeShapeRightBottom(point));
+            _resizeShape.Add(Location.LeftTop, (point) => ResizeShapeLeftTop(point));
+            _resizeShape.Add(Location.RightTop, (point) => ResizeShapeRightTop(point));
+            _resizeShape.Add(Location.Left, (point) => ResizeShapeLeft(point));
+            _resizeShape.Add(Location.Right, (point) => ResizeShapeRight(point));
+            _resizeShape.Add(Location.Top, (point) => ResizeShapeTop(point));
+            _resizeShape.Add(Location.Bottom, (point) => ResizeShapeBottom(point));
         }
 
         public void SetContext(Context context)
@@ -164,17 +178,13 @@ namespace PowerPoint
             return false;
         }
         
-        public virtual bool IsInShapeCorner(Point point)
+        public virtual Location IsInShapeCorner(Point point)
         {
             if (_selectIndex == -1)
             {
-                return false;
+                return Location.None;
             }
-            if (_shapes[_selectIndex].IsInShapeCorner(point) != Location.None)
-            {
-                return true;
-            }
-            return false;
+            return _shapes[_selectIndex].IsInShapeCorner(point);
         }
 
         /// <summary>
@@ -277,13 +287,29 @@ namespace PowerPoint
             _hint.Draw(graphics);
             // Debug.Print("draw");
         }
+        
+        /// <summary>
+        /// resize
+        /// </summary>
+        /// <param name="point"></param>
+        public virtual void ResizeShape(Point point, Model.Location location)
+        {
+            if (_selectIndex == -1)
+            {
+                return;
+            }
+            if (location != Location.None)
+            {
+                _resizeShape[location](point);
+            }
+        }
 
         /// <summary>
         /// resize
         /// </summary>
         /// <param name="point"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public virtual void ResizeShape(Point point)
+        public virtual void ResizeShapeRightBottom(Point point)
         {
             if (_selectIndex == -1)
             {
@@ -299,6 +325,155 @@ namespace PowerPoint
             }
             _shapes[_selectIndex].SetPoint2(point);
             _select.SetPoint2(point);
+            NotifyModelChanged();
+        }
+        
+        /// <summary>
+        /// resize
+        /// </summary>
+        /// <param name="point"></param>
+        public virtual void ResizeShapeLeftBottom(Point point)
+        {
+            if (_selectIndex == -1)
+            {
+                return;
+            }
+            if (point.X > _shapes[_selectIndex].GetPoint2().X - 1)
+            {
+                point.X = _shapes[_selectIndex].GetPoint2().X - 1;
+            }
+            if (point.Y < _shapes[_selectIndex].GetPoint1().Y + 1)
+            {
+                point.Y = _shapes[_selectIndex].GetPoint1().Y + 1;
+            }
+            _shapes[_selectIndex].SetPoint1(new Point(point.X, _shapes[_selectIndex].GetPoint1().Y));
+            _shapes[_selectIndex].SetPoint2(new Point(_shapes[_selectIndex].GetPoint2().X, point.Y));
+            _select.SetPoint1(new Point(point.X, _shapes[_selectIndex].GetPoint1().Y));
+            _select.SetPoint2(new Point(_shapes[_selectIndex].GetPoint2().X, point.Y));
+            NotifyModelChanged();
+        }
+        
+        /// <summary>
+        /// resize
+        /// </summary>
+        /// <param name="point"></param>
+        public virtual void ResizeShapeLeftTop(Point point)
+        {
+            if (_selectIndex == -1)
+            {
+                return;
+            }
+            if (point.X > _shapes[_selectIndex].GetPoint2().X - 1)
+            {
+                point.X = _shapes[_selectIndex].GetPoint2().X - 1;
+            }
+            if (point.Y > _shapes[_selectIndex].GetPoint2().Y - 1)
+            {
+                point.Y = _shapes[_selectIndex].GetPoint2().Y - 1;
+            }
+            _shapes[_selectIndex].SetPoint1(point);
+            _select.SetPoint1(point);
+            NotifyModelChanged();
+        }
+        
+        /// <summary>
+        /// resize
+        /// </summary>
+        /// <param name="point"></param>
+        public virtual void ResizeShapeRightTop(Point point)
+        {
+            if (_selectIndex == -1)
+            {
+                return;
+            }
+            if (point.X < _shapes[_selectIndex].GetPoint1().X + 1)
+            {
+                point.X = _shapes[_selectIndex].GetPoint1().X + 1;
+            }
+            if (point.Y > _shapes[_selectIndex].GetPoint2().Y - 1)
+            {
+                point.Y = _shapes[_selectIndex].GetPoint2().Y - 1;
+            }
+            _shapes[_selectIndex].SetPoint1(new Point(_shapes[_selectIndex].GetPoint1().X, point.Y));
+            _shapes[_selectIndex].SetPoint2(new Point(point.X, _shapes[_selectIndex].GetPoint2().Y));
+            _select.SetPoint1(new Point(_shapes[_selectIndex].GetPoint1().X, point.Y));
+            _select.SetPoint2(new Point(point.X, _shapes[_selectIndex].GetPoint2().Y));
+            NotifyModelChanged();
+        }
+        
+        /// <summary>
+        /// resize
+        /// </summary>
+        /// <param name="point"></param>
+        public virtual void ResizeShapeLeft(Point point)
+        {
+            if (_selectIndex == -1)
+            {
+                return;
+            }
+            if (point.X > _shapes[_selectIndex].GetPoint2().X - 1)
+            {
+                point.X = _shapes[_selectIndex].GetPoint2().X - 1;
+            }
+            _shapes[_selectIndex].SetPoint1(new Point(point.X, _shapes[_selectIndex].GetPoint1().Y));
+            _select.SetPoint1(new Point(point.X, _shapes[_selectIndex].GetPoint1().Y));
+            NotifyModelChanged();
+        }
+        
+        /// <summary>
+        /// resize
+        /// </summary>
+        /// <param name="point"></param>
+        public virtual void ResizeShapeRight(Point point)
+        {
+            if (_selectIndex == -1)
+            {
+                return;
+            }
+            if (point.X < _shapes[_selectIndex].GetPoint1().X + 1)
+            {
+                point.X = _shapes[_selectIndex].GetPoint1().X + 1;
+            }
+            _shapes[_selectIndex].SetPoint2(new Point(point.X, _shapes[_selectIndex].GetPoint2().Y));
+            _select.SetPoint2(new Point(point.X, _shapes[_selectIndex].GetPoint2().Y));
+            NotifyModelChanged();
+        }
+        
+        /// <summary>
+        /// resize
+        /// </summary>
+        /// <param name="point"></param>
+        public virtual void ResizeShapeTop(Point point)
+        {
+            if (_selectIndex == -1)
+            {
+                return;
+            }
+            if (point.Y > _shapes[_selectIndex].GetPoint2().Y - 1)
+            {
+                point.Y = _shapes[_selectIndex].GetPoint2().Y - 1;
+            }
+            _shapes[_selectIndex].SetPoint1(new Point(_shapes[_selectIndex].GetPoint1().X, point.Y));
+            _select.SetPoint1(new Point(_shapes[_selectIndex].GetPoint1().X, point.Y));
+            NotifyModelChanged();
+        }
+        
+        /// <summary>
+        /// resize
+        /// </summary>
+        /// <param name="point"></param>
+        public virtual void ResizeShapeBottom(Point point)
+        {
+            if (_selectIndex == -1)
+            {
+                return;
+            }
+            if (point.Y < _shapes[_selectIndex].GetPoint1().Y + 1)
+            {
+                point.Y = _shapes[_selectIndex].GetPoint1().Y + 1;
+            }
+            _shapes[_selectIndex].SetPoint2(new Point(_shapes[_selectIndex].GetPoint2().X, point.Y));
+            _select.SetPoint2(new Point(_shapes[_selectIndex].GetPoint2().X, point.Y));
             NotifyModelChanged();
         }
         
@@ -368,5 +543,6 @@ namespace PowerPoint
         private Point _lastPoint = new Point(0, 0);
         private int _selectIndex = -1;
         private Context _context;
+        public Dictionary<Model.Location, Action<Point>> _resizeShape;
     }
 }

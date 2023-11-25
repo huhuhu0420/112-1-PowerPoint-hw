@@ -167,6 +167,7 @@ namespace PowerPoint
             return new Point((_point1.X + _point2.X) / Constant.TWO, (_point1.Y + _point2.Y) / Constant.TWO);
         }
 
+        // isin shape
         public bool IsInShapeRightBottom(Point point)
         {
             int maxX = _point1.X > _point2.X ? _point1.X : _point2.X;
@@ -179,6 +180,8 @@ namespace PowerPoint
             return false;
         }
         
+        
+        // isin shape
         public bool IsInShapeLeftTop(Point point)
         {
             int minX = _point1.X < _point2.X ? _point1.X : _point2.X;
@@ -191,6 +194,8 @@ namespace PowerPoint
             return false;
         }
         
+        
+        // isin shape
         public bool IsInShapeRightTop(Point point)
         {
             int maxX = _point1.X > _point2.X ? _point1.X : _point2.X;
@@ -203,6 +208,7 @@ namespace PowerPoint
             return false;
         }
         
+        // isin shape
         public bool IsInShapeLeftBottom(Point point)
         {
             int minX = _point1.X < _point2.X ? _point1.X : _point2.X;
@@ -215,6 +221,7 @@ namespace PowerPoint
             return false;
         }
         
+        // isin shape
         public bool IsInShapeLeft(Point point)
         {
             int minX = _point1.X < _point2.X ? _point1.X : _point2.X;
@@ -229,6 +236,7 @@ namespace PowerPoint
             return false;
         }
         
+        // isin shape
         public bool IsInShapeRight(Point point)
         {
             int maxX = _point1.X > _point2.X ? _point1.X : _point2.X;
@@ -243,6 +251,7 @@ namespace PowerPoint
             return false;
         }
         
+        // isin shape
         public bool IsInShapeTop(Point point)
         {
             int minX = _point1.X < _point2.X ? _point1.X : _point2.X;
@@ -257,6 +266,7 @@ namespace PowerPoint
             return false;
         }
         
+        // isin shape
         public bool IsInShapeBottom(Point point)
         {
             int minX = _point1.X < _point2.X ? _point1.X : _point2.X;
@@ -271,6 +281,7 @@ namespace PowerPoint
             return false;
         }
         
+        // isin shape
         public Model.Location IsInShapeCorner(Point point)
         {
             foreach (var isInShapeCorner in _isInShapeCorner)
