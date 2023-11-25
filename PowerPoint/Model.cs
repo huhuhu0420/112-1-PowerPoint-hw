@@ -239,6 +239,10 @@ namespace PowerPoint
             // Debug.Print("draw");
             foreach (Shape aLine in _shapes)
                 aLine.Draw(graphics);
+        }
+        
+        public virtual void DrawSelect(IGraphics graphics)
+        {
             if (_select != null)
             {
                 _select.DrawSelect(graphics);

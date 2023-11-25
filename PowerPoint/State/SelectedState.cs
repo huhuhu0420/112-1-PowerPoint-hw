@@ -65,6 +65,7 @@ namespace PowerPoint.State
         public void Draw(IGraphics graphics, bool isPressed)
         {
             _model.DrawShapes(graphics);
+            _model.DrawSelect(graphics);
         }
         
         /// <summary>
