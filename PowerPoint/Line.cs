@@ -8,7 +8,7 @@ namespace PowerPoint
         { 
             _shapeName = Constant.LINE;
             Type = ShapeType.LINE;
-                    }
+        }
 
         public Line()
         {

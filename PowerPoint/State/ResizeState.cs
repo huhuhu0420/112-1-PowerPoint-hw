@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace PowerPoint.State
 {
@@ -81,6 +82,31 @@ namespace PowerPoint.State
             return _location;
         }
         
-        Model.Location _location;
+        /// <summary>
+        /// get
+        /// </summary>
+        /// <returns></returns>
+        public Cursor GetCursorForLocation()
+        {
+            if (_location == Model.Location.RightBottom || _location == Model.Location.LeftTop)
+            {
+                return Cursors.SizeNWSE;
+            }
+            else if (_location == Model.Location.LeftBottom || _location == Model.Location.RightTop)
+            {
+                return Cursors.SizeNESW;
+            }
+            else if (_location == Model.Location.Left || _location == Model.Location.Right)
+            {
+                return Cursors.SizeWE;
+            }
+            else if (_location == Model.Location.Top || _location == Model.Location.Bottom)
+            {
+                return Cursors.SizeNS;
+            }
+            return Cursors.Default;
+        }
+
+        readonly Model.Location _location;
     }
 }

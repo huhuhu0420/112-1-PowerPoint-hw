@@ -19,6 +19,7 @@ namespace PowerPoint
         public const string IS_RECTANGLE_CHECKED = "IsRectangleButtonChecked";
         public const string IS_CIRCLE_CHECKED = "IsCircleButtonChecked";
         public const string IS_MOUSE_CHECKED = "IsMouseButtonChecked";
+        public const int FOUR = 4;
         public const int THREE = 3;
         public const int TWO = 2;
     }

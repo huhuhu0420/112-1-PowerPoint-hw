@@ -8,11 +8,15 @@ using PowerPoint.State;
 
 namespace PowerPoint
 {
-    public class Model
+    public partial class Model
     {
         public delegate void ModelChangedEventHandler();
+#pragma warning disable IDE1006 // Naming Styles
         public event ModelChangedEventHandler _modelChanged;
+#pragma warning restore IDE1006 // Naming Styles
+#pragma warning disable IDE1006 // Naming Styles
         public event Context.StateChangedEventHandler _stateChanged;
+#pragma warning restore IDE1006 // Naming Styles
 
         public Model()
         {
@@ -20,22 +24,29 @@ namespace PowerPoint
             _hint = new Shape();
             _firstPoint = new Point(0, 0);
             _lastPoint = new Point(0, 0);
+            _resizeShape = new Dictionary<Location, Action<Point>>();
             InitializeResizeShape();
         }
 
+        /// <summary>
+        /// init
+        /// </summary>
         public void InitializeResizeShape()
         {
-            _resizeShape = new Dictionary<Location, Action<Point>>();
-            _resizeShape.Add(Location.LeftBottom, (point) => ResizeShapeLeftBottom(point));
-            _resizeShape.Add(Location.RightBottom, (point) => ResizeShapeRightBottom(point));
-            _resizeShape.Add(Location.LeftTop, (point) => ResizeShapeLeftTop(point));
-            _resizeShape.Add(Location.RightTop, (point) => ResizeShapeRightTop(point));
-            _resizeShape.Add(Location.Left, (point) => ResizeShapeLeft(point));
-            _resizeShape.Add(Location.Right, (point) => ResizeShapeRight(point));
-            _resizeShape.Add(Location.Top, (point) => ResizeShapeTop(point));
-            _resizeShape.Add(Location.Bottom, (point) => ResizeShapeBottom(point));
+            _resizeShape[Location.Left] = ResizeShapeLeft;
+            _resizeShape[Location.Right] = ResizeShapeRight;
+            _resizeShape[Location.Top] = ResizeShapeTop;
+            _resizeShape[Location.Bottom] = ResizeShapeBottom;
+            _resizeShape[Location.LeftTop] = ResizeShapeLeftTop;
+            _resizeShape[Location.LeftBottom] = ResizeShapeLeftBottom;
+            _resizeShape[Location.RightTop] = ResizeShapeRightTop;
+            _resizeShape[Location.RightBottom] = ResizeShapeRightBottom;
         }
 
+        /// <summary>
+        /// init
+        /// </summary>
+        /// <param name="context"></param>
         public void SetContext(Context context)
         {
             _context = context;
@@ -49,7 +60,9 @@ namespace PowerPoint
         {
             if (_stateChanged != null)
             {
+#pragma warning disable IDE1005 // Delegate invocation can be simplified.
                 _stateChanged(state);
+#pragma warning restore IDE1005 // Delegate invocation can be simplified.
             }
         }
 
@@ -178,6 +191,11 @@ namespace PowerPoint
             return false;
         }
         
+        /// <summary>
+        /// isin
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
         public virtual Location IsInShapeCorner(Point point)
         {
             if (_selectIndex == -1)
@@ -484,7 +502,9 @@ namespace PowerPoint
         {
             if (_modelChanged != null)
             {
+#pragma warning disable IDE1005 // Delegate invocation can be simplified.
                 _modelChanged();
+#pragma warning restore IDE1005 // Delegate invocation can be simplified.
             }
             // ModelChanged?.Invoke();  // better usage but cannot use cause it is bad smell :(
         }
@@ -543,6 +563,6 @@ namespace PowerPoint
         private Point _lastPoint = new Point(0, 0);
         private int _selectIndex = -1;
         private Context _context;
-        public Dictionary<Model.Location, Action<Point>> _resizeShape;
+        private readonly Dictionary<Model.Location, Action<Point>> _resizeShape;
     }
 }

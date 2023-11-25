@@ -14,12 +14,12 @@ namespace PowerPoint
         [STAThread]
         static void Main()
         {
-            Model _model = new Model();
-            Context _context = new Context(_model);
-            _model.SetContext(_context);
+            Model model = new Model();
+            Context context = new Context(model);
+            model.SetContext(context);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1(_model));
+            Application.Run(new Form1(model));
         }
     }
 }

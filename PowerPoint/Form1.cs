@@ -21,6 +21,7 @@ namespace PowerPoint
             _presentationModel = new PresentationModel.PresentationModel(_model);
             InitializeComponent();
             HandleSomething();
+            HandleMore();
         }
 
         /// <summary>
@@ -31,7 +32,7 @@ namespace PowerPoint
             dataGridView1.DataSource = _presentationModel.GetShapes();
             dataGridView1.CellClick += ClickDataGridView1Cell;
             _presentationModel._modelChanged += HandleModelChanged;            
-            _presentationModel.CursorChanged += CursorChanged;
+            _presentationModel._cursorChanged += SetCursor;
             this.lineButton.Click += HandleLineButtonClick;
             this.squareButton.Click += HandleRectangleButtonClick;
             this.circleButton.Click += HandleCircleButtonClick;
@@ -41,11 +42,19 @@ namespace PowerPoint
             this.panel1.MouseMove += HandleCanvasMoved;
             this.panel1.Paint += HandleCanvasPaint;
             this.KeyDown += FormKeyDown;
+        }
+
+        /// <summary>
+        /// handle
+        /// </summary>
+        public void HandleMore()
+        {
             lineButton.DataBindings.Add(Constant.CHECKED, _presentationModel, Constant.IS_LINE_CHECKED);
             squareButton.DataBindings.Add(Constant.CHECKED, _presentationModel, Constant.IS_RECTANGLE_CHECKED);
             circleButton.DataBindings.Add(Constant.CHECKED, _presentationModel, Constant.IS_CIRCLE_CHECKED);
             mouseButton.DataBindings.Add(Constant.CHECKED, _presentationModel, Constant.IS_MOUSE_CHECKED);
             _brief = new Bitmap(this.panel1.Width, this.panel1.Height);
+
         }
         
         /// <summary>
@@ -147,7 +156,11 @@ namespace PowerPoint
             GenerateBrief();
         }
         
-        public void CursorChanged(Cursor cursor)
+        /// <summary>
+        /// set
+        /// </summary>
+        /// <param name="cursor"></param>
+        public void SetCursor(Cursor cursor)
         {
             Cursor = cursor;
         }

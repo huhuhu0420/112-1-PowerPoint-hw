@@ -62,20 +62,26 @@ namespace PowerPoint.PresentationModel
             (float)(point2.Y - point1.Y));
         }
         
+        /// <summary>
+        /// draw
+        /// </summary>
+        /// <param name="pen"></param>
+        /// <param name="point1"></param>
+        /// <param name="point2"></param>
         public void DrawSelectPoint(Pen pen, Point point1, Point point2)
         {
-            const int radius = 3;
-            const int diameter = radius * 2;
-            _graphics.DrawEllipse(pen, point1.X - radius, point1.Y - radius, diameter, diameter);
-            _graphics.DrawEllipse(pen, point2.X - radius, point2.Y - radius, diameter, diameter);
-            _graphics.DrawEllipse(pen, point1.X - radius, point2.Y - radius, diameter, diameter);
-            _graphics.DrawEllipse(pen, point2.X - radius, point1.Y - radius, diameter, diameter);
-            int fix1 = (point1.X + point2.X) / 2;
-            int fix2 = (point1.Y + point2.Y) / 2;
-            _graphics.DrawEllipse(pen, fix1 - radius, point1.Y - radius, diameter, diameter);
-            _graphics.DrawEllipse(pen, fix1 - radius, point2.Y - radius, diameter, diameter);
-            _graphics.DrawEllipse(pen, point1.X - radius, fix2 - radius, diameter, diameter);
-            _graphics.DrawEllipse(pen, point2.X - radius, fix2 - radius, diameter, diameter);
+            const int RADIUS = Constant.THREE;
+            const int DIAMETER = RADIUS * Constant.TWO;
+            _graphics.DrawEllipse(pen, point1.X - RADIUS, point1.Y - RADIUS, DIAMETER, DIAMETER);
+            _graphics.DrawEllipse(pen, point2.X - RADIUS, point2.Y - RADIUS, DIAMETER, DIAMETER);
+            _graphics.DrawEllipse(pen, point1.X - RADIUS, point2.Y - RADIUS, DIAMETER, DIAMETER);
+            _graphics.DrawEllipse(pen, point2.X - RADIUS, point1.Y - RADIUS, DIAMETER, DIAMETER);
+            int fix1 = (point1.X + point2.X) / Constant.TWO;
+            int fix2 = (point1.Y + point2.Y) / Constant.TWO;
+            _graphics.DrawEllipse(pen, fix1 - RADIUS, point1.Y - RADIUS, DIAMETER, DIAMETER);
+            _graphics.DrawEllipse(pen, fix1 - RADIUS, point2.Y - RADIUS, DIAMETER, DIAMETER);
+            _graphics.DrawEllipse(pen, point1.X - RADIUS, fix2 - RADIUS, DIAMETER, DIAMETER);
+            _graphics.DrawEllipse(pen, point2.X - RADIUS, fix2 - RADIUS, DIAMETER, DIAMETER);
         }
 
         /// <summary>

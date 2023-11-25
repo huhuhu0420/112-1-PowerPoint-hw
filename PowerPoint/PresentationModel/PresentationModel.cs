@@ -11,9 +11,13 @@ namespace PowerPoint.PresentationModel
     public class PresentationModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+#pragma warning disable IDE1006 // Naming Styles
         public event Model.ModelChangedEventHandler _modelChanged;
+#pragma warning restore IDE1006 // Naming Styles
         public delegate void CursorChangedEventHandler(Cursor cursor);
-        public event CursorChangedEventHandler CursorChanged;
+#pragma warning disable IDE1006 // Naming Styles
+        public event CursorChangedEventHandler _cursorChanged;
+#pragma warning restore IDE1006 // Naming Styles
         readonly Model _model;
 
         private WindowsFormsGraphicsAdaptor _graphic;
@@ -47,7 +51,9 @@ namespace PowerPoint.PresentationModel
         {
             if (_modelChanged != null)
             {
+#pragma warning disable IDE1005 // Delegate invocation can be simplified.
                 _modelChanged();
+#pragma warning restore IDE1005 // Delegate invocation can be simplified.
             }
             //ModelChanged?.Invoke();
         }
@@ -69,31 +75,6 @@ namespace PowerPoint.PresentationModel
                 SetModelState(Model.ModelState.Drawing);
             }
         }
-
-        /// <summary>
-        /// cursor
-        /// </summary>
-        /// <param name="state"></param>
-        public void HandleResizeState(IState state)
-        {
-            var location = ((ResizeState)state).GetLocation();
-            if (location == Model.Location.RightBottom || location == Model.Location.LeftTop)
-            {
-                CursorChanged(Cursors.SizeNWSE);
-            }
-            else if (location == Model.Location.LeftBottom || location == Model.Location.RightTop)
-            {
-                CursorChanged(Cursors.SizeNESW);
-            }
-            else if (location == Model.Location.Left || location == Model.Location.Right)
-            {
-                CursorChanged(Cursors.SizeWE);
-            }
-            else if (location == Model.Location.Top || location == Model.Location.Bottom)
-            {
-                CursorChanged(Cursors.SizeNS);
-            }
-        }
         
         /// <summary>
         /// cursor
@@ -101,27 +82,22 @@ namespace PowerPoint.PresentationModel
         /// <param name="state"></param>
         public void HandleStateChange(IState state)
         {
-            if (CursorChanged == null)
-            {
-                return;
-            }
             if (state is SelectedState)
             {
-                CursorChanged(Cursors.Arrow);
+                _cursorChanged(Cursors.Arrow);
             }
             else if (state is NormalState)
             {
-                CursorChanged(Cursors.Arrow);
+                _cursorChanged(Cursors.Arrow);
             }
             else if (state is DrawingState)
             {
-                CursorChanged(Cursors.Cross);
+                _cursorChanged(Cursors.Cross);
             }
             else if (state is ResizeState)
             {
-                HandleResizeState(state);
+                _cursorChanged(((ResizeState)state).GetCursorForLocation());
             }
-            Debug.Print(state.GetState().ToString());
         }
         
         /// <summary>
