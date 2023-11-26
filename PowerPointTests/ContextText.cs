@@ -30,6 +30,7 @@ namespace PowerPoint.Tests
                 Assert.AreEqual(mockState.Object, state); 
             };
             _context.SetState(mockState.Object);
+            _context.SetState(new ResizeState(_mockModel.Object));
 
             Assert.AreEqual(mockState.Object, _context.GetState());
         }
