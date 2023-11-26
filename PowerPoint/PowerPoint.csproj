@@ -61,12 +61,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="IGraphics.cs" />
     <Compile Include="IState.cs" />
     <Compile Include="Line.cs" />
-    <Compile Include="Model.cs" />
-    <Compile Include="ModelPartial.cs" />
-    <Compile Include="ModelPartial2.cs" />
+    <Compile Include="model\Model.cs" />
+    <Compile Include="model\ModelPartial.cs" />
+    <Compile Include="model\ModelPartial2.cs" />
     <Compile Include="PresentationModel\PresentationModel.cs" />
     <Compile Include="PresentationModel\WindowsFormsGraphicsAdaptor.cs" />
     <Compile Include="Program.cs" />
@@ -75,6 +74,7 @@
     <Compile Include="Shape.cs" />
     <Compile Include="ShapeFactory.cs" />
     <Compile Include="State\DrawingState.cs" />
+    <Compile Include="State\IGraphics.cs" />
     <Compile Include="State\NormalState.cs" />
     <Compile Include="State\ResizeState.cs" />
     <Compile Include="State\SelectedState.cs" />
