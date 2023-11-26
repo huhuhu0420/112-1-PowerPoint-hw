@@ -29,10 +29,6 @@ namespace PowerPoint
         /// <exception cref="NotImplementedException"></exception>
         public virtual void ResizeShapeRightBottom(Point point)
         {
-            if (_selectIndex == -1)
-            {
-                return;
-            }
             if (point.X < _shapes[_selectIndex].GetPoint1().X + 1)
             {
                 point.X = _shapes[_selectIndex].GetPoint1().X + 1;
@@ -52,10 +48,6 @@ namespace PowerPoint
         /// <param name="point"></param>
         public virtual void ResizeShapeLeftBottom(Point point)
         {
-            if (_selectIndex == -1)
-            {
-                return;
-            }
             if (point.X > _shapes[_selectIndex].GetPoint2().X - 1)
             {
                 point.X = _shapes[_selectIndex].GetPoint2().X - 1;
@@ -77,10 +69,6 @@ namespace PowerPoint
         /// <param name="point"></param>
         public virtual void ResizeShapeLeftTop(Point point)
         {
-            if (_selectIndex == -1)
-            {
-                return;
-            }
             if (point.X > _shapes[_selectIndex].GetPoint2().X - 1)
             {
                 point.X = _shapes[_selectIndex].GetPoint2().X - 1;
@@ -100,10 +88,6 @@ namespace PowerPoint
         /// <param name="point"></param>
         public virtual void ResizeShapeRightTop(Point point)
         {
-            if (_selectIndex == -1)
-            {
-                return;
-            }
             if (point.X < _shapes[_selectIndex].GetPoint1().X + 1)
             {
                 point.X = _shapes[_selectIndex].GetPoint1().X + 1;
@@ -125,10 +109,6 @@ namespace PowerPoint
         /// <param name="point"></param>
         public virtual void ResizeShapeLeft(Point point)
         {
-            if (_selectIndex == -1)
-            {
-                return;
-            }
             if (point.X > _shapes[_selectIndex].GetPoint2().X - 1)
             {
                 point.X = _shapes[_selectIndex].GetPoint2().X - 1;
@@ -144,10 +124,6 @@ namespace PowerPoint
         /// <param name="point"></param>
         public virtual void ResizeShapeRight(Point point)
         {
-            if (_selectIndex == -1)
-            {
-                return;
-            }
             if (point.X < _shapes[_selectIndex].GetPoint1().X + 1)
             {
                 point.X = _shapes[_selectIndex].GetPoint1().X + 1;
@@ -163,10 +139,6 @@ namespace PowerPoint
         /// <param name="point"></param>
         public virtual void ResizeShapeTop(Point point)
         {
-            if (_selectIndex == -1)
-            {
-                return;
-            }
             if (point.Y > _shapes[_selectIndex].GetPoint2().Y - 1)
             {
                 point.Y = _shapes[_selectIndex].GetPoint2().Y - 1;
@@ -182,10 +154,6 @@ namespace PowerPoint
         /// <param name="point"></param>
         public virtual void ResizeShapeBottom(Point point)
         {
-            if (_selectIndex == -1)
-            {
-                return;
-            }
             if (point.Y < _shapes[_selectIndex].GetPoint1().Y + 1)
             {
                 point.Y = _shapes[_selectIndex].GetPoint1().Y + 1;

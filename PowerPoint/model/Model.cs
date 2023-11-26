@@ -27,6 +27,7 @@ namespace PowerPoint
             _lastPoint = new Point(0, 0);
             _resizeShape = new Dictionary<Location, Action<Point>>();
             _context = new Context(this);
+            _shapes = new BindingList<Shape>();
             InitializeResizeShape();
         }
 
