@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using PowerPoint.State;
 
 namespace PowerPoint
@@ -25,6 +26,7 @@ namespace PowerPoint
             _firstPoint = new Point(0, 0);
             _lastPoint = new Point(0, 0);
             _resizeShape = new Dictionary<Location, Action<Point>>();
+            _context = new Context(this);
             InitializeResizeShape();
         }
 

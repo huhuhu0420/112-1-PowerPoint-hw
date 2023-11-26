@@ -80,6 +80,15 @@ namespace PowerPoint
             _location = location;
         }
         
+        /// <summary>
+        /// get
+        /// </summary>
+        /// <returns></returns>
+        public virtual Model.ModelState GetState()
+        {
+            return _state.GetState();
+        }
+        
         private IState _state;
         private Model _model;
         private bool _isPressed = false;

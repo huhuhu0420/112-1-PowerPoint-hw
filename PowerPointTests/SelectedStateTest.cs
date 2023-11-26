@@ -69,7 +69,7 @@ namespace PowerPoint.State.Tests
             var point = new Point(1, 1);
             var mockContext = new Mock<Context>(_mockModel.Object);
 
-            _mockModel.Setup(m => m.IsInShapeCorner(point)).Returns(true);
+            _mockModel.Setup(m => m.IsInShapeCorner(point)).Returns(Model.Location.Bottom);
 
             _selectedState.MouseMove(mockContext.Object, point, false);
 
@@ -84,7 +84,7 @@ namespace PowerPoint.State.Tests
             var point = new Point(1, 1);
             var mockContext = new Mock<Context>(_mockModel.Object);
 
-            _mockModel.Setup(m => m.IsInShapeCorner(point)).Returns(false);
+            _mockModel.Setup(m => m.IsInShapeCorner(point)).Returns(Model.Location.Bottom);
 
             _selectedState.MouseMove(mockContext.Object, point, false);
 

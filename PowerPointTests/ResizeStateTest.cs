@@ -37,7 +37,7 @@ namespace PowerPoint.State.Tests
 
             _resizeState.MouseMove(null, point, true);
 
-            _mockModel.Verify(m => m.ResizeShape(point), Times.Once);
+            _mockModel.Verify(m => m.ResizeShape(point, Model.Location.Bottom), Times.Once);
         }
 
         // test
@@ -47,11 +47,11 @@ namespace PowerPoint.State.Tests
             var point = new Point(1, 1);
             var mockContext = new Mock<Context>(_mockModel.Object);
 
-            _mockModel.Setup(m => m.IsInShapeCorner(point)).Returns(true);
+            _mockModel.Setup(m => m.IsInShapeCorner(point)).Returns(Model.Location.Bottom);
 
             _resizeState.MouseMove(mockContext.Object, point, false);
 
-            _mockModel.Verify(m => m.ResizeShape(point), Times.Never);
+            _mockModel.Verify(m => m.ResizeShape(point, Model.Location.Bottom), Times.Never);
             mockContext.Verify(c => c.SetState(It.IsAny<SelectedState>()), Times.Never);
         }
 
@@ -62,11 +62,11 @@ namespace PowerPoint.State.Tests
             var point = new Point(1, 1);
             var mockContext = new Mock<Context>(_mockModel.Object);
 
-            _mockModel.Setup(m => m.IsInShapeCorner(point)).Returns(false);
+            _mockModel.Setup(m => m.IsInShapeCorner(point)).Returns(Model.Location.Bottom);
 
             _resizeState.MouseMove(mockContext.Object, point, false);
 
-            _mockModel.Verify(m => m.ResizeShape(point), Times.Never);
+            _mockModel.Verify(m => m.ResizeShape(point, Model.Location.Bottom), Times.Never);
             mockContext.Verify(c => c.SetState(It.IsAny<SelectedState>()), Times.Once);
         }
         

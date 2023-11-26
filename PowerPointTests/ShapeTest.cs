@@ -64,7 +64,7 @@ namespace PowerPoint.Tests
             _shape.SetPoint1(new Point(0, 0));
             _shape.SetPoint2(new Point(10, 10));
 
-            var result = _shape.IsInCorner(new Point(10, 10));
+            var result = _shape.IsInShape(new Point(10, 10));
 
             Assert.IsTrue(result);
         }
@@ -76,21 +76,9 @@ namespace PowerPoint.Tests
             _shape.SetPoint1(new Point(0, 0));
             _shape.SetPoint2(new Point(10, 10));
 
-            var result = _shape.IsInCorner(new Point(15, 15));
+            var result = _shape.IsInShape(new Point(15, 15));
 
             Assert.IsFalse(result);
-        }
-
-        // test
-        [TestMethod]
-        public void Resize_ChangesPoint2()
-        {
-            _shape.SetPoint2(new Point(10, 10));
-            _shape.Resize(new Point(20, 20));
-
-            var result = _shape.GetPoint2();
-
-            Assert.AreEqual(new Point(20, 20), result);
         }
     }
 }

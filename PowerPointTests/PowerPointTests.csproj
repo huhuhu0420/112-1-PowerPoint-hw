@@ -76,6 +76,7 @@
     <Compile Include="ContextText.cs" />
     <Compile Include="DrawingStateTest.cs" />
     <Compile Include="LineTest.cs" />
+    <Compile Include="ModelTest2.cs" />
     <Compile Include="ModelTests.cs" />
     <Compile Include="NormalStateTest.cs" />
     <Compile Include="PresentationModelTest.cs" />
