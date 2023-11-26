@@ -56,7 +56,6 @@ namespace PowerPoint.PresentationModel.Tests
         public void HandleStateChangeTest()
         {
             bool isCalled = false;
-            _presentationModel.HandleStateChange(new NormalState(_mockModel.Object));
             _presentationModel._cursorChanged += (cursor) => { isCalled = true; };
             _presentationModel.HandleStateChange(new NormalState(_mockModel.Object));
             _presentationModel.HandleStateChange(new DrawingState(_mockModel.Object));
