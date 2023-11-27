@@ -24,15 +24,14 @@ namespace PowerPoint.Tests
 
         public void SetStateTest()
         {
-            var mockState = new Mock<IState>();
+            var mockState = new Mock<DrawingState>(_mockModel.Object);
             _context._stateChanged += (state) =>
             {
                 Assert.AreEqual(mockState.Object, state); 
             };
             _context.SetState(mockState.Object);
-            _context.SetState(new ResizeState(_mockModel.Object));
 
-            Assert.AreEqual(mockState.Object, _context.GetState());
+            Assert.AreEqual(Model.ModelState.Drawing, _context.GetState());
         }
 
         // test
@@ -96,10 +95,10 @@ namespace PowerPoint.Tests
 
         public void GetStateTest()
         {
-            var mockState = new Mock<IState>();
+            var mockState = new Mock<ResizeState>(_mockModel.Object);
             _context.SetState(mockState.Object);
 
-            Assert.AreEqual(mockState.Object, _context.GetState());
+            Assert.AreEqual(Model.ModelState.Resize, _context.GetState());
         }
     }
 }
