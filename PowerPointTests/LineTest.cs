@@ -10,23 +10,28 @@ namespace PowerPoint.Tests
     {
         private Mock<IGraphics> _mockGraphics;
         private Line _line;
+        PrivateObject _privateLine;
 
         // test
         [TestInitialize]
-        public void Setup()
+        public void Initialize()
         {
             _mockGraphics = new Mock<IGraphics>();
             _line = new Line();
             _line = new Line(new Point(1, 1), new Point(2, 2));
+            _privateLine = new PrivateObject(_line);
         }
 
         // test
         [TestMethod]
         public void DrawTest()
         {
+            _line.SetLineType(Line.LineType.None);
             _line.Draw(_mockGraphics.Object);
-
             _mockGraphics.Verify(g => g.DrawLine(It.IsAny<Pen>(), It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
+            _line.SetLineType(Line.LineType.LeftTop);
+            _line.Draw(_mockGraphics.Object);
+            _mockGraphics.Verify(g => g.DrawLine(It.IsAny<Pen>(), It.IsAny<Point>(), It.IsAny<Point>(), Line.LineType.LeftTop), Times.Once);
         }
 
         // test
@@ -36,8 +41,8 @@ namespace PowerPoint.Tests
             var line = new Line(new Point(2, 2), new Point(1, 1));
 
             Assert.AreEqual(ShapeType.LINE, line.Type);
-            Assert.AreEqual(new Point(2, 2), line.GetPoint1());
-            Assert.AreEqual(new Point(1, 1), line.GetPoint2());
+            Assert.AreEqual(new Point(1, 1), line.GetPoint1());
+            Assert.AreEqual(new Point(2, 2), line.GetPoint2());
         }
 
         // test
@@ -66,7 +71,7 @@ namespace PowerPoint.Tests
         {
             _line.SetLineType(Line.LineType.RightTop);
 
-            Assert.AreEqual(Line.LineType.RightTop, _line.GetLineType());
+            Assert.AreEqual(Line.LineType.RightTop, _privateLine.GetField("_lineType"));
         }
     }
 }
