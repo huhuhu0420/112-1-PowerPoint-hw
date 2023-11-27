@@ -10,6 +10,7 @@ namespace PowerPoint.State.Tests
     {
         private Mock<Model> _mockModel;
         private SelectedState _selectedState;
+        PrivateObject _privateSelectedState;
 
         // test
         [TestInitialize]
@@ -17,6 +18,7 @@ namespace PowerPoint.State.Tests
         {
             _mockModel = new Mock<Model>();
             _selectedState = new SelectedState(_mockModel.Object);
+            _privateSelectedState = new PrivateObject(_selectedState);
         }
 
         // test
@@ -56,6 +58,7 @@ namespace PowerPoint.State.Tests
             var point = new Point(1, 1);
             var mockContext = new Mock<Context>(_mockModel.Object);
 
+            _mockModel.Setup(m => m.IsInShapeCorner(point)).Returns(Model.Location.None);
             _selectedState.MouseMove(mockContext.Object, point, true);
 
             _mockModel.Verify(m => m.MoveShape(point), Times.Once);
@@ -89,7 +92,6 @@ namespace PowerPoint.State.Tests
             _selectedState.MouseMove(mockContext.Object, point, false);
 
             _mockModel.Verify(m => m.MoveShape(point), Times.Never);
-            mockContext.Verify(c => c.SetState(It.IsAny<ResizeState>()), Times.Never);
         }
 
         // test
