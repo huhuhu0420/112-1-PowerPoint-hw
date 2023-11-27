@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Drawing;
+using System.Windows.Forms;
 using PowerPoint.State;
 
 namespace PowerPoint.State.Tests
@@ -10,6 +11,7 @@ namespace PowerPoint.State.Tests
     {
         private Mock<Model> _mockModel;
         private ResizeState _resizeState;
+        PrivateObject _privatResizeState;
 
         // test
         [TestInitialize]
@@ -17,6 +19,7 @@ namespace PowerPoint.State.Tests
         {
             _mockModel = new Mock<Model>();
             _resizeState = new ResizeState(_mockModel.Object);
+            _privatResizeState = new PrivateObject(_resizeState);
         }
         
         // test
@@ -35,6 +38,7 @@ namespace PowerPoint.State.Tests
         {
             var point = new Point(1, 1);
 
+            _privatResizeState.SetField("_location", Model.Location.Bottom);
             _resizeState.MouseMove(null, point, true);
 
             _mockModel.Verify(m => m.ResizeShape(point, Model.Location.Bottom), Times.Once);
@@ -61,8 +65,8 @@ namespace PowerPoint.State.Tests
         {
             var point = new Point(1, 1);
             var mockContext = new Mock<Context>(_mockModel.Object);
-
-            _mockModel.Setup(m => m.IsInShapeCorner(point)).Returns(Model.Location.Bottom);
+            _mockModel.Setup(m => m.IsInShapeCorner(point)).Returns(Model.Location.None);
+            
 
             _resizeState.MouseMove(mockContext.Object, point, false);
 
@@ -99,6 +103,27 @@ namespace PowerPoint.State.Tests
             var state = _resizeState.GetState();
 
             Assert.AreEqual(Model.ModelState.Resize, state);
+        }
+        
+        // test
+        [TestMethod]
+        public void GetCursorForLocationTest()
+        {
+            _privatResizeState.SetField("_location", Model.Location.Bottom);
+            var cursor = _resizeState.GetCursorForLocation();
+            Assert.AreEqual(Cursors.SizeNS, cursor);
+            _privatResizeState.SetField("_location", Model.Location.Left);
+            cursor = _resizeState.GetCursorForLocation();
+            Assert.AreEqual(Cursors.SizeWE, cursor);
+            _privatResizeState.SetField("_location", Model.Location.LeftBottom);
+            cursor = _resizeState.GetCursorForLocation();
+            Assert.AreEqual(Cursors.SizeNESW, cursor);
+            _privatResizeState.SetField("_location", Model.Location.RightBottom);
+            cursor = _resizeState.GetCursorForLocation();
+            Assert.AreEqual(Cursors.SizeNWSE, cursor);
+            _privatResizeState.SetField("_location", Model.Location.None);
+            cursor = _resizeState.GetCursorForLocation();
+            Assert.AreEqual(Cursors.Default, cursor);
         }
     }
 }
