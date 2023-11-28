@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PowerPoint
 {
-    class Constant
+    public class Constant
     {
         public const string PARENTHESIS1 = "(";
         public const string PARENTHESIS2 = ")";
@@ -22,5 +22,9 @@ namespace PowerPoint
         public const int FOUR = 4;
         public const int THREE = 3;
         public const int TWO = 2;
+        public const int THREE_THOUNSAND = 3000;
+        public const int NEGATIVE_THREE_THOUNSAND = -3000;
+        public const string SELECT = "_select";
+        public const string SELECT_INDEX = "_selectIndex";
     }
 }
