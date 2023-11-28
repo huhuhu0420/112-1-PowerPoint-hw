@@ -87,6 +87,7 @@
     <Compile Include="SelectedStateTest.cs" />
     <Compile Include="ShapeFactoryTest.cs" />
     <Compile Include="ShapeTest.cs" />
+    <Compile Include="WindowsFormsGraphicsAdaptorTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
