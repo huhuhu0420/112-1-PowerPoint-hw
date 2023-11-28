@@ -228,9 +228,9 @@ namespace PowerPoint.Tests
             line.SetPoint1(new Point(-1, -1));
             line.SetPoint2(new Point(-1, -1));
             Assert.AreEqual(Line.LineType.None, line.GetLineType2(0, 0, 0, 0));
-            line.SetPoint1(new Point(-1, -1));
-            line.SetPoint2(new Point(-1, -1));
             Assert.AreEqual(Line.LineType.LeftBottom, line.GetLineType2(-1, 0, 0, -1));
+            Assert.AreEqual(Line.LineType.LeftTop, line.GetLineType2(-1, -1, 0, 0));
+            Assert.AreEqual(Line.LineType.RightTop, line.GetLineType2(0, -1, -1, 0));
         }
     }
 }
