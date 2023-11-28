@@ -10,11 +10,9 @@ namespace PowerPoint.Tests
     [TestClass]
     public class ModelTests2
     {
-        private ShapeFactory _shapeFactory;
         private Model _model;
         PrivateObject _privateModel;
         private Mock<Context> _mockContext;
-        private Mock<IGraphics> _mockGraphics;
 
         // test
         [TestInitialize]
@@ -24,24 +22,27 @@ namespace PowerPoint.Tests
             _mockContext = new Mock<Context>(_model);
             _privateModel = new PrivateObject(_model);
             _model.SetContext(_mockContext.Object);
-            _mockGraphics = new Mock<IGraphics>();
         }
+
         // test
         [TestMethod]
+
         public void RemoveShapeTest()
         {
             _model.InsertShape(ShapeType.LINE);
-            _privateModel.SetField("_selectIndex", 0);
+            _privateModel.SetField(Constant.SELECT_INDEX, 0);
             _model.RemoveShape();
 
             Assert.AreEqual(0, _model.GetShapes().Count);
         }
+
         // test
         [TestMethod]
+
         public void RemoveShapeByIndexTest()
         {
             _model.InsertShape(ShapeType.LINE);
-            _privateModel.SetField("_selectIndex", 1);
+            _privateModel.SetField(Constant.SELECT_INDEX, 1);
             _model.RemoveShapeByIndex(0);
 
             Assert.AreEqual(0, _model.GetShapes().Count);
@@ -49,6 +50,7 @@ namespace PowerPoint.Tests
         
         // test
         [TestMethod]
+
         public void InsertShapeTest()
         {
             _model.InsertShape(ShapeType.LINE);
@@ -57,10 +59,11 @@ namespace PowerPoint.Tests
         
         // test
         [TestMethod]
+
         public void SetContestTest()
         {
             _model.SetContext(_mockContext.Object);
-            var context = _privateModel.GetField("_context");
+            var context = _privateModel.GetField(Constant.CONTEXT);
             Assert.AreEqual(_mockContext.Object, context);
         }
     }

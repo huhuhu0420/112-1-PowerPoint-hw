@@ -81,6 +81,7 @@ namespace PowerPoint.Tests
             Assert.IsFalse(result);
         }
         
+        // test
         [TestMethod]
         public void IsInShapeReturnsTrueWhenPointIsInShape()
         {
@@ -92,6 +93,7 @@ namespace PowerPoint.Tests
             Assert.IsTrue(result);
         }
 
+        // test
         [TestMethod]
         public void IsInShapeReturnsFalseWhenPointIsOutsideShape()
         {
@@ -199,6 +201,7 @@ namespace PowerPoint.Tests
             Assert.AreEqual(Model.Location.Bottom, result);
         }
 
+        // test
         [TestMethod]
         public void IsInShapeCornerReturnsNoneWhenPointIsNotInCorner()
         {
@@ -210,6 +213,7 @@ namespace PowerPoint.Tests
             Assert.AreEqual(Model.Location.None, result);
         }
 
+        // test
         [TestMethod]
         public void GetLineTypeReturnsCorrectTypeBasedOnPoints()
         {

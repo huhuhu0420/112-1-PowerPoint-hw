@@ -19,12 +19,14 @@ namespace PowerPoint
         public const string IS_RECTANGLE_CHECKED = "IsRectangleButtonChecked";
         public const string IS_CIRCLE_CHECKED = "IsCircleButtonChecked";
         public const string IS_MOUSE_CHECKED = "IsMouseButtonChecked";
+        public const int TEN = 10;
         public const int FOUR = 4;
         public const int THREE = 3;
         public const int TWO = 2;
-        public const int THREE_THOUNSAND = 3000;
-        public const int NEGATIVE_THREE_THOUNSAND = -3000;
+        public const int THREE_THOUSAND = 3000;
+        public const int NEGATIVE_THREE_THOUSAND = -3000;
         public const string SELECT = "_select";
         public const string SELECT_INDEX = "_selectIndex";
+        public const string CONTEXT = "_context";
     }
 }
