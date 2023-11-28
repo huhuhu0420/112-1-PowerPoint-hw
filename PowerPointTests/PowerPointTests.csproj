@@ -73,7 +73,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CircleTest.cs" />
-    <Compile Include="ContextText.cs" />
+    <Compile Include="ContextTest.cs" />
     <Compile Include="DrawingStateTest.cs" />
     <Compile Include="LineTest.cs" />
     <Compile Include="ModelTest1.cs" />
