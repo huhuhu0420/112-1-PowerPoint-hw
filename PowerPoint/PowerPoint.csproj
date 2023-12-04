@@ -61,7 +61,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="IState.cs" />
+    <Compile Include="IGraphics.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="model\Model.cs" />
     <Compile Include="model\ModelPartial.cs" />
@@ -74,7 +74,7 @@
     <Compile Include="Shape.cs" />
     <Compile Include="ShapeFactory.cs" />
     <Compile Include="State\DrawingState.cs" />
-    <Compile Include="State\IGraphics.cs" />
+    <Compile Include="State\IState.cs" />
     <Compile Include="State\NormalState.cs" />
     <Compile Include="State\ResizeState.cs" />
     <Compile Include="State\SelectedState.cs" />
