@@ -47,12 +47,22 @@ namespace PowerPoint
             this.squareButton = new WindowPowerPoint.BindingToolStripButton();
             this.circleButton = new WindowPowerPoint.BindingToolStripButton();
             this.mouseButton = new WindowPowerPoint.BindingToolStripButton();
-            this.panel1 = new PowerPoint.DoubleBufferedPanel();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.panel1 = new PowerPoint.DoubleBufferedPanel();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -61,7 +71,7 @@ namespace PowerPoint
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { this.delete, this.shapeName, this.information });
-            this.dataGridView1.Location = new System.Drawing.Point(666, 90);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 50);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -103,18 +113,19 @@ namespace PowerPoint
             // 
             // slide1
             // 
-            this.slide1.Location = new System.Drawing.Point(12, 53);
+            this.slide1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.slide1.Location = new System.Drawing.Point(6, 4);
             this.slide1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.slide1.Name = "slide1";
             this.slide1.Size = new System.Drawing.Size(133, 107);
             this.slide1.TabIndex = 1;
-            this.slide1.UseVisualStyleBackColor = true;
+            this.slide1.UseVisualStyleBackColor = false;
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] { "線", "矩形", "圓形" });
-            this.comboBox1.Location = new System.Drawing.Point(788, 56);
+            this.comboBox1.Location = new System.Drawing.Point(120, 13);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(110, 23);
@@ -123,7 +134,7 @@ namespace PowerPoint
             // InsertButton
             // 
             this.InsertButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            this.InsertButton.Location = new System.Drawing.Point(685, 53);
+            this.InsertButton.Location = new System.Drawing.Point(28, 10);
             this.InsertButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.InsertButton.Name = "InsertButton";
             this.InsertButton.Size = new System.Drawing.Size(55, 29);
@@ -198,14 +209,6 @@ namespace PowerPoint
             this.mouseButton.Size = new System.Drawing.Size(23, 22);
             this.mouseButton.Text = "🖱";
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panel1.Location = new System.Drawing.Point(153, 56);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(507, 442);
-            this.panel1.TabIndex = 7;
-            // 
             // toolStripButton1
             // 
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -222,17 +225,62 @@ namespace PowerPoint
             this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton2.Text = "⟳";
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(507, 442);
+            this.panel1.TabIndex = 7;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 49);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.slide1);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
+            this.splitContainer1.Size = new System.Drawing.Size(932, 461);
+            this.splitContainer1.SplitterDistance = 142;
+            this.splitContainer1.SplitterWidth = 6;
+            this.splitContainer1.TabIndex = 8;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.panel1);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.InsertButton);
+            this.splitContainer2.Panel2.Controls.Add(this.comboBox1);
+            this.splitContainer2.Panel2.Controls.Add(this.dataGridView1);
+            this.splitContainer2.Size = new System.Drawing.Size(784, 461);
+            this.splitContainer2.SplitterDistance = 506;
+            this.splitContainer2.SplitterWidth = 6;
+            this.splitContainer2.TabIndex = 0;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(932, 510);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.InsertButton);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.slide1);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F);
             this.KeyPreview = true;
@@ -245,9 +293,21 @@ namespace PowerPoint
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.SplitContainer splitContainer2;
+
+        private System.Windows.Forms.SplitContainer splitContainer1;
 
         private System.Windows.Forms.ToolStripButton toolStripButton2;
 
