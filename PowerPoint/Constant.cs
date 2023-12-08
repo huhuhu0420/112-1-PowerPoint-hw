@@ -25,8 +25,11 @@ namespace PowerPoint
         public const int TWO = 2;
         public const int THREE_THOUSAND = 3000;
         public const int NEGATIVE_THREE_THOUSAND = -3000;
+        public const double SIXTEEN = 16;
+        public const double NINE = 9;
         public const string SELECT = "_select";
         public const string SELECT_INDEX = "_selectIndex";
         public const string CONTEXT = "_context";
+        public const double RATIO = (NINE / SIXTEEN);
     }
 }

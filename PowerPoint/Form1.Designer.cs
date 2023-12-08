@@ -71,7 +71,7 @@ namespace PowerPoint
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { this.delete, this.shapeName, this.information });
-            this.dataGridView1.Location = new System.Drawing.Point(3, 50);
+            this.dataGridView1.Location = new System.Drawing.Point(7, 47);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -239,6 +239,7 @@ namespace PowerPoint
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 49);
             this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             // 
             // splitContainer1.Panel1
             // 
@@ -270,7 +271,7 @@ namespace PowerPoint
             this.splitContainer2.Panel2.Controls.Add(this.comboBox1);
             this.splitContainer2.Panel2.Controls.Add(this.dataGridView1);
             this.splitContainer2.Size = new System.Drawing.Size(784, 461);
-            this.splitContainer2.SplitterDistance = 506;
+            this.splitContainer2.SplitterDistance = 500;
             this.splitContainer2.SplitterWidth = 6;
             this.splitContainer2.TabIndex = 0;
             // 
