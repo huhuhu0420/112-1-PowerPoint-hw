@@ -22,6 +22,7 @@ namespace PowerPoint
             InitializeComponent();
             HandleSomething();
             HandleMore();
+            HandleContainerResize();
         }
 
         /// <summary>
@@ -54,15 +55,20 @@ namespace PowerPoint
             circleButton.DataBindings.Add(Constant.CHECKED, _presentationModel, Constant.IS_CIRCLE_CHECKED);
             mouseButton.DataBindings.Add(Constant.CHECKED, _presentationModel, Constant.IS_MOUSE_CHECKED);
             _brief = new Bitmap(this.panel1.Width, this.panel1.Height);
-            splitContainer1.Panel1.Resize += HandleContainerResize;
-            splitContainer1.Resize += HandleContainerResize;
-            splitContainer2.Panel1.Resize += HandleContainerResize;
-            splitContainer2.Resize += HandleContainerResize;
+            splitContainer1.Panel1.Resize += (sender, e) => HandleContainerResize();
+            splitContainer1.Resize += (sender, e) => HandleContainerResize();
+            splitContainer2.Panel1.Resize += (sender, args) => HandleContainerResize();
+            splitContainer2.Resize += (sender, args) => HandleContainerResize();
             dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
         
-        public void HandleContainerResize(object sender, EventArgs e)
+        /// <summary>
+        /// handle resize
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void HandleContainerResize()
         {
             slide1.Width = splitContainer1.Panel1.Width - 8;
             slide1.Height = (int)(slide1.Width * Constant.RATIO);
