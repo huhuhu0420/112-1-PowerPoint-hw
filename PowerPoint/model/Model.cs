@@ -125,7 +125,7 @@ namespace PowerPoint
             if (_shapes[index].IsInShape(point))
             {
                 // Debug.Print(index.ToString());
-                _select = _shapeFactory.CreateShape(_shapes[index].Type, _shapes[index].GetPoint1(), _shapes[index].GetPoint2());
+                _select = _shapeFactory.CreateShape(_shapes[index].GetShapeType(), _shapes[index].GetPoint1(), _shapes[index].GetPoint2());
                 _lastPoint = point;
                 _selectIndex = index;
                 return true;

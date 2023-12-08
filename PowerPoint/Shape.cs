@@ -121,8 +121,15 @@ namespace PowerPoint
 
         public ShapeType Type
         {
-            get;
-            set;
+            set
+            {
+                _type = value;
+            }
+        }
+        
+        public ShapeType GetShapeType()
+        {
+            return _type;
         }
 
         /// <summary>
@@ -339,6 +346,7 @@ namespace PowerPoint
         }
 
         protected string _shapeName = "";
+        protected ShapeType _type = ShapeType.LINE;
         protected Point _point1 = new Point(0, 0);
         protected Point _point2 = new Point(0, 0);
         protected Dictionary<Model.Location, Func<Point, bool>> _isInShapeCorner = new Dictionary<Model.Location, Func<Point, bool>>();
