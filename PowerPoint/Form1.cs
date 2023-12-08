@@ -61,6 +61,7 @@ namespace PowerPoint
             splitContainer2.Resize += (sender, args) => HandleContainerResize();
             dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
         }
         
         /// <summary>
