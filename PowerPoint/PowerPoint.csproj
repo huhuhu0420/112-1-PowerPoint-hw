@@ -50,6 +50,11 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Circle.cs" />
+    <Compile Include="Command\AddCommand.cs" />
+    <Compile Include="Command\DeleteCommand.cs" />
+    <Compile Include="Command\DrawCommand.cs" />
+    <Compile Include="Command\ICommand.cs" />
+    <Compile Include="Command\MoveCommand.cs" />
     <Compile Include="Constant.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="DoubleBufferPanel.cs">
