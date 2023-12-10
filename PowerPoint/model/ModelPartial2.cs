@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using PowerPoint.Command;
 
 namespace PowerPoint
 {
@@ -20,6 +21,16 @@ namespace PowerPoint
         public virtual void InsertShape(ShapeType type)
         {
             _shapes.Add(_shapeFactory.CreateShape(type));
+            NotifyModelChanged();
+        }
+        
+        /// <summary>
+        /// insert shape
+        /// </summary>
+        /// <param name="shape"></param>
+        public virtual void InsertShapeByShape(Shape shape)
+        {
+            _shapes.Add(shape);
             NotifyModelChanged();
         }
 

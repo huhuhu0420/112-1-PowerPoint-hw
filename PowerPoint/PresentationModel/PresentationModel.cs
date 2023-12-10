@@ -184,7 +184,7 @@ namespace PowerPoint.PresentationModel
         /// <param name="type"></param>
         public void InsertShape(ShapeType type)
         {
-            _model.InsertShape(type);
+            _model.HandleInsertShape(type);
         }
 
         /// <summary>
@@ -206,6 +206,22 @@ namespace PowerPoint.PresentationModel
             }
             _isButtonChecked[index] = true;
             HandlePropertyChanged();
+        }
+        
+        /// <summary>
+        /// undo
+        /// </summary>
+        public void Undo()
+        {
+            _model.Undo();
+        }
+        
+        /// <summary>
+        /// redo
+        /// </summary>
+        public void Redo()
+        {
+            _model.Redo();
         }
         
         public bool IsLineButtonChecked

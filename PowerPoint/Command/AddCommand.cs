@@ -2,22 +2,29 @@ namespace PowerPoint.Command
 {
     public class AddCommand : ICommand
     {
+        public AddCommand(Model model, Shape shape)
+        {
+            _model = model;
+            _shape = shape; 
+        }
+        
         /// <summary>
         /// execute
         /// </summary>
-        /// <exception cref="NotImplementedException"></exception>
         void ICommand.Execute()
         {
-            throw new System.NotImplementedException();
+            _model.InsertShapeByShape(_shape);
         }
         
         /// <summary>
         /// unexecute
         /// </summary>
-        /// <exception cref="NotImplementedException"></exception>
         void ICommand.UnExecute()
         {
-            throw new System.NotImplementedException();
+            _model.RemoveShapeByIndex(_model.GetShapes().Count - 1);
         }
+        
+        Model _model;
+        Shape _shape;
     }
 }

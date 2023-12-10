@@ -51,6 +51,7 @@
     </Compile>
     <Compile Include="Circle.cs" />
     <Compile Include="Command\AddCommand.cs" />
+    <Compile Include="Command\CommandManager.cs" />
     <Compile Include="Command\DeleteCommand.cs" />
     <Compile Include="Command\DrawCommand.cs" />
     <Compile Include="Command\ICommand.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="IGraphics.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="model\Model.cs" />
+    <Compile Include="model\ModelCommand.cs" />
     <Compile Include="model\ModelPartial.cs" />
     <Compile Include="model\ModelPartial2.cs" />
     <Compile Include="PresentationModel\PresentationModel.cs" />

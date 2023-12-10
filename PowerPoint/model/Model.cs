@@ -5,6 +5,8 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
+using PowerPoint.Command;
 using PowerPoint.State;
 
 namespace PowerPoint
@@ -28,6 +30,7 @@ namespace PowerPoint
             _resizeShape = new Dictionary<Location, Action<Point>>();
             _context = new Context(this);
             _shapes = new BindingList<Shape>();
+            _commandManager = new CommandManager();
             InitializeResizeShape();
         }
 
@@ -296,6 +299,15 @@ namespace PowerPoint
                 _context.SetState(new DrawingState(this));
             }
         }
+        
+        /// <summary>
+        /// set
+        /// </summary>
+        /// <param name="commandManager"></param>
+        public virtual void SetCommandManager(CommandManager commandManager)
+        {
+            _commandManager = commandManager;
+        }
 
         public enum ModelState
         {
@@ -327,5 +339,6 @@ namespace PowerPoint
         private int _selectIndex = -1;
         private Context _context;
         private readonly Dictionary<Model.Location, Action<Point>> _resizeShape;
+        private CommandManager _commandManager;
     }
 }

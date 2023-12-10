@@ -38,6 +38,8 @@ namespace PowerPoint
             this.squareButton.Click += HandleRectangleButtonClick;
             this.circleButton.Click += HandleCircleButtonClick;
             this.mouseButton.Click += HandleMouseButtonClick;
+            this.undoButton.Click += HandleUndoButtonClick;
+            this.redoButton.Click += HandleRedoButtonClick;
             this.panel1.MouseDown += HandleCanvasPressed;
             this.panel1.MouseUp += HandleCanvasReleased;
             this.panel1.MouseMove += HandleCanvasMoved;
@@ -215,6 +217,26 @@ namespace PowerPoint
         public void HandleMouseButtonClick(object sender, EventArgs e)
         {
             _presentationModel.HandleButtonClick((int)ShapeType.ARROW);
+        }
+        
+        /// <summary>
+        /// undo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void HandleUndoButtonClick(object sender, EventArgs e)
+        {
+            _presentationModel.Undo();
+        }
+        
+        /// <summary>
+        /// redo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void HandleRedoButtonClick(object sender, EventArgs e)
+        {
+            _presentationModel.Redo();
         }
 
         private Bitmap _brief;
