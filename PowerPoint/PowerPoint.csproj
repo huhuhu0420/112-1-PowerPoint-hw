@@ -52,7 +52,7 @@
     <Compile Include="Circle.cs" />
     <Compile Include="Command\AddCommand.cs" />
     <Compile Include="Command\CommandManager.cs" />
-    <Compile Include="Command\DeleteCommand.cs" />
+    <Compile Include="Command\RemoveCommand.cs" />
     <Compile Include="Command\DrawCommand.cs" />
     <Compile Include="Command\ICommand.cs" />
     <Compile Include="Command\MoveCommand.cs" />

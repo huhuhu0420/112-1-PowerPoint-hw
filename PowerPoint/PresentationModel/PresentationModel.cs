@@ -105,7 +105,7 @@ namespace PowerPoint.PresentationModel
         /// </summary>
         public void DeleteShape()
         {
-            _model.RemoveShape();
+            _model.HandleRemoveShape(-1);
         }
 
         /// <summary>
@@ -175,7 +175,7 @@ namespace PowerPoint.PresentationModel
         /// <param name="index"></param>
         public void RemoveShape(int index)
         {
-            _model.RemoveShapeByIndex(index);
+            _model.HandleRemoveShape(index);
         }
 
         /// <summary>

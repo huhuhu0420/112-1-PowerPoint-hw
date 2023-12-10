@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace PowerPoint.Command
 {
@@ -8,6 +9,7 @@ namespace PowerPoint.Command
         {
             command.Execute();
             _commandHistory.Add(command);
+            _redoHistory.Clear();
         }   
         
         public void Undo()
@@ -34,7 +36,6 @@ namespace PowerPoint.Command
             command.Execute();
             _commandHistory.Add(command);
             _redoHistory.RemoveAt(_redoHistory.Count - 1);
-            
         }
         
         private List<ICommand> _commandHistory = new List<ICommand>();
