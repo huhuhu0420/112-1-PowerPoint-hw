@@ -133,5 +133,15 @@ namespace PowerPoint.Tests
             _model.InsertShapeByShape(shape, 0);
             Assert.AreEqual(1, _model.GetShapes().Count);
         }
+        
+        // test
+        [TestMethod]
+        public void SetUndoRedoHistoryTest()
+        {
+            bool isCalled = false;
+            _model._undoRedoHistoryChanged += (bool isUndo, bool isRedo) => { isCalled = true; };
+            _model.SetUndoRedoHistory(true, true);
+            Assert.IsTrue(isCalled);
+        }
     }
 }

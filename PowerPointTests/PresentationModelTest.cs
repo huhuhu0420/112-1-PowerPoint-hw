@@ -217,5 +217,15 @@ namespace PowerPoint.PresentationModel.Tests
             _presentationModel.SetCanvasSize(100, 100);
             _mockModel.Verify(m => m.SetCanvasSize(100, 100), Times.Once);
         }
+        
+        // test
+        [TestMethod]
+        public void HandleUndoRedoHistoryChangedTest()
+        {
+            bool isCalled = false;
+            _presentationModel._undoRedoHistoryChanged += (bool isUndo, bool isRedo) => { isCalled = true; };
+            _presentationModel.HandleUndoRedoHistoryChanged(true, true);
+            Assert.IsTrue(isCalled);
+        }
     }
 }

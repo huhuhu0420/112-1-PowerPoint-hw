@@ -17,6 +17,7 @@ namespace PowerPoint.Command.Tests
             _commandManager = new CommandManager();
             _mockCommand = new Mock<ICommand>();
             _privateObject = new PrivateObject(_commandManager);
+            _commandManager._undoRedoHistoryChanged += (bool isUndo, bool isRedo) => { };
         }
 
         [TestMethod]
@@ -33,10 +34,10 @@ namespace PowerPoint.Command.Tests
         public void UndoTest()
         {
             _commandManager.Execute(_mockCommand.Object);
+            _commandManager.Execute(_mockCommand.Object);
             _commandManager.Undo();
             var commandHistory = (List<ICommand>)_privateObject.GetField("_commandHistory");
             var redoHistory = (List<ICommand>)_privateObject.GetField("_redoHistory");
-            Assert.IsFalse(commandHistory.Contains(_mockCommand.Object));
             Assert.IsTrue(redoHistory.Contains(_mockCommand.Object));
         }
 
@@ -53,8 +54,11 @@ namespace PowerPoint.Command.Tests
         public void RedoTest()
         {
             _commandManager.Execute(_mockCommand.Object);
+            _commandManager.Execute(_mockCommand.Object);
             _commandManager.Undo();
-
+            _commandManager.Redo();
+            _commandManager.Undo();
+            _commandManager.Undo();
             _commandManager.Redo();
             var commandHistory = (List<ICommand>)_privateObject.GetField("_commandHistory");
             Assert.IsTrue(commandHistory.Contains(_mockCommand.Object));

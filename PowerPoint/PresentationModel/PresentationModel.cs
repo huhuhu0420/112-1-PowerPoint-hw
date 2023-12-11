@@ -38,7 +38,7 @@ namespace PowerPoint.PresentationModel
         /// </summary>
         /// <param name="isundo"></param>
         /// <param name="isredo"></param>
-        private void HandleUndoRedoHistoryChanged(bool isundo, bool isredo)
+        public void HandleUndoRedoHistoryChanged(bool isundo, bool isredo)
         {
             if (_undoRedoHistoryChanged != null)
             {
