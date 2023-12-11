@@ -80,6 +80,7 @@ namespace PowerPoint
             }
             _canvasWidth = width;
             _canvasHeight = height;
+            _shapeFactory.SetCanvasSize(width, height);
             NotifyModelChanged();
         }
 

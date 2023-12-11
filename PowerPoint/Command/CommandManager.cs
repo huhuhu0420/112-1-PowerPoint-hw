@@ -7,7 +7,6 @@ namespace PowerPoint.Command
     {
         public void Execute(ICommand command)
         {
-            command.Execute();
             _commandHistory.Add(command);
             _redoHistory.Clear();
         }   

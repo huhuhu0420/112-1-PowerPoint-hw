@@ -12,9 +12,10 @@ namespace PowerPoint
         /// <returns></returns>
         public virtual Shape CreateShape(ShapeType type)
         {
-            const int MAX = 440;
-            PointF point1 = new PointF(_random.Next(0, MAX), _random.Next(0, MAX));
-            PointF point2 = new PointF(_random.Next(0, MAX), _random.Next(0, MAX));
+            int maxX = _canvasWidth;
+            int maxY = _canvasHeight;
+            PointF point1 = new PointF(_random.Next(0, maxX), _random.Next(0, maxY));
+            PointF point2 = new PointF(_random.Next(0, maxX), _random.Next(0, maxY));
             switch (type)
             {
                 case ShapeType.LINE:
@@ -49,7 +50,20 @@ namespace PowerPoint
             }
             return new Line(point1, point2);
         }
+        
+        /// <summary>
+        /// set
+        /// </summary>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        public virtual void SetCanvasSize(int width, int height)
+        {
+            _canvasWidth = width;
+            _canvasHeight = height;
+        }
 
         readonly Random _random = new Random();
+        private int _canvasWidth = 440;
+        private int _canvasHeight = 440;
     }
 }

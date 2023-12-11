@@ -1,5 +1,3 @@
-using System.ComponentModel;
-
 namespace PowerPoint.Command
 {
     public class RemoveCommand : ICommand

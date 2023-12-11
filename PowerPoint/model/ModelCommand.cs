@@ -7,6 +7,7 @@ namespace PowerPoint
         public virtual void HandleInsertShape(ShapeType shapeType)
         {
             var shape = _shapeFactory.CreateShape(shapeType);
+            InsertShapeByShape(shape);
             _commandManager.Execute(new AddCommand(this, shape));
         }
         
@@ -19,7 +20,12 @@ namespace PowerPoint
             if (index != -1)
             {
                 _commandManager.Execute(new RemoveCommand(this, _shapes[index], index));
+                RemoveShapeByIndex(index);
             }
+        }
+        
+        public virtual void HandleMoveShape(int index, int x, int y)
+        {
         }
         
         public virtual void Undo()
