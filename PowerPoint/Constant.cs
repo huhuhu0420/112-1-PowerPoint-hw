@@ -34,5 +34,6 @@ namespace PowerPoint
         public const int THOUSAND = 1000;
         public const int EIGHT = 8;
         public const int FOUR_HUNDRED = 400;
+        public const string CANVAS_WIDTH = "_canvasWidth";
     }
 }

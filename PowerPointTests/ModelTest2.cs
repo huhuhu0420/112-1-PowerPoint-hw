@@ -69,10 +69,11 @@ namespace PowerPoint.Tests
             _model.SetContext(_mockContext.Object);
             var context = _privateModel.GetField(Constant.CONTEXT);
             Assert.AreEqual(_mockContext.Object, context);
-        }
-        
+        }        
+
         // test
         [TestMethod]
+
         public void SetCanvasSizeTest()
         {
             var width = Constant.TEN;
@@ -80,12 +81,13 @@ namespace PowerPoint.Tests
             _model.InsertShape(ShapeType.LINE);
             _privateModel.SetField(Constant.SELECT, _model.GetShapes()[0]);
             _model.SetCanvasSize(width, height);
-            var canvasWidth = _privateModel.GetField("_canvasWidth");
+            var canvasWidth = _privateModel.GetField(Constant.CANVAS_WIDTH);
             Assert.AreEqual(width, canvasWidth);
         }
         
         // test
         [TestMethod]
+
         public void UndoTest()
         {
             _model.Undo();
@@ -93,23 +95,27 @@ namespace PowerPoint.Tests
         }
         
         // test
+
         [TestMethod]
+
         public void RedoTest()
         {
             _model.Redo();
             _mockCommandManager.Verify(m => m.Redo(), Times.Once);
         }
-        
+
         // test
         [TestMethod]
+
         public void HandleMoveShapeTest()
         {
             _model.HandleMoveShape(0, new SizeF(1, 1));
             _mockCommandManager.Verify(m => m.Execute(It.IsAny<MoveCommand>()), Times.Once);
         }
-        
+
         // test
         [TestMethod]
+
         public void HandleRemoveShapeTest()
         {
             _model.InsertShape(ShapeType.LINE);
@@ -120,6 +126,7 @@ namespace PowerPoint.Tests
         
         // test
         [TestMethod]
+
         public void InsertShapeByShape()
         {
             var shape = new Line();
