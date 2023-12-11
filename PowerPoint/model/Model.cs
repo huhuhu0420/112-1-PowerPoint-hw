@@ -70,6 +70,7 @@ namespace PowerPoint
         public virtual void MouseDown(PointF point, ShapeType type)
         {
             _context.MouseDown(point, type);
+            _firstPoint = point;
         }
 
         /// <summary>
@@ -90,6 +91,11 @@ namespace PowerPoint
         public virtual void MouseUp(PointF point, ShapeType type)
         {
             _context.MouseUp(point, type);
+            if (_context.GetState() == ModelState.Selected && _firstPoint != _lastPoint)
+            {
+                HandleMoveShape(_selectIndex, new SizeF(_lastPoint.X - _firstPoint.X, _lastPoint.Y - _firstPoint.Y));
+                Debug.Print("move");
+            }
         }
 
         /// <summary>
@@ -207,6 +213,22 @@ namespace PowerPoint
         }
         
         /// <summary>
+        /// move
+        /// </summary>
+        /// <param name="bias"></param>
+        public virtual void MoveShapeByBias(SizeF bias, int index)
+        {
+            _shapes[index].SetPoint1(_shapes[index].GetPoint1() + bias);
+            _shapes[index].SetPoint2(_shapes[index].GetPoint2() + bias);
+            if (_selectIndex == index && _select != null)
+            {
+                _select.SetPoint1(_select.GetPoint1() + bias);
+                _select.SetPoint2(_select.GetPoint2() + bias);
+            }
+            NotifyModelChanged();
+        }
+        
+        /// <summary>
         /// release
         /// </summary>
         /// <param name="point"></param>
@@ -214,6 +236,7 @@ namespace PowerPoint
         public virtual void ReleasedPointer(PointF point, ShapeType type)
         {
             Shape hint = _shapeFactory.CreateShape(type, _firstPoint, point);
+            HandleDrawShape(hint);
             _shapes.Add(hint);
             NotifyModelChanged();
             // Debug.Print(_lines.Count.ToString());

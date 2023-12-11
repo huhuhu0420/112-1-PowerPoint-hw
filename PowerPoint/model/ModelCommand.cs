@@ -1,3 +1,4 @@
+using System.Drawing;
 using PowerPoint.Command;
 
 namespace PowerPoint
@@ -24,8 +25,14 @@ namespace PowerPoint
             }
         }
         
-        public virtual void HandleMoveShape(int index, int x, int y)
+        public virtual void HandleMoveShape(int index, SizeF bias)
         {
+            _commandManager.Execute(new MoveCommand(this, index, bias));
+        }
+        
+        public virtual void HandleDrawShape(Shape shape)
+        {
+            _commandManager.Execute(new DrawCommand(this, shape));
         }
         
         public virtual void Undo()
