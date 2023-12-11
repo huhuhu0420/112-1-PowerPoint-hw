@@ -136,10 +136,14 @@ namespace PowerPoint.Tests
         
         // test
         [TestMethod]
+
         public void SetUndoRedoHistoryTest()
         {
             bool isCalled = false;
-            _model._undoRedoHistoryChanged += (bool isUndo, bool isRedo) => { isCalled = true; };
+            _model._undoRedoHistoryChanged += (bool isUndo, bool isRedo) => 
+            {
+                isCalled = true; 
+            };
             _model.SetUndoRedoHistory(true, true);
             Assert.IsTrue(isCalled);
         }

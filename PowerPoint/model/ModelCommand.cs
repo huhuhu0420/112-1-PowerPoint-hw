@@ -5,8 +5,10 @@ namespace PowerPoint
 {
     public partial class Model
     {
+#pragma warning disable IDE1006 // Naming Styles
         public event CommandManager.HandleUndoRedoHistoryEventHandler _undoRedoHistoryChanged;
-        
+#pragma warning restore IDE1006 // Naming Styles
+
         // handle
         public virtual void HandleInsertShape(Shape shape)
         {
@@ -60,7 +62,9 @@ namespace PowerPoint
         {
             if (_undoRedoHistoryChanged != null)
             {
+#pragma warning disable IDE1005 // Delegate invocation can be simplified.
                 _undoRedoHistoryChanged(isUndo, isRedo);
+#pragma warning restore IDE1005 // Delegate invocation can be simplified.
             }
         }
     }

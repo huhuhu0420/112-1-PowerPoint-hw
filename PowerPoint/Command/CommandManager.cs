@@ -6,8 +6,10 @@ namespace PowerPoint.Command
     public class CommandManager
     {
         public delegate void HandleUndoRedoHistoryEventHandler(bool isUndo, bool isRedo);
+#pragma warning disable IDE1006 // Naming Styles
         public event HandleUndoRedoHistoryEventHandler _undoRedoHistoryChanged;
-        
+#pragma warning restore IDE1006 // Naming Styles
+
         public CommandManager()
         {
             _commandHistory = new List<ICommand>();
@@ -24,9 +26,29 @@ namespace PowerPoint.Command
             _redoHistory.Clear();
             if (_undoRedoHistoryChanged != null)
             {
+#pragma warning disable IDE1005 // Delegate invocation can be simplified.
                 _undoRedoHistoryChanged(true, false);
+#pragma warning restore IDE1005 // Delegate invocation can be simplified.
             }
         }   
+        
+        /// <summary>
+        /// undo
+        /// </summary>
+        public virtual void HandleUndo()
+        {
+            if (_undoRedoHistoryChanged != null)
+            {
+                if (_commandHistory.Count == 0)
+                {
+                    _undoRedoHistoryChanged(false, true);
+                }
+                else
+                {
+                    _undoRedoHistoryChanged(true, true);
+                }
+            }
+        }
         
         /// <summary>
         /// undo
@@ -42,11 +64,19 @@ namespace PowerPoint.Command
             command.Unexecute();
             _redoHistory.Add(command);
             _commandHistory.RemoveAt(_commandHistory.Count - 1);
+            HandleUndo();
+        }
+
+        /// <summary>
+        /// handle
+        /// </summary>
+        public virtual void HandleRedo()
+        {
             if (_undoRedoHistoryChanged != null)
             {
-                if (_commandHistory.Count == 0)
+                if (_redoHistory.Count == 0)
                 {
-                    _undoRedoHistoryChanged(false, true);
+                    _undoRedoHistoryChanged(true, false);
                 }
                 else
                 {
@@ -69,17 +99,7 @@ namespace PowerPoint.Command
             command.Execute();
             _commandHistory.Add(command);
             _redoHistory.RemoveAt(_redoHistory.Count - 1);
-            if (_undoRedoHistoryChanged != null)
-            {
-                if (_redoHistory.Count == 0)
-                {
-                    _undoRedoHistoryChanged(true, false);
-                }
-                else
-                {
-                    _undoRedoHistoryChanged(true, true);
-                }
-            }
+            HandleRedo();
         }
         
         private readonly List<ICommand> _commandHistory;

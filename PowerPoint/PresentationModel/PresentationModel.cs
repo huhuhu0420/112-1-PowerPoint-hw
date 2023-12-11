@@ -19,7 +19,9 @@ namespace PowerPoint.PresentationModel
 #pragma warning disable IDE1006 // Naming Styles
         public event CursorChangedEventHandler _cursorChanged;
 #pragma warning restore IDE1006 // Naming Styles
+#pragma warning disable IDE1006 // Naming Styles
         public event CommandManager.HandleUndoRedoHistoryEventHandler _undoRedoHistoryChanged;
+#pragma warning restore IDE1006 // Naming Styles
         readonly Model _model;
 
         private WindowsFormsGraphicsAdaptor _graphic;
@@ -42,7 +44,9 @@ namespace PowerPoint.PresentationModel
         {
             if (_undoRedoHistoryChanged != null)
             {
+#pragma warning disable IDE1005 // Delegate invocation can be simplified.
                 _undoRedoHistoryChanged(isundo, isredo);
+#pragma warning restore IDE1005 // Delegate invocation can be simplified.
             }
         }
 

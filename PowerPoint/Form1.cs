@@ -82,6 +82,11 @@ namespace PowerPoint
             _presentationModel.SetCanvasSize(panel1.Width, panel1.Height);
         }
         
+        /// <summary>
+        /// handle
+        /// </summary>
+        /// <param name="isUndo"></param>
+        /// <param name="isRedo"></param>
         public void HandleUndoRedoButton(bool isUndo, bool isRedo)
         {
             undoButton.Enabled = isUndo;
