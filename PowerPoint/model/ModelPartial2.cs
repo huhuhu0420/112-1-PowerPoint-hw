@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using PowerPoint.Command;
+using PowerPoint.State;
 
 namespace PowerPoint
 {
@@ -86,7 +87,6 @@ namespace PowerPoint
                 _select.Scale((float)width / (float)_canvasWidth);
             }
             _canvasWidth = width;
-            _canvasHeight = height;
             _shapeFactory.SetCanvasSize(width, height);
             NotifyModelChanged();
         }
@@ -99,6 +99,31 @@ namespace PowerPoint
         {
             return _shapes;
         }
+        
+        /// <summary>
+        /// set state
+        /// </summary>
+        /// <param name="modelState"></param>
+        public virtual void SetModelState(ModelState modelState)
+        {
+            if (modelState == ModelState.Normal)
+            {
+                _context.SetState(new NormalState(this));
+            }
+            else if (modelState == ModelState.Drawing)
+            {
+                _context.SetState(new DrawingState(this));
+            }
+        }        
+        
+        /// <summary>
+        /// set
+        /// </summary>
+        /// <param name="commandManager"></param>
+        public virtual void SetCommandManager(CommandManager commandManager)
+        {
+            _commandManager = commandManager;
+        }        
 
         public enum ModelState
         {

@@ -55,15 +55,6 @@ namespace PowerPoint
         }
         
         /// <summary>
-        /// type
-        /// </summary>
-        /// <returns></returns>
-        public ShapeType GetType()
-        {
-            return _type;
-        }
-
-        /// <summary>
         /// format coordinate
         /// </summary>
         /// <param name="point"></param>

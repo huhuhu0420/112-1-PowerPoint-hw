@@ -47,7 +47,7 @@ namespace PowerPoint.Command
             _redoHistory.RemoveAt(_redoHistory.Count - 1);
         }
         
-        private List<ICommand> _commandHistory = new List<ICommand>();
-        private List<ICommand> _redoHistory = new List<ICommand>();
+        private readonly List<ICommand> _commandHistory = new List<ICommand>();
+        private readonly List<ICommand> _redoHistory = new List<ICommand>();
     }
 }

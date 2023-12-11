@@ -307,31 +307,6 @@ namespace PowerPoint
             return _selectIndex;
         }
         
-        /// <summary>
-        /// set state
-        /// </summary>
-        /// <param name="modelState"></param>
-        public virtual void SetModelState(ModelState modelState)
-        {
-            if (modelState == ModelState.Normal)
-            {
-                _context.SetState(new NormalState(this));
-            }
-            else if (modelState == ModelState.Drawing)
-            {
-                _context.SetState(new DrawingState(this));
-            }
-        }
-        
-        /// <summary>
-        /// set
-        /// </summary>
-        /// <param name="commandManager"></param>
-        public virtual void SetCommandManager(CommandManager commandManager)
-        {
-            _commandManager = commandManager;
-        }
-        
         private readonly BindingList<Shape> _shapes = new BindingList<Shape>();
         private readonly ShapeFactory _shapeFactory;
         Shape _hint;
@@ -343,6 +318,5 @@ namespace PowerPoint
         private readonly Dictionary<Model.Location, Action<PointF>> _resizeShape;
         private CommandManager _commandManager;
         private int _canvasWidth;
-        private int _canvasHeight;
     }
 }

@@ -129,7 +129,5 @@ namespace PowerPoint
 
             return Model.Location.None;
         }
-
-        
     }
 }
