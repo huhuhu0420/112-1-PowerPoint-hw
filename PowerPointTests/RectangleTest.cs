@@ -35,7 +35,7 @@ namespace PowerPoint.Tests
         {
             var rectangle = new Rectangle(new PointF(2, 2), new PointF(1, 1));
 
-            Assert.AreEqual(ShapeType.RECTANGLE, rectangle.GetType());
+            Assert.AreEqual(ShapeType.RECTANGLE, rectangle.GetShapeType());
             Assert.AreEqual(new PointF(1, 1), rectangle.GetPoint1());
             Assert.AreEqual(new PointF(2, 2), rectangle.GetPoint2());
         }
@@ -46,7 +46,7 @@ namespace PowerPoint.Tests
         {
             var rectangle = new Rectangle(new PointF(1, 1), new PointF(2, 2));
 
-            Assert.AreEqual(ShapeType.RECTANGLE, rectangle.GetType());
+            Assert.AreEqual(ShapeType.RECTANGLE, rectangle.GetShapeType());
             Assert.AreEqual(new PointF(1, 1), rectangle.GetPoint1());
             Assert.AreEqual(new PointF(2, 2), rectangle.GetPoint2());
         }

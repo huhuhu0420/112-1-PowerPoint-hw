@@ -232,5 +232,16 @@ namespace PowerPoint.Tests
             Assert.AreEqual(Line.LineType.LeftTop, line.GetLineType2(-1, -1, 0, 0));
             Assert.AreEqual(Line.LineType.RightTop, line.GetLineType2(0, -1, -1, 0));
         }
+        
+        // test
+        [TestMethod]
+        public void ScaleTest()
+        {
+            _shape.SetPoint1(new PointF(100, 100));
+            _shape.SetPoint2(new PointF(10, 10));
+            _shape.Scale(2.0f);
+            Assert.AreEqual(new PointF(200, 200), _shape.GetPoint1());
+            Assert.AreEqual(new PointF(20, 20), _shape.GetPoint2());
+        }
     }
 }

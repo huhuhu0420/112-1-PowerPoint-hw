@@ -24,6 +24,7 @@ namespace PowerPoint.Tests
             _privateModel = new PrivateObject(_model);
             _mockGraphics = new Mock<IGraphics>();
             _mockContext = new Mock<Context>(_model);
+            _model.SetContext(_mockContext.Object);
         }
 
         // test
@@ -68,7 +69,7 @@ namespace PowerPoint.Tests
 
             _model.MouseDown(point, ShapeType.LINE);
 
-            _mockContext.Verify(m => m.MouseDown(point, ShapeType.LINE), Times.Never);
+            _mockContext.Verify(m => m.MouseDown(point, ShapeType.LINE), Times.Once);
         }
 
         // test
@@ -79,7 +80,7 @@ namespace PowerPoint.Tests
 
             _model.MouseMove(point);
 
-            _mockContext.Verify(m => m.MouseMove(point), Times.Never);
+            _mockContext.Verify(m => m.MouseMove(point), Times.Once);
         }
 
         // test
@@ -88,9 +89,12 @@ namespace PowerPoint.Tests
         {
             var point = new PointF(1, 1);
 
+            _mockContext.Setup(m => m.GetState()).Returns(Model.ModelState.Selected);
+            _privateModel.SetField("_firstPoint", new PointF(0, 0));
+            _privateModel.SetField("_lastPoint", new PointF(1, 1));
             _model.MouseUp(point, ShapeType.LINE);
 
-            _mockContext.Verify(m => m.MouseUp(point, ShapeType.LINE), Times.Never);
+            _mockContext.Verify(m => m.MouseUp(point, ShapeType.LINE), Times.Once);
         }
 
         // test
@@ -270,7 +274,7 @@ namespace PowerPoint.Tests
             _model.SetModelState(Model.ModelState.Drawing);
             _model.SetModelState(Model.ModelState.Normal);
 
-            _mockContext.Verify(m => m.SetState(It.IsAny<DrawingState>()), Times.Never);
+            _mockContext.Verify(m => m.SetState(It.IsAny<DrawingState>()), Times.Once);
         }
     }
 }

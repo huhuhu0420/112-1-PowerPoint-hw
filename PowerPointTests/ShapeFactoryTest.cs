@@ -7,12 +7,14 @@ namespace PowerPoint.Tests
     public class ShapeFactoryTests
     {
         private ShapeFactory _shapeFactory;
+        PrivateObject _shapeFactoryPrivateObject;
 
         // test
         [TestInitialize]
         public void SetUp()
         {
             _shapeFactory = new ShapeFactory();
+            _shapeFactoryPrivateObject = new PrivateObject(_shapeFactory);
         }
 
         // test
@@ -82,6 +84,16 @@ namespace PowerPoint.Tests
             Assert.IsInstanceOfType(shape, typeof(Line));
             Assert.AreEqual(point1, shape.GetPoint1());
             Assert.AreEqual(point2, shape.GetPoint2());
+        }
+        
+        // test
+        [TestMethod]
+        public void SetCanvasSizeTest()
+        {
+            _shapeFactory.SetCanvasSize(100, 200);
+
+            Assert.AreEqual(100, _shapeFactoryPrivateObject.GetField("_canvasWidth"));
+            Assert.AreEqual(200, _shapeFactoryPrivateObject.GetField("_canvasHeight"));
         }
     }
 }

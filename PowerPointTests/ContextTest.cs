@@ -10,6 +10,7 @@ namespace PowerPoint.Tests
     {
         private Mock<Model> _mockModel;
         private Context _context;
+        PrivateObject _privateContext;
 
         // test
         [TestInitialize]
@@ -17,6 +18,7 @@ namespace PowerPoint.Tests
         {
             _mockModel = new Mock<Model>();
             _context = new Context(_mockModel.Object);
+            _privateContext = new PrivateObject(_context);
         }
 
         // test
@@ -99,6 +101,15 @@ namespace PowerPoint.Tests
             _context.SetState(mockState.Object);
 
             Assert.AreEqual(Model.ModelState.Resize, _context.GetState());
+        }
+        
+        // test
+        [TestMethod]
+        public void SetLocationTest()
+        {
+            _context.SetLocation(Model.Location.Left);
+            var location = _privateContext.GetField("_location");
+            Assert.AreEqual(Model.Location.Left, location);
         }
     }
 }

@@ -193,5 +193,29 @@ namespace PowerPoint.PresentationModel.Tests
 
             Assert.IsTrue(_presentationModel.IsMouseButtonChecked);
         }
+        
+        // test
+        [TestMethod]
+        public void UndoTest()
+        {
+            _presentationModel.Undo();
+            _mockModel.Verify(m => m.Undo(), Times.Once);
+        }
+        
+        // test
+        [TestMethod]
+        public void RedoTest()
+        {
+            _presentationModel.Redo();
+            _mockModel.Verify(m => m.Redo(), Times.Once);
+        }
+        
+        // test
+        [TestMethod]
+        public void SetCanvasSizeTest()
+        {
+            _presentationModel.SetCanvasSize(100, 100);
+            _mockModel.Verify(m => m.SetCanvasSize(100, 100), Times.Once);
+        }
     }
 }

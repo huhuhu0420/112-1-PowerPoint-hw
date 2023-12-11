@@ -40,7 +40,7 @@ namespace PowerPoint.Tests
         {
             var line = new Line(new PointF(2, 2), new PointF(1, 1));
 
-            Assert.AreEqual(ShapeType.LINE, line.GetType());
+            Assert.AreEqual(ShapeType.LINE, line.GetShapeType());
             Assert.AreEqual(new PointF(1, 1), line.GetPoint1());
             Assert.AreEqual(new PointF(2, 2), line.GetPoint2());
         }
@@ -51,7 +51,7 @@ namespace PowerPoint.Tests
         {
             var line = new Line(new PointF(1, 1), new PointF(2, 2));
 
-            Assert.AreEqual(ShapeType.LINE, line.GetType());
+            Assert.AreEqual(ShapeType.LINE, line.GetShapeType());
             Assert.AreEqual(new PointF(1, 1), line.GetPoint1());
             Assert.AreEqual(new PointF(2, 2), line.GetPoint2());
         }

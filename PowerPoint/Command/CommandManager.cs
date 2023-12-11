@@ -9,7 +9,7 @@ namespace PowerPoint.Command
         /// ex
         /// </summary>
         /// <param name="command"></param>
-        public void Execute(ICommand command)
+        public virtual void Execute(ICommand command)
         {
             _commandHistory.Add(command);
             _redoHistory.Clear();
@@ -18,7 +18,7 @@ namespace PowerPoint.Command
         /// <summary>
         /// undo
         /// </summary>
-        public void Undo()
+        public virtual void Undo()
         {
             if (_commandHistory.Count == 0)
             {
@@ -34,7 +34,7 @@ namespace PowerPoint.Command
         /// <summary>
         /// redo
         /// </summary>
-        public void Redo()
+        public virtual void Redo()
         {
             if (_redoHistory.Count == 0)
             {

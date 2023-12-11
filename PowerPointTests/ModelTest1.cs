@@ -187,5 +187,21 @@ namespace PowerPoint.Tests
             point = new PointF(-1, Constant.NEGATIVE_THREE_THOUSAND);
             _model.ResizeShape(point, Model.Location.Bottom);
         }
+        
+        // test
+        [TestMethod]
+        public void MoveShapeByBias()
+        {
+            var point = new PointF(1, 1);
+            _model.InsertShape(ShapeType.LINE);
+            _model.GetShapes()[0].SetPoint1(point);
+            _model.GetShapes()[0].SetPoint2(new PointF(2, 2));
+            _model.SelectShape(point);
+
+            var newPoint = new PointF(2, 2);
+            var bias = new SizeF(1, 1);
+            _model.MoveShapeByBias(bias, 0);
+            Assert.AreEqual(newPoint, _model.GetShapes()[0].GetPoint1());
+        }
     }
 }

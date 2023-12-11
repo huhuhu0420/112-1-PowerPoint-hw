@@ -76,7 +76,7 @@ namespace PowerPoint
         /// </summary>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        public void SetCanvasSize(int width, int height)
+        public virtual void SetCanvasSize(int width, int height)
         {
             foreach (var shape in _shapes)
             {

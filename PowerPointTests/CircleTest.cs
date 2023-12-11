@@ -35,7 +35,7 @@ namespace PowerPoint.Tests
         {
             var circle = new Circle(new PointF(2, 2), new PointF(1, 1));
 
-            Assert.AreEqual(ShapeType.CIRCLE, circle.GetType());
+            Assert.AreEqual(ShapeType.CIRCLE, circle.GetShapeType());
             Assert.AreEqual(new PointF(1, 1), circle.GetPoint1());
             Assert.AreEqual(new PointF(2, 2), circle.GetPoint2());
         }
@@ -46,7 +46,7 @@ namespace PowerPoint.Tests
         {
             var circle = new Circle(new PointF(1, 1), new PointF(2, 2));
 
-            Assert.AreEqual(ShapeType.CIRCLE, circle.GetType());
+            Assert.AreEqual(ShapeType.CIRCLE, circle.GetShapeType());
             Assert.AreEqual(new PointF(1, 1), circle.GetPoint1());
             Assert.AreEqual(new PointF(2, 2), circle.GetPoint2());
         }

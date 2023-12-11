@@ -3,6 +3,7 @@ using System.ComponentModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Drawing;
+using PowerPoint.Command;
 using PowerPoint.State;
 
 namespace PowerPoint.Tests
@@ -13,6 +14,7 @@ namespace PowerPoint.Tests
         private Model _model;
         PrivateObject _privateModel;
         private Mock<Context> _mockContext;
+        private Mock<CommandManager> _mockCommandManager;
 
         // test
         [TestInitialize]
@@ -21,7 +23,9 @@ namespace PowerPoint.Tests
             _model = new Model();
             _mockContext = new Mock<Context>(_model);
             _privateModel = new PrivateObject(_model);
+            _mockCommandManager = new Mock<CommandManager>();
             _model.SetContext(_mockContext.Object);
+            _model.SetCommandManager(_mockCommandManager.Object);
         }
 
         // test
@@ -65,6 +69,62 @@ namespace PowerPoint.Tests
             _model.SetContext(_mockContext.Object);
             var context = _privateModel.GetField(Constant.CONTEXT);
             Assert.AreEqual(_mockContext.Object, context);
+        }
+        
+        // test
+        [TestMethod]
+        public void SetCanvasSizeTest()
+        {
+            var width = Constant.TEN;
+            var height = Constant.TEN;
+            _model.InsertShape(ShapeType.LINE);
+            _privateModel.SetField(Constant.SELECT, _model.GetShapes()[0]);
+            _model.SetCanvasSize(width, height);
+            var canvasWidth = _privateModel.GetField("_canvasWidth");
+            Assert.AreEqual(width, canvasWidth);
+        }
+        
+        // test
+        [TestMethod]
+        public void UndoTest()
+        {
+            _model.Undo();
+            _mockCommandManager.Verify(m => m.Undo(), Times.Once);
+        }
+        
+        // test
+        [TestMethod]
+        public void RedoTest()
+        {
+            _model.Redo();
+            _mockCommandManager.Verify(m => m.Redo(), Times.Once);
+        }
+        
+        // test
+        [TestMethod]
+        public void HandleMoveShapeTest()
+        {
+            _model.HandleMoveShape(0, new SizeF(1, 1));
+            _mockCommandManager.Verify(m => m.Execute(It.IsAny<MoveCommand>()), Times.Once);
+        }
+        
+        // test
+        [TestMethod]
+        public void HandleRemoveShapeTest()
+        {
+            _model.InsertShape(ShapeType.LINE);
+            _privateModel.SetField(Constant.SELECT_INDEX, 0);
+            _model.HandleRemoveShape(-1);
+            _mockCommandManager.Verify(m => m.Execute(It.IsAny<RemoveCommand>()), Times.Once);
+        }
+        
+        // test
+        [TestMethod]
+        public void InsertShapeByShape()
+        {
+            var shape = new Line();
+            _model.InsertShapeByShape(shape, 0);
+            Assert.AreEqual(1, _model.GetShapes().Count);
         }
     }
 }
