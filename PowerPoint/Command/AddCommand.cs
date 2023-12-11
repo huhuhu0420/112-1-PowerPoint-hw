@@ -2,10 +2,11 @@ namespace PowerPoint.Command
 {
     public class AddCommand : ICommand
     {
-        public AddCommand(Model model, Shape shape)
+        public AddCommand(Model model, Shape shape, int index)
         {
             _model = model;
             _shape = shape; 
+            _index = index;
         }
         
         /// <summary>
@@ -13,7 +14,7 @@ namespace PowerPoint.Command
         /// </summary>
         void ICommand.Execute()
         {
-            _model.InsertShapeByShape(_shape);
+            _model.InsertShapeByShape(_shape, _index);
         }
         
         /// <summary>
@@ -26,5 +27,6 @@ namespace PowerPoint.Command
         
         Model _model;
         Shape _shape;
+        int _index;
     }
 }

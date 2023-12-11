@@ -21,7 +21,9 @@ namespace PowerPoint
         /// </summary>
         public virtual void InsertShape(ShapeType type)
         {
-            _shapes.Add(_shapeFactory.CreateShape(type));
+            var shape = _shapeFactory.CreateShape(type);
+            _shapes.Add(shape);
+            HandleInsertShape(shape);
             NotifyModelChanged();
         }
         
@@ -29,9 +31,9 @@ namespace PowerPoint
         /// insert shape
         /// </summary>
         /// <param name="shape"></param>
-        public virtual void InsertShapeByShape(Shape shape)
+        public virtual void InsertShapeByShape(Shape shape, int index)
         {
-            _shapes.Add(shape);
+            _shapes.Insert(index, shape);
             NotifyModelChanged();
         }
 

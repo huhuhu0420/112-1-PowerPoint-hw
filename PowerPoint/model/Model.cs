@@ -94,7 +94,7 @@ namespace PowerPoint
             if (_context.GetState() == ModelState.Selected && _firstPoint != _lastPoint)
             {
                 HandleMoveShape(_selectIndex, new SizeF(_lastPoint.X - _firstPoint.X, _lastPoint.Y - _firstPoint.Y));
-                Debug.Print("move");
+                // Debug.Print("move");
             }
         }
 
@@ -236,8 +236,8 @@ namespace PowerPoint
         public virtual void ReleasedPointer(PointF point, ShapeType type)
         {
             Shape hint = _shapeFactory.CreateShape(type, _firstPoint, point);
-            HandleDrawShape(hint);
             _shapes.Add(hint);
+            HandleDrawShape(hint);
             NotifyModelChanged();
             // Debug.Print(_lines.Count.ToString());
         }

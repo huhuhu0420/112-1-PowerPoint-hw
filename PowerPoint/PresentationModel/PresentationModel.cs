@@ -184,7 +184,7 @@ namespace PowerPoint.PresentationModel
         /// <param name="type"></param>
         public void InsertShape(ShapeType type)
         {
-            _model.HandleInsertShape(type);
+            _model.InsertShape(type);
         }
 
         /// <summary>

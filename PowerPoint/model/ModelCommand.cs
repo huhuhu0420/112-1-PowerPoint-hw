@@ -5,11 +5,9 @@ namespace PowerPoint
 {
     public partial class Model
     {
-        public virtual void HandleInsertShape(ShapeType shapeType)
+        public virtual void HandleInsertShape(Shape shape)
         {
-            var shape = _shapeFactory.CreateShape(shapeType);
-            InsertShapeByShape(shape);
-            _commandManager.Execute(new AddCommand(this, shape));
+            _commandManager.Execute(new AddCommand(this, shape, _shapes.Count - 1));
         }
         
         public virtual void HandleRemoveShape(int index)
@@ -32,7 +30,7 @@ namespace PowerPoint
         
         public virtual void HandleDrawShape(Shape shape)
         {
-            _commandManager.Execute(new DrawCommand(this, shape));
+            _commandManager.Execute(new DrawCommand(this, shape, _shapes.Count - 1));
         }
         
         public virtual void Undo()

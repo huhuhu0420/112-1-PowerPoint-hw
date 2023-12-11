@@ -22,7 +22,7 @@ namespace PowerPoint.Command
         /// </summary>
         void ICommand.UnExecute()
         {
-            _model.InsertShapeByShape(_shape);
+            _model.InsertShapeByShape(_shape, _index);
         }
         
         Model _model;
