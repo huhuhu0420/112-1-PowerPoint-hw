@@ -5,6 +5,15 @@ namespace PowerPoint.Command
 {
     public class CommandManager
     {
+        public delegate void HandleUndoRedoHistoryEventHandler(bool isUndo, bool isRedo);
+        public event HandleUndoRedoHistoryEventHandler _undoRedoHistoryChanged;
+        
+        public CommandManager()
+        {
+            _commandHistory = new List<ICommand>();
+            _redoHistory = new List<ICommand>();
+        }
+        
         /// <summary>
         /// ex
         /// </summary>
@@ -13,6 +22,10 @@ namespace PowerPoint.Command
         {
             _commandHistory.Add(command);
             _redoHistory.Clear();
+            if (_undoRedoHistoryChanged != null)
+            {
+                _undoRedoHistoryChanged(true, false);
+            }
         }   
         
         /// <summary>
@@ -29,6 +42,17 @@ namespace PowerPoint.Command
             command.Unexecute();
             _redoHistory.Add(command);
             _commandHistory.RemoveAt(_commandHistory.Count - 1);
+            if (_undoRedoHistoryChanged != null)
+            {
+                if (_commandHistory.Count == 0)
+                {
+                    _undoRedoHistoryChanged(false, true);
+                }
+                else
+                {
+                    _undoRedoHistoryChanged(true, true);
+                }
+            }
         }
 
         /// <summary>
@@ -45,9 +69,20 @@ namespace PowerPoint.Command
             command.Execute();
             _commandHistory.Add(command);
             _redoHistory.RemoveAt(_redoHistory.Count - 1);
+            if (_undoRedoHistoryChanged != null)
+            {
+                if (_redoHistory.Count == 0)
+                {
+                    _undoRedoHistoryChanged(true, false);
+                }
+                else
+                {
+                    _undoRedoHistoryChanged(true, true);
+                }
+            }
         }
         
-        private readonly List<ICommand> _commandHistory = new List<ICommand>();
-        private readonly List<ICommand> _redoHistory = new List<ICommand>();
+        private readonly List<ICommand> _commandHistory;
+        private readonly List<ICommand> _redoHistory;
     }
 }

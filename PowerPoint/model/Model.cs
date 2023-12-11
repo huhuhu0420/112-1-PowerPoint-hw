@@ -31,6 +31,7 @@ namespace PowerPoint
             _context = new Context(this);
             _shapes = new BindingList<Shape>();
             _commandManager = new CommandManager();
+            _commandManager._undoRedoHistoryChanged += SetUndoRedoHistory;
             InitializeResizeShape();
         }
 

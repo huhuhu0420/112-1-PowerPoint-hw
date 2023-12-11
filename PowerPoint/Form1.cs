@@ -34,6 +34,7 @@ namespace PowerPoint
             dataGridView1.CellClick += ClickDataGridView1Cell;
             _presentationModel._modelChanged += HandleModelChanged;            
             _presentationModel._cursorChanged += SetCursor;
+            _presentationModel._undoRedoHistoryChanged += HandleUndoRedoButton;
             this.lineButton.Click += HandleLineButtonClick;
             this.squareButton.Click += HandleRectangleButtonClick;
             this.circleButton.Click += HandleCircleButtonClick;
@@ -64,6 +65,7 @@ namespace PowerPoint
             dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.Columns[Constant.TWO].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            HandleUndoRedoButton(false, false);
         }
         
         /// <summary>
@@ -78,6 +80,12 @@ namespace PowerPoint
             panel1.Width = splitContainer2.Panel1.Width - Constant.EIGHT;
             panel1.Height = (int)(panel1.Width * Constant.RATIO);
             _presentationModel.SetCanvasSize(panel1.Width, panel1.Height);
+        }
+        
+        public void HandleUndoRedoButton(bool isUndo, bool isRedo)
+        {
+            undoButton.Enabled = isUndo;
+            redoButton.Enabled = isRedo;
         }
         
         /// <summary>

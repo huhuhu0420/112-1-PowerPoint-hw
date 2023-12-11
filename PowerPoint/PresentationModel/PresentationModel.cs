@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
+using PowerPoint.Command;
 using PowerPoint.State;
 
 namespace PowerPoint.PresentationModel
@@ -18,6 +19,7 @@ namespace PowerPoint.PresentationModel
 #pragma warning disable IDE1006 // Naming Styles
         public event CursorChangedEventHandler _cursorChanged;
 #pragma warning restore IDE1006 // Naming Styles
+        public event CommandManager.HandleUndoRedoHistoryEventHandler _undoRedoHistoryChanged;
         readonly Model _model;
 
         private WindowsFormsGraphicsAdaptor _graphic;
@@ -27,8 +29,23 @@ namespace PowerPoint.PresentationModel
             _model = model;
             _model._modelChanged += HandleModelChanged;
             _model._stateChanged += HandleStateChange;
+            _model._undoRedoHistoryChanged += HandleUndoRedoHistoryChanged;
             _isButtonChecked[(int)ShapeType.ARROW] = true;
         }
+
+        /// <summary>
+        /// handle
+        /// </summary>
+        /// <param name="isundo"></param>
+        /// <param name="isredo"></param>
+        private void HandleUndoRedoHistoryChanged(bool isundo, bool isredo)
+        {
+            if (_undoRedoHistoryChanged != null)
+            {
+                _undoRedoHistoryChanged(isundo, isredo);
+            }
+        }
+
         public ShapeType Type
         {
             get;

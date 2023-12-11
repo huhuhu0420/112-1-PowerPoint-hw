@@ -5,6 +5,8 @@ namespace PowerPoint
 {
     public partial class Model
     {
+        public event CommandManager.HandleUndoRedoHistoryEventHandler _undoRedoHistoryChanged;
+        
         // handle
         public virtual void HandleInsertShape(Shape shape)
         {
@@ -47,6 +49,19 @@ namespace PowerPoint
         public virtual void Redo()
         {
             _commandManager.Redo();
+        }
+        
+        /// <summary>
+        /// set
+        /// </summary>
+        /// <param name="isUndo"></param>
+        /// <param name="isRedo"></param>
+        public void SetUndoRedoHistory(bool isUndo, bool isRedo)
+        {
+            if (_undoRedoHistoryChanged != null)
+            {
+                _undoRedoHistoryChanged(isUndo, isRedo);
+            }
         }
     }
 }
