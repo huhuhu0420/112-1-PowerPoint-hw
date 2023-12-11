@@ -99,6 +99,7 @@ namespace PowerPoint
         /// </summary>
         private void GenerateBrief()
         {
+            _brief = new Bitmap(this.panel1.Width, this.panel1.Height);
             this.panel1.DrawToBitmap(_brief, new System.Drawing.Rectangle(0, 0, this.panel1.Width, this.panel1.Height));
             slide1.Image = new Bitmap(_brief, slide1.Size);
         }
