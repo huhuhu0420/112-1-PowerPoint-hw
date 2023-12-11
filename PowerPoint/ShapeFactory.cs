@@ -13,8 +13,8 @@ namespace PowerPoint
         public virtual Shape CreateShape(ShapeType type)
         {
             const int MAX = 440;
-            Point point1 = new Point(_random.Next(0, MAX), _random.Next(0, MAX));
-            Point point2 = new Point(_random.Next(0, MAX), _random.Next(0, MAX));
+            PointF point1 = new PointF(_random.Next(0, MAX), _random.Next(0, MAX));
+            PointF point2 = new PointF(_random.Next(0, MAX), _random.Next(0, MAX));
             switch (type)
             {
                 case ShapeType.LINE:
@@ -36,7 +36,7 @@ namespace PowerPoint
         /// <param name="point1"></param>
         /// <param name="point2"></param>
         /// <returns></returns>
-        public virtual Shape CreateShape(ShapeType type, Point point1, Point point2)
+        public virtual Shape CreateShape(ShapeType type, PointF point1, PointF point2)
         {
             switch (type)
             {

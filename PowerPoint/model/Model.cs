@@ -25,9 +25,9 @@ namespace PowerPoint
         {
             _shapeFactory = new ShapeFactory();
             _hint = new Shape();
-            _firstPoint = new Point(0, 0);
-            _lastPoint = new Point(0, 0);
-            _resizeShape = new Dictionary<Location, Action<Point>>();
+            _firstPoint = new PointF(0, 0);
+            _lastPoint = new PointF(0, 0);
+            _resizeShape = new Dictionary<Location, Action<PointF>>();
             _context = new Context(this);
             _shapes = new BindingList<Shape>();
             _commandManager = new CommandManager();
@@ -67,7 +67,7 @@ namespace PowerPoint
         /// </summary>
         /// <param name="point"></param>
         /// <param name="type"></param>
-        public virtual void MouseDown(Point point, ShapeType type)
+        public virtual void MouseDown(PointF point, ShapeType type)
         {
             _context.MouseDown(point, type);
         }
@@ -76,7 +76,7 @@ namespace PowerPoint
         /// move
         /// </summary>
         /// <param name="point"></param>
-        public virtual void MouseMove(Point point)
+        public virtual void MouseMove(PointF point)
         {
             _context.MouseMove(point);
             _lastPoint = point;
@@ -87,7 +87,7 @@ namespace PowerPoint
         /// </summary>
         /// <param name="point"></param>
         /// <param name="type"></param>
-        public virtual void MouseUp(Point point, ShapeType type)
+        public virtual void MouseUp(PointF point, ShapeType type)
         {
             _context.MouseUp(point, type);
         }
@@ -106,7 +106,7 @@ namespace PowerPoint
         /// </summary>
         /// <param name="point"></param>
         /// <param name="type"></param>
-        public virtual void PressedPointer(Point point, ShapeType type)
+        public virtual void PressedPointer(PointF point, ShapeType type)
         {
             if (point.X > 0 && point.Y > 0)
             {
@@ -123,7 +123,7 @@ namespace PowerPoint
         /// <param name="point"></param>
         /// <param name="index"></param>
         /// <returns></returns>
-        public virtual bool IsInShape(Point point, int index)
+        public virtual bool IsInShape(PointF point, int index)
         {
             if (_shapes[index].IsInShape(point))
             {
@@ -141,7 +141,7 @@ namespace PowerPoint
         /// </summary>
         /// <param name="point"></param>
         /// <returns></returns>
-        public virtual Location IsInShapeCorner(Point point)
+        public virtual Location IsInShapeCorner(PointF point)
         {
             if (_selectIndex == -1)
             {
@@ -156,7 +156,7 @@ namespace PowerPoint
         /// select
         /// </summary>
         /// <param name="point"></param>
-        public virtual void SelectShape(Point point)
+        public virtual void SelectShape(PointF point)
         {
             bool isSelect = false;
             for (int i = _shapes.Count - 1; i >= 0; i --)
@@ -179,7 +179,7 @@ namespace PowerPoint
         /// move
         /// </summary>
         /// <param name="point"></param>
-        public virtual void MovedPointer(Point point)
+        public virtual void MovedPointer(PointF point)
         {
             _hint.SetPoint2(point);
             NotifyModelChanged();
@@ -189,9 +189,9 @@ namespace PowerPoint
         /// move
         /// </summary>
         /// <param name="point"></param>
-        public virtual void MoveShape(Point point)
+        public virtual void MoveShape(PointF point)
         {
-            Size bias = new Size(point.X - _lastPoint.X, point.Y - _lastPoint.Y);
+            SizeF bias = new SizeF(point.X - _lastPoint.X, point.Y - _lastPoint.Y);
             if (_selectIndex == -1)
             {
                 return;
@@ -211,7 +211,7 @@ namespace PowerPoint
         /// </summary>
         /// <param name="point"></param>
         /// <param name="type"></param>
-        public virtual void ReleasedPointer(Point point, ShapeType type)
+        public virtual void ReleasedPointer(PointF point, ShapeType type)
         {
             Shape hint = _shapeFactory.CreateShape(type, _firstPoint, point);
             _shapes.Add(hint);
@@ -334,11 +334,11 @@ namespace PowerPoint
         private readonly ShapeFactory _shapeFactory;
         Shape _hint;
         private Shape _select;
-        private Point _firstPoint = new Point(0, 0);
-        private Point _lastPoint = new Point(0, 0);
+        private PointF _firstPoint = new PointF(0, 0);
+        private PointF _lastPoint = new PointF(0, 0);
         private int _selectIndex = -1;
         private Context _context;
-        private readonly Dictionary<Model.Location, Action<Point>> _resizeShape;
+        private readonly Dictionary<Model.Location, Action<PointF>> _resizeShape;
         private CommandManager _commandManager;
         private int _canvasWidth;
         private int _canvasHeight;

@@ -19,7 +19,7 @@ namespace PowerPoint.State
         /// <param name="context"></param>
         /// <param name="point"></param>
         /// <param name="type"></param>
-        public void MouseDown(Context context, Point point, ShapeType type)
+        public void MouseDown(Context context, PointF point, ShapeType type)
         {
         }
 
@@ -29,7 +29,7 @@ namespace PowerPoint.State
         /// <param name="context"></param>
         /// <param name="point"></param>
         /// <param name="isPressed"></param>
-        public void MouseMove(Context context, Point point, bool isPressed)
+        public void MouseMove(Context context, PointF point, bool isPressed)
         {
             if (isPressed)
             {
@@ -48,7 +48,7 @@ namespace PowerPoint.State
         /// <param name="context"></param>
         /// <param name="point"></param>
         /// <param name="type"></param>
-        public void MouseUp(Context context, Point point, ShapeType type)
+        public void MouseUp(Context context, PointF point, ShapeType type)
         {
             
         }

@@ -5,7 +5,7 @@ namespace PowerPoint
 {
     public class Line : Shape
     {
-        public Line(Point point1, Point point2) : base(point1, point2)
+        public Line(PointF point1, PointF point2) : base(point1, point2)
         { 
             _shapeName = Constant.LINE;
             Type = ShapeType.LINE;

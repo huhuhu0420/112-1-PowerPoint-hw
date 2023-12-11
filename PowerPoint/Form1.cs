@@ -77,6 +77,7 @@ namespace PowerPoint
             slide1.Height = (int)(slide1.Width * Constant.RATIO);
             panel1.Width = splitContainer2.Panel1.Width - 8;
             panel1.Height = (int)(panel1.Width * Constant.RATIO);
+            GenerateBrief();
             _presentationModel.SetCanvasSize(panel1.Width, panel1.Height);
         }
         
@@ -100,6 +101,7 @@ namespace PowerPoint
         {
             this.panel1.DrawToBitmap(_brief, new System.Drawing.Rectangle(0, 0, this.panel1.Width, this.panel1.Height));
             slide1.Image = new Bitmap(_brief, slide1.Size);
+            Debug.Print(slide1.Size.ToString());
         }
 
         /// <summary>
@@ -136,7 +138,7 @@ namespace PowerPoint
         /// <param name="e"></param>
         public void HandleCanvasPressed(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            _presentationModel.PressedPointer(new Point(e.X, e.Y));
+            _presentationModel.PressedPointer(new PointF(e.X, e.Y));
             // Debug.Print("press");
         }
         
@@ -147,7 +149,7 @@ namespace PowerPoint
         /// <param name="e"></param>
         public void HandleCanvasReleased(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            _presentationModel.ReleasedPointer(new Point(e.X, e.Y));
+            _presentationModel.ReleasedPointer(new PointF(e.X, e.Y));
         }
         
         /// <summary>
@@ -157,7 +159,7 @@ namespace PowerPoint
         /// <param name="e"></param>
         public void HandleCanvasMoved(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            _presentationModel.MovedPointer(new Point(e.X, e.Y));
+            _presentationModel.MovedPointer(new PointF(e.X, e.Y));
         }
         
         /// <summary>

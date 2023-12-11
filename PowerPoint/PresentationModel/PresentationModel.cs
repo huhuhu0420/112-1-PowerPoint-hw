@@ -123,7 +123,7 @@ namespace PowerPoint.PresentationModel
         /// press
         /// </summary>
         /// <param name="point"></param>
-        public void PressedPointer(Point point)
+        public void PressedPointer(PointF point)
         {
             _model.MouseDown(point, Type);
         }
@@ -132,7 +132,7 @@ namespace PowerPoint.PresentationModel
         /// move
         /// </summary>
         /// <param name="point"></param>
-        public void MovedPointer(Point point)
+        public void MovedPointer(PointF point)
         {
             _model.MouseMove(point);
         }
@@ -141,7 +141,7 @@ namespace PowerPoint.PresentationModel
         /// release
         /// </summary>
         /// <param name="point"></param>
-        public void ReleasedPointer(Point point)
+        public void ReleasedPointer(PointF point)
         {
             _model.MouseUp(point, Type);
             for (int i = 0; i < _isButtonChecked.Length; i++)

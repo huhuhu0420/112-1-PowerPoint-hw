@@ -4,7 +4,7 @@ namespace PowerPoint
 {
     public class Circle : Shape
     {
-        public Circle(Point point1, Point point2) : base(point1, point2)
+        public Circle(PointF point1, PointF point2) : base(point1, point2)
         {
             _shapeName = Constant.CIRCLE;
             Type = ShapeType.CIRCLE;

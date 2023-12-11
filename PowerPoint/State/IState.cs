@@ -10,14 +10,14 @@ namespace PowerPoint
         /// <param name="context"></param>
         /// <param name="point"></param>
         /// <param name="type"></param>
-        void MouseDown(Context context, Point point, ShapeType type);
+        void MouseDown(Context context, PointF point, ShapeType type);
         
         /// <summary>
         /// move
         /// </summary>
         /// <param name="context"></param>
         /// <param name="point"></param>
-        void MouseMove(Context context, Point point, bool isPressed);
+        void MouseMove(Context context, PointF point, bool isPressed);
         
         /// <summary>
         /// up
@@ -25,7 +25,7 @@ namespace PowerPoint
         /// <param name="context"></param>
         /// <param name="point"></param>
         /// <param name="type"></param>
-        void MouseUp(Context context, Point point, ShapeType type);
+        void MouseUp(Context context, PointF point, ShapeType type);
 
         /// <summary>
         /// draw

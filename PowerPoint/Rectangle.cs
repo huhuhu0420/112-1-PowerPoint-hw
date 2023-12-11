@@ -4,7 +4,7 @@ namespace PowerPoint
 {
     public class Rectangle : Shape 
     {
-        public Rectangle(Point point1, Point point2) : base(point1, point2)
+        public Rectangle(PointF point1, PointF point2) : base(point1, point2)
         {
             _shapeName = Constant.RECTANGLE;
             Type = ShapeType.RECTANGLE;

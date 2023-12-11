@@ -14,28 +14,28 @@ namespace PowerPoint
         /// </summary>
         /// <param name="point1"></param>
         /// <param name="point2"></param>
-        void DrawLine(Pen pen, Point point1, Point point2);
+        void DrawLine(Pen pen, PointF point1, PointF point2);
 
         /// <summary>
         /// draw
         /// </summary>
         /// <param name="point1"></param>
         /// <param name="point2"></param>
-        void DrawLine(Pen pen, Point point1, Point point2, Line.LineType lineType);
+        void DrawLine(Pen pen, PointF point1, PointF point2, Line.LineType lineType);
 
         /// <summary>
         /// draw
         /// </summary>
         /// <param name="point1"></param>
         /// <param name="point2"></param>
-        void DrawRectangle(Pen pen, Point point1, Point point2);
+        void DrawRectangle(Pen pen, PointF point1, PointF point2);
 
         /// <summary>
         /// draw
         /// </summary>
         /// <param name="point1"></param>
         /// <param name="point2"></param>
-        void DrawCircle(Pen pen, Point point1, Point point2);
+        void DrawCircle(Pen pen, PointF point1, PointF point2);
         
         /// <summary>
         /// draw
@@ -43,6 +43,6 @@ namespace PowerPoint
         /// <param name="pen"></param>
         /// <param name="point1"></param>
         /// <param name="point2"></param>
-        void DrawSelect(Pen pen, Point point1, Point point2);
+        void DrawSelect(Pen pen, PointF point1, PointF point2);
     }
 }

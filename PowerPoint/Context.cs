@@ -36,7 +36,7 @@ namespace PowerPoint
         /// </summary>
         /// <param name="point"></param>
         /// <param name="type"></param>
-        public virtual void MouseDown(Point point, ShapeType type)
+        public virtual void MouseDown(PointF point, ShapeType type)
         {
             _isPressed = true;
             _state.MouseDown(this, point, type);
@@ -46,7 +46,7 @@ namespace PowerPoint
         /// move
         /// </summary>
         /// <param name="point"></param>
-        public virtual void MouseMove(Point point)
+        public virtual void MouseMove(PointF point)
         {
             _state.MouseMove(this, point, _isPressed);
         }
@@ -56,7 +56,7 @@ namespace PowerPoint
         /// </summary>
         /// <param name="point"></param>
         /// <param name="type"></param>
-        public virtual void MouseUp(Point point, ShapeType type)
+        public virtual void MouseUp(PointF point, ShapeType type)
         {
             _isPressed = false;
             _state.MouseUp(this, point, type);

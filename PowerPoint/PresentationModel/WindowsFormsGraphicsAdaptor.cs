@@ -24,7 +24,7 @@ namespace PowerPoint.PresentationModel
         /// <param name="point1"></param>
         /// <param name="point2"></param>
         /// <param name="type"></param>
-        public void DrawLine(Pen pen, Point point1, Point point2)
+        public void DrawLine(Pen pen, PointF point1, PointF point2)
         {
             _graphics.DrawLine(pen, (float)point1.X, (float)point1.Y, (float)point2.X,
                 (float)point2.Y);
@@ -37,7 +37,7 @@ namespace PowerPoint.PresentationModel
         /// <param name="point1"></param>
         /// <param name="point2"></param>
         /// <param name="lineType"></param>
-        public void DrawLine(Pen pen, Point point1, Point point2, Line.LineType lineType)
+        public void DrawLine(Pen pen, PointF point1, PointF point2, Line.LineType lineType)
         {
             // Debug.Print(lineType.ToString());
             switch (lineType)
@@ -62,7 +62,7 @@ namespace PowerPoint.PresentationModel
         /// </summary>
         /// <param name="point1"></param>
         /// <param name="point2"></param>
-        public void DrawRectangle(Pen pen, Point point1, Point point2)
+        public void DrawRectangle(Pen pen, PointF point1, PointF point2)
         {
             float width = System.Math.Abs(point2.X - point1.X);
             float height = System.Math.Abs(point2.Y - point1.Y);
@@ -84,7 +84,7 @@ namespace PowerPoint.PresentationModel
         /// </summary>
         /// <param name="point1"></param>
         /// <param name="point2"></param>
-        public void DrawCircle(Pen pen, Point point1, Point point2)
+        public void DrawCircle(Pen pen, PointF point1, PointF point2)
         {
             _graphics.DrawEllipse(pen, (float)point1.X, (float)point1.Y, (float)(point2.X - point1.X),
             (float)(point2.Y - point1.Y));
@@ -96,7 +96,7 @@ namespace PowerPoint.PresentationModel
         /// <param name="pen"></param>
         /// <param name="point1"></param>
         /// <param name="point2"></param>
-        public void DrawSelectPoint(Pen pen, Point point1, Point point2)
+        public void DrawSelectPoint(Pen pen, PointF point1, PointF point2)
         {
             const int RADIUS = Constant.THREE;
             const int DIAMETER = RADIUS * Constant.TWO;
@@ -104,8 +104,8 @@ namespace PowerPoint.PresentationModel
             _graphics.DrawEllipse(pen, point2.X - RADIUS, point2.Y - RADIUS, DIAMETER, DIAMETER);
             _graphics.DrawEllipse(pen, point1.X - RADIUS, point2.Y - RADIUS, DIAMETER, DIAMETER);
             _graphics.DrawEllipse(pen, point2.X - RADIUS, point1.Y - RADIUS, DIAMETER, DIAMETER);
-            int fix1 = (point1.X + point2.X) / Constant.TWO;
-            int fix2 = (point1.Y + point2.Y) / Constant.TWO;
+            float fix1 = (point1.X + point2.X) / Constant.TWO;
+            float fix2 = (point1.Y + point2.Y) / Constant.TWO;
             _graphics.DrawEllipse(pen, fix1 - RADIUS, point1.Y - RADIUS, DIAMETER, DIAMETER);
             _graphics.DrawEllipse(pen, fix1 - RADIUS, point2.Y - RADIUS, DIAMETER, DIAMETER);
             _graphics.DrawEllipse(pen, point1.X - RADIUS, fix2 - RADIUS, DIAMETER, DIAMETER);
@@ -117,7 +117,7 @@ namespace PowerPoint.PresentationModel
         /// </summary>
         /// <param name="point1"></param>
         /// <param name="point2"></param>
-        public void DrawSelect(Pen pen, Point point1, Point point2)
+        public void DrawSelect(Pen pen, PointF point1, PointF point2)
         {
             float width = System.Math.Abs(point2.X - point1.X);
             float height = System.Math.Abs(point2.Y - point1.Y);
