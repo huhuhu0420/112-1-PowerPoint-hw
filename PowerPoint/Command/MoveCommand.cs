@@ -14,7 +14,7 @@ namespace PowerPoint.Command
         /// <summary>
         /// execute
         /// </summary>
-        void ICommand.Execute()
+        public void Execute()
         {
             _model.MoveShapeByBias(_bias, _index);
         }
@@ -22,7 +22,7 @@ namespace PowerPoint.Command
         /// <summary>
         /// unexecute
         /// </summary>
-        void ICommand.UnExecute()
+        public void UnExecute()
         {
             _model.MoveShapeByBias(new SizeF(-1 * _bias.Width, -1 * _bias.Height), _index);
         }

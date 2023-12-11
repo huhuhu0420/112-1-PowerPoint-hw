@@ -12,7 +12,7 @@ namespace PowerPoint.Command
         /// <summary>
         /// execute
         /// </summary>
-        void ICommand.Execute()
+        public void Execute()
         {
             _model.RemoveShapeByIndex(_index);
         }
@@ -20,7 +20,7 @@ namespace PowerPoint.Command
         /// <summary>
         /// unexecute
         /// </summary>
-        void ICommand.UnExecute()
+        public void UnExecute()
         {
             _model.InsertShapeByShape(_shape, _index);
         }
