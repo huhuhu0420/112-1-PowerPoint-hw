@@ -224,6 +224,16 @@ namespace PowerPoint.PresentationModel
             _model.Redo();
         }
         
+        /// <summary>
+        /// set
+        /// </summary>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        public void SetCanvasSize(int width, int height)
+        {
+            _model.SetCanvasSize(width, height);
+        }
+        
         public bool IsLineButtonChecked
         {
             get 

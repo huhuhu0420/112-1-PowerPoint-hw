@@ -66,6 +66,12 @@ namespace PowerPoint
             }
             NotifyModelChanged();
         }
+        
+        public void SetCanvasSize(int width, int height)
+        {
+            _canvasWidth = width;
+            _canvasHeight = height;
+        }
 
         /// <summary>
         /// get shape

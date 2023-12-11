@@ -77,6 +77,7 @@ namespace PowerPoint
             slide1.Height = (int)(slide1.Width * Constant.RATIO);
             panel1.Width = splitContainer2.Panel1.Width - 8;
             panel1.Height = (int)(panel1.Width * Constant.RATIO);
+            _presentationModel.SetCanvasSize(panel1.Width, panel1.Height);
         }
         
         /// <summary>

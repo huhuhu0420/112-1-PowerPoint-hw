@@ -340,5 +340,7 @@ namespace PowerPoint
         private Context _context;
         private readonly Dictionary<Model.Location, Action<Point>> _resizeShape;
         private CommandManager _commandManager;
+        private int _canvasWidth;
+        private int _canvasHeight;
     }
 }

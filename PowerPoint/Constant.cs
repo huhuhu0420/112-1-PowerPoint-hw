@@ -31,5 +31,6 @@ namespace PowerPoint
         public const string SELECT_INDEX = "_selectIndex";
         public const string CONTEXT = "_context";
         public const double RATIO = (NINE / SIXTEEN);
+        public const int THOUSAND = 1000;
     }
 }
