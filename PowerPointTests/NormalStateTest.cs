@@ -25,7 +25,7 @@ namespace PowerPoint.Tests
         [TestMethod]
         public void MouseDownTest()
         {
-            var point = new Point(1, 1);
+            var point = new PointF(1, 1);
             var mockContext = new Mock<Context>(_mockModel.Object);
 
             _mockModel.SetupSequence(model => model.GetSelectIndex()).Returns(0);
@@ -38,24 +38,24 @@ namespace PowerPoint.Tests
         [TestMethod]
         public void MouseMoveTest()
         {
-            var point = new Point(1, 1);
+            var point = new PointF(1, 1);
             var mockContext = new Mock<Context>(_mockModel.Object);
 
             _normalState.MouseMove(mockContext.Object, point, false);
 
-            _mockModel.Verify(m => m.SelectShape(It.IsAny<Point>()), Times.Never);
+            _mockModel.Verify(m => m.SelectShape(It.IsAny<PointF>()), Times.Never);
         }
 
         // test
         [TestMethod]
         public void MouseUpTest()
         {
-            var point = new Point(1, 1);
+            var point = new PointF(1, 1);
             var mockContext = new Mock<Context>(_mockModel.Object);
 
             _normalState.MouseUp(mockContext.Object, point, ShapeType.LINE);
 
-            _mockModel.Verify(m => m.SelectShape(It.IsAny<Point>()), Times.Never);
+            _mockModel.Verify(m => m.SelectShape(It.IsAny<PointF>()), Times.Never);
         }
 
         // test

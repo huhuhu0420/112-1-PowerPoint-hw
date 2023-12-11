@@ -35,47 +35,47 @@ namespace PowerPointTests
         [TestMethod]
         public void DrawLineTest()
         {
-            _windowsFormsGraphicsAdaptor.DrawLine(new Pen(Color.Black), new Point(1, 1), new Point(2, 2));
-            // _mockGraphics.Verify(g => g.DrawLine(It.IsAny<Pen>(), It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
+            _windowsFormsGraphicsAdaptor.DrawLine(new Pen(Color.Black), new PointF(1, 1), new PointF(2, 2));
+            // _mockGraphics.Verify(g => g.DrawLine(It.IsAny<Pen>(), It.IsAny<PointF>(), It.IsAny<PointF>()), Times.Once);
         }
         
         // test
         [TestMethod]
         public void DrawLineTest_WithLineType()
         {
-            _windowsFormsGraphicsAdaptor.DrawLine(new Pen(Color.Black), new Point(1, 1), new Point(2, 2), Line.LineType.LeftTop);
-            _windowsFormsGraphicsAdaptor.DrawLine(new Pen(Color.Black), new Point(1, 1), new Point(2, 2), Line.LineType.RightTop);
-            _windowsFormsGraphicsAdaptor.DrawLine(new Pen(Color.Black), new Point(1, 1), new Point(2, 2), Line.LineType.LeftBottom);
-            _windowsFormsGraphicsAdaptor.DrawLine(new Pen(Color.Black), new Point(1, 1), new Point(2, 2), Line.LineType.RightBottom);
+            _windowsFormsGraphicsAdaptor.DrawLine(new Pen(Color.Black), new PointF(1, 1), new PointF(2, 2), Line.LineType.LeftTop);
+            _windowsFormsGraphicsAdaptor.DrawLine(new Pen(Color.Black), new PointF(1, 1), new PointF(2, 2), Line.LineType.RightTop);
+            _windowsFormsGraphicsAdaptor.DrawLine(new Pen(Color.Black), new PointF(1, 1), new PointF(2, 2), Line.LineType.LeftBottom);
+            _windowsFormsGraphicsAdaptor.DrawLine(new Pen(Color.Black), new PointF(1, 1), new PointF(2, 2), Line.LineType.RightBottom);
         }
         
         // test
         [TestMethod]
         public void DrawRectangleTest()
         {
-            _windowsFormsGraphicsAdaptor.DrawRectangle(new Pen(Color.Black), new Point(1, 1), new Point(2, 2));
-            _windowsFormsGraphicsAdaptor.DrawRectangle(new Pen(Color.Black), new Point(2, 2), new Point(1, 1));
+            _windowsFormsGraphicsAdaptor.DrawRectangle(new Pen(Color.Black), new PointF(1, 1), new PointF(2, 2));
+            _windowsFormsGraphicsAdaptor.DrawRectangle(new Pen(Color.Black), new PointF(2, 2), new PointF(1, 1));
         }
         
         // test
         [TestMethod]
         public void DrawCircleeTest()
         {
-            _windowsFormsGraphicsAdaptor.DrawCircle(new Pen(Color.Black), new Point(1, 1), new Point(2, 2));
+            _windowsFormsGraphicsAdaptor.DrawCircle(new Pen(Color.Black), new PointF(1, 1), new PointF(2, 2));
         }
         
         // test
         [TestMethod]
         public void DrawSelectPointTest()
         {
-            _windowsFormsGraphicsAdaptor.DrawSelectPoint(new Pen(Color.Black), new Point(1, 1), new Point(1, 1));
+            _windowsFormsGraphicsAdaptor.DrawSelectPoint(new Pen(Color.Black), new PointF(1, 1), new PointF(1, 1));
         }
         
         // test
         [TestMethod]
         public void DrawSelectTest()
         {
-            _windowsFormsGraphicsAdaptor.DrawSelect(new Pen(Color.Black), new Point(2, 2), new Point(1, 1));
+            _windowsFormsGraphicsAdaptor.DrawSelect(new Pen(Color.Black), new PointF(2, 2), new PointF(1, 1));
         }
     }
 }

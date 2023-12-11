@@ -69,7 +69,7 @@ namespace PowerPoint.PresentationModel.Tests
         public void DeleteShapeTest()
         {
             _presentationModel.DeleteShape();
-            _mockModel.Verify(m => m.RemoveShape(), Times.Once);
+            _mockModel.Verify(m => m.HandleRemoveShape(It.IsAny<int>()), Times.Once);
         }
 
         // test
@@ -86,7 +86,7 @@ namespace PowerPoint.PresentationModel.Tests
         [TestMethod]
         public void PressedPointerTest()
         {
-            var point = new Point(1, 1);
+            var point = new PointF(1, 1);
 
             _presentationModel.PressedPointer(point);
 
@@ -97,7 +97,7 @@ namespace PowerPoint.PresentationModel.Tests
         [TestMethod]
         public void MovedPointerTest()
         {
-            var point = new Point(1, 1);
+            var point = new PointF(1, 1);
 
             _presentationModel.MovedPointer(point);
 
@@ -108,7 +108,7 @@ namespace PowerPoint.PresentationModel.Tests
         [TestMethod]
         public void ReleasedPointerTest()
         {
-            var point = new Point(1, 1);
+            var point = new PointF(1, 1);
 
             _presentationModel.ReleasedPointer(point);
 
@@ -137,7 +137,7 @@ namespace PowerPoint.PresentationModel.Tests
         {
             _presentationModel.RemoveShape(1);
 
-            _mockModel.Verify(m => m.RemoveShapeByIndex(1), Times.Once);
+            _mockModel.Verify(m => m.HandleRemoveShape(1), Times.Once);
         }
 
         // test

@@ -17,7 +17,7 @@ namespace PowerPoint.Tests
         {
             _mockGraphics = new Mock<IGraphics>();
             _rectangle = new Rectangle();
-            _rectangle = new Rectangle(new Point(1, 1), new Point(2, 2));
+            _rectangle = new Rectangle(new PointF(1, 1), new PointF(2, 2));
         }
 
         // test
@@ -26,29 +26,29 @@ namespace PowerPoint.Tests
         {
             _rectangle.Draw(_mockGraphics.Object);
 
-            _mockGraphics.Verify(g => g.DrawRectangle(It.IsAny<Pen>(), It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
+            _mockGraphics.Verify(g => g.DrawRectangle(It.IsAny<Pen>(), It.IsAny<PointF>(), It.IsAny<PointF>()), Times.Once);
         }
 
         // test
         [TestMethod]
         public void RectangleConstructorTest_WhenPoint1IsGreaterThanPoint2()
         {
-            var rectangle = new Rectangle(new Point(2, 2), new Point(1, 1));
+            var rectangle = new Rectangle(new PointF(2, 2), new PointF(1, 1));
 
-            Assert.AreEqual(ShapeType.RECTANGLE, rectangle.Type);
-            Assert.AreEqual(new Point(1, 1), rectangle.GetPoint1());
-            Assert.AreEqual(new Point(2, 2), rectangle.GetPoint2());
+            Assert.AreEqual(ShapeType.RECTANGLE, rectangle.GetType());
+            Assert.AreEqual(new PointF(1, 1), rectangle.GetPoint1());
+            Assert.AreEqual(new PointF(2, 2), rectangle.GetPoint2());
         }
 
         // test
         [TestMethod]
         public void RectangleConstructorTest_WhenPoint1IsLessThanPoint2()
         {
-            var rectangle = new Rectangle(new Point(1, 1), new Point(2, 2));
+            var rectangle = new Rectangle(new PointF(1, 1), new PointF(2, 2));
 
-            Assert.AreEqual(ShapeType.RECTANGLE, rectangle.Type);
-            Assert.AreEqual(new Point(1, 1), rectangle.GetPoint1());
-            Assert.AreEqual(new Point(2, 2), rectangle.GetPoint2());
+            Assert.AreEqual(ShapeType.RECTANGLE, rectangle.GetType());
+            Assert.AreEqual(new PointF(1, 1), rectangle.GetPoint1());
+            Assert.AreEqual(new PointF(2, 2), rectangle.GetPoint2());
         }
     }
 }

@@ -17,7 +17,7 @@ namespace PowerPoint.Tests
         {
             _mockGraphics = new Mock<IGraphics>();
             _circle = new Circle();
-            _circle = new Circle(new Point(1, 1), new Point(2, 2));
+            _circle = new Circle(new PointF(1, 1), new PointF(2, 2));
         }
 
         // test
@@ -26,29 +26,29 @@ namespace PowerPoint.Tests
         {
             _circle.Draw(_mockGraphics.Object);
 
-            _mockGraphics.Verify(g => g.DrawCircle(It.IsAny<Pen>(), It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
+            _mockGraphics.Verify(g => g.DrawCircle(It.IsAny<Pen>(), It.IsAny<PointF>(), It.IsAny<PointF>()), Times.Once);
         }
 
         // test
         [TestMethod]
         public void CircleConstructorTest_WhenPoint1IsGreaterThanPoint2()
         {
-            var circle = new Circle(new Point(2, 2), new Point(1, 1));
+            var circle = new Circle(new PointF(2, 2), new PointF(1, 1));
 
-            Assert.AreEqual(ShapeType.CIRCLE, circle.Type);
-            Assert.AreEqual(new Point(1, 1), circle.GetPoint1());
-            Assert.AreEqual(new Point(2, 2), circle.GetPoint2());
+            Assert.AreEqual(ShapeType.CIRCLE, circle.GetType());
+            Assert.AreEqual(new PointF(1, 1), circle.GetPoint1());
+            Assert.AreEqual(new PointF(2, 2), circle.GetPoint2());
         }
 
         // test
         [TestMethod]
         public void CircleConstructorTest_WhenPoint1IsLessThanPoint2()
         {
-            var circle = new Circle(new Point(1, 1), new Point(2, 2));
+            var circle = new Circle(new PointF(1, 1), new PointF(2, 2));
 
-            Assert.AreEqual(ShapeType.CIRCLE, circle.Type);
-            Assert.AreEqual(new Point(1, 1), circle.GetPoint1());
-            Assert.AreEqual(new Point(2, 2), circle.GetPoint2());
+            Assert.AreEqual(ShapeType.CIRCLE, circle.GetType());
+            Assert.AreEqual(new PointF(1, 1), circle.GetPoint1());
+            Assert.AreEqual(new PointF(2, 2), circle.GetPoint2());
         }
     }
 }

@@ -53,6 +53,15 @@ namespace PowerPoint
         {
             return FormatCoordinate(_point1) + Constant.COMMA + FormatCoordinate(_point2);
         }
+        
+        /// <summary>
+        /// type
+        /// </summary>
+        /// <returns></returns>
+        public ShapeType GetType()
+        {
+            return _type;
+        }
 
         /// <summary>
         /// format coordinate

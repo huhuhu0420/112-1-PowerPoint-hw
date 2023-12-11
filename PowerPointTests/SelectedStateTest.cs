@@ -25,7 +25,7 @@ namespace PowerPoint.State.Tests
         [TestMethod]
         public void MouseDownTest_WhenShapeIsSelected()
         {
-            var point = new Point(1, 1);
+            var point = new PointF(1, 1);
             var mockContext = new Mock<Context>(_mockModel.Object);
 
             _mockModel.Setup(m => m.GetSelectIndex()).Returns(0);
@@ -40,7 +40,7 @@ namespace PowerPoint.State.Tests
         [TestMethod]
         public void MouseDownTest_WhenNoShapeIsSelected()
         {
-            var point = new Point(1, 1);
+            var point = new PointF(1, 1);
             var mockContext = new Mock<Context>(_mockModel.Object);
 
             _mockModel.Setup(m => m.GetSelectIndex()).Returns(-1);
@@ -55,7 +55,7 @@ namespace PowerPoint.State.Tests
         [TestMethod]
         public void MouseMoveTest_WhenPressed()
         {
-            var point = new Point(1, 1);
+            var point = new PointF(1, 1);
             var mockContext = new Mock<Context>(_mockModel.Object);
 
             _mockModel.Setup(m => m.IsInShapeCorner(point)).Returns(Model.Location.None);
@@ -69,7 +69,7 @@ namespace PowerPoint.State.Tests
         [TestMethod]
         public void MouseMoveTest_WhenNotPressedAndInShapeCorner()
         {
-            var point = new Point(1, 1);
+            var point = new PointF(1, 1);
             var mockContext = new Mock<Context>(_mockModel.Object);
 
             _mockModel.Setup(m => m.IsInShapeCorner(point)).Returns(Model.Location.Bottom);
@@ -84,7 +84,7 @@ namespace PowerPoint.State.Tests
         [TestMethod]
         public void MouseMoveTest_WhenNotPressedAndNotInShapeCorner()
         {
-            var point = new Point(1, 1);
+            var point = new PointF(1, 1);
             var mockContext = new Mock<Context>(_mockModel.Object);
 
             _mockModel.Setup(m => m.IsInShapeCorner(point)).Returns(Model.Location.Bottom);
@@ -99,7 +99,7 @@ namespace PowerPoint.State.Tests
         public void MouseUpTest()
         {
             var mockContext = new Mock<Context>(_mockModel.Object);
-            var point = new Point(1, 1);
+            var point = new PointF(1, 1);
             var type = ShapeType.RECTANGLE;
 
             _selectedState.MouseUp(mockContext.Object, point, type);

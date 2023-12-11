@@ -18,7 +18,7 @@ namespace PowerPoint.Tests
         {
             _mockGraphics = new Mock<IGraphics>();
             _line = new Line();
-            _line = new Line(new Point(1, 1), new Point(2, 2));
+            _line = new Line(new PointF(1, 1), new PointF(2, 2));
             _privateLine = new PrivateObject(_line);
         }
 
@@ -28,32 +28,32 @@ namespace PowerPoint.Tests
         {
             _line.SetLineType(Line.LineType.None);
             _line.Draw(_mockGraphics.Object);
-            _mockGraphics.Verify(g => g.DrawLine(It.IsAny<Pen>(), It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
+            _mockGraphics.Verify(g => g.DrawLine(It.IsAny<Pen>(), It.IsAny<PointF>(), It.IsAny<PointF>()), Times.Once);
             _line.SetLineType(Line.LineType.LeftTop);
             _line.Draw(_mockGraphics.Object);
-            _mockGraphics.Verify(g => g.DrawLine(It.IsAny<Pen>(), It.IsAny<Point>(), It.IsAny<Point>(), Line.LineType.LeftTop), Times.Once);
+            _mockGraphics.Verify(g => g.DrawLine(It.IsAny<Pen>(), It.IsAny<PointF>(), It.IsAny<PointF>(), Line.LineType.LeftTop), Times.Once);
         }
 
         // test
         [TestMethod]
         public void LineConstructorTest_WhenPoint1IsGreaterThanPoint2()
         {
-            var line = new Line(new Point(2, 2), new Point(1, 1));
+            var line = new Line(new PointF(2, 2), new PointF(1, 1));
 
-            Assert.AreEqual(ShapeType.LINE, line.Type);
-            Assert.AreEqual(new Point(1, 1), line.GetPoint1());
-            Assert.AreEqual(new Point(2, 2), line.GetPoint2());
+            Assert.AreEqual(ShapeType.LINE, line.GetType());
+            Assert.AreEqual(new PointF(1, 1), line.GetPoint1());
+            Assert.AreEqual(new PointF(2, 2), line.GetPoint2());
         }
 
         // test
         [TestMethod]
         public void LineConstructorTest_WhenPoint1IsLessThanPoint2()
         {
-            var line = new Line(new Point(1, 1), new Point(2, 2));
+            var line = new Line(new PointF(1, 1), new PointF(2, 2));
 
-            Assert.AreEqual(ShapeType.LINE, line.Type);
-            Assert.AreEqual(new Point(1, 1), line.GetPoint1());
-            Assert.AreEqual(new Point(2, 2), line.GetPoint2());
+            Assert.AreEqual(ShapeType.LINE, line.GetType());
+            Assert.AreEqual(new PointF(1, 1), line.GetPoint1());
+            Assert.AreEqual(new PointF(2, 2), line.GetPoint2());
         }
 
         // test

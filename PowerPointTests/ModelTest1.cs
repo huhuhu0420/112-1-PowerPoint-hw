@@ -26,7 +26,7 @@ namespace PowerPoint.Tests
 
         public void ResizeShape()
         {
-            var point = new Point(Constant.THREE_THOUSAND, 0);
+            var point = new PointF(Constant.THREE_THOUSAND, 0);
             _model.InsertShape(ShapeType.LINE);
             _model.InsertShape(ShapeType.LINE);
             _privateModel.SetField(Constant.SELECT_INDEX, -1);
@@ -41,7 +41,7 @@ namespace PowerPoint.Tests
 
         public void ResizeShapeRightBottomResizesShapeWhenSelectIndexIsNotNegative()
         {
-            var point = new Point(Constant.THREE_THOUSAND, 0);
+            var point = new PointF(Constant.THREE_THOUSAND, 0);
             _model.InsertShape(ShapeType.LINE);
             _model.InsertShape(ShapeType.LINE);
             _privateModel.SetField(Constant.SELECT_INDEX, 0);
@@ -51,7 +51,7 @@ namespace PowerPoint.Tests
             _model.ResizeShape(point, Model.Location.RightBottom);
             shapes = _model.GetShapes();
             Assert.AreEqual(point.X, shapes[0].GetPoint2().X);
-            point = new Point(-1, -1);
+            point = new PointF(-1, -1);
             _model.ResizeShape(point, Model.Location.RightBottom);
         }
 
@@ -60,7 +60,7 @@ namespace PowerPoint.Tests
 
         public void ResizeShapeLeftBottomResizesShapeWhenSelectIndexIsNotNegative()
         {
-            var point = new Point(0, 0);
+            var point = new PointF(0, 0);
             _model.InsertShape(ShapeType.LINE);
             _model.InsertShape(ShapeType.LINE);
             _privateModel.SetField(Constant.SELECT_INDEX, 0);
@@ -70,7 +70,7 @@ namespace PowerPoint.Tests
             _model.ResizeShape(point, Model.Location.LeftBottom);
             shapes = _model.GetShapes();
             Assert.AreEqual(point.X, shapes[0].GetPoint1().X);
-            point = new Point(Constant.THREE_THOUSAND, -1);
+            point = new PointF(Constant.THREE_THOUSAND, -1);
             _model.ResizeShape(point, Model.Location.LeftBottom);
         }
 
@@ -79,7 +79,7 @@ namespace PowerPoint.Tests
 
         public void ResizeShapeLeftTopResizesShapeWhenSelectIndexIsNotNegative()
         {
-            var point = new Point(0, 0);
+            var point = new PointF(0, 0);
             _model.InsertShape(ShapeType.LINE);
             _model.InsertShape(ShapeType.LINE);
             _privateModel.SetField(Constant.SELECT_INDEX, 0);
@@ -89,7 +89,7 @@ namespace PowerPoint.Tests
             _model.ResizeShape(point, Model.Location.LeftTop);
             shapes = _model.GetShapes();
             Assert.AreEqual(point.X, shapes[0].GetPoint1().X);
-            point = new Point(Constant.THREE_THOUSAND, Constant.THREE_THOUSAND);
+            point = new PointF(Constant.THREE_THOUSAND, Constant.THREE_THOUSAND);
             _model.ResizeShape(point, Model.Location.LeftTop);
         }
 
@@ -98,7 +98,7 @@ namespace PowerPoint.Tests
 
         public void ResizeShapeRightTopResizesShapeWhenSelectIndexIsNotNegative()
         {
-            var point = new Point(Constant.THREE_THOUSAND, 0);
+            var point = new PointF(Constant.THREE_THOUSAND, 0);
             _model.InsertShape(ShapeType.LINE);
             _model.InsertShape(ShapeType.LINE);
             _privateModel.SetField(Constant.SELECT_INDEX, 0);
@@ -108,7 +108,7 @@ namespace PowerPoint.Tests
             _model.ResizeShape(point, Model.Location.RightTop);
             shapes = _model.GetShapes();
             Assert.AreEqual(point.X, shapes[0].GetPoint2().X);
-            point = new Point(Constant.NEGATIVE_THREE_THOUSAND, Constant.THREE_THOUSAND);
+            point = new PointF(Constant.NEGATIVE_THREE_THOUSAND, Constant.THREE_THOUSAND);
             _model.ResizeShape(point, Model.Location.RightTop);
         }
 
@@ -117,7 +117,7 @@ namespace PowerPoint.Tests
 
         public void ResizeShapeLeftResizesShapeWhenSelectIndexIsNotNegative()
         {
-            var point = new Point(0, 0);
+            var point = new PointF(0, 0);
             _model.InsertShape(ShapeType.LINE);
             _model.InsertShape(ShapeType.LINE);
             _privateModel.SetField(Constant.SELECT_INDEX, 0);
@@ -127,7 +127,7 @@ namespace PowerPoint.Tests
             _model.ResizeShape(point, Model.Location.Left);
             shapes = _model.GetShapes();
             Assert.AreEqual(point.X, shapes[0].GetPoint1().X);
-            point = new Point(Constant.THREE_THOUSAND, -1);
+            point = new PointF(Constant.THREE_THOUSAND, -1);
             _model.ResizeShape(point, Model.Location.Left);
         }
 
@@ -136,7 +136,7 @@ namespace PowerPoint.Tests
 
         public void ResizeShapeRightResizesShapeWhenSelectIndexIsNotNegative()
         {
-            var point = new Point(Constant.THREE_THOUSAND, 0);
+            var point = new PointF(Constant.THREE_THOUSAND, 0);
             _model.InsertShape(ShapeType.LINE);
             _model.InsertShape(ShapeType.LINE);
             _privateModel.SetField(Constant.SELECT_INDEX, 0);
@@ -146,7 +146,7 @@ namespace PowerPoint.Tests
             _model.ResizeShape(point, Model.Location.Right);
             shapes = _model.GetShapes();
             Assert.AreEqual(point.X, shapes[0].GetPoint2().X);
-            point = new Point(Constant.NEGATIVE_THREE_THOUSAND, -1);
+            point = new PointF(Constant.NEGATIVE_THREE_THOUSAND, -1);
             _model.ResizeShape(point, Model.Location.Right);
         }
 
@@ -155,7 +155,7 @@ namespace PowerPoint.Tests
 
         public void ResizeShapeTopResizesShapeWhenSelectIndexIsNotNegative()
         {
-            var point = new Point(Constant.TEN, 0);
+            var point = new PointF(Constant.TEN, 0);
             _model.InsertShape(ShapeType.LINE);
             _model.InsertShape(ShapeType.LINE);
             _privateModel.SetField(Constant.SELECT_INDEX, 0);
@@ -165,7 +165,7 @@ namespace PowerPoint.Tests
             _model.ResizeShape(point, Model.Location.Top);
             shapes = _model.GetShapes();
             Assert.AreEqual(point.Y, shapes[0].GetPoint1().Y);
-            point = new Point(-1, Constant.THREE_THOUSAND);
+            point = new PointF(-1, Constant.THREE_THOUSAND);
             _model.ResizeShape(point, Model.Location.Top);
         }
 
@@ -174,7 +174,7 @@ namespace PowerPoint.Tests
 
         public void ResizeShapeBottomResizesShapeWhenSelectIndexIsNotNegative()
         {
-            var point = new Point(Constant.TEN, Constant.THREE_THOUSAND);
+            var point = new PointF(Constant.TEN, Constant.THREE_THOUSAND);
             _model.InsertShape(ShapeType.LINE);
             _model.InsertShape(ShapeType.LINE);
             _privateModel.SetField(Constant.SELECT_INDEX, 0);
@@ -184,7 +184,7 @@ namespace PowerPoint.Tests
             _model.ResizeShape(point, Model.Location.Bottom);
             shapes = _model.GetShapes();
             Assert.AreEqual(point.Y, shapes[0].GetPoint2().Y);
-            point = new Point(-1, Constant.NEGATIVE_THREE_THOUSAND);
+            point = new PointF(-1, Constant.NEGATIVE_THREE_THOUSAND);
             _model.ResizeShape(point, Model.Location.Bottom);
         }
     }

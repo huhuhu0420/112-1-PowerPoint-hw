@@ -41,7 +41,7 @@ namespace PowerPoint.Tests
         {
             var mockState = new Mock<IState>();
             _context.SetState(mockState.Object);
-            var point = new Point(1, 1);
+            var point = new PointF(1, 1);
 
             _context.MouseDown(point, ShapeType.LINE);
 
@@ -55,7 +55,7 @@ namespace PowerPoint.Tests
         {
             var mockState = new Mock<IState>();
             _context.SetState(mockState.Object);
-            var point = new Point(1, 1);
+            var point = new PointF(1, 1);
 
             _context.MouseMove(point);
 
@@ -69,7 +69,7 @@ namespace PowerPoint.Tests
         {
             var mockState = new Mock<IState>();
             _context.SetState(mockState.Object);
-            var point = new Point(1, 1);
+            var point = new PointF(1, 1);
 
             _context.MouseUp(point, ShapeType.LINE);
 

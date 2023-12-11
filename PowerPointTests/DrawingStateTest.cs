@@ -23,7 +23,7 @@ namespace PowerPoint.State.Tests
         [TestMethod]
         public void MouseDownTest()
         {
-            var point = new Point(1, 1);
+            var point = new PointF(1, 1);
             var type = ShapeType.RECTANGLE;
 
             _drawingState.MouseDown(null, point, type);
@@ -35,7 +35,7 @@ namespace PowerPoint.State.Tests
         [TestMethod]
         public void MouseMoveTest_WhenPressed()
         {
-            var point = new Point(1, 1);
+            var point = new PointF(1, 1);
 
             _drawingState.MouseMove(null, point, true);
 
@@ -46,7 +46,7 @@ namespace PowerPoint.State.Tests
         [TestMethod]
         public void MouseMoveTest_WhenNotPressed()
         {
-            var point = new Point(1, 1);
+            var point = new PointF(1, 1);
 
             _drawingState.MouseMove(null, point, false);
 
@@ -58,7 +58,7 @@ namespace PowerPoint.State.Tests
         public void MouseUpTest()
         {
             var mockContext = new Mock<Context>(_mockModel.Object);
-            var point = new Point(1, 1);
+            var point = new PointF(1, 1);
             var type = ShapeType.RECTANGLE;
 
             _drawingState.MouseUp(mockContext.Object, point, type);

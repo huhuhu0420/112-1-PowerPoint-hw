@@ -32,7 +32,7 @@ namespace PowerPoint.Tests
         {
             _privateModel.Invoke("InitializeResizeShape");
 
-            var resizeShape = (Dictionary<Model.Location, Action<Point>>)_privateModel.GetField("_resizeShape");
+            var resizeShape = (Dictionary<Model.Location, Action<PointF>>)_privateModel.GetField("_resizeShape");
 
             Assert.IsNotNull(resizeShape[Model.Location.Left]);
             Assert.IsNotNull(resizeShape[Model.Location.Right]);
@@ -64,7 +64,7 @@ namespace PowerPoint.Tests
         [TestMethod]
         public void MouseDownTest()
         {
-            var point = new Point(1, 1);
+            var point = new PointF(1, 1);
 
             _model.MouseDown(point, ShapeType.LINE);
 
@@ -75,7 +75,7 @@ namespace PowerPoint.Tests
         [TestMethod]
         public void MouseMoveTest()
         {
-            var point = new Point(1, 1);
+            var point = new PointF(1, 1);
 
             _model.MouseMove(point);
 
@@ -86,7 +86,7 @@ namespace PowerPoint.Tests
         [TestMethod]
         public void MouseUpTest()
         {
-            var point = new Point(1, 1);
+            var point = new PointF(1, 1);
 
             _model.MouseUp(point, ShapeType.LINE);
 
@@ -98,14 +98,14 @@ namespace PowerPoint.Tests
         public void DrawTest()
         {
             _model.Draw(_mockGraphics.Object);
-            _mockGraphics.Verify(graphics => graphics.DrawLine( It.IsAny<Pen>(), It.IsAny<Point>(), It.IsAny<Point>()), Times.Never);
+            _mockGraphics.Verify(graphics => graphics.DrawLine( It.IsAny<Pen>(), It.IsAny<PointF>(), It.IsAny<PointF>()), Times.Never);
         }
 
         // test
         [TestMethod]
         public void PressedPointerTest()
         {
-            var point = new Point(10, 10);
+            var point = new PointF(10, 10);
 
             _privateModel.Invoke("PressedPointer", point, ShapeType.LINE);
 
@@ -125,10 +125,10 @@ namespace PowerPoint.Tests
         [TestMethod]
         public void IsInShapeCornerTest()
         {
-            var point = new Point(20, 20);
+            var point = new PointF(20, 20);
             _model.InsertShape(ShapeType.LINE);
             _model.GetShapes()[0].SetPoint1(point);
-            _model.GetShapes()[0].SetPoint2(new Point(20, 20));
+            _model.GetShapes()[0].SetPoint2(new PointF(20, 20));
 
             Model.Location result = _model.IsInShapeCorner(point);
             Assert.AreEqual(Model.Location.None, result);
@@ -141,11 +141,11 @@ namespace PowerPoint.Tests
         [TestMethod]
         public void SelectShapeTest()
         {
-            var point = new Point(1, 1);
-            var point2 = new Point(100, 100);
+            var point = new PointF(1, 1);
+            var point2 = new PointF(100, 100);
             _model.InsertShape(ShapeType.LINE);
             _model.GetShapes()[0].SetPoint1(point);
-            _model.GetShapes()[0].SetPoint2(new Point(2, 2));
+            _model.GetShapes()[0].SetPoint2(new PointF(2, 2));
 
             _model.SelectShape(point2);
             _model.SelectShape(point);
@@ -156,7 +156,7 @@ namespace PowerPoint.Tests
         [TestMethod]
         public void MovedPointerTest()
         {
-            var point = new Point(10, 10);
+            var point = new PointF(10, 10);
             _privateModel.SetField("_hint", new Shape());
 
             _privateModel.Invoke("MovedPointer", point);
@@ -168,13 +168,13 @@ namespace PowerPoint.Tests
         [TestMethod]
         public void MoveShapeTest()
         {
-            var point = new Point(1, 1);
+            var point = new PointF(1, 1);
             _model.InsertShape(ShapeType.LINE);
             _model.GetShapes()[0].SetPoint1(point);
-            _model.GetShapes()[0].SetPoint2(new Point(2, 2));
+            _model.GetShapes()[0].SetPoint2(new PointF(2, 2));
             _model.SelectShape(point);
 
-            var newPoint = new Point(2, 2);
+            var newPoint = new PointF(2, 2);
             _model.MoveShape(newPoint);
 
             Assert.AreEqual(newPoint, _model.GetShapes()[0].GetPoint1());
@@ -186,8 +186,8 @@ namespace PowerPoint.Tests
         [TestMethod]
         public void ReleasedPointerTest()
         {
-            var point1 = new Point(1, 1);
-            var point2 = new Point(2, 2);
+            var point1 = new PointF(1, 1);
+            var point2 = new PointF(2, 2);
             int initialCount = _model.GetShapes().Count;
 
             _model.PressedPointer(point1, ShapeType.LINE);
@@ -212,10 +212,10 @@ namespace PowerPoint.Tests
         {
             _model.InsertShape(ShapeType.LINE);
             System.ComponentModel.BindingList<Shape> _shapes = _model.GetShapes();
-            Point _point = _shapes[0].GetCenterPoint();
+            PointF _point = _shapes[0].GetCenterPoint();
             _model.SelectShape(_point);
             _model.DrawShapes(_mockGraphics.Object);
-            _mockGraphics.Verify(graphics => graphics.DrawLine( It.IsAny<Pen>(), It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
+            _mockGraphics.Verify(graphics => graphics.DrawLine( It.IsAny<Pen>(), It.IsAny<PointF>(), It.IsAny<PointF>()), Times.Once);
         }
 
         // test
@@ -226,7 +226,7 @@ namespace PowerPoint.Tests
 
             _privateModel.Invoke("DrawSelect", _mockGraphics.Object);
 
-            _mockGraphics.Verify(g => g.DrawSelect(It.IsAny<Pen>(), It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
+            _mockGraphics.Verify(g => g.DrawSelect(It.IsAny<Pen>(), It.IsAny<PointF>(), It.IsAny<PointF>()), Times.Once);
         }
 
         // test
@@ -237,7 +237,7 @@ namespace PowerPoint.Tests
 
             _privateModel.Invoke("DrawHint", _mockGraphics.Object);
 
-            _mockGraphics.Verify(g => g.DrawRectangle(It.IsAny<Pen>(), It.IsAny<Point>(), It.IsAny<Point>()), Times.Never);
+            _mockGraphics.Verify(g => g.DrawRectangle(It.IsAny<Pen>(), It.IsAny<PointF>(), It.IsAny<PointF>()), Times.Never);
         }
 
         // test

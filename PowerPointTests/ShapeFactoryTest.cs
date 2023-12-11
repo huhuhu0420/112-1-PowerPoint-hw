@@ -46,8 +46,8 @@ namespace PowerPoint.Tests
         [TestMethod]
         public void CreateShapeWithPointsAndShapeTypeRectangleTest()
         {
-            var point1 = new Point(10, 20);
-            var point2 = new Point(30, 40);
+            var point1 = new PointF(10, 20);
+            var point2 = new PointF(30, 40);
 
             var shape = _shapeFactory.CreateShape(ShapeType.RECTANGLE, point1, point2);
 
@@ -60,8 +60,8 @@ namespace PowerPoint.Tests
         [TestMethod]
         public void CreateShapeWithPointsAndShapeTypeCircleTest()
         {
-            var point1 = new Point(10, 20);
-            var point2 = new Point(30, 40);
+            var point1 = new PointF(10, 20);
+            var point2 = new PointF(30, 40);
 
             var shape = _shapeFactory.CreateShape(ShapeType.CIRCLE, point1, point2);
 
@@ -74,8 +74,8 @@ namespace PowerPoint.Tests
         [TestMethod]
         public void CreateShapeWithPointsAndUnknownShapeTypeTest()
         {
-            var point1 = new Point(10, 20);
-            var point2 = new Point(30, 40);
+            var point1 = new PointF(10, 20);
+            var point2 = new PointF(30, 40);
 
             var shape = _shapeFactory.CreateShape((ShapeType)999, point1, point2);
 
