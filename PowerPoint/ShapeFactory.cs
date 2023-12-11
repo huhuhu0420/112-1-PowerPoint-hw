@@ -63,7 +63,7 @@ namespace PowerPoint
         }
 
         readonly Random _random = new Random();
-        private int _canvasWidth = 440;
-        private int _canvasHeight = 440;
+        private int _canvasWidth = Constant.FOUR_HUNDRED;
+        private int _canvasHeight = Constant.FOUR_HUNDRED;
     }
 }

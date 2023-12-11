@@ -20,13 +20,13 @@ namespace PowerPoint.Command
         /// <summary>
         /// unexecute
         /// </summary>
-        public void UnExecute()
+        public void Unexecute()
         {
             _model.InsertShapeByShape(_shape, _index);
         }
-        
-        Model _model;
-        Shape _shape;
-        int _index;
+
+        readonly Model _model;
+        readonly Shape _shape;
+        readonly int _index;
     }
 }

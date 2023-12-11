@@ -80,6 +80,7 @@
     <Compile Include="Rectangle.cs" />
     <Compile Include="Shape.cs" />
     <Compile Include="ShapeFactory.cs" />
+    <Compile Include="ShapeIsIn.cs" />
     <Compile Include="State\DrawingState.cs" />
     <Compile Include="State\IState.cs" />
     <Compile Include="State\NormalState.cs" />

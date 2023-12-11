@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace PowerPoint
 {
-    public class Shape
+    public partial class Shape
     {
         public Shape (PointF point1, PointF point2)
         {
@@ -136,6 +136,10 @@ namespace PowerPoint
             }
         }
         
+        /// <summary>
+        /// set
+        /// </summary>
+        /// <returns></returns>
         public ShapeType GetShapeType()
         {
             return _type;
@@ -186,132 +190,10 @@ namespace PowerPoint
             return new PointF((_point1.X + _point2.X) / Constant.TWO, (_point1.Y + _point2.Y) / Constant.TWO);
         }
 
-        // isin shape
-        public bool IsInShapeRightBottom(PointF point)
-        {
-            float maxX = _point1.X > _point2.X ? _point1.X : _point2.X;
-            float maxY = _point1.Y > _point2.Y ? _point1.Y : _point2.Y;
-            if (point.X >= maxX - Constant.FOUR && point.X <= maxX + Constant.FOUR && point.Y >= maxY - Constant.FOUR && point.Y <= maxY + Constant.FOUR)
-            {
-                return true;
-            }
-
-            return false;
-        }        
-        
-        // isin shape
-        public bool IsInShapeLeftTop(PointF point)
-        {
-            float minX = _point1.X < _point2.X ? _point1.X : _point2.X;
-            float minY = _point1.Y < _point2.Y ? _point1.Y : _point2.Y;
-            if (point.X >= minX - Constant.FOUR && point.X <= minX + Constant.FOUR && point.Y >= minY - Constant.FOUR && point.Y <= minY + Constant.FOUR)
-            {
-                return true;
-            }
-
-            return false;
-        }
-                
-        // isin shape
-        public bool IsInShapeRightTop(PointF point)
-        {
-            float maxX = _point1.X > _point2.X ? _point1.X : _point2.X;
-            float minY = _point1.Y < _point2.Y ? _point1.Y : _point2.Y;
-            if (point.X >= maxX - Constant.FOUR && point.X <= maxX + Constant.FOUR && point.Y >= minY - Constant.FOUR && point.Y <= minY + Constant.FOUR)
-            {
-                return true;
-            }
-
-            return false;
-        }
-        
-        // isin shape
-        public bool IsInShapeLeftBottom(PointF point)
-        {
-            float minX = _point1.X < _point2.X ? _point1.X : _point2.X;
-            float maxY = _point1.Y > _point2.Y ? _point1.Y : _point2.Y;
-            if (point.X >= minX - Constant.FOUR && point.X <= minX + Constant.FOUR && point.Y >= maxY - Constant.FOUR && point.Y <= maxY + Constant.FOUR)
-            {
-                return true;
-            }
-
-            return false;
-        }
-        
-        // isin shape
-        public bool IsInShapeLeft(PointF point)
-        {
-            float minX = _point1.X < _point2.X ? _point1.X : _point2.X;
-            float minY = _point1.Y < _point2.Y ? _point1.Y : _point2.Y;
-            float maxY = _point1.Y > _point2.Y ? _point1.Y : _point2.Y;
-            float middleY = (minY + maxY) / Constant.TWO;
-            if (point.X >= minX - Constant.FOUR && point.X <= minX + Constant.FOUR && point.Y >= middleY - Constant.FOUR && point.Y <= middleY + Constant.FOUR)
-            {
-                return true;
-            }
-
-            return false;
-        }
-        
-        // isin shape
-        public bool IsInShapeRight(PointF point)
-        {
-            float maxX = _point1.X > _point2.X ? _point1.X : _point2.X;
-            float minY = _point1.Y < _point2.Y ? _point1.Y : _point2.Y;
-            float maxY = _point1.Y > _point2.Y ? _point1.Y : _point2.Y;
-            float middleY = (minY + maxY) / Constant.TWO;
-            if (point.X >= maxX - Constant.FOUR && point.X <= maxX + Constant.FOUR && point.Y >= middleY - Constant.FOUR && point.Y <= middleY + Constant.FOUR)
-            {
-                return true;
-            }
-
-            return false;
-        }
-        
-        // isin shape
-        public bool IsInShapeTop(PointF point)
-        {
-            float minX = _point1.X < _point2.X ? _point1.X : _point2.X;
-            float maxX = _point1.X > _point2.X ? _point1.X : _point2.X;
-            float minY = _point1.Y < _point2.Y ? _point1.Y : _point2.Y;
-            float middleX = (minX + maxX) / Constant.TWO;
-            if (point.X >= middleX - Constant.FOUR && point.X <= middleX + Constant.FOUR && point.Y >= minY - Constant.FOUR && point.Y <= minY + Constant.FOUR)
-            {
-                return true;
-            }
-
-            return false;
-        }
-        
-        // isin shape
-        public bool IsInShapeBottom(PointF point)
-        {
-            float minX = _point1.X < _point2.X ? _point1.X : _point2.X;
-            float maxX = _point1.X > _point2.X ? _point1.X : _point2.X;
-            float maxY = _point1.Y > _point2.Y ? _point1.Y : _point2.Y;
-            float middleX = (minX + maxX) / Constant.TWO;
-            if (point.X >= middleX - Constant.FOUR && point.X <= middleX + Constant.FOUR && point.Y >= maxY - Constant.FOUR && point.Y <= maxY + Constant.FOUR)
-            {
-                return true;
-            }
-
-            return false;
-        }
-        
-        // isin shape
-        public Model.Location IsInShapeCorner(PointF point)
-        {
-            foreach (var isInShapeCorner in _isInShapeCorner)
-            {
-                if (isInShapeCorner.Value(point))
-                {
-                    return isInShapeCorner.Key;
-                }
-            }
-
-            return Model.Location.None;
-        }
-
+        /// <summary>
+        /// scale
+        /// </summary>
+        /// <param name="scale"></param>
         public void Scale(float scale)
         {
             _point1.X *= scale;
@@ -366,7 +248,7 @@ namespace PowerPoint
         protected ShapeType _type = ShapeType.LINE;
         protected PointF _point1 = new PointF(0, 0);
         protected PointF _point2 = new PointF(0, 0);
-                protected Dictionary<Model.Location, Func<PointF, bool>> _isInShapeCorner = new Dictionary<Model.Location, Func<PointF, bool>>();
+        protected Dictionary<Model.Location, Func<PointF, bool>> _isInShapeCorner = new Dictionary<Model.Location, Func<PointF, bool>>();
     }
     
     public enum ShapeType

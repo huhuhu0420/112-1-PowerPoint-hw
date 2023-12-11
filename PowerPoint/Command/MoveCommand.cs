@@ -22,13 +22,13 @@ namespace PowerPoint.Command
         /// <summary>
         /// unexecute
         /// </summary>
-        public void UnExecute()
+        public void Unexecute()
         {
             _model.MoveShapeByBias(new SizeF(-1 * _bias.Width, -1 * _bias.Height), _index);
         }
-        
-        Model _model;
-        int _index;
+
+        readonly Model _model;
+        readonly int _index;
         private SizeF _bias;
     }
 }

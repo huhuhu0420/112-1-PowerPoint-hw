@@ -70,6 +70,11 @@ namespace PowerPoint
             NotifyModelChanged();
         }
         
+        /// <summary>
+        /// SET
+        /// </summary>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
         public void SetCanvasSize(int width, int height)
         {
             foreach (var shape in _shapes)
@@ -93,6 +98,27 @@ namespace PowerPoint
         public virtual BindingList<Shape> GetShapes()
         {
             return _shapes;
+        }
+
+        public enum ModelState
+        {
+            Normal,
+            Drawing,
+            Selected,
+            Resize
+        } 
+        
+        public enum Location
+        {
+            Left,
+            Right,
+            Top,
+            Bottom,
+            LeftTop,
+            LeftBottom,
+            RightTop,
+            RightBottom,
+            None
         }
         
     }

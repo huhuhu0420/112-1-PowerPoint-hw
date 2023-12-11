@@ -32,5 +32,7 @@ namespace PowerPoint
         public const string CONTEXT = "_context";
         public const double RATIO = (NINE / SIXTEEN);
         public const int THOUSAND = 1000;
+        public const int EIGHT = 8;
+        public const int FOUR_HUNDRED = 400;
     }
 }

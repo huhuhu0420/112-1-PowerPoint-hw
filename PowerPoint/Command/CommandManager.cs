@@ -5,12 +5,19 @@ namespace PowerPoint.Command
 {
     public class CommandManager
     {
+        /// <summary>
+        /// ex
+        /// </summary>
+        /// <param name="command"></param>
         public void Execute(ICommand command)
         {
             _commandHistory.Add(command);
             _redoHistory.Clear();
         }   
         
+        /// <summary>
+        /// undo
+        /// </summary>
         public void Undo()
         {
             if (_commandHistory.Count == 0)
@@ -19,11 +26,14 @@ namespace PowerPoint.Command
             }
             
             var command = _commandHistory[_commandHistory.Count - 1];
-            command.UnExecute();
+            command.Unexecute();
             _redoHistory.Add(command);
             _commandHistory.RemoveAt(_commandHistory.Count - 1);
         }
 
+        /// <summary>
+        /// redo
+        /// </summary>
         public void Redo()
         {
             if (_redoHistory.Count == 0)

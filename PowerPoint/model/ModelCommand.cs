@@ -5,11 +5,13 @@ namespace PowerPoint
 {
     public partial class Model
     {
+        // handle
         public virtual void HandleInsertShape(Shape shape)
         {
             _commandManager.Execute(new AddCommand(this, shape, _shapes.Count - 1));
         }
-        
+
+        // handle
         public virtual void HandleRemoveShape(int index)
         {
             if (index == -1 && _selectIndex != -1)
@@ -22,22 +24,26 @@ namespace PowerPoint
                 RemoveShapeByIndex(index);
             }
         }
-        
+
+        // handle
         public virtual void HandleMoveShape(int index, SizeF bias)
         {
             _commandManager.Execute(new MoveCommand(this, index, bias));
         }
         
+        // handle
         public virtual void HandleDrawShape(Shape shape)
         {
             _commandManager.Execute(new DrawCommand(this, shape, _shapes.Count - 1));
         }
         
+        // undo
         public virtual void Undo()
         {
             _commandManager.Undo();
         }
         
+        // redo
         public virtual void Redo()
         {
             _commandManager.Redo();

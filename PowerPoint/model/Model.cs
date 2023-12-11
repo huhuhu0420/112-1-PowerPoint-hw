@@ -331,27 +331,6 @@ namespace PowerPoint
         {
             _commandManager = commandManager;
         }
-
-        public enum ModelState
-        {
-            Normal,
-            Drawing,
-            Selected,
-            Resize
-        } 
-        
-        public enum Location
-        {
-            Left,
-            Right,
-            Top,
-            Bottom,
-            LeftTop,
-            LeftBottom,
-            RightTop,
-            RightBottom,
-            None
-        }
         
         private readonly BindingList<Shape> _shapes = new BindingList<Shape>();
         private readonly ShapeFactory _shapeFactory;
