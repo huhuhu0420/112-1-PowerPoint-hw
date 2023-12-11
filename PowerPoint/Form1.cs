@@ -101,7 +101,6 @@ namespace PowerPoint
         {
             this.panel1.DrawToBitmap(_brief, new System.Drawing.Rectangle(0, 0, this.panel1.Width, this.panel1.Height));
             slide1.Image = new Bitmap(_brief, slide1.Size);
-            Debug.Print(slide1.Size.ToString());
         }
 
         /// <summary>

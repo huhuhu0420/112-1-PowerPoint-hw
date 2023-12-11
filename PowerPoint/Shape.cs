@@ -61,7 +61,7 @@ namespace PowerPoint
         /// <returns></returns>
         private string FormatCoordinate(PointF point)
         {
-            return Constant.PARENTHESIS1 + point.X + Constant.COMMA + point.Y + Constant.PARENTHESIS2;
+            return Constant.PARENTHESIS1 + (int)point.X + Constant.COMMA + (int)point.Y + Constant.PARENTHESIS2;
         }
 
         /// <summary>
@@ -303,6 +303,14 @@ namespace PowerPoint
             return Model.Location.None;
         }
 
+        public void Scale(float scale)
+        {
+            _point1.X *= scale;
+            _point1.Y *= scale;
+            _point2.X *= scale;
+            _point2.Y *= scale;
+        }
+
         /// <summary>
         /// get
         /// </summary>
@@ -349,7 +357,7 @@ namespace PowerPoint
         protected ShapeType _type = ShapeType.LINE;
         protected PointF _point1 = new PointF(0, 0);
         protected PointF _point2 = new PointF(0, 0);
-        protected Dictionary<Model.Location, Func<PointF, bool>> _isInShapeCorner = new Dictionary<Model.Location, Func<PointF, bool>>();
+                protected Dictionary<Model.Location, Func<PointF, bool>> _isInShapeCorner = new Dictionary<Model.Location, Func<PointF, bool>>();
     }
     
     public enum ShapeType

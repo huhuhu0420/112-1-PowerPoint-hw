@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Diagnostics;
 using PowerPoint.Command;
 
 namespace PowerPoint
@@ -69,8 +70,17 @@ namespace PowerPoint
         
         public void SetCanvasSize(int width, int height)
         {
+            foreach (var shape in _shapes)
+            {
+                shape.Scale((float)width / (float)_canvasWidth);
+            }
+            if (_select != null)
+            {
+                _select.Scale((float)width / (float)_canvasWidth);
+            }
             _canvasWidth = width;
             _canvasHeight = height;
+            NotifyModelChanged();
         }
 
         /// <summary>
