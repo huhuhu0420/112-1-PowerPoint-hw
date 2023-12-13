@@ -80,7 +80,6 @@ namespace PowerPoint
             slide1.Height = (int)(slide1.Width * Constant.RATIO);
             panel1.Width = splitContainer2.Panel1.Width - Constant.EIGHT;
             panel1.Height = (int)(panel1.Width * Constant.RATIO);
-            _presentationModel.SetCanvasSize(panel1.Width, panel1.Height);
             if (splitContainer2.Panel1.Height < panel1.Height)
             {
                 panel1.Height = splitContainer2.Panel1.Height - Constant.EIGHT;
@@ -93,6 +92,7 @@ namespace PowerPoint
                 slide1.Width = (int)(slide1.Height / Constant.RATIO) - Constant.EIGHT;
                 slide1.Height = (int)(slide1.Width * Constant.RATIO);
             }
+            _presentationModel.SetCanvasSize(panel1.Width, panel1.Height);
         }
         
         /// <summary>
