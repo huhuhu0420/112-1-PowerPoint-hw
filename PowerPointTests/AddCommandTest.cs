@@ -36,7 +36,7 @@ namespace PowerPoint.Command.Tests
         public void UnexecuteRemovesLastShape()
         {
             _mockModel.Setup(m => m.GetShapes()).Returns(new BindingList<Shape>() {new Shape(), new Shape()});
-            _addCommand.Unexecute();
+            _addCommand.Undo();
             _mockModel.Verify(m => m.RemoveShapeByIndex(It.IsAny<int>()), Times.Once);
         }
     }

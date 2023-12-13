@@ -10,6 +10,6 @@ namespace PowerPoint.Command
         /// <summary>
         /// unexecute
         /// </summary>
-        void Unexecute();
+        void Undo();
     }
 }

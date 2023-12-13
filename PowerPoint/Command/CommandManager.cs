@@ -61,7 +61,7 @@ namespace PowerPoint.Command
             }
             
             var command = _commandHistory[_commandHistory.Count - 1];
-            command.Unexecute();
+            command.Undo();
             _redoHistory.Add(command);
             _commandHistory.RemoveAt(_commandHistory.Count - 1);
             HandleUndo();

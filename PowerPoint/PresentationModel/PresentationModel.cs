@@ -38,14 +38,14 @@ namespace PowerPoint.PresentationModel
         /// <summary>
         /// handle
         /// </summary>
-        /// <param name="isundo"></param>
-        /// <param name="isredo"></param>
-        public void HandleUndoRedoHistoryChanged(bool isundo, bool isredo)
+        /// <param name="isUndo"></param>
+        /// <param name="isRedo"></param>
+        public void HandleUndoRedoHistoryChanged(bool isUndo, bool isRedo)
         {
             if (_undoRedoHistoryChanged != null)
             {
 #pragma warning disable IDE1005 // Delegate invocation can be simplified.
-                _undoRedoHistoryChanged(isundo, isredo);
+                _undoRedoHistoryChanged(isUndo, isRedo);
 #pragma warning restore IDE1005 // Delegate invocation can be simplified.
             }
         }

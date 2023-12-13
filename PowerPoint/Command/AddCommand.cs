@@ -20,7 +20,7 @@ namespace PowerPoint.Command
         /// <summary>
         /// unexecute
         /// </summary>
-        public void Unexecute()
+        public void Undo()
         {
             _model.RemoveShapeByIndex(_model.GetShapes().Count - 1);
         }

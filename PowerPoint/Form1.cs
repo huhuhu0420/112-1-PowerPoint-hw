@@ -62,6 +62,7 @@ namespace PowerPoint
             splitContainer1.Resize += (sender, e) => HandleContainerResize();
             splitContainer2.Panel1.Resize += (sender, args) => HandleContainerResize();
             splitContainer2.Resize += (sender, args) => HandleContainerResize();
+            SizeChanged += (sender, args) => HandleContainerResize();
             dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.Columns[Constant.TWO].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
@@ -80,6 +81,18 @@ namespace PowerPoint
             panel1.Width = splitContainer2.Panel1.Width - Constant.EIGHT;
             panel1.Height = (int)(panel1.Width * Constant.RATIO);
             _presentationModel.SetCanvasSize(panel1.Width, panel1.Height);
+            if (splitContainer2.Panel1.Height < panel1.Height)
+            {
+                panel1.Height = splitContainer2.Panel1.Height - Constant.EIGHT;
+                panel1.Width = (int)(panel1.Height / Constant.RATIO) - Constant.EIGHT;
+                panel1.Height = (int)(panel1.Width * Constant.RATIO);
+            }
+            if (splitContainer1.Panel1.Height < slide1.Height)
+            {
+                slide1.Height = splitContainer1.Panel1.Height;
+                slide1.Width = (int)(slide1.Height / Constant.RATIO) - Constant.EIGHT;
+                slide1.Height = (int)(slide1.Width * Constant.RATIO);
+            }
         }
         
         /// <summary>

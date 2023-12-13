@@ -34,7 +34,7 @@ namespace PowerPoint.Command.Tests
         [TestMethod]
         public void UnexecuteInsertsShapeAtGivenIndex()
         {
-            _removeCommand.Unexecute();
+            _removeCommand.Undo();
 
             _mockModel.Verify(m => m.InsertShapeByShape(_shape, _index), Times.Once);
         }

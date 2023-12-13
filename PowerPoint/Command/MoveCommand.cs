@@ -22,7 +22,7 @@ namespace PowerPoint.Command
         /// <summary>
         /// unexecute
         /// </summary>
-        public void Unexecute()
+        public void Undo()
         {
             _model.MoveShapeByBias(new SizeF(-1 * _bias.Width, -1 * _bias.Height), _index);
         }

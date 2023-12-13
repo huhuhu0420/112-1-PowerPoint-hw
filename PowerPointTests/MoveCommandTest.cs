@@ -35,7 +35,7 @@ namespace PowerPoint.Command.Tests
         [TestMethod]
         public void UnexecuteMovesShapeByOppositeBias()
         {
-            _moveCommand.Unexecute();
+            _moveCommand.Undo();
 
             _mockModel.Verify(m => m.MoveShapeByBias(new SizeF(-1 * _bias.Width, -1 * _bias.Height), _index), Times.Once);
         }
