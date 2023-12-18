@@ -14,8 +14,8 @@ namespace PowerPoint
         {
             int maxX = _canvasWidth;
             int maxY = _canvasHeight;
-            PointF point1 = new PointF(_random.Next(0, maxX), _random.Next(0, maxY));
-            PointF point2 = new PointF(_random.Next(0, maxX), _random.Next(0, maxY));
+            PointF point1 = new PointF(Global.TopLeftX, Global.TopLeftY);
+            PointF point2 = new PointF(Global.BottomRightX, Global.BottomRightY);
             switch (type)
             {
                 case ShapeType.LINE:

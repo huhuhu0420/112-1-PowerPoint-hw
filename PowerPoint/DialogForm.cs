@@ -81,10 +81,14 @@ namespace PowerPoint
             {
                 _okButton.Enabled = false;
             }
-            else if (int.TryParse(_topLeftX.Text, out var topLeftX) && int.TryParse(_topLeftY.Text, out var topLeftY) && int.TryParse(_bottomRightX.Text, out var bottomRightX) && int.TryParse(_bottomRightY.Text, out var bottomRightY))
+            else if (float.TryParse(_topLeftX.Text, out var topLeftX) && float.TryParse(_topLeftY.Text, out var topLeftY) && float.TryParse(_bottomRightX.Text, out var bottomRightX) && float.TryParse(_bottomRightY.Text, out var bottomRightY))
             {
                 if (IsInRangeX(topLeftX) && IsInRangeX(bottomRightX) && IsInRangeY(topLeftY) && IsInRangeY(bottomRightY))
                 {
+                    Global.TopLeftX = topLeftX;
+                    Global.TopLeftY = topLeftY;
+                    Global.BottomRightX = bottomRightX;
+                    Global.BottomRightY = bottomRightY;
                     _okButton.Enabled = true;
                 }
                 else
@@ -94,7 +98,7 @@ namespace PowerPoint
             }
         }
 
-        public bool IsInRangeX(int number)
+        public bool IsInRangeX(float number)
         {
             if (number < 0 || number > _canvasSize.Width)
             {
@@ -103,7 +107,7 @@ namespace PowerPoint
             return true;
         }
         
-        public bool IsInRangeY(int number)
+        public bool IsInRangeY(float number)
         {
             if (number < 0 || number > _canvasSize.Height)
             {
