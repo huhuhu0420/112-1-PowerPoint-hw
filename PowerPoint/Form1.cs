@@ -67,6 +67,7 @@ namespace PowerPoint
             dataGridView1.Columns[Constant.TWO].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             HandleUndoRedoButton(false, false);
+            _dialog = new DialogForm();
         }
         
         /// <summary>
@@ -93,6 +94,7 @@ namespace PowerPoint
                 slide1.Height = (int)(slide1.Width * Constant.RATIO);
             }
             _presentationModel.SetCanvasSize(panel1.Width, panel1.Height);
+            _dialog.SetCanvasSize(new Size(panel1.Width, panel1.Height));
         }
         
         /// <summary>
@@ -136,6 +138,7 @@ namespace PowerPoint
         /// <param name="e"></param>
         private void InsertButtonClick(object sender, EventArgs e)
         {
+            _dialog.ShowDialog();
             _presentationModel.InsertShape((ShapeType)(comboBox1.SelectedIndex));
         }
         

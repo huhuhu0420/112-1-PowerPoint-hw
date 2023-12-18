@@ -58,6 +58,7 @@
     <Compile Include="Command\MoveCommand.cs" />
     <Compile Include="Constant.cs" />
     <Compile Include="Context.cs" />
+    <Compile Include="DialogForm.cs" />
     <Compile Include="DoubleBufferPanel.cs">
       <SubType>Component</SubType>
     </Compile>

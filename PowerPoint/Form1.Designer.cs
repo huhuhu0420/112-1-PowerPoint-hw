@@ -49,10 +49,10 @@ namespace PowerPoint
             this.mouseButton = new WindowPowerPoint.BindingToolStripButton();
             this.undoButton = new System.Windows.Forms.ToolStripButton();
             this.redoButton = new System.Windows.Forms.ToolStripButton();
+            this.newPageButton = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new PowerPoint.DoubleBufferedPanel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.newPageButton = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -226,6 +226,14 @@ namespace PowerPoint
             this.redoButton.Size = new System.Drawing.Size(23, 22);
             this.redoButton.Text = "⟳";
             // 
+            // newPageButton
+            // 
+            this.newPageButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.newPageButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.newPageButton.Name = "newPageButton";
+            this.newPageButton.Size = new System.Drawing.Size(23, 22);
+            this.newPageButton.Text = "📰";
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
@@ -271,17 +279,9 @@ namespace PowerPoint
             this.splitContainer2.Panel2.Controls.Add(this.comboBox1);
             this.splitContainer2.Panel2.Controls.Add(this.dataGridView1);
             this.splitContainer2.Size = new System.Drawing.Size(784, 461);
-            this.splitContainer2.SplitterDistance = 494;
+            this.splitContainer2.SplitterDistance = 490;
             this.splitContainer2.SplitterWidth = 6;
             this.splitContainer2.TabIndex = 0;
-            // 
-            // newPageButton
-            // 
-            this.newPageButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.newPageButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.newPageButton.Name = "newPageButton";
-            this.newPageButton.Size = new System.Drawing.Size(23, 22);
-            this.newPageButton.Text = "📰";
             // 
             // Form1
             // 
@@ -356,6 +356,7 @@ namespace PowerPoint
         private System.Windows.Forms.DataGridViewTextBoxColumn information;
         #endregion
 
+        private DialogForm _dialog;
         private PresentationModel.PresentationModel _presentationModel;
         private Model _model;
     }
