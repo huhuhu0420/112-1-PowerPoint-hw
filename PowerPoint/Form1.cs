@@ -139,7 +139,10 @@ namespace PowerPoint
         private void InsertButtonClick(object sender, EventArgs e)
         {
             _dialog.ShowDialog();
-            _presentationModel.InsertShape((ShapeType)(comboBox1.SelectedIndex));
+            if (_dialog.IsOk())
+            {
+                _presentationModel.InsertShape((ShapeType)(comboBox1.SelectedIndex));
+            }
         }
         
         /// <summary>

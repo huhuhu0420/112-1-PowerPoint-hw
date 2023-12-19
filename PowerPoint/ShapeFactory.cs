@@ -12,8 +12,6 @@ namespace PowerPoint
         /// <returns></returns>
         public virtual Shape CreateShape(ShapeType type)
         {
-            int maxX = _canvasWidth;
-            int maxY = _canvasHeight;
             PointF point1 = new PointF(Global.TopLeftX, Global.TopLeftY);
             PointF point2 = new PointF(Global.BottomRightX, Global.BottomRightY);
             switch (type)
@@ -62,7 +60,6 @@ namespace PowerPoint
             _canvasHeight = height;
         }
 
-        readonly Random _random = new Random();
         private int _canvasWidth = Constant.FOUR_HUNDRED;
         private int _canvasHeight = Constant.FOUR_HUNDRED;
     }

@@ -9,72 +9,212 @@ namespace PowerPoint
         {
             InitializeComponent();
             _canvasSize = new Size(250, 250);
+            _isOk = false;
         }
 
         // init
         public void InitializeComponent()
         {
-            // okButton
-            _okButton = new Button();
-            _okButton.Text = "OK";
-            _okButton.DialogResult = DialogResult.OK;
-            _okButton.Location = new System.Drawing.Point(47, 200);
-            _okButton.Size = new System.Drawing.Size(75, 23);
-            _okButton.TabIndex = 0;
-            _okButton.UseVisualStyleBackColor = true;
-            _okButton.Enabled = false;
-            Controls.Add(_okButton);
-            
-            // cancelButton
-            _cancelButton = new Button();
-            _cancelButton.Text = "Cancel";
-            _cancelButton.DialogResult = DialogResult.Cancel;
-            _cancelButton.Location = new System.Drawing.Point(137, 200);
-            _cancelButton.Size = new System.Drawing.Size(75, 23);
-            _cancelButton.TabIndex = 1;
-            _cancelButton.UseVisualStyleBackColor = true;
-            Controls.Add(_cancelButton);
-            
-            // topLeftX
-            _topLeftX = new TextBox();
-            _topLeftX.Location = new System.Drawing.Point(10, 60);
-            _topLeftX.Size = new System.Drawing.Size(100, 23);
-            _topLeftX.TabIndex = 2;
-            _topLeftX.TextChanged += (sender, e) => { HandleTextBoxTextChanged(); };
-            Controls.Add(_topLeftX);
-            
-            // topLeftY
-            _topLeftY = new TextBox();
-            _topLeftY.Location = new System.Drawing.Point(150, 60);
-            _topLeftY.Size = new System.Drawing.Size(100, 23);
-            _topLeftY.TabIndex = 3;
-            _topLeftY.TextChanged += (sender, e) => { HandleTextBoxTextChanged(); };
-            Controls.Add(_topLeftY);
-            
-            // bottomRightX
-            _bottomRightX = new TextBox();
-            _bottomRightX.Location = new System.Drawing.Point(10, 140);
-            _bottomRightX.Size = new System.Drawing.Size(100, 23);
-            _bottomRightX.TabIndex = 4;
-            _bottomRightX.TextChanged += (sender, e) => { HandleTextBoxTextChanged(); };
-            Controls.Add(_bottomRightX);
-            
-            // bottomRightY
-            _bottomRightY = new TextBox();
-            _bottomRightY.Location = new System.Drawing.Point(150, 140);
-            _bottomRightY.Size = new System.Drawing.Size(100, 23);
-            _bottomRightY.TabIndex = 5;
-            _bottomRightY.TextChanged += (sender, e) => { HandleTextBoxTextChanged(); };
-            Controls.Add(_bottomRightY);
-            
+            InitializeOkButton();
+            InitializeCancelButton();
+            InitializeTopLeftX();
+            InitializeTopLeftY();
+            InitializeBottomRightX();
+            InitializeBottomRightY();
+            InitializeTopLeftXText();
+            InitializeTopLeftYText();
+            InitializeBottomRightXText();
+            InitializeBottomRightYText();
         }
-            
+        
+        // init
+        public void InitializeOkButton()
+        {
+            // okButton
+            _okButton = new Button
+            {
+                Text = "OK",
+                DialogResult = DialogResult.OK,
+                Location = new System.Drawing.Point(47, 200),
+                Size = new System.Drawing.Size(75, 23),
+                TabIndex = 0,
+                UseVisualStyleBackColor = true,
+                Enabled = false
+            };
+            _okButton.Click += (sender, e) =>
+            {
+                HandleOkButtonClick();
+            };
+            Controls.Add(_okButton);
+        }
+
+        // init
+        public void InitializeCancelButton()
+        {
+            // cancelButton
+            _cancelButton = new Button
+            {
+                Text = "Cancel",
+                DialogResult = DialogResult.Cancel,
+                Location = new System.Drawing.Point(137, 200),
+                Size = new System.Drawing.Size(75, 23),
+                TabIndex = 1,
+                UseVisualStyleBackColor = true
+            };
+            _cancelButton.Click += (sender, e) =>
+            {
+                HandleCancelButtonClick();
+            };
+            Controls.Add(_cancelButton);
+        }
+
+        // init
+        public void InitializeTopLeftX()
+        {
+            // topLeftX
+            _topLeftX = new TextBox
+            {
+                Location = new System.Drawing.Point(10, 60),
+                Size = new System.Drawing.Size(100, 23),
+                TabIndex = 2
+            };
+            _topLeftX.TextChanged += (sender, e) =>
+            {
+                HandleTextBoxTextChanged();
+            };
+            Controls.Add(_topLeftX);
+        }
+        
+        // init
+        public void InitializeTopLeftY()
+        {
+            // topLeftY
+            _topLeftY = new TextBox
+            {
+                Location = new System.Drawing.Point(150, 60),
+                Size = new System.Drawing.Size(100, 23),
+                TabIndex = 3
+            };
+            _topLeftY.TextChanged += (sender, e) =>
+            {
+                HandleTextBoxTextChanged();
+            };
+            Controls.Add(_topLeftY);
+        }
+        
+        // init
+        public void InitializeBottomRightX()
+        {
+            // bottomRightX
+            _bottomRightX = new TextBox
+            {
+                Location = new System.Drawing.Point(10, 140),
+                Size = new System.Drawing.Size(100, 23),
+                TabIndex = 4
+            };
+            _bottomRightX.TextChanged += (sender, e) =>
+            {
+                HandleTextBoxTextChanged();
+            };
+            Controls.Add(_bottomRightX);
+        }
+        
+        // init
+        public void InitializeBottomRightY()
+        {
+            // bottomRightY
+            _bottomRightY = new TextBox
+            {
+                Location = new System.Drawing.Point(150, 140),
+                Size = new System.Drawing.Size(100, 23),
+                TabIndex = 5
+            };
+            _bottomRightY.TextChanged += (sender, e) =>
+            {
+                HandleTextBoxTextChanged();
+            };
+            Controls.Add(_bottomRightY);
+        }
+        
+        // init
+        public void InitializeTopLeftXText()
+        {
+            // topLeftXText
+            _topLeftXText = new TextBox
+            {
+                Text = "Top Left X",
+                Location = new System.Drawing.Point(10, 40),
+                Size = new System.Drawing.Size(100, 23),
+                TabIndex = 6,
+                TextAlign = HorizontalAlignment.Center
+            };
+            _topLeftXText.Font = new Font(_topLeftXText.Font, FontStyle.Bold);
+            _topLeftXText.BorderStyle = BorderStyle.None;
+            _topLeftXText.Enabled = false;
+            Controls.Add(_topLeftXText);
+        }
+        
+        // init
+        public void InitializeTopLeftYText()
+        {
+            // topLeftYText
+            _topLeftYText = new TextBox
+            {
+                Text = "Top Left Y",
+                Location = new System.Drawing.Point(150, 40),
+                Size = new System.Drawing.Size(100, 23),
+                TabIndex = 7,
+                TextAlign = HorizontalAlignment.Center
+            };
+            _topLeftYText.Font = new Font(_topLeftYText.Font, FontStyle.Bold);
+            _topLeftYText.BorderStyle = BorderStyle.None;
+            _topLeftYText.Enabled = false;
+            Controls.Add(_topLeftYText);
+        }
+        
+        // init
+        public void InitializeBottomRightXText()
+        {
+            // bottomRightXText
+            _bottomRightXText = new TextBox
+            {
+                Text = "Bottom Right X",
+                Location = new System.Drawing.Point(10, 120),
+                Size = new System.Drawing.Size(100, 23),
+                TabIndex = 8,
+                TextAlign = HorizontalAlignment.Center
+            };
+            _bottomRightXText.Font = new Font(_bottomRightXText.Font, FontStyle.Bold);
+            _bottomRightXText.BorderStyle = BorderStyle.None;
+            _bottomRightXText.Enabled = false;
+            Controls.Add(_bottomRightXText);
+        }
+        
+        // init
+        public void InitializeBottomRightYText()
+        {
+            // bottomRightYText
+            _bottomRightYText = new TextBox
+            {
+                Text = "Bottom Right Y",
+                Location = new System.Drawing.Point(150, 120),
+                Size = new System.Drawing.Size(100, 23),
+                TabIndex = 9,
+                TextAlign = HorizontalAlignment.Center
+            };
+            _bottomRightYText.Font = new Font(_bottomRightYText.Font, FontStyle.Bold);
+            _bottomRightYText.BorderStyle = BorderStyle.None;
+            _bottomRightYText.Enabled = false;
+            Controls.Add(_bottomRightYText);
+        }
+        
         // set
         public void SetCanvasSize(Size size)
         {
             _canvasSize = size;
         }
         
+        // handle
         public void HandleTextBoxTextChanged()
         {
             if (_topLeftX.Text == "" || _topLeftY.Text == "" || _bottomRightX.Text == "" || _bottomRightY.Text == "")
@@ -97,7 +237,20 @@ namespace PowerPoint
                 }
             }
         }
+        
+        // handle
+        public void HandleOkButtonClick()
+        {
+            _isOk = true;
+        }
+        
+        // handle
+        public void HandleCancelButtonClick()
+        {
+            _isOk = false;
+        }
 
+        // isin range 
         public bool IsInRangeX(float number)
         {
             if (number < 0 || number > _canvasSize.Width)
@@ -107,6 +260,7 @@ namespace PowerPoint
             return true;
         }
         
+        // isin range 
         public bool IsInRangeY(float number)
         {
             if (number < 0 || number > _canvasSize.Height)
@@ -116,12 +270,23 @@ namespace PowerPoint
             return true;
         }
         
+        // isok
+        public bool IsOk()
+        {
+            return _isOk;
+        }
+        
         private Button _okButton;
         private Button _cancelButton;
+        private TextBox _topLeftXText;
+        private TextBox _topLeftYText;
+        private TextBox _bottomRightXText;
+        private TextBox _bottomRightYText;
         private TextBox _topLeftX;
         private TextBox _topLeftY;
         private TextBox _bottomRightX;
         private TextBox _bottomRightY;
+        private bool _isOk;
         private Size _canvasSize;
     }
 }
