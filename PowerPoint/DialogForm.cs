@@ -223,7 +223,7 @@ namespace PowerPoint
             }
             else if (float.TryParse(_topLeftX.Text, out var topLeftX) && float.TryParse(_topLeftY.Text, out var topLeftY) && float.TryParse(_bottomRightX.Text, out var bottomRightX) && float.TryParse(_bottomRightY.Text, out var bottomRightY))
             {
-                if (IsInRangeX(topLeftX) && IsInRangeX(bottomRightX) && IsInRangeY(topLeftY) && IsInRangeY(bottomRightY))
+                if (IsInRangeX(topLeftX) && IsInRangeX(bottomRightX) && IsInRangeY(topLeftY) && IsInRangeY(bottomRightY) && topLeftX < bottomRightX && topLeftY < bottomRightY)
                 {
                     Global.TopLeftX = topLeftX;
                     Global.TopLeftY = topLeftY;
