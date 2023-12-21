@@ -22,6 +22,7 @@ namespace PowerPoint
             InitializeComponent();
             HandleSomething();
             HandleMore();
+            HandleMoreMore();
             HandleContainerResize();
         }
 
@@ -69,6 +70,21 @@ namespace PowerPoint
             HandleUndoRedoButton(false, false);
             _dialog = new DialogForm();
         }
+
+        /// <summary>
+        /// handle
+        /// </summary>
+        public void HandleMoreMore()
+        {
+            Button button = new Button();
+            button.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            button.Size = new Size(120, 67);
+            Button button2 = new Button();
+            button2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            button2.Size = new Size(120, 67);
+            flowLayoutPanel1.Controls.Add(button);
+            flowLayoutPanel1.Controls.Add(button2);
+        }
         
         /// <summary>
         /// handle resize
@@ -95,6 +111,18 @@ namespace PowerPoint
             }
             _presentationModel.SetCanvasSize(panel1.Width, panel1.Height);
             _dialog.SetCanvasSize(new Size(panel1.Width, panel1.Height));
+            HandleSlideResize();
+        }
+
+        public void HandleSlideResize()
+        {
+            flowLayoutPanel1.Width = splitContainer1.Panel1.Width - Constant.EIGHT;
+            flowLayoutPanel1.Height = splitContainer1.Panel1.Height;
+            for (var i=0; i<flowLayoutPanel1.Controls.Count; i++)
+            {
+                flowLayoutPanel1.Controls[i].Width = splitContainer1.Panel1.Width - Constant.EIGHT;
+                flowLayoutPanel1.Controls[i].Height = (int)(splitContainer1.Panel1.Width * Constant.RATIO) - Constant.EIGHT;
+            }
         }
         
         /// <summary>

@@ -52,6 +52,7 @@ namespace PowerPoint
             this.newPageButton = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new PowerPoint.DoubleBufferedPanel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -251,6 +252,7 @@ namespace PowerPoint
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.flowLayoutPanel1);
             this.splitContainer1.Panel1.Controls.Add(this.slide1);
             // 
             // splitContainer1.Panel2
@@ -260,6 +262,13 @@ namespace PowerPoint
             this.splitContainer1.SplitterDistance = 142;
             this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 8;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 115);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(133, 330);
+            this.flowLayoutPanel1.TabIndex = 2;
             // 
             // splitContainer2
             // 
@@ -279,7 +288,7 @@ namespace PowerPoint
             this.splitContainer2.Panel2.Controls.Add(this.comboBox1);
             this.splitContainer2.Panel2.Controls.Add(this.dataGridView1);
             this.splitContainer2.Size = new System.Drawing.Size(784, 461);
-            this.splitContainer2.SplitterDistance = 490;
+            this.splitContainer2.SplitterDistance = 484;
             this.splitContainer2.SplitterWidth = 6;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -313,6 +322,8 @@ namespace PowerPoint
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
 
         private System.Windows.Forms.ToolStripButton newPageButton;
 
