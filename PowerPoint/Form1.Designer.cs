@@ -234,7 +234,6 @@ namespace PowerPoint
             this.newPageButton.Name = "newPageButton";
             this.newPageButton.Size = new System.Drawing.Size(23, 22);
             this.newPageButton.Text = "📰";
-            this.newPageButton.Click += new System.EventHandler(this.ClickNewPageButton);
             // 
             // panel1
             // 

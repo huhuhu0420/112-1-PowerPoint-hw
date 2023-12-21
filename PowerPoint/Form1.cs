@@ -80,6 +80,7 @@ namespace PowerPoint
             button.BackColor = System.Drawing.SystemColors.ControlLightLight;
             button.Click += HandleClickPage;
             button.Size = new Size(120, 67);
+            newPageButton.Click += ClickNewPageButton;
             flowLayoutPanel1.Controls.Add(button);
         }
         
@@ -324,6 +325,7 @@ namespace PowerPoint
             var index = flowLayoutPanel1.Controls.IndexOf(button);
             Debug.Print(index.ToString());
             _presentationModel.SetPageIndex(index);
+            dataGridView1.DataSource = _presentationModel.GetShapes();
         }
     }
 }
