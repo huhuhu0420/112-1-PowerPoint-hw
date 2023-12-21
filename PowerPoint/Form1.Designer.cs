@@ -234,6 +234,7 @@ namespace PowerPoint
             this.newPageButton.Name = "newPageButton";
             this.newPageButton.Size = new System.Drawing.Size(23, 22);
             this.newPageButton.Text = "📰";
+            this.newPageButton.Click += new System.EventHandler(this.ClickNewPageButton);
             // 
             // panel1
             // 
@@ -265,7 +266,7 @@ namespace PowerPoint
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 115);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(6, 115);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(133, 330);
             this.flowLayoutPanel1.TabIndex = 2;
@@ -288,7 +289,7 @@ namespace PowerPoint
             this.splitContainer2.Panel2.Controls.Add(this.comboBox1);
             this.splitContainer2.Panel2.Controls.Add(this.dataGridView1);
             this.splitContainer2.Size = new System.Drawing.Size(784, 461);
-            this.splitContainer2.SplitterDistance = 484;
+            this.splitContainer2.SplitterDistance = 482;
             this.splitContainer2.SplitterWidth = 6;
             this.splitContainer2.TabIndex = 0;
             // 

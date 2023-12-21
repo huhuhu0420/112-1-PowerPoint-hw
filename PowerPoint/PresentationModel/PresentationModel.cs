@@ -254,6 +254,21 @@ namespace PowerPoint.PresentationModel
         {
             _model.SetCanvasSize(width, height);
         }
+
+        public void SetPageIndex(int index)
+        {
+            _model.SetPageIndex(index);
+        }
+        
+        public void AddPage()
+        {
+            _model.AddPage();
+        }
+        
+        public int GetPageIndex()
+        {
+            return _model.GetPageIndex();
+        }
         
         public bool IsLineButtonChecked
         {

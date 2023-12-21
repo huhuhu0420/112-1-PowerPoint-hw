@@ -123,7 +123,34 @@ namespace PowerPoint
         public virtual void SetCommandManager(CommandManager commandManager)
         {
             _commandManager = commandManager;
-        }        
+        }
+
+        /// <summary>
+        /// get
+        /// </summary>
+        /// <returns></returns>
+        public virtual int GetPageIndex()
+        {
+            return _pageIndex;
+        }
+        
+        /// <summary>
+        /// set
+        /// </summary>
+        /// <param name="index"></param>
+        public virtual void SetPageIndex(int index)
+        {
+            _pageIndex = index;
+            _selectIndex = -1;
+            _select = null;
+            _shapes = _pages.GetPage(index);
+            NotifyModelChanged();
+        }
+
+        public virtual void AddPage()
+        {
+            _pages.AddPage();
+        }
 
         public enum ModelState
         {

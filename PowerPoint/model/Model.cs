@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using PowerPoint.Command;
 using PowerPoint.State;
 
@@ -32,6 +33,9 @@ namespace PowerPoint
             _shapes = new BindingList<Shape>();
             _commandManager = new CommandManager();
             _commandManager._undoRedoHistoryChanged += SetUndoRedoHistory;
+            _pages = new Pages();
+            _pages.AddPage();
+            _shapes = _pages.GetPage(0);
             InitializeResizeShape();
         }
 
@@ -308,7 +312,9 @@ namespace PowerPoint
             return _selectIndex;
         }
         
-        private readonly BindingList<Shape> _shapes = new BindingList<Shape>();
+        private BindingList<Shape> _shapes;
+        private Pages _pages;
+        private int _pageIndex = 0;
         private readonly ShapeFactory _shapeFactory;
         Shape _hint;
         private Shape _select;

@@ -78,12 +78,9 @@ namespace PowerPoint
         {
             Button button = new Button();
             button.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            button.Click += HandleClickPage;
             button.Size = new Size(120, 67);
-            Button button2 = new Button();
-            button2.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            button2.Size = new Size(120, 67);
             flowLayoutPanel1.Controls.Add(button);
-            flowLayoutPanel1.Controls.Add(button2);
         }
         
         /// <summary>
@@ -157,6 +154,7 @@ namespace PowerPoint
             _brief = new Bitmap(this.panel1.Width, this.panel1.Height);
             this.panel1.DrawToBitmap(_brief, new System.Drawing.Rectangle(0, 0, this.panel1.Width, this.panel1.Height));
             slide1.Image = new Bitmap(_brief, slide1.Size);
+            flowLayoutPanel1.Controls[_presentationModel.GetPageIndex()].BackgroundImage = new Bitmap(_brief, flowLayoutPanel1.Controls[_presentationModel.GetPageIndex()].Size);
         }
 
         /// <summary>
@@ -302,5 +300,30 @@ namespace PowerPoint
         }
 
         private Bitmap _brief;
+
+        /// <summary>
+        /// click new page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ClickNewPageButton(object sender, EventArgs e)
+        {
+            Button button = new Button();
+            button.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            var width = splitContainer1.Panel1.Width - Constant.EIGHT;
+            var height = (int)(splitContainer1.Panel1.Width * Constant.RATIO) - Constant.EIGHT;
+            button.Size = new Size(width, height);
+            button.Click += HandleClickPage;
+            flowLayoutPanel1.Controls.Add(button);
+            _presentationModel.AddPage();
+        }
+        
+        public void HandleClickPage(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            var index = flowLayoutPanel1.Controls.IndexOf(button);
+            Debug.Print(index.ToString());
+            _presentationModel.SetPageIndex(index);
+        }
     }
 }
