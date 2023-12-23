@@ -38,5 +38,9 @@ namespace PowerPoint
         public const int TWO_HUNDRED = 200;
         public const int FIVE_HUNDRED = 500;
         public const string CANVAS_WIDTH = "_canvasWidth";
+        public const string TOP_LEFT_X = "topLeftX";
+        public const string TOP_LEFT_Y = "topLeftY";
+        public const string BOTTOM_RIGHT_X = "bottomRightX";
+        public const string BOTTOM_RIGHT_Y = "bottomRightY";
     }
 }

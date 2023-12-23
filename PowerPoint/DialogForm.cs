@@ -8,6 +8,7 @@ namespace PowerPoint
         public DialogForm()
         {
             InitializeComponent();
+            Text = "DialogForm";
             _canvasSize = new Size(250, 250);
             _isOk = false;
         }
@@ -82,6 +83,7 @@ namespace PowerPoint
             {
                 HandleTextBoxTextChanged();
             };
+            _topLeftX.AccessibleName = Constant.TOP_LEFT_X;
             Controls.Add(_topLeftX);
         }
         
@@ -99,6 +101,7 @@ namespace PowerPoint
             {
                 HandleTextBoxTextChanged();
             };
+            _topLeftY.AccessibleName = Constant.TOP_LEFT_Y;
             Controls.Add(_topLeftY);
         }
         
@@ -116,6 +119,7 @@ namespace PowerPoint
             {
                 HandleTextBoxTextChanged();
             };
+            _bottomRightX.AccessibleName = Constant.BOTTOM_RIGHT_X;
             Controls.Add(_bottomRightX);
         }
         
@@ -133,6 +137,7 @@ namespace PowerPoint
             {
                 HandleTextBoxTextChanged();
             };
+            _bottomRightY.AccessibleName = Constant.BOTTOM_RIGHT_Y;
             Controls.Add(_bottomRightY);
         }
         

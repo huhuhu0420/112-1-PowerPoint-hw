@@ -198,5 +198,11 @@ namespace PowerPointTests
         {
             _driver.PerformActions(action);
         }
+        
+        // test
+        public WindowsDriver<WindowsElement> GetDriver()
+        {
+            return _driver;
+        }
     }
 }

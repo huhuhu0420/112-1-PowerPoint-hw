@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 using OpenQA.Selenium.Appium.Interactions;
 using OpenQA.Selenium.Appium.Windows;
@@ -16,15 +17,24 @@ namespace PowerPointTests
     public class PowerPointTests
     {
         private const string CIRCLE = "○";
+        private const string RECTANGLE = "⬜";
+        private const string LINE = "📏";
         private const string PANEL1 = "panel1";
+        private const string UNDO = "⟲";
+        private const string REDO = "⟳";
         const string MENU_FORM = "MenuForm";
         const string DATA_GRID = "dataGridView1";
         const string SHAPE_CHINESE = "形狀";
         const string INFO_CHINESE = "資訊";
+        const string DELETE_CHINESE = "刪除";
         const string CIRCLE_CHINESE = "圓形";
+        const string RECTANGLE_CHINESE = "矩形";
+        const string LINE_CHINESE = "線";
+        const string NEW_CHINESE = "新增";
         
         private Robot _robot;
         private WindowsElement _canvas;
+        private Random _random;
 
         /// <summary>
         /// Launches the Calculator
@@ -37,6 +47,7 @@ namespace PowerPointTests
             var targetAppPath = Path.Combine(solutionPath, projectName, "bin", "Debug", "PowerPoint.exe");
             // Assert.AreEqual("hi", targetAppPath);
             _robot = new Robot(targetAppPath, MENU_FORM);
+            _random = new Random();
             _canvas = _robot.FindElementById(PANEL1);
         }
         
@@ -96,6 +107,126 @@ namespace PowerPointTests
             Point point2 = new Point(Constant.TWO_HUNDRED, Constant.TWO_HUNDRED);
             Assert.AreEqual(AccessibleStates.Checked, GetButtonState(CIRCLE) & AccessibleStates.Checked);
             DrawShape(CIRCLE, point1, point2);
+            Assert.AreEqual(CIRCLE_CHINESE, _robot.FindElementByName(SHAPE_CHINESE + " Row 0").Text);
+            Assert.AreEqual(GetInfo(point1, point2), _robot.FindElementByName(INFO_CHINESE + " Row 0").Text);
+            _robot.ClickByElementName(DELETE_CHINESE + " Row 0");
+        }
+        
+        // test
+        [TestMethod]
+        public void TestRectangle()
+        {
+            _robot.ClickByElementName(RECTANGLE);
+            Point point1 = new Point(Constant.ONE_HUNDRED, Constant.ONE_HUNDRED);
+            Point point2 = new Point(Constant.TWO_HUNDRED, Constant.TWO_HUNDRED);
+            Assert.AreEqual(AccessibleStates.Checked, GetButtonState(RECTANGLE) & AccessibleStates.Checked);
+            DrawShape(RECTANGLE, point1, point2);
+            Assert.AreEqual(RECTANGLE_CHINESE, _robot.FindElementByName(SHAPE_CHINESE + " Row 0").Text);
+            Assert.AreEqual(GetInfo(point1, point2), _robot.FindElementByName(INFO_CHINESE + " Row 0").Text);
+            _robot.ClickByElementName(DELETE_CHINESE + " Row 0");
+        }
+        
+        // test
+        [TestMethod]
+        public void TestLine()
+        {
+            _robot.ClickByElementName(LINE);
+            Point point1 = new Point(Constant.ONE_HUNDRED, Constant.ONE_HUNDRED);
+            Point point2 = new Point(Constant.TWO_HUNDRED, Constant.TWO_HUNDRED);
+            Assert.AreEqual(AccessibleStates.Checked, GetButtonState(LINE) & AccessibleStates.Checked);
+            DrawShape(LINE, point1, point2);
+            Assert.AreEqual(LINE_CHINESE, _robot.FindElementByName(SHAPE_CHINESE + " Row 0").Text);
+            Assert.AreEqual(GetInfo(point1, point2), _robot.FindElementByName(INFO_CHINESE + " Row 0").Text);
+            _robot.ClickByElementName(DELETE_CHINESE + " Row 0");
+        }
+        
+        // test
+        [TestMethod]
+        public void TestDataGridViewCircle()
+        {
+            Point point1 = new Point(_random.Next(0, _canvas.Size.Width), _random.Next(0, _canvas.Size.Height));
+            Point point2 = new Point(_random.Next(point1.X, _canvas.Size.Width), _random.Next(point1.Y, _canvas.Size.Height));
+            _robot.FindElementByName("Open").Click();
+            _robot.FindElementByName(CIRCLE_CHINESE).Click();
+            _robot.ClickByElementName(NEW_CHINESE);
+            _robot.FindElementByName(Constant.TOP_LEFT_X).SendKeys(point1.X.ToString());
+            _robot.FindElementByName(Constant.TOP_LEFT_Y).SendKeys(point1.Y.ToString());
+            _robot.FindElementByName(Constant.BOTTOM_RIGHT_X).SendKeys(point2.X.ToString());
+            _robot.FindElementByName(Constant.BOTTOM_RIGHT_Y).SendKeys(point2.Y.ToString());
+            _robot.FindElementByName("OK").Click();
+            Assert.AreEqual(CIRCLE_CHINESE, _robot.FindElementByName(SHAPE_CHINESE + " Row 0").Text);
+            Assert.AreEqual(GetInfo(point1, point2), _robot.FindElementByName(INFO_CHINESE + " Row 0").Text);
+        }
+        
+        // test
+        [TestMethod]
+        public void TestDataGridViewRectangle()
+        {
+            Point point1 = new Point(_random.Next(0, _canvas.Size.Width), _random.Next(0, _canvas.Size.Height));
+            Point point2 = new Point(_random.Next(point1.X, _canvas.Size.Width), _random.Next(point1.Y, _canvas.Size.Height));
+            _robot.FindElementByName("Open").Click();
+            _robot.FindElementByName(RECTANGLE_CHINESE).Click();
+            _robot.ClickByElementName(NEW_CHINESE);
+            _robot.FindElementByName(Constant.TOP_LEFT_X).SendKeys(point1.X.ToString());
+            _robot.FindElementByName(Constant.TOP_LEFT_Y).SendKeys(point1.Y.ToString());
+            _robot.FindElementByName(Constant.BOTTOM_RIGHT_X).SendKeys(point2.X.ToString());
+            _robot.FindElementByName(Constant.BOTTOM_RIGHT_Y).SendKeys(point2.Y.ToString());
+            _robot.FindElementByName("OK").Click();
+            Assert.AreEqual(RECTANGLE_CHINESE, _robot.FindElementByName(SHAPE_CHINESE + " Row 0").Text);
+            Assert.AreEqual(GetInfo(point1, point2), _robot.FindElementByName(INFO_CHINESE + " Row 0").Text);
+        }
+        
+        // test
+        [TestMethod]
+        public void TestDataGridViewLine()
+        {
+            Point point1 = new Point(_random.Next(0, _canvas.Size.Width), _random.Next(0, _canvas.Size.Height));
+            Point point2 = new Point(_random.Next(point1.X, _canvas.Size.Width), _random.Next(point1.Y, _canvas.Size.Height));
+            _robot.FindElementByName("Open").Click();
+            _robot.FindElementByName(LINE_CHINESE).Click();
+            _robot.ClickByElementName(NEW_CHINESE);
+            _robot.FindElementByName(Constant.TOP_LEFT_X).SendKeys(point1.X.ToString());
+            _robot.FindElementByName(Constant.TOP_LEFT_Y).SendKeys(point1.Y.ToString());
+            _robot.FindElementByName(Constant.BOTTOM_RIGHT_X).SendKeys(point2.X.ToString());
+            _robot.FindElementByName(Constant.BOTTOM_RIGHT_Y).SendKeys(point2.Y.ToString());
+            _robot.FindElementByName("OK").Click();
+            Assert.AreEqual(LINE_CHINESE, _robot.FindElementByName(SHAPE_CHINESE + " Row 0").Text);
+            Assert.AreEqual(GetInfo(point1, point2), _robot.FindElementByName(INFO_CHINESE + " Row 0").Text);
+        }
+        
+        // test
+        [TestMethod]
+        public void TestMoveShape()
+        {
+            Point point1 = new Point(0, 0);
+            Point point2 = new Point(Constant.ONE_HUNDRED, Constant.ONE_HUNDRED);
+            Point middlePoint = new Point((point1.X + point2.X) / Constant.TWO, (point1.Y + point2.Y) / Constant.TWO);
+            DrawShape(CIRCLE, point1, point2);
+            ActionBuilder actionBuilder = new ActionBuilder();
+            PointerInputDevice pointer = new PointerInputDevice(PointerKind.Pen);
+            actionBuilder
+                .AddAction(CreateMoveTo(pointer, point1.X, point1.Y))
+                .AddAction(pointer.CreatePointerDown(MouseButton.Left))
+                .AddAction(CreateMoveTo(pointer, point2.X, point2.Y))
+                .AddAction(pointer.CreatePointerUp(MouseButton.Left))
+                .AddAction(CreateMoveTo(pointer, middlePoint.X, middlePoint.Y))
+                .AddAction(pointer.CreatePointerDown(MouseButton.Left))
+                .AddAction(CreateMoveTo(pointer, middlePoint.X + Constant.ONE_HUNDRED, middlePoint.Y))
+                .AddAction(pointer.CreatePointerUp(MouseButton.Left));
+            _robot.PerformAction(actionBuilder.ToActionSequenceList());
+            Assert.AreEqual(GetInfo(new Point(Constant.ONE_HUNDRED, 0), new Point(Constant.TWO_HUNDRED, Constant.ONE_HUNDRED)), _robot.FindElementByName(INFO_CHINESE + " Row 0").Text);
+        }
+        
+        // test
+        [TestMethod]
+        public void TestDrawUndoRedo()
+        {
+            Point point1 = new Point(0, 0);
+            Point point2 = new Point(Constant.ONE_HUNDRED, Constant.ONE_HUNDRED);
+            DrawShape(CIRCLE, point1 , point2);
+            _robot.FindElementByName(UNDO).Click();
+            Assert.AreEqual("0", _robot.FindElementById(DATA_GRID).GetAttribute("Grid.RowCount"));
+            _robot.FindElementByName(REDO).Click();
             Assert.AreEqual(CIRCLE_CHINESE, _robot.FindElementByName(SHAPE_CHINESE + " Row 0").Text);
             Assert.AreEqual(GetInfo(point1, point2), _robot.FindElementByName(INFO_CHINESE + " Row 0").Text);
         }
