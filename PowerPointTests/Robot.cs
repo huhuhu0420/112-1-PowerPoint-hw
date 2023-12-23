@@ -1,14 +1,15 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
 using System;
 using System.Threading;
-using System.Windows.Automation;
 using System.Windows;
 using System.Collections.Generic;
+using System.Windows.Automation;
 using OpenQA.Selenium;
 using System.Windows.Input;
 using System.Windows.Forms;
+using OpenQA.Selenium.Interactions;
 
 namespace PowerPointTests
 {
@@ -166,6 +167,36 @@ namespace PowerPointTests
                     Assert.AreEqual(rowCount, gridPattern.Current.RowCount);
                 }
             }
+        }
+        
+        // test
+        public void ClickByElementName(string name)
+        {
+            _driver.FindElementByName(name).Click();
+        }
+        
+        // test
+        public void ClickByElementId(string id)
+        {
+            _driver.FindElementByAccessibilityId(id).Click();
+        }
+        
+        // test
+        public WindowsElement FindElementByName(string name)
+        {
+            return _driver.FindElementByName(name);
+        }
+        
+        // test
+        public WindowsElement FindElementById(string id)
+        {
+            return _driver.FindElementByAccessibilityId(id);
+        }
+        
+        // test
+        public void PerformAction(IList<ActionSequence> action)
+        {
+            _driver.PerformActions(action);
         }
     }
 }
