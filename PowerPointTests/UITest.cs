@@ -230,5 +230,82 @@ namespace PowerPointTests
             Assert.AreEqual(CIRCLE_CHINESE, _robot.FindElementByName(SHAPE_CHINESE + " Row 0").Text);
             Assert.AreEqual(GetInfo(point1, point2), _robot.FindElementByName(INFO_CHINESE + " Row 0").Text);
         }
+        
+        // test
+        [TestMethod]
+        public void TestMoveUndoRedo()
+        {
+            Point point1 = new Point(0, 0);
+            Point point2 = new Point(Constant.ONE_HUNDRED, Constant.ONE_HUNDRED);
+            Point middlePoint = new Point((point1.X + point2.X) / Constant.TWO, (point1.Y + point2.Y) / Constant.TWO);
+            DrawShape(CIRCLE, point1, point2);
+            ActionBuilder actionBuilder = new ActionBuilder();
+            PointerInputDevice pointer = new PointerInputDevice(PointerKind.Pen);
+            actionBuilder
+                .AddAction(CreateMoveTo(pointer, point1.X, point1.Y))
+                .AddAction(pointer.CreatePointerDown(MouseButton.Left))
+                .AddAction(CreateMoveTo(pointer, point2.X, point2.Y))
+                .AddAction(pointer.CreatePointerUp(MouseButton.Left))
+                .AddAction(CreateMoveTo(pointer, middlePoint.X, middlePoint.Y))
+                .AddAction(pointer.CreatePointerDown(MouseButton.Left))
+                .AddAction(CreateMoveTo(pointer, middlePoint.X + Constant.ONE_HUNDRED, middlePoint.Y))
+                .AddAction(pointer.CreatePointerUp(MouseButton.Left));
+            _robot.PerformAction(actionBuilder.ToActionSequenceList());
+            _robot.FindElementByName(UNDO).Click();
+            Assert.AreEqual(GetInfo(point1, point2), _robot.FindElementByName(INFO_CHINESE + " Row 0").Text);
+            _robot.FindElementByName(REDO).Click();
+            Assert.AreEqual(GetInfo(new Point(Constant.ONE_HUNDRED, 0), new Point(Constant.TWO_HUNDRED, Constant.ONE_HUNDRED)), _robot.FindElementByName(INFO_CHINESE + " Row 0").Text);
+        }
+        
+        // test
+        [TestMethod]
+        public void TestDataGridViewUndoRedo()
+        {
+            Point point1 = new Point(_random.Next(0, _canvas.Size.Width), _random.Next(0, _canvas.Size.Height));
+            Point point2 = new Point(_random.Next(point1.X, _canvas.Size.Width), _random.Next(point1.Y, _canvas.Size.Height));
+            _robot.FindElementByName("Open").Click();
+            _robot.FindElementByName(CIRCLE_CHINESE).Click();
+            _robot.ClickByElementName(NEW_CHINESE);
+            _robot.FindElementByName(Constant.TOP_LEFT_X).SendKeys(point1.X.ToString());
+            _robot.FindElementByName(Constant.TOP_LEFT_Y).SendKeys(point1.Y.ToString());
+            _robot.FindElementByName(Constant.BOTTOM_RIGHT_X).SendKeys(point2.X.ToString());
+            _robot.FindElementByName(Constant.BOTTOM_RIGHT_Y).SendKeys(point2.Y.ToString());
+            _robot.FindElementByName("OK").Click();
+            Assert.AreEqual(CIRCLE_CHINESE, _robot.FindElementByName(SHAPE_CHINESE + " Row 0").Text);
+            Assert.AreEqual(GetInfo(point1, point2), _robot.FindElementByName(INFO_CHINESE + " Row 0").Text);
+            _robot.FindElementByName(UNDO).Click();
+            Assert.AreEqual("0", _robot.FindElementById(DATA_GRID).GetAttribute("Grid.RowCount"));
+            _robot.FindElementByName(REDO).Click();
+            Assert.AreEqual(CIRCLE_CHINESE, _robot.FindElementByName(SHAPE_CHINESE + " Row 0").Text);
+            Assert.AreEqual(GetInfo(point1, point2), _robot.FindElementByName(INFO_CHINESE + " Row 0").Text);
+        }
+        
+        // test
+        [TestMethod]
+        public void TestResizeUndoRedo()
+        {
+            Point point1 = new Point(0, 0);
+            Point point2 = new Point(Constant.ONE_HUNDRED, Constant.ONE_HUNDRED);
+            Point newPoint2 = new Point(Constant.TWO_HUNDRED, Constant.TWO_HUNDRED);
+            Point middlePoint = new Point((point1.X + point2.X) / Constant.TWO, (point1.Y + point2.Y) / Constant.TWO);
+            DrawShape(CIRCLE, point1, point2);
+            ActionBuilder actionBuilder = new ActionBuilder();
+            PointerInputDevice pointer = new PointerInputDevice(PointerKind.Pen);
+            actionBuilder
+                .AddAction(CreateMoveTo(pointer, point2.X, point2.Y))
+                .AddAction(pointer.CreatePointerDown(MouseButton.Left))
+                .AddAction(pointer.CreatePointerUp(MouseButton.Left))
+                .AddAction(pointer.CreatePointerDown(MouseButton.Left))
+                .AddAction(CreateMoveTo(pointer, Constant.TWO_HUNDRED, Constant.TWO_HUNDRED))
+                .AddAction(pointer.CreatePointerUp(MouseButton.Left))
+                .AddAction(CreateMoveTo(pointer, middlePoint.X, middlePoint.Y))
+                .AddAction(pointer.CreatePointerUp(MouseButton.Left));
+            _robot.PerformAction(actionBuilder.ToActionSequenceList());
+            _robot.Sleep(1.0);
+            _robot.FindElementByName(UNDO).Click();
+            Assert.AreEqual(GetInfo(point1, point2), _robot.FindElementByName(INFO_CHINESE + " Row 0").Text);
+            _robot.FindElementByName(REDO).Click();
+            Assert.AreEqual(GetInfo(point1, newPoint2), _robot.FindElementByName(INFO_CHINESE + " Row 0").Text);
+        }
     }
 }

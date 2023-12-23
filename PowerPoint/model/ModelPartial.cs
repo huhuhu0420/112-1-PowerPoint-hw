@@ -1,11 +1,11 @@
 using System;
 using System.Drawing;
+using PowerPoint.Command;
 
 namespace PowerPoint
 {
     public partial class Model
     {
-       
         /// <summary>
         /// resize
         /// </summary>

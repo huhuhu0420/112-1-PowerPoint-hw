@@ -100,6 +100,7 @@
     <Compile Include="Command\DrawCommand.cs" />
     <Compile Include="Command\ICommand.cs" />
     <Compile Include="Command\MoveCommand.cs" />
+    <Compile Include="Command\ResizeCommand.cs" />
     <Compile Include="Constant.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="DialogForm.cs">
