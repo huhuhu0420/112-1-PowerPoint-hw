@@ -124,9 +124,14 @@ namespace PowerPoint.PresentationModel
         /// <summary>
         /// delete
         /// </summary>
-        public void DeleteShape()
+        public bool DeleteShape()
         {
-            _model.HandleRemoveShape(-1);
+            if (_model.GetSelectIndex() != -1)
+            {
+                _model.HandleRemoveShape(-1);
+                return true;
+            }
+            return false;
         }
 
         /// <summary>
@@ -255,14 +260,29 @@ namespace PowerPoint.PresentationModel
             _model.SetCanvasSize(width, height);
         }
 
+        /// <summary>
+        /// set
+        /// </summary>
+        /// <param name="index"></param>
         public void SetPageIndex(int index)
         {
             _model.SetPageIndex(index);
         }
         
+        /// <summary>
+        /// add
+        /// </summary>
         public void AddPage()
         {
             _model.AddPage();
+        }
+        
+        /// <summary>
+        /// delete
+        /// </summary>
+        public void DeletePage()
+        {
+            _model.DeletePage();
         }
         
         public int GetPageIndex()

@@ -146,10 +146,26 @@ namespace PowerPoint
             _shapes = _pages.GetPage(index);
             NotifyModelChanged();
         }
-
+        
+        /// <summary>
+        /// add page
+        /// </summary>
         public virtual void AddPage()
         {
             _pages.AddPage();
+        }
+        
+        /// <summary>
+        /// delete
+        /// </summary>
+        public virtual void DeletePage()
+        {
+            _pages.RemovePageByIndex(_pageIndex);
+            if (_pageIndex >= _pages.GetPageCount())
+            {
+                _pageIndex--;
+            }
+            SetPageIndex(_pageIndex);
         }
 
         public enum ModelState
