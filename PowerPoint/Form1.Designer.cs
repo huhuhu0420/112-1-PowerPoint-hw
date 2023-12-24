@@ -36,7 +36,6 @@ namespace PowerPoint
             this.delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.shapeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.information = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.slide1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.InsertButton = new System.Windows.Forms.Button();
             this.InformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -112,16 +111,6 @@ namespace PowerPoint
             this.information.Name = "information";
             this.information.ReadOnly = true;
             this.information.Width = 125;
-            // 
-            // slide1
-            // 
-            this.slide1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.slide1.Location = new System.Drawing.Point(6, 4);
-            this.slide1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.slide1.Name = "slide1";
-            this.slide1.Size = new System.Drawing.Size(133, 107);
-            this.slide1.TabIndex = 1;
-            this.slide1.UseVisualStyleBackColor = false;
             // 
             // comboBox1
             // 
@@ -253,7 +242,6 @@ namespace PowerPoint
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.flowLayoutPanel1);
-            this.splitContainer1.Panel1.Controls.Add(this.slide1);
             // 
             // splitContainer1.Panel2
             // 
@@ -265,9 +253,9 @@ namespace PowerPoint
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(6, 115);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(133, 330);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(133, 393);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
             // splitContainer2
@@ -288,7 +276,7 @@ namespace PowerPoint
             this.splitContainer2.Panel2.Controls.Add(this.comboBox1);
             this.splitContainer2.Panel2.Controls.Add(this.dataGridView1);
             this.splitContainer2.Size = new System.Drawing.Size(784, 461);
-            this.splitContainer2.SplitterDistance = 482;
+            this.splitContainer2.SplitterDistance = 480;
             this.splitContainer2.SplitterWidth = 6;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -355,8 +343,6 @@ namespace PowerPoint
         private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-
-        private System.Windows.Forms.Button slide1;
 
         private System.Windows.Forms.DataGridView dataGridView1;
 

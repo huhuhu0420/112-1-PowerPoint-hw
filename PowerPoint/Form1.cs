@@ -91,8 +91,6 @@ namespace PowerPoint
         /// <param name="e"></param>
         public void HandleContainerResize()
         {
-            slide1.Width = splitContainer1.Panel1.Width - Constant.EIGHT;
-            slide1.Height = (int)(slide1.Width * Constant.RATIO);
             panel1.Width = splitContainer2.Panel1.Width - Constant.EIGHT;
             panel1.Height = (int)(panel1.Width * Constant.RATIO);
             if (splitContainer2.Panel1.Height < panel1.Height)
@@ -100,12 +98,6 @@ namespace PowerPoint
                 panel1.Height = splitContainer2.Panel1.Height - Constant.EIGHT;
                 panel1.Width = (int)(panel1.Height / Constant.RATIO) - Constant.EIGHT;
                 panel1.Height = (int)(panel1.Width * Constant.RATIO);
-            }
-            if (splitContainer1.Panel1.Height < slide1.Height)
-            {
-                slide1.Height = splitContainer1.Panel1.Height;
-                slide1.Width = (int)(slide1.Height / Constant.RATIO) - Constant.EIGHT;
-                slide1.Height = (int)(slide1.Width * Constant.RATIO);
             }
             _presentationModel.SetCanvasSize(panel1.Width, panel1.Height);
             _dialog.SetCanvasSize(new Size(panel1.Width, panel1.Height));
@@ -154,7 +146,7 @@ namespace PowerPoint
         {
             _brief = new Bitmap(this.panel1.Width, this.panel1.Height);
             this.panel1.DrawToBitmap(_brief, new System.Drawing.Rectangle(0, 0, this.panel1.Width, this.panel1.Height));
-            slide1.Image = new Bitmap(_brief, slide1.Size);
+            // slide1.Image = new Bitmap(_brief, slide1.Size);
             flowLayoutPanel1.Controls[_presentationModel.GetPageIndex()].BackgroundImage = new Bitmap(_brief, flowLayoutPanel1.Controls[_presentationModel.GetPageIndex()].Size);
         }
 
