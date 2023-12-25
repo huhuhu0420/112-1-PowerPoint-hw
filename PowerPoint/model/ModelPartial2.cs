@@ -7,6 +7,8 @@ namespace PowerPoint
 {
     public partial class Model
     {
+        public event Pages.PagesChangedEventHandler _pagesChanged;
+        
         /// <summary>
         /// init
         /// </summary>
@@ -153,6 +155,18 @@ namespace PowerPoint
         public virtual void AddPage()
         {
             _pages.AddPage();
+            AddPageCommand addPageCommand = new AddPageCommand(this, _pages.GetPage(_pages.GetPageCount() - 1), _pages.GetPageCount() - 1);
+            _commandManager.Execute(addPageCommand);
+        }
+        
+        /// <summary>
+        /// insert page
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="page"></param>
+        public virtual void InsertPageByIndex(int index, BindingList<Shape> page)
+        {
+            _pages.AddPageByIndex(index, page);
         }
         
         /// <summary>
@@ -166,6 +180,14 @@ namespace PowerPoint
                 _pageIndex--;
             }
             SetPageIndex(_pageIndex);
+        }
+        
+        public virtual void HandlePageChanged(bool isAdd, int index)
+        {
+            if (_pagesChanged != null)
+            {
+                _pagesChanged(isAdd, index);
+            }
         }
 
         public enum ModelState

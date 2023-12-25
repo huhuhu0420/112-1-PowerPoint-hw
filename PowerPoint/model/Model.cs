@@ -35,6 +35,7 @@ namespace PowerPoint
             _commandManager._undoRedoHistoryChanged += SetUndoRedoHistory;
             _pages = new Pages();
             _pages.AddPage();
+            _pages._pagesChanged += HandlePageChanged;
             _shapes = _pages.GetPage(0);
             InitializeResizeShape();
         }

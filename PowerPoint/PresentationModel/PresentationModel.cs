@@ -22,6 +22,7 @@ namespace PowerPoint.PresentationModel
 #pragma warning disable IDE1006 // Naming Styles
         public event CommandManager.HandleUndoRedoHistoryEventHandler _undoRedoHistoryChanged;
 #pragma warning restore IDE1006 // Naming Styles
+        public event Pages.PagesChangedEventHandler _pagesChanged;
         readonly Model _model;
 
         private WindowsFormsGraphicsAdaptor _graphic;
@@ -31,8 +32,19 @@ namespace PowerPoint.PresentationModel
             _model = model;
             _model._modelChanged += HandleModelChanged;
             _model._stateChanged += HandleStateChange;
+            _model._pagesChanged += HandlePagesChanged;
             _model._undoRedoHistoryChanged += HandleUndoRedoHistoryChanged;
             _isButtonChecked[(int)ShapeType.ARROW] = true;
+        }
+
+        private void HandlePagesChanged(bool isadd, int index)
+        {
+            if (_pagesChanged != null)
+            {
+#pragma warning disable IDE1005 // Delegate invocation can be simplified.
+                _pagesChanged(isadd, index);
+#pragma warning restore IDE1005 // Delegate invocation can be simplified.
+            }
         }
 
         /// <summary>

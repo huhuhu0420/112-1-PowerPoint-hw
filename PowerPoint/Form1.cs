@@ -82,6 +82,7 @@ namespace PowerPoint
             button.Size = new Size(120, 67);
             newPageButton.Click += ClickNewPageButton;
             flowLayoutPanel1.Controls.Add(button);
+            _presentationModel._pagesChanged += HandlePageChanged;
         }
         
         /// <summary>
@@ -137,10 +138,10 @@ namespace PowerPoint
             {
                 var isDeleteShape = _presentationModel.DeleteShape();
                 if (isDeleteShape) return;
-                if (flowLayoutPanel1.Controls.Count != 1)
-                {
-                    flowLayoutPanel1.Controls.RemoveAt(_presentationModel.GetPageIndex());
-                }
+                // if (flowLayoutPanel1.Controls.Count != 1)
+                // {
+                //     flowLayoutPanel1.Controls.RemoveAt(_presentationModel.GetPageIndex());
+                // }
                 _presentationModel.DeletePage();
                 if (_presentationModel.GetPageIndex() == flowLayoutPanel1.Controls.Count)
                 {
@@ -310,15 +311,15 @@ namespace PowerPoint
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ClickNewPageButton(object sender, EventArgs e)
+        public void ClickNewPageButton(object sender, EventArgs e)
         {
-            Button button = new Button();
-            button.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            var width = splitContainer1.Panel1.Width - Constant.EIGHT;
-            var height = (int)(splitContainer1.Panel1.Width * Constant.RATIO) - Constant.EIGHT;
-            button.Size = new Size(width, height);
-            button.Click += HandleClickPage;
-            flowLayoutPanel1.Controls.Add(button);
+            // Button button = new Button();
+            // button.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            // var width = splitContainer1.Panel1.Width - Constant.EIGHT;
+            // var height = (int)(splitContainer1.Panel1.Width * Constant.RATIO) - Constant.EIGHT;
+            // button.Size = new Size(width, height);
+            // button.Click += HandleClickPage;
+            // flowLayoutPanel1.Controls.Add(button);
             _presentationModel.AddPage();
         }
         
@@ -329,6 +330,25 @@ namespace PowerPoint
             Debug.Print(index.ToString());
             _presentationModel.SetPageIndex(index);
             dataGridView1.DataSource = _presentationModel.GetShapes();
+        }
+        
+        public void HandlePageChanged(bool isAdd, int index)
+        {
+            Debug.Print("hi");
+            if (isAdd)
+            {
+                Button button = new Button();
+                button.BackColor = System.Drawing.SystemColors.ControlLightLight;
+                var width = splitContainer1.Panel1.Width - Constant.EIGHT;
+                var height = (int)(splitContainer1.Panel1.Width * Constant.RATIO) - Constant.EIGHT;
+                button.Size = new Size(width, height);
+                button.Click += HandleClickPage;
+                flowLayoutPanel1.Controls.Add(button);
+            }
+            else
+            {
+                flowLayoutPanel1.Controls.RemoveAt(index);
+            }
         }
     }
 }
