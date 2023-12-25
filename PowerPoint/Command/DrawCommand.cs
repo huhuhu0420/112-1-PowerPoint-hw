@@ -2,11 +2,12 @@ namespace PowerPoint.Command
 {
     public class DrawCommand : ICommand
     {
-        public DrawCommand(Model model, Shape shape, int index)
+        public DrawCommand(Model model, Shape shape, int index, int pageIndex)
         {
             _model = model;
             _shape = shape; 
             _index = index;
+            _pageIndex = pageIndex;
         }
         
         /// <summary>
@@ -14,6 +15,7 @@ namespace PowerPoint.Command
         /// </summary>
         public void Execute()
         {
+            _model.SetPageIndex(_pageIndex);
             _model.InsertShapeByShape(_shape, _index);
         }
         
@@ -22,11 +24,13 @@ namespace PowerPoint.Command
         /// </summary>
         public void Undo()
         {
+            _model.SetPageIndex(_pageIndex);
             _model.RemoveShapeByIndex(_model.GetShapes().Count - 1);
         }
 
         readonly Model _model;
         readonly Shape _shape;
         readonly int _index;
+        private int _pageIndex;
     }
 }

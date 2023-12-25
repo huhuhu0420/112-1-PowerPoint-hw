@@ -12,7 +12,7 @@ namespace PowerPoint
         // handle
         public virtual void HandleInsertShape(Shape shape)
         {
-            _commandManager.Execute(new AddCommand(this, shape, _shapes.Count - 1));
+            _commandManager.Execute(new AddCommand(this, shape, _shapes.Count - 1, _pageIndex));
         }
 
         // handle
@@ -24,7 +24,7 @@ namespace PowerPoint
             }
             if (index != -1)
             {
-                _commandManager.Execute(new RemoveCommand(this, _shapes[index], index));
+                _commandManager.Execute(new RemoveCommand(this, _shapes[index], index, _pageIndex));
                 RemoveShapeByIndex(index);
             }
         }
@@ -38,7 +38,7 @@ namespace PowerPoint
         // handle
         public virtual void HandleDrawShape(Shape shape)
         {
-            _commandManager.Execute(new DrawCommand(this, shape, _shapes.Count - 1));
+            _commandManager.Execute(new DrawCommand(this, shape, _shapes.Count - 1, _pageIndex));
         }
         
         // undo

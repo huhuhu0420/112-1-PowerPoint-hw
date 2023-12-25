@@ -155,7 +155,7 @@ namespace PowerPoint
         public virtual void AddPage()
         {
             _pages.AddPage();
-            AddPageCommand addPageCommand = new AddPageCommand(this, _pages.GetPage(_pages.GetPageCount() - 1), _pages.GetPageCount() - 1);
+            AddPageCommand addPageCommand = new AddPageCommand(this, _pages.GetPage(_pages.GetPageCount() - 1), _pages.GetPageCount() - 1, _pageIndex);
             _commandManager.Execute(addPageCommand);
         }
         
@@ -180,6 +180,15 @@ namespace PowerPoint
                 _pageIndex--;
             }
             SetPageIndex(_pageIndex);
+        }
+        
+        /// <summary>
+        /// get pages
+        /// </summary>
+        /// <returns></returns>
+        public virtual Pages GetPages()
+        {
+            return _pages;
         }
         
         public virtual void HandlePageChanged(bool isAdd, int index)
