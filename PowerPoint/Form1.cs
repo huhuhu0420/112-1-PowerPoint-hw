@@ -334,7 +334,6 @@ namespace PowerPoint
         
         public void HandlePageChanged(bool isAdd, int index)
         {
-            Debug.Print("hi");
             if (isAdd)
             {
                 Button button = new Button();
@@ -344,6 +343,7 @@ namespace PowerPoint
                 button.Size = new Size(width, height);
                 button.Click += HandleClickPage;
                 flowLayoutPanel1.Controls.Add(button);
+                flowLayoutPanel1.Controls.SetChildIndex(button, index);
             }
             else
             {

@@ -3,9 +3,9 @@ using System.Runtime.InteropServices;
 
 namespace PowerPoint.Command
 {
-    public class AddPageCommand : ICommand
+    public class RemovePageCommand : ICommand
     {
-        public AddPageCommand(Model model, BindingList<Shape> page, int index, int focusIndex)
+        public RemovePageCommand(Model model, BindingList<Shape> page, int index, int focusIndex)
         {
             _page = page;
             _index = index;
@@ -18,7 +18,7 @@ namespace PowerPoint.Command
         /// </summary>
         public void Execute()
         {
-            _model.InsertPageByIndex(_model.GetPages().GetPageCount() - 1, new BindingList<Shape>());
+            _model.DeletePageByIndex(_index);
         }
         
         /// <summary>
@@ -26,7 +26,7 @@ namespace PowerPoint.Command
         /// </summary>
         public void Undo()
         {
-            _model.DeletePageByIndex(_index);
+            _model.InsertPageByIndex(_index, _page);
         }
         
         private BindingList<Shape> _page;

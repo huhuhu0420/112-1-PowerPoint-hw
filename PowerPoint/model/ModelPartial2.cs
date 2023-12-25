@@ -167,6 +167,7 @@ namespace PowerPoint
         public virtual void InsertPageByIndex(int index, BindingList<Shape> page)
         {
             _pages.AddPageByIndex(index, page);
+            SetPageIndex(index);
         }
         
         /// <summary>
@@ -174,12 +175,19 @@ namespace PowerPoint
         /// </summary>
         public virtual void DeletePage()
         {
+            RemovePageCommand removePageCommand = new RemovePageCommand(this, _pages.GetPage(_pageIndex), _pageIndex, _pageIndex);
+            _commandManager.Execute(removePageCommand);
             _pages.RemovePageByIndex(_pageIndex);
             if (_pageIndex >= _pages.GetPageCount())
             {
                 _pageIndex--;
             }
             SetPageIndex(_pageIndex);
+        }
+        
+        public virtual void DeletePageByIndex(int index)
+        {
+            _pages.RemovePageByIndex(index);
         }
         
         /// <summary>

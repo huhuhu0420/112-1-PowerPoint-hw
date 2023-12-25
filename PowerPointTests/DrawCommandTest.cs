@@ -19,7 +19,7 @@ namespace PowerPoint.Command.Tests
             _mockModel = new Mock<Model>();
             _shape = new Shape();
             _index = 0;
-            _drawCommand = new DrawCommand(_mockModel.Object, _shape, _index);
+            _drawCommand = new DrawCommand(_mockModel.Object, _shape, _index, 0);
         }
 
         // test

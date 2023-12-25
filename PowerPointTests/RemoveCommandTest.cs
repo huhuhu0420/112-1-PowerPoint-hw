@@ -18,7 +18,7 @@ namespace PowerPoint.Command.Tests
             _mockModel = new Mock<Model>();
             _shape = new Shape();
             _index = 0;
-            _removeCommand = new RemoveCommand(_mockModel.Object, _shape, _index);
+            _removeCommand = new RemoveCommand(_mockModel.Object, _shape, _index, 0);
         }
 
         // test
