@@ -83,6 +83,8 @@ namespace PowerPoint
             newPageButton.Click += ClickNewPageButton;
             flowLayoutPanel1.Controls.Add(button);
             _presentationModel._pagesChanged += HandlePageChanged;
+            _saveDialog = new SaveDialog();
+            _loadDialog = new LoadDialog();
         }
         
         /// <summary>
@@ -348,6 +350,24 @@ namespace PowerPoint
             else
             {
                 flowLayoutPanel1.Controls.RemoveAt(index);
+            }
+        }
+
+        private void ClickSaveButton(object sender, EventArgs e)
+        {
+            _saveDialog.ShowDialog();
+            if (_saveDialog.IsOk())
+            {
+                // _presentationModel.Save(_saveDialog.GetSaveText());
+            }
+        }
+
+        private void ClickLoadButton(object sender, EventArgs e)
+        {
+            _loadDialog.ShowDialog();
+            if (_loadDialog.IsOk())
+            {
+                // _presentationModel.Load(_loadDialog.GetLoadText());
             }
         }
     }

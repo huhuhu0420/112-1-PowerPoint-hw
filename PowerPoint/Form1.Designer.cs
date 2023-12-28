@@ -49,6 +49,8 @@ namespace PowerPoint
             this.undoButton = new System.Windows.Forms.ToolStripButton();
             this.redoButton = new System.Windows.Forms.ToolStripButton();
             this.newPageButton = new System.Windows.Forms.ToolStripButton();
+            this.saveButton = new System.Windows.Forms.ToolStripButton();
+            this.loadButton = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new PowerPoint.DoubleBufferedPanel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -161,7 +163,7 @@ namespace PowerPoint
             // toolStrip1
             // 
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.lineButton, this.squareButton, this.circleButton, this.mouseButton, this.undoButton, this.redoButton, this.newPageButton });
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.lineButton, this.squareButton, this.circleButton, this.mouseButton, this.undoButton, this.redoButton, this.newPageButton, this.saveButton, this.loadButton });
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(932, 25);
@@ -224,6 +226,24 @@ namespace PowerPoint
             this.newPageButton.Size = new System.Drawing.Size(23, 22);
             this.newPageButton.Text = "📰";
             // 
+            // saveButton
+            // 
+            this.saveButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.saveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(23, 22);
+            this.saveButton.Text = "💾";
+            this.saveButton.Click += new System.EventHandler(this.ClickSaveButton);
+            // 
+            // loadButton
+            // 
+            this.loadButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.loadButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.loadButton.Name = "loadButton";
+            this.loadButton.Size = new System.Drawing.Size(23, 22);
+            this.loadButton.Text = "⬇";
+            this.loadButton.Click += new System.EventHandler(this.ClickLoadButton);
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
@@ -276,7 +296,7 @@ namespace PowerPoint
             this.splitContainer2.Panel2.Controls.Add(this.comboBox1);
             this.splitContainer2.Panel2.Controls.Add(this.dataGridView1);
             this.splitContainer2.Size = new System.Drawing.Size(784, 461);
-            this.splitContainer2.SplitterDistance = 480;
+            this.splitContainer2.SplitterDistance = 472;
             this.splitContainer2.SplitterWidth = 6;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -310,6 +330,10 @@ namespace PowerPoint
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.ToolStripButton loadButton;
+
+        private System.Windows.Forms.ToolStripButton saveButton;
 
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
 
@@ -354,6 +378,8 @@ namespace PowerPoint
         #endregion
 
         private DialogForm _dialog;
+        private SaveDialog _saveDialog;
+        private LoadDialog _loadDialog;
         private PresentationModel.PresentationModel _presentationModel;
         private Model _model;
     }

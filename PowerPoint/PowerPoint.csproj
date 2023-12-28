@@ -105,9 +105,11 @@
     <Compile Include="Command\ResizeCommand.cs" />
     <Compile Include="Constant.cs" />
     <Compile Include="Context.cs" />
-    <Compile Include="DialogForm.cs">
+    <Compile Include="Dialog\DialogForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Dialog\LoadDialog.cs" />
+    <Compile Include="Dialog\SaveDialog.cs" />
     <Compile Include="DoubleBufferPanel.cs">
       <SubType>Component</SubType>
     </Compile>
