@@ -297,9 +297,29 @@ namespace PowerPoint.PresentationModel
             _model.DeletePage();
         }
         
+        /// <summary>
+        /// get
+        /// </summary>
+        /// <returns></returns>
         public int GetPageIndex()
         {
             return _model.GetPageIndex();
+        }
+        
+        /// <summary>
+        /// save
+        /// </summary>
+        public void Save()
+        {
+            _model.Save();
+        }
+
+        /// <summary>
+        /// load
+        /// </summary>
+        public void Load()
+        {
+            _model.Load();
         }
         
         public bool IsLineButtonChecked

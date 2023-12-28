@@ -16,6 +16,7 @@ namespace PowerPoint
         public void InitializeComponent()
         {
             InitializeOkButton();
+            InitializeCancelButton();
             InitializeSaveText();
         }
         
@@ -28,15 +29,37 @@ namespace PowerPoint
                 Text = "OK",
                 DialogResult = DialogResult.OK,
                 Size = new System.Drawing.Size(75, 23),
-                Location = new System.Drawing.Point(this.Size.Width/2 - 75/2, 200),
+                Location = new System.Drawing.Point(this.Size.Width/2 + 5, 200),
                 TabIndex = 0,
                 UseVisualStyleBackColor = true,
                 Enabled = true
             };
             _okButton.Click += (sender, e) =>
             {
+                _isOk = true;
             };
             Controls.Add(_okButton);
+        }
+        
+        // init
+        public void InitializeCancelButton()
+        {
+            // cancelButton
+            _cancelButton = new Button
+            {
+                Text = "Cancel",
+                DialogResult = DialogResult.Cancel,
+                Location = new System.Drawing.Point(this.Size.Width/2 - 80, 200),
+                Size = new System.Drawing.Size(75, 23),
+                TabIndex = 1,
+                UseVisualStyleBackColor = true,
+                Enabled = true
+            };
+            _cancelButton.Click += (sender, e) =>
+            {
+                _isOk = false;
+            };
+            Controls.Add(_cancelButton);
         }
         
         public void InitializeSaveText()
@@ -64,6 +87,7 @@ namespace PowerPoint
         
         private bool _isOk;
         private Button _okButton;
+        private Button _cancelButton;
         private TextBox _saveText;
     }
 }

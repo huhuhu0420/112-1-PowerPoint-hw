@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,5 +43,7 @@ namespace PowerPoint
         public const string TOP_LEFT_Y = "topLeftY";
         public const string BOTTOM_RIGHT_X = "bottomRightX";
         public const string BOTTOM_RIGHT_Y = "bottomRightY";
+        public const string PROJECT_NAME = "PowerPoint";
+        public const string FILENAME = "huhuhu.pptfake";
     }
 }

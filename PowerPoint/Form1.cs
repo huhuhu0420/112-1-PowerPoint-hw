@@ -351,6 +351,7 @@ namespace PowerPoint
             {
                 flowLayoutPanel1.Controls.RemoveAt(index);
             }
+            dataGridView1.DataSource = _presentationModel.GetShapes();
         }
 
         private void ClickSaveButton(object sender, EventArgs e)
@@ -358,7 +359,7 @@ namespace PowerPoint
             _saveDialog.ShowDialog();
             if (_saveDialog.IsOk())
             {
-                // _presentationModel.Save(_saveDialog.GetSaveText());
+                _presentationModel.Save();
             }
         }
 
@@ -367,7 +368,7 @@ namespace PowerPoint
             _loadDialog.ShowDialog();
             if (_loadDialog.IsOk())
             {
-                // _presentationModel.Load(_loadDialog.GetLoadText());
+                _presentationModel.Load();
             }
         }
     }

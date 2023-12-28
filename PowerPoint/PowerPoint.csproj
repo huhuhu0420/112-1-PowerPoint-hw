@@ -122,10 +122,12 @@
     <Compile Include="Global.cs" />
     <Compile Include="IGraphics.cs" />
     <Compile Include="Line.cs" />
+    <Compile Include="model\GoogleDriveService.cs" />
     <Compile Include="model\Model.cs" />
     <Compile Include="model\ModelCommand.cs" />
     <Compile Include="model\ModelPartial.cs" />
     <Compile Include="model\ModelPartial2.cs" />
+    <Compile Include="model\ModelSaveLoad.cs" />
     <Compile Include="Pages.cs" />
     <Compile Include="PresentationModel\PresentationModel.cs" />
     <Compile Include="PresentationModel\WindowsFormsGraphicsAdaptor.cs" />
@@ -169,6 +171,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="clientSecret.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

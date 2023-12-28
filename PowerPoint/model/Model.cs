@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -37,6 +38,9 @@ namespace PowerPoint
             _pages.AddPage();
             _pages._pagesChanged += HandlePageChanged;
             _shapes = _pages.GetPage(0);
+            _service = new GoogleDriveService(APPLICATION_NAME, CLIENT_SECRET_FILE_NAME);
+            _solutionPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\"));
+            _filePath = Path.Combine(_solutionPath, Constant.PROJECT_NAME, "bin", "Debug", Constant.FILENAME);
             InitializeResizeShape();
         }
 
@@ -97,7 +101,7 @@ namespace PowerPoint
         public virtual void MouseUp(PointF point, ShapeType type)
         {
             _context.MouseUp(point, type);
-            if (_context.GetState() == ModelState.Selected && _firstPoint != _lastPoint)
+            if (_context.GetState() == Model.ModelState.Selected && _firstPoint != _lastPoint)
             {
                 HandleMoveShape(_selectIndex, new SizeF(_lastPoint.X - _firstPoint.X, _lastPoint.Y - _firstPoint.Y));
                 // Debug.Print("move");
@@ -316,6 +320,7 @@ namespace PowerPoint
         private BindingList<Shape> _shapes;
         private Pages _pages;
         private int _pageIndex = 0;
+        
         private readonly ShapeFactory _shapeFactory;
         Shape _hint;
         private Shape _select;
@@ -326,5 +331,7 @@ namespace PowerPoint
         private readonly Dictionary<Model.Location, Action<PointF>> _resizeShape;
         private CommandManager _commandManager;
         private int _canvasWidth;
+        const string APPLICATION_NAME = "DrawAnyWhere";
+        const string CLIENT_SECRET_FILE_NAME = "clientSecret.json";
     }
 }

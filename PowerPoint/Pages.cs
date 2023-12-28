@@ -54,6 +54,18 @@ namespace PowerPoint
                 _pagesChanged(false, index);
             }
         }
+
+        /// <summary>
+        /// clear
+        /// </summary>
+        public void Clear()
+        {
+            for (var i=_pages.Count-1; i>0; i--)
+            {
+                RemovePageByIndex(i);
+            }
+            _pages[0].Clear();
+        }
         
         /// <summary>
         /// get

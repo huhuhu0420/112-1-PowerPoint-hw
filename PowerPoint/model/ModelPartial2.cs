@@ -155,6 +155,7 @@ namespace PowerPoint
         public virtual void AddPage()
         {
             _pages.AddPage();
+            SetPageIndex(_pages.GetPageCount() - 1);
             AddPageCommand addPageCommand = new AddPageCommand(this, _pages.GetPage(_pages.GetPageCount() - 1), _pages.GetPageCount() - 1, _pageIndex);
             _commandManager.Execute(addPageCommand);
         }
