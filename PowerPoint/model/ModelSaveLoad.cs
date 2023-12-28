@@ -11,9 +11,9 @@ namespace PowerPoint
         // save
         public void Save()
         {
-            var createText = "Hello and Welcome" + Environment.NewLine;
-            
-            // File.WriteAllText(_filePath, createText);
+            var csv = _pages.GetEncode();
+            Debug.Print(csv);
+            File.WriteAllText(_filePath, csv);
             // _service.UploadFile(FILENAME, "text/plain");
         }
 
@@ -35,10 +35,8 @@ namespace PowerPoint
                 {
                     var line = reader.ReadLine();
                     var values = line.Split(',');
-                    Debug.Print(values[0]);
                     if (values[0] == "page")
                     {
-                        Debug.Print("add page");
                         AddPage();
                     }
                     else

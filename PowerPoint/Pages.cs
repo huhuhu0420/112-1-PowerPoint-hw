@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Text;
 
 namespace PowerPoint
 {
@@ -84,6 +85,30 @@ namespace PowerPoint
         public int GetPageCount()
         {
             return _pages.Count;
+        }
+
+        /// <summary>
+        /// encode
+        /// </summary>
+        /// <returns></returns>
+        public string GetEncode()
+        {
+            var csv = new StringBuilder();
+            for (var i = 0; i < _pages.Count; i++)
+            {
+                if (i != 0)
+                {
+                    csv.Append("page");
+                    csv.Append("\n");
+                }
+                for (var j = 0; j < _pages[i].Count; j++)
+                {
+                    csv.Append(_pages[i][j].GetEncode());
+                    csv.Append("\n");
+                }
+            }
+
+            return csv.ToString();
         }
         
         private List<BindingList<Shape>> _pages;

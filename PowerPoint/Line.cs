@@ -67,6 +67,15 @@ namespace PowerPoint
         {
             _lineType = lineType;
         }
+
+        /// <summary>
+        /// get line type
+        /// </summary>
+        /// <returns></returns>
+        public LineType GetLineTypeResult()
+        {
+            return _lineType;
+        }
         
         public enum LineType
         {
