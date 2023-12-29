@@ -3,23 +3,31 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace PowerPoint
 {
     public partial class Model
     {
         // save
-        public void Save()
+        public async Task Save()
         {
             var csv = _pages.GetEncode();
-            Debug.Print(csv);
+            // Debug.Print(csv);
             File.WriteAllText(_filePath, csv);
-            // _service.UploadFile(FILENAME, "text/plain");
+            if (_fileId == "")
+                _fileId = await _service.UploadFile(_filePath, "text/plain");
+            else
+                _service.UpdateFile(Constant.FILENAME, _fileId, "text/plain");
+            Thread.Sleep(Constant.DELAY);
         }
 
         // load
         public void Load()
         {
+            _commandManager.Clear();
+            _service.DownloadFile(_fileId, _filePath);
             SetPageIndex(0);
             _pages.Clear();
             SetPageIndex(0);
@@ -45,6 +53,16 @@ namespace PowerPoint
                     }
                 }
             }
+        }
+        
+        /// <summary>
+        /// delete
+        /// </summary>
+        public void DeleteDriveFile()
+        {
+            if (_fileId == "")
+                return;
+            _service.DeleteFile(_fileId);
         }
 
         public void ReadShape(string[] info)
@@ -76,5 +94,6 @@ namespace PowerPoint
         private string _solutionPath;
         private string _filePath;
         private string _applicationName = "PowerPoint";
+        private string _fileId = "";
     }
 }

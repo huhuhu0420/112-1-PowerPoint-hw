@@ -102,6 +102,15 @@ namespace PowerPoint.Command
             HandleRedo();
         }
         
+        /// <summary>
+        /// clear
+        /// </summary>
+        public virtual void Clear()
+        {
+            _commandHistory.Clear();
+            _redoHistory.Clear();
+        }
+        
         private readonly List<ICommand> _commandHistory;
         private readonly List<ICommand> _redoHistory;
     }

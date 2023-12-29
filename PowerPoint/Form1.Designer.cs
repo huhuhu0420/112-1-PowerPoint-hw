@@ -49,8 +49,8 @@ namespace PowerPoint
             this.undoButton = new System.Windows.Forms.ToolStripButton();
             this.redoButton = new System.Windows.Forms.ToolStripButton();
             this.newPageButton = new System.Windows.Forms.ToolStripButton();
-            this.saveButton = new System.Windows.Forms.ToolStripButton();
-            this.loadButton = new System.Windows.Forms.ToolStripButton();
+            this.saveButton = new WindowPowerPoint.BindingToolStripButton();
+            this.loadButton = new WindowPowerPoint.BindingToolStripButton();
             this.panel1 = new PowerPoint.DoubleBufferedPanel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -331,9 +331,9 @@ namespace PowerPoint
             this.PerformLayout();
         }
 
-        private System.Windows.Forms.ToolStripButton loadButton;
+        private BindingToolStripButton loadButton;
 
-        private System.Windows.Forms.ToolStripButton saveButton;
+        private BindingToolStripButton saveButton;
 
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
 

@@ -2,7 +2,9 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 using Google.Apis.Auth.OAuth2;
+using Google.Apis.Download;
 using Google.Apis.Drive.v2;
 using Google.Apis.Services;
 using Google.Apis.Upload;
@@ -55,7 +57,7 @@ namespace PowerPoint
             }
         }
 
-        public Google.Apis.Drive.v2.Data.File UploadFile(string uploadFileName, string contentType, Action<IUploadProgress> uploadProgressEventHandeler = null, Action<Google.Apis.Drive.v2.Data.File> responseReceivedEventHandler = null)
+        public async Task<string> UploadFile(string uploadFileName, string contentType, Action<IUploadProgress> uploadProgressEventHandeler = null, Action<Google.Apis.Drive.v2.Data.File> responseReceivedEventHandler = null)
         {
             FileStream uploadStream = new FileStream(uploadFileName, FileMode.Open, FileAccess.Read);
             const char SPLASH = '\\';
@@ -81,7 +83,7 @@ namespace PowerPoint
 
             try
             {
-                insertRequest.Upload();
+                await insertRequest.UploadAsync();
             }
             catch (Exception exception)
             {
@@ -92,8 +94,22 @@ namespace PowerPoint
                 uploadStream.Close();
             }
 
-            return insertRequest.ResponseBody;
+            return insertRequest.ResponseBody.Id;
         }
+        
+        public void DownloadFile(string fileId, string fileName, Action<IDownloadProgress> downloadProgressChangedEventHandeler = null)
+        {
+            CheckCredentialTimeStamp();
+            if (!String.IsNullOrEmpty(fileId))
+            {
+                var request = _service.Files.Get(fileId);
+                using (var stream = new FileStream(fileName, FileMode.Create))
+                {
+                    request.Download(stream);
+                }
+            }
+        }
+
         private void CheckCredentialTimeStamp()
         {
             const int ONE_HOUR_SECOND = 3600;
@@ -101,6 +117,40 @@ namespace PowerPoint
 
             if ((nowTimeStamp - _timeStamp) > ONE_HOUR_SECOND)
                 this.CreateNewService(_applicationName, _clientSecretFileName);
+        }
+        
+        public Google.Apis.Drive.v2.Data.File UpdateFile(string fileName, string fileId, string contentType)
+        {
+            CheckCredentialTimeStamp();
+            try
+            {
+                Google.Apis.Drive.v2.Data.File file = _service.Files.Get(fileId).Execute();
+                byte[] byteArray = System.IO.File.ReadAllBytes(fileName);
+                MemoryStream stream = new MemoryStream(byteArray);
+                FilesResource.UpdateMediaUpload request = _service.Files.Update(file, fileId, stream, contentType);
+                request.NewRevision = true;
+                request.Upload();
+
+                Google.Apis.Drive.v2.Data.File updatedFile = request.ResponseBody;
+                return updatedFile;
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+        }
+
+    public void DeleteFile(string fileId)
+        {
+            CheckCredentialTimeStamp();
+            try
+            {
+                _service.Files.Delete(fileId).Execute();
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
         }
  
         private static readonly string[] SCOPES = new[] { DriveService.Scope.DriveFile, DriveService.Scope.Drive };

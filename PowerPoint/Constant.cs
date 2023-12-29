@@ -16,10 +16,12 @@ namespace PowerPoint
         public const string RECTANGLE = "矩形";
         public const string CIRCLE = "圓形";
         public const string CHECKED = "Checked";
+        public const string ENABLED = "Enabled";
         public const string IS_LINE_CHECKED = "IsLineButtonChecked";
         public const string IS_RECTANGLE_CHECKED = "IsRectangleButtonChecked";
         public const string IS_CIRCLE_CHECKED = "IsCircleButtonChecked";
         public const string IS_MOUSE_CHECKED = "IsMouseButtonChecked";
+        public const string IS_SAVE_BUTTON_ENABLED = "IsSaveButtonEnabled";
         public const int TEN = 10;
         public const int FOUR = 4;
         public const int THREE = 3;
@@ -45,5 +47,6 @@ namespace PowerPoint
         public const string BOTTOM_RIGHT_Y = "bottomRightY";
         public const string PROJECT_NAME = "PowerPoint";
         public const string FILENAME = "huhuhu.pptfake";
+        public const int DELAY = 3000;
     }
 }

@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using PowerPoint.Command;
 using PowerPoint.State;
@@ -102,6 +103,7 @@ namespace PowerPoint.PresentationModel
                 PropertyChanged(this, new PropertyChangedEventArgs(Constant.IS_RECTANGLE_CHECKED));
                 PropertyChanged(this, new PropertyChangedEventArgs(Constant.IS_CIRCLE_CHECKED));
                 PropertyChanged(this, new PropertyChangedEventArgs(Constant.IS_MOUSE_CHECKED));
+                PropertyChanged(this, new PropertyChangedEventArgs(Constant.IS_SAVE_BUTTON_ENABLED));
             }
             if (!_isButtonChecked[(int)ShapeType.ARROW])
             {
@@ -309,9 +311,14 @@ namespace PowerPoint.PresentationModel
         /// <summary>
         /// save
         /// </summary>
-        public void Save()
+        public async void Save()
         {
-            _model.Save();
+            _isSaveButtonEnabled = false;
+            HandlePropertyChanged();
+            var task = Task.Run(() => _model.Save());
+            await task;
+            _isSaveButtonEnabled = true;
+            HandlePropertyChanged();
         }
 
         /// <summary>
@@ -320,6 +327,14 @@ namespace PowerPoint.PresentationModel
         public void Load()
         {
             _model.Load();
+        }
+        
+        /// <summary>
+        /// delete
+        /// </summary>
+        public void DeleteDriveFile()
+        {
+            _model.DeleteDriveFile();
         }
         
         public bool IsLineButtonChecked
@@ -353,7 +368,17 @@ namespace PowerPoint.PresentationModel
                 return _isButtonChecked[(int)ShapeType.ARROW]; 
             }
         }
+        
+        public bool IsSaveButtonEnabled
+        {
+            get
+            {
+                return _isSaveButtonEnabled;
+            }
+        }
 
         readonly bool[] _isButtonChecked = { false, false, false, false };
+        private bool _isSaveButtonEnabled = true;
+        private bool _isLoadButtonEnabled = true;
     }
 }

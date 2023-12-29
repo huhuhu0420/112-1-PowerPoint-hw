@@ -58,6 +58,7 @@ namespace PowerPoint
             squareButton.DataBindings.Add(Constant.CHECKED, _presentationModel, Constant.IS_RECTANGLE_CHECKED);
             circleButton.DataBindings.Add(Constant.CHECKED, _presentationModel, Constant.IS_CIRCLE_CHECKED);
             mouseButton.DataBindings.Add(Constant.CHECKED, _presentationModel, Constant.IS_MOUSE_CHECKED);
+            saveButton.DataBindings.Add(Constant.ENABLED, _presentationModel, Constant.IS_SAVE_BUTTON_ENABLED);
             _brief = new Bitmap(this.panel1.Width, this.panel1.Height);
             splitContainer1.Panel1.Resize += (sender, e) => HandleContainerResize();
             splitContainer1.Resize += (sender, e) => HandleContainerResize();
@@ -85,6 +86,7 @@ namespace PowerPoint
             _presentationModel._pagesChanged += HandlePageChanged;
             _saveDialog = new SaveDialog();
             _loadDialog = new LoadDialog();
+            FormClosed += (sender, args) => _presentationModel.DeleteDriveFile();
         }
         
         /// <summary>
