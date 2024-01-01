@@ -17,9 +17,9 @@ namespace PowerPoint
             // Debug.Print(csv);
             File.WriteAllText(_filePath, csv);
             if (_fileId == "")
-                _fileId = await _service.UploadFile(_filePath, "text/plain");
+                _fileId = await _service.UploadFile(_filePath, Constant.TEXT_PLAIN);
             else
-                _service.UpdateFile(Constant.FILE_NAME, _fileId, "text/plain");
+                _service.UpdateFile(Constant.FILE_NAME, _fileId, Constant.TEXT_PLAIN);
             Thread.Sleep(Constant.DELAY);
         }
 
