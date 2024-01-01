@@ -66,5 +66,8 @@ namespace PowerPoint
         public const string OK = "OK";
         public const string CANCEL = "Cancel";
         public const string LOAD = "Load?";
+        public const string WORKING_DIRECTORY = "appWorkingDir";
+        public const string BINARY_DIRECTORY = "bin";
+        public const string DEBUG_DIRECTORY = "Debug";
     }
 }

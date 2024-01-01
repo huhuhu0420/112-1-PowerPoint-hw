@@ -81,6 +81,7 @@ namespace PowerPoint
             button.BackColor = System.Drawing.SystemColors.ControlLightLight;
             button.Click += HandleClickPage;
             button.Size = new Size(120, 67);
+            button.Name = Constant.SLIDE;
             newPageButton.Click += ClickNewPageButton;
             flowLayoutPanel1.Controls.Add(button);
             _presentationModel._pagesChanged += HandlePageChanged;
@@ -119,7 +120,7 @@ namespace PowerPoint
             for (var i=0; i<flowLayoutPanel1.Controls.Count; i++)
             {
                 flowLayoutPanel1.Controls[i].Width = splitContainer1.Panel1.Width - Constant.EIGHT;
-                flowLayoutPanel1.Controls[i].Height = (int)(splitContainer1.Panel1.Width * Constant.RATIO) - Constant.EIGHT;
+                flowLayoutPanel1.Controls[i].Height = (int)(splitContainer1.Panel1.Width * Constant.RATIO);
             }
         }
         

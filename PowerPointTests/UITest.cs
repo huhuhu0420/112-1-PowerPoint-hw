@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Security.Cryptography;
+using System.Threading;
 using System.Windows.Forms;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Interactions;
@@ -25,6 +26,9 @@ namespace PowerPointTests
         private const string UNDO = "⟲";
         private const string REDO = "⟳";
         private const string NEW_PAGE = "📰";
+        private const string SAVE = "💾";
+        private const string LOAD = "⬇";
+        private const string OK = "OK";
         private const string FLOW_LAYOUT_PANEL1 = "flowLayoutPanel1";
         private const string SLIDE = "Slide";
         const string MENU_FORM = "MenuForm";
@@ -340,10 +344,32 @@ namespace PowerPointTests
         
         // test
         [TestMethod]
-        public void TestNewPage()
+        public void TestNewDeletePage()
         {
             _robot.ClickByElementName(NEW_PAGE);
             Assert.AreEqual(2, GetSlide().Count);
+            Actions actions = new Actions(_robot.GetDriver());
+            actions.SendKeys(OpenQA.Selenium.Keys.Delete).Perform();
+            Assert.AreEqual(1, GetSlide().Count);
+        }
+        
+        // test
+        [TestMethod]
+        public void TestSaveLoad()
+        {
+            DrawShape(CIRCLE, new Point(0, 0), new Point(Constant.ONE_HUNDRED, Constant.ONE_HUNDRED));
+            _robot.ClickByElementName(SAVE);
+            _robot.ClickByElementName(OK);
+            Assert.AreEqual(AccessibleStates.Unavailable, GetButtonState(SAVE) & AccessibleStates.Unavailable);
+            DrawShape(RECTANGLE, new Point(Constant.ONE_HUNDRED, Constant.ONE_HUNDRED), new Point(Constant.TWO_HUNDRED, Constant.TWO_HUNDRED));
+            Thread.Sleep(Constant.DELAY + Constant.THOUSAND);
+            Assert.AreNotEqual(AccessibleStates.Unavailable, GetButtonState(SAVE) & AccessibleStates.Unavailable);
+            _robot.ClickByElementName(DELETE_CHINESE + " Row 0");
+            Thread.Sleep(Constant.FIVE_HUNDRED);
+            _robot.ClickByElementName(DELETE_CHINESE + " Row 0");
+            _robot.ClickByElementName(LOAD);
+            _robot.ClickByElementName(OK);
+            Assert.AreEqual(GetInfo(new Point(0, 0), new Point(Constant.ONE_HUNDRED, Constant.ONE_HUNDRED)), _robot.FindElementByName(INFO_CHINESE + " Row 0").Text);
         }
     }
 }
