@@ -3,6 +3,7 @@ using System.ComponentModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Drawing;
+using System.Threading.Tasks;
 using PowerPoint.Command;
 using PowerPoint.State;
 
@@ -146,6 +147,103 @@ namespace PowerPoint.Tests
             };
             _model.SetUndoRedoHistory(true, true);
             Assert.IsTrue(isCalled);
+        }
+        
+        // test
+        [TestMethod]
+        public void GetPageIndexTest()
+        {
+            _model.SetPageIndex(0);
+            Assert.AreEqual(0, _model.GetPageIndex());
+        }
+        
+        // test
+        [TestMethod]
+        public void SetPageIndexTest()
+        {
+            _model.SetPageIndex(0);
+            Assert.AreEqual(0, _model.GetPageIndex());
+        }
+        
+        // test
+        [TestMethod]
+        public void AddPageTest()
+        {
+            _model.AddPage();
+            Assert.AreEqual(1, _model.GetPageIndex());
+        }
+        
+        // test
+        [TestMethod]
+        public void DeletePageTest()
+        {
+            _model.DeletePage();
+            Assert.AreEqual(0, _model.GetPageIndex());
+        }
+        
+        // test
+        [TestMethod]
+        public void DeletePageByIndexTest()
+        {
+            _model.DeletePageByIndex(0);
+            Assert.AreEqual(0, _model.GetPageIndex());
+        }
+        
+        // test
+        [TestMethod]
+        public void InsertPageByIndexTest()
+        {
+            _model.InsertPageByIndex(0, new BindingList<Shape>());
+            Assert.AreEqual(0, _model.GetPageIndex());
+        }
+        
+        // test
+        [TestMethod]
+        public void GetPagesTest()
+        {
+            _model.SetSelectNull();
+            _model.SetSelectNull();
+            _model.SetTempShape();
+            _model.InsertPageByIndex(0, new BindingList<Shape>());
+            var pages = _model.GetPages();
+            Assert.AreEqual(2, pages.GetPageCount());
+        }
+        
+        // test
+        [TestMethod]
+        public void ReadFileTest()
+        {
+            _model.ReadFile();
+            _model.DeleteDriveFile();
+            Assert.AreEqual(0, _model.GetPageIndex());
+        }
+        
+        // test
+        [TestMethod]
+        public void ReadShapeTest()
+        {
+            var info = new string[] { "LINE", "0", "0", "0", "0", "LeftTop" };
+            _model.ReadShape(info);
+            _model.Save();
+            Assert.AreEqual(1, _model.GetShapes().Count);
+        }
+        
+        // test
+        [TestMethod]
+        public void LoadTest()
+        {
+            _model.Load();
+            Assert.AreEqual(0, _model.GetPageIndex());
+        }
+        
+        // test
+        [TestMethod]
+        public void HandleResizeShapeTest()
+        {
+            _model.InsertShape(ShapeType.LINE);
+            _privateModel.SetField(Constant.SELECT_INDEX, 0);
+            _model.HandleResizeShape(0, new Circle());
+            _mockCommandManager.Verify(m => m.Execute(It.IsAny<ResizeCommand>()), Times.Once);
         }
     }
 }
