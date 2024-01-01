@@ -11,7 +11,7 @@ namespace PowerPoint
     public partial class Model
     {
         // save
-        public async Task Save()
+        public virtual async Task Save()
         {
             var csv = _pages.GetEncode();
             // Debug.Print(csv);
@@ -24,7 +24,7 @@ namespace PowerPoint
         }
 
         // load
-        public void Load()
+        public virtual void Load()
         {
             _commandManager.Clear();
             _service.DownloadFile(_fileId, _filePath);
@@ -58,7 +58,7 @@ namespace PowerPoint
         /// <summary>
         /// delete
         /// </summary>
-        public void DeleteDriveFile()
+        public virtual void DeleteDriveFile()
         {
             if (_fileId == "")
                 return;

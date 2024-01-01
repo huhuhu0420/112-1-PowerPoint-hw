@@ -12,7 +12,7 @@ namespace PowerPoint.Tests
         [TestInitialize]
         public void SetUp()
         {
-            _shape = new Shape();
+            _shape = new Line();
         }
 
         // test
@@ -21,7 +21,7 @@ namespace PowerPoint.Tests
         {
             var result = _shape.ShapeName;
 
-            Assert.AreEqual(string.Empty, result);
+            Assert.AreEqual(Constant.LINE, result);
         }
 
         // test
@@ -242,6 +242,15 @@ namespace PowerPoint.Tests
             _shape.Scale(2.0f);
             Assert.AreEqual(new PointF(200, 200), _shape.GetPoint1());
             Assert.AreEqual(new PointF(20, 20), _shape.GetPoint2());
+        }
+        
+        // test
+        [TestMethod]
+        public void TestGetEncode()
+        {
+            _shape.SetPoint1(new PointF(100, 100));
+            _shape.SetPoint2(new PointF(10, 10));
+            Assert.AreEqual("LINE, 100, 100, 10, 10, None", _shape.GetEncode());
         }
     }
 }

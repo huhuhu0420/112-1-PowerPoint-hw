@@ -16,13 +16,10 @@ namespace PowerPoint
         /// <summary>
         /// add
         /// </summary>
-        public void AddPage()
+        public virtual void AddPage()
         {
             _pages.Add(new BindingList<Shape>());
-            if (_pagesChanged != null)
-            {
-                _pagesChanged(true, _pages.Count - 1);
-            }
+            _pagesChanged?.Invoke(true, _pages.Count - 1);
         }
         
         /// <summary>
@@ -30,36 +27,30 @@ namespace PowerPoint
         /// </summary>
         /// <param name="index"></param>
         /// <param name="page"></param>
-        public void AddPageByIndex(int index, BindingList<Shape> page)
+        public virtual void AddPageByIndex(int index, BindingList<Shape> page)
         {
             _pages.Insert(index, page);
-            if (_pagesChanged != null)
-            {
-                _pagesChanged(true, index);
-            }
+            _pagesChanged?.Invoke(true, index);
         }
         
         /// <summary>
         /// remove
         /// </summary>
         /// <param name="index"></param>
-        public void RemovePageByIndex(int index)
+        public virtual void RemovePageByIndex(int index)
         {
             if (_pages.Count == 1)
             {
                 return;
             }
             _pages.RemoveAt(index);
-            if (_pagesChanged != null)
-            {
-                _pagesChanged(false, index);
-            }
+            _pagesChanged?.Invoke(false, index);
         }
 
         /// <summary>
         /// clear
         /// </summary>
-        public void Clear()
+        public virtual void Clear()
         {
             for (var i=_pages.Count-1; i>0; i--)
             {
@@ -73,7 +64,7 @@ namespace PowerPoint
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
-        public BindingList<Shape> GetPage(int index)
+        public virtual BindingList<Shape> GetPage(int index)
         {
             return _pages[index];
         }
@@ -82,7 +73,7 @@ namespace PowerPoint
         /// get
         /// </summary>
         /// <returns></returns>
-        public int GetPageCount()
+        public virtual int GetPageCount()
         {
             return _pages.Count;
         }
@@ -91,7 +82,7 @@ namespace PowerPoint
         /// encode
         /// </summary>
         /// <returns></returns>
-        public string GetEncode()
+        public virtual string GetEncode()
         {
             var csv = new StringBuilder();
             for (var i = 0; i < _pages.Count; i++)

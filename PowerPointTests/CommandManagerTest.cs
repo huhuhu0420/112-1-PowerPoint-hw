@@ -72,5 +72,16 @@ namespace PowerPoint.Command.Tests
 
             Assert.IsFalse(commandHistory.Contains(_mockCommand.Object));
         }
+        
+        [TestMethod]
+        public void ClearTest()
+        {
+            _commandManager.Execute(_mockCommand.Object);
+            _commandManager.Clear();
+            var commandHistory = (List<ICommand>)_privateObject.GetField("_commandHistory");
+            var redoHistory = (List<ICommand>)_privateObject.GetField("_redoHistory");
+            Assert.AreEqual(0, commandHistory.Count);
+            Assert.AreEqual(0, redoHistory.Count);
+        }
     }
 }

@@ -2,14 +2,6 @@ namespace PowerPoint
 {
     public class Global
     {
-        public Global()
-        {
-            TopLeftX = 0;
-            TopLeftY = 0;
-            BottomRightX = 0;
-            BottomRightY = 0;
-        }
-
         public static float TopLeftX
         {
             get; set;

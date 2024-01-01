@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using PowerPoint.State;
 
@@ -225,6 +226,82 @@ namespace PowerPoint.PresentationModel.Tests
             bool isCalled = false;
             _presentationModel._undoRedoHistoryChanged += (bool isUndo, bool isRedo) => { isCalled = true; };
             _presentationModel.HandleUndoRedoHistoryChanged(true, true);
+            Assert.IsTrue(isCalled);
+        }
+        
+        // test
+        [TestMethod]
+        public void SetPageIndexTest()
+        {
+            _presentationModel.SetPageIndex(1);
+            _mockModel.Verify(m => m.SetPageIndex(1), Times.Once);
+        }
+        
+        // test
+        [TestMethod]
+        public void AddPageTest()
+        {
+            _presentationModel.AddPage();
+            _mockModel.Verify(m => m.AddPage(), Times.Once);
+        }
+        
+        // test
+        [TestMethod]
+        public void DeletePageTest()
+        {
+            _presentationModel.DeletePage();
+            _mockModel.Verify(m => m.DeletePage(), Times.Once);
+        }
+        
+        // test
+        [TestMethod]
+        public void GetPageIndexTest()
+        {
+            _presentationModel.GetPageIndex();
+            _mockModel.Verify(m => m.GetPageIndex(), Times.Once);
+        }
+        
+        // test
+        [TestMethod]
+        public  void SaveTest()
+        { 
+            Task task = Task.Run(() => _presentationModel.Save());
+            task.Wait();
+            _mockModel.Verify(m => m.Save(), Times.Once);
+        }
+        
+        // test
+        [TestMethod]
+        public void LoadTest()
+        {
+            _presentationModel.Load();
+            _mockModel.Verify(m => m.Load(), Times.Once);
+        }
+        
+        // test
+        [TestMethod]
+        public void DeleteDriveFileTest()
+        {
+            _presentationModel.DeleteDriveFile();
+            _mockModel.Verify(m => m.DeleteDriveFile(), Times.Once);
+            _mockModel.Setup(model => model.GetSelectIndex()).Returns(-1);
+            _presentationModel.DeleteShape();
+        }
+        
+        // test
+        [TestMethod]
+        public void IsSaveButtonEnabledTest()
+        {
+            Assert.IsTrue(_presentationModel.IsSaveButtonEnabled);
+        }
+        
+        // test
+        [TestMethod]
+        public void HandlePangesChangedTest()
+        {
+            bool isCalled = false;
+            _presentationModel._pagesChanged += (bool isUndo, int index) => { isCalled = true; };
+            _presentationModel.HandlePagesChanged(true, 1);
             Assert.IsTrue(isCalled);
         }
     }

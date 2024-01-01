@@ -38,7 +38,7 @@ namespace PowerPoint.PresentationModel
             _isButtonChecked[(int)ShapeType.ARROW] = true;
         }
 
-        private void HandlePagesChanged(bool isadd, int index)
+        public void HandlePagesChanged(bool isadd, int index)
         {
             if (_pagesChanged != null)
             {
