@@ -2,6 +2,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using WindowPowerPoint;
 
 namespace PowerPoint
 {
@@ -62,6 +63,7 @@ namespace PowerPoint
             var button = (Button)sender;
             var index = flowLayoutPanel1.Controls.IndexOf(button);
             // Debug.Print(index.ToString());
+            flowLayoutPanel1.PerformLayout();
             _presentationModel.SetPageIndex(index);
             dataGridView1.DataSource = _presentationModel.GetShapes();
         }
@@ -75,19 +77,20 @@ namespace PowerPoint
         {
             if (isAdd)
             {
-                HandlePageChangedMore(index);
+                HandlePageChangedAdd(index);
             }
             else
             {
                 flowLayoutPanel1.Controls.RemoveAt(index);
             }
             dataGridView1.DataSource = _presentationModel.GetShapes();
+            flowLayoutPanel1.PerformLayout();
         }
 
         // more
-        public void HandlePageChangedMore(int index)
+        public void HandlePageChangedAdd(int index)
         {
-            Button button = new Button();
+            var button = new Button();
             button.BackColor = System.Drawing.SystemColors.ControlLightLight;
             var width = splitContainer1.Panel1.Width - Constant.EIGHT;
             var height = (int)(splitContainer1.Panel1.Width * Constant.RATIO) - Constant.EIGHT;
@@ -97,6 +100,7 @@ namespace PowerPoint
             button.BackgroundImageLayout = ImageLayout.Stretch;
             flowLayoutPanel1.Controls.Add(button);
             flowLayoutPanel1.Controls.SetChildIndex(button, index);
+            button.Focus();
         }
     }
 }

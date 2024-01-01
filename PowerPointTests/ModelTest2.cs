@@ -203,7 +203,6 @@ namespace PowerPoint.Tests
         {
             _model.SetSelectNull();
             _model.SetSelectNull();
-            _model.SetTempShape();
             _model.InsertPageByIndex(0, new BindingList<Shape>());
             var pages = _model.GetPages();
             Assert.AreEqual(2, pages.GetPageCount());

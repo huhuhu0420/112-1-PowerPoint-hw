@@ -365,7 +365,7 @@ namespace PowerPointTests
             _robot.ClickByElementName(OK);
             Assert.AreEqual(AccessibleStates.Unavailable, GetButtonState(SAVE) & AccessibleStates.Unavailable);
             DrawShape(RECTANGLE, new Point(Constant.ONE_HUNDRED, Constant.ONE_HUNDRED), new Point(Constant.TWO_HUNDRED, Constant.TWO_HUNDRED));
-            Thread.Sleep(Constant.DELAY + Constant.THOUSAND);
+            Thread.Sleep(Constant.DELAY + Constant.THOUSAND * 2);
             Assert.AreNotEqual(AccessibleStates.Unavailable, GetButtonState(SAVE) & AccessibleStates.Unavailable);
             _robot.ClickByElementName(DELETE_CHINESE + " Row 0");
             Thread.Sleep(Constant.FIVE_HUNDRED);

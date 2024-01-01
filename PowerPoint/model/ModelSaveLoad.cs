@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PowerPoint
 {
@@ -16,10 +17,17 @@ namespace PowerPoint
             var csv = _pages.GetEncode();
             // Debug.Print(csv);
             File.WriteAllText(_filePath, csv);
-            if (_fileId == "")
-                _fileId = await _service.UploadFile(_filePath, Constant.TEXT_PLAIN);
-            else
-                _service.UpdateFile(Constant.FILE_NAME, _fileId, Constant.TEXT_PLAIN);
+            try
+            {
+                if (_fileId == "")
+                    _fileId = await _service.UploadFile(_filePath, Constant.TEXT_PLAIN);
+                else
+                    _service.UpdateFile(Constant.FILE_NAME, _fileId, Constant.TEXT_PLAIN);
+            }
+            catch
+            {
+                MessageBox.Show(_failedMessage);
+            }
             Thread.Sleep(Constant.DELAY);
         }
 
@@ -27,7 +35,14 @@ namespace PowerPoint
         public virtual void Load()
         {
             _commandManager.Clear();
-            _service.DownloadFile(_fileId, _filePath);
+            try
+            {
+                _service.DownloadFile(_fileId, _filePath);
+            }
+            catch
+            {
+                MessageBox.Show(_failedMessage);
+            }
             SetPageIndex(0);
             _pages.Clear();
             SetPageIndex(0);
@@ -62,7 +77,14 @@ namespace PowerPoint
         {
             if (_fileId == "")
                 return;
-            _service.DeleteFile(_fileId);
+            try
+            {
+                _service.DeleteFile(_fileId);
+            }
+            catch
+            {
+                MessageBox.Show(_failedMessage);
+            }
         }
 
         public void ReadShape(string[] info)
@@ -91,9 +113,10 @@ namespace PowerPoint
         }
         
         GoogleDriveService _service;
-        private string _solutionPath;
+        private  string _solutionPath;
         private string _filePath;
         private string _applicationName = "PowerPoint";
         private string _fileId = "";
+        private string _failedMessage = "failed!!!!!";
     }
 }
