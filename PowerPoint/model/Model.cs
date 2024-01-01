@@ -106,6 +106,10 @@ namespace PowerPoint
                 HandleMoveShape(_selectIndex, new SizeF(_lastPoint.X - _firstPoint.X, _lastPoint.Y - _firstPoint.Y));
                 // Debug.Print("move");
             }
+            if (_context.GetState() == Model.ModelState.Resize && _firstPoint != _lastPoint)
+            {
+                HandleResizeShape(_selectIndex, _tempShape);
+            }
         }
 
         /// <summary>
@@ -180,6 +184,7 @@ namespace PowerPoint
                 isSelect = IsInShape(point, i);
                 if (isSelect)
                 {
+                    _selectIndex = i;
                     break;
                 }
             }
@@ -333,5 +338,6 @@ namespace PowerPoint
         private int _canvasWidth;
         const string APPLICATION_NAME = "DrawAnyWhere";
         const string CLIENT_SECRET_FILE_NAME = "clientSecret.json";
+        private Shape _tempShape;
     }
 }

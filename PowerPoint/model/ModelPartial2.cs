@@ -200,12 +200,31 @@ namespace PowerPoint
             return _pages;
         }
         
+        /// <summary>
+        /// handle
+        /// </summary>
+        /// <param name="isAdd"></param>
+        /// <param name="index"></param>
         public virtual void HandlePageChanged(bool isAdd, int index)
         {
             if (_pagesChanged != null)
             {
                 _pagesChanged(isAdd, index);
             }
+        }
+        
+        /// <summary>
+        /// set
+        /// </summary>
+        /// <param name="shape"></param>
+        public virtual void SetTempShape()
+        {
+            _tempShape = _shapeFactory.CreateShape(_select.GetShapeType(), _select.GetPoint1(), _select.GetPoint2());
+        }
+        
+        public virtual void SetSelectNull()
+        {
+            _select = null;
         }
 
         public enum ModelState

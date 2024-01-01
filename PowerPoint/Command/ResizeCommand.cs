@@ -5,45 +5,34 @@ namespace PowerPoint.Command
 {
     public class ResizeCommand : ICommand
     {
-        public ResizeCommand(Model model, Shape shape, int index, PointF point1, PointF point2)
+        public ResizeCommand(Model model, Shape shape, Shape newShape, int index)
         {
             _model = model;
-            _shape = shape;
+            _shape = _shapeFactory.CreateShape(shape.GetShapeType(), shape.GetPoint1(), shape.GetPoint2());
+            _newShape = _shapeFactory.CreateShape(newShape.GetShapeType(), newShape.GetPoint1(), newShape.GetPoint2());
             _index = index;
-            _newPoint1 = point1;
-            _newPoint2 = point2;
-            _point1 = shape.GetPoint1();
-            _point2 = shape.GetPoint2();
-            Debug.Print(_point1.ToString());
-            Debug.Print(_point2.ToString());
-            Debug.Print(_newPoint1.ToString());
-            Debug.Print(_newPoint2.ToString());
         }
         
         // exe
         public void Execute()
         {
-            var shapes = _model.GetShapes();
-            shapes[_index].SetPoint1(_newPoint1);
-            shapes[_index].SetPoint2(_newPoint2);
+            _model.GetShapes()[_index] = _newShape;
+            _model.SelectShape(new PointF(0,0));
+            _model.NotifyModelChanged();
         }
         
         // undo
         public void Undo()
         {
-            var shapes = _model.GetShapes();
-            shapes[_index].SetPoint1(_point1);
-            shapes[_index].SetPoint2(_point2);
-            Debug.Print(_point1.ToString());
-            Debug.Print(_point2.ToString());
+            _model.GetShapes()[_index] = _shape;
+            _model.SetSelectNull();
+            _model.NotifyModelChanged();
         }
         
         readonly Model _model;
-        readonly Shape _shape;
         readonly int _index;
-        readonly PointF _newPoint1;
-        readonly PointF _newPoint2;
-        readonly PointF _point1;
-        readonly PointF _point2;
+        readonly Shape _shape;
+        readonly Shape _newShape;
+        readonly ShapeFactory _shapeFactory = new ShapeFactory();
     }
 }

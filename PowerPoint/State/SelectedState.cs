@@ -37,6 +37,7 @@ namespace PowerPoint.State
             var location = _model.IsInShapeCorner(point);
             if (location != Model.Location.None)
             {
+                _model.SetTempShape();
                 context.SetState(new ResizeState(_model));
                 return;
             }
