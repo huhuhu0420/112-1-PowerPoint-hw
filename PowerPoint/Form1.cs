@@ -109,6 +109,9 @@ namespace PowerPoint
             HandleSlideResize();
         }
 
+        /// <summary>
+        /// handle
+        /// </summary>
         public void HandleSlideResize()
         {
             flowLayoutPanel1.Width = splitContainer1.Panel1.Width - Constant.EIGHT;
@@ -310,70 +313,5 @@ namespace PowerPoint
 
         private Bitmap _brief;
 
-        /// <summary>
-        /// click new page
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public void ClickNewPageButton(object sender, EventArgs e)
-        {
-            // Button button = new Button();
-            // button.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            // var width = splitContainer1.Panel1.Width - Constant.EIGHT;
-            // var height = (int)(splitContainer1.Panel1.Width * Constant.RATIO) - Constant.EIGHT;
-            // button.Size = new Size(width, height);
-            // button.Click += HandleClickPage;
-            // flowLayoutPanel1.Controls.Add(button);
-            _presentationModel.AddPage();
-        }
-        
-        public void HandleClickPage(object sender, EventArgs e)
-        {
-            var button = (Button)sender;
-            var index = flowLayoutPanel1.Controls.IndexOf(button);
-            Debug.Print(index.ToString());
-            _presentationModel.SetPageIndex(index);
-            dataGridView1.DataSource = _presentationModel.GetShapes();
-        }
-        
-        public void HandlePageChanged(bool isAdd, int index)
-        {
-            if (isAdd)
-            {
-                Button button = new Button();
-                button.BackColor = System.Drawing.SystemColors.ControlLightLight;
-                var width = splitContainer1.Panel1.Width - Constant.EIGHT;
-                var height = (int)(splitContainer1.Panel1.Width * Constant.RATIO) - Constant.EIGHT;
-                button.Size = new Size(width, height);
-                button.Click += HandleClickPage;
-                button.Name = Constant.SLIDE;
-                button.BackgroundImageLayout = ImageLayout.Stretch;
-                flowLayoutPanel1.Controls.Add(button);
-                flowLayoutPanel1.Controls.SetChildIndex(button, index);
-            }
-            else
-            {
-                flowLayoutPanel1.Controls.RemoveAt(index);
-            }
-            dataGridView1.DataSource = _presentationModel.GetShapes();
-        }
-
-        private void ClickSaveButton(object sender, EventArgs e)
-        {
-            _saveDialog.ShowDialog();
-            if (_saveDialog.IsOk())
-            {
-                _presentationModel.Save();
-            }
-        }
-
-        private void ClickLoadButton(object sender, EventArgs e)
-        {
-            _loadDialog.ShowDialog();
-            if (_loadDialog.IsOk())
-            {
-                _presentationModel.Load();
-            }
-        }
     }
 }

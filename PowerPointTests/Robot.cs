@@ -20,7 +20,7 @@ namespace PowerPointTests
         private Dictionary<string, string> _windowHandles;
         private string _root;
         private const string CONTROL_NOT_FOUND_EXCEPTION = "The specific control is not found!!";
-        private const string WIN_APP_DRIVER_URI = "http://127.0.0.1:4723";
+        private const string WIN_APP_DRIVER_URI = "http://127.0.0.1:47Constant.TWENTY_THREE";
 
         // constructor
         public Robot(string targetAppPath, string root)

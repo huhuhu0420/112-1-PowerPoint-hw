@@ -8,7 +8,7 @@ namespace PowerPoint
         public LoadDialog()
         {
             InitializeComponent();
-            Text = "SaveDialog";
+            Text = Constant.LOAD_DIALOG;
             _isOk = false;
         }
         
@@ -26,10 +26,10 @@ namespace PowerPoint
             // okButton
             _okButton = new Button
             {
-                Text = "OK",
+                Text = Constant.OK,
                 DialogResult = DialogResult.OK,
-                Size = new System.Drawing.Size(75, 23),
-                Location = new System.Drawing.Point(this.Size.Width/2 + 5, 200),
+                Size = new System.Drawing.Size(Constant.SEVEN_FIVE, Constant.TWENTY_THREE),
+                Location = new System.Drawing.Point(this.Size.Width / 2 + Constant.FIVE, Constant.TWO_HUNDRED),
                 TabIndex = 0,
                 UseVisualStyleBackColor = true,
                 Enabled = true
@@ -47,10 +47,10 @@ namespace PowerPoint
             // cancelButton
             _cancelButton = new Button
             {
-                Text = "Cancel",
+                Text = Constant.CANCEL,
                 DialogResult = DialogResult.Cancel,
-                Location = new System.Drawing.Point(this.Size.Width/2 - 80, 200),
-                Size = new System.Drawing.Size(75, 23),
+                Location = new System.Drawing.Point(this.Size.Width / 2 - Constant.EIGHTY, Constant.TWO_HUNDRED),
+                Size = new System.Drawing.Size(Constant.SEVEN_FIVE, Constant.TWENTY_THREE),
                 TabIndex = 1,
                 UseVisualStyleBackColor = true,
                 Enabled = true
@@ -62,10 +62,11 @@ namespace PowerPoint
             Controls.Add(_cancelButton);
         }
         
+        // init
         public void InitializeSaveText()
         {
             // saveText
-            const string SAVE = "Load?";
+            const string SAVE = Constant.LOAD;
             _saveText = new TextBox
             {
                 Text = SAVE,
@@ -80,6 +81,7 @@ namespace PowerPoint
             Controls.Add(_saveText);
         }
         
+        // ok
         public bool IsOk()
         {
             return _isOk;

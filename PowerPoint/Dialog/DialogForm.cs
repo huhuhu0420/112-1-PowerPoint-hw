@@ -9,7 +9,7 @@ namespace PowerPoint
         {
             InitializeComponent();
             Text = "DialogForm";
-            _canvasSize = new Size(250, 250);
+            _canvasSize = new Size(Constant.TWO_HUNDRED_FIFTY, Constant.TWO_HUNDRED_FIFTY);
             _isOk = false;
         }
 
@@ -36,8 +36,8 @@ namespace PowerPoint
             {
                 Text = "OK",
                 DialogResult = DialogResult.OK,
-                Location = new System.Drawing.Point(47, 200),
-                Size = new System.Drawing.Size(75, 23),
+                Location = new System.Drawing.Point(Constant.FOUR_SEVEN, Constant.TWO_HUNDRED),
+                Size = new System.Drawing.Size(Constant.SEVEN_FIVE, Constant.TWENTY_THREE),
                 TabIndex = 0,
                 UseVisualStyleBackColor = true,
                 Enabled = false
@@ -57,8 +57,8 @@ namespace PowerPoint
             {
                 Text = "Cancel",
                 DialogResult = DialogResult.Cancel,
-                Location = new System.Drawing.Point(137, 200),
-                Size = new System.Drawing.Size(75, 23),
+                Location = new System.Drawing.Point(Constant.ONE_THREE_SEVEN, Constant.TWO_HUNDRED),
+                Size = new System.Drawing.Size(Constant.SEVEN_FIVE, Constant.TWENTY_THREE),
                 TabIndex = 1,
                 UseVisualStyleBackColor = true
             };
@@ -75,8 +75,8 @@ namespace PowerPoint
             // topLeftX
             _topLeftX = new TextBox
             {
-                Location = new System.Drawing.Point(10, 60),
-                Size = new System.Drawing.Size(100, 23),
+                Location = new System.Drawing.Point(Constant.TEN, Constant.SIXTY),
+                Size = new System.Drawing.Size(Constant.ONE_HUNDRED, Constant.TWENTY_THREE),
                 TabIndex = 2
             };
             _topLeftX.TextChanged += (sender, e) =>
@@ -93,8 +93,8 @@ namespace PowerPoint
             // topLeftY
             _topLeftY = new TextBox
             {
-                Location = new System.Drawing.Point(150, 60),
-                Size = new System.Drawing.Size(100, 23),
+                Location = new System.Drawing.Point(Constant.ONE_HUNDRED_FIFTY, Constant.SIXTY),
+                Size = new System.Drawing.Size(Constant.ONE_HUNDRED, Constant.TWENTY_THREE),
                 TabIndex = 3
             };
             _topLeftY.TextChanged += (sender, e) =>
@@ -111,8 +111,8 @@ namespace PowerPoint
             // bottomRightX
             _bottomRightX = new TextBox
             {
-                Location = new System.Drawing.Point(10, 140),
-                Size = new System.Drawing.Size(100, 23),
+                Location = new System.Drawing.Point(Constant.TEN, Constant.ONE_HUNDRED_FOUR),
+                Size = new System.Drawing.Size(Constant.ONE_HUNDRED, Constant.TWENTY_THREE),
                 TabIndex = 4
             };
             _bottomRightX.TextChanged += (sender, e) =>
@@ -129,8 +129,8 @@ namespace PowerPoint
             // bottomRightY
             _bottomRightY = new TextBox
             {
-                Location = new System.Drawing.Point(150, 140),
-                Size = new System.Drawing.Size(100, 23),
+                Location = new System.Drawing.Point(Constant.ONE_HUNDRED_FIFTY, Constant.ONE_HUNDRED_FOUR),
+                Size = new System.Drawing.Size(Constant.ONE_HUNDRED, Constant.TWENTY_THREE),
                 TabIndex = 5
             };
             _bottomRightY.TextChanged += (sender, e) =>
@@ -148,8 +148,8 @@ namespace PowerPoint
             _topLeftXText = new TextBox
             {
                 Text = "Top Left X",
-                Location = new System.Drawing.Point(10, 40),
-                Size = new System.Drawing.Size(100, 23),
+                Location = new System.Drawing.Point(Constant.TEN, Constant.FOUR_ZERO),
+                Size = new System.Drawing.Size(Constant.ONE_HUNDRED, Constant.TWENTY_THREE),
                 TabIndex = 6,
                 TextAlign = HorizontalAlignment.Center
             };
@@ -166,8 +166,8 @@ namespace PowerPoint
             _topLeftYText = new TextBox
             {
                 Text = "Top Left Y",
-                Location = new System.Drawing.Point(150, 40),
-                Size = new System.Drawing.Size(100, 23),
+                Location = new System.Drawing.Point(Constant.ONE_HUNDRED_FIFTY, Constant.FOUR_ZERO),
+                Size = new System.Drawing.Size(Constant.ONE_HUNDRED, Constant.TWENTY_THREE),
                 TabIndex = 7,
                 TextAlign = HorizontalAlignment.Center
             };
@@ -184,8 +184,8 @@ namespace PowerPoint
             _bottomRightXText = new TextBox
             {
                 Text = "Bottom Right X",
-                Location = new System.Drawing.Point(10, 120),
-                Size = new System.Drawing.Size(100, 23),
+                Location = new System.Drawing.Point(Constant.TEN, Constant.ONE_HUNDRED_TWENTY),
+                Size = new System.Drawing.Size(Constant.ONE_HUNDRED, Constant.TWENTY_THREE),
                 TabIndex = 8,
                 TextAlign = HorizontalAlignment.Center
             };
@@ -202,8 +202,8 @@ namespace PowerPoint
             _bottomRightYText = new TextBox
             {
                 Text = "Bottom Right Y",
-                Location = new System.Drawing.Point(150, 120),
-                Size = new System.Drawing.Size(100, 23),
+                Location = new System.Drawing.Point(Constant.ONE_HUNDRED_FIFTY, Constant.ONE_HUNDRED_TWENTY),
+                Size = new System.Drawing.Size(Constant.ONE_HUNDRED, Constant.TWENTY_THREE),
                 TabIndex = 9,
                 TextAlign = HorizontalAlignment.Center
             };
@@ -226,7 +226,16 @@ namespace PowerPoint
             {
                 _okButton.Enabled = false;
             }
-            else if (float.TryParse(_topLeftX.Text, out var topLeftX) && float.TryParse(_topLeftY.Text, out var topLeftY) && float.TryParse(_bottomRightX.Text, out var bottomRightX) && float.TryParse(_bottomRightY.Text, out var bottomRightY))
+            else
+            {
+                HandleTextBoxTextChangedMore();
+            }
+        }
+
+        //handle
+        public void HandleTextBoxTextChangedMore()
+        {
+            if (float.TryParse(_topLeftX.Text, out var topLeftX) && float.TryParse(_topLeftY.Text, out var topLeftY) && float.TryParse(_bottomRightX.Text, out var bottomRightX) && float.TryParse(_bottomRightY.Text, out var bottomRightY))
             {
                 if (IsInRangeX(topLeftX) && IsInRangeX(bottomRightX) && IsInRangeY(topLeftY) && IsInRangeY(bottomRightY) && topLeftX < bottomRightX && topLeftY < bottomRightY)
                 {
@@ -242,7 +251,7 @@ namespace PowerPoint
                 }
             }
         }
-        
+
         // handle
         public void HandleOkButtonClick()
         {

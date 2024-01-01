@@ -121,7 +121,7 @@ namespace PowerPoint
             this.comboBox1.Location = new System.Drawing.Point(120, 13);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(110, 23);
+            this.comboBox1.Size = new System.Drawing.Size(110, Constant.TWENTY_THREE);
             this.comboBox1.TabIndex = 3;
             // 
             // InsertButton
@@ -175,7 +175,7 @@ namespace PowerPoint
             this.lineButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.lineButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.lineButton.Name = "lineButton";
-            this.lineButton.Size = new System.Drawing.Size(23, 22);
+            this.lineButton.Size = new System.Drawing.Size(Constant.TWENTY_THREE, 22);
             this.lineButton.Text = "📏";
             // 
             // squareButton
@@ -183,7 +183,7 @@ namespace PowerPoint
             this.squareButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.squareButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.squareButton.Name = "squareButton";
-            this.squareButton.Size = new System.Drawing.Size(23, 22);
+            this.squareButton.Size = new System.Drawing.Size(Constant.TWENTY_THREE, 22);
             this.squareButton.Text = "⬜";
             // 
             // circleButton
@@ -191,7 +191,7 @@ namespace PowerPoint
             this.circleButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.circleButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.circleButton.Name = "circleButton";
-            this.circleButton.Size = new System.Drawing.Size(23, 22);
+            this.circleButton.Size = new System.Drawing.Size(Constant.TWENTY_THREE, 22);
             this.circleButton.Text = "○";
             // 
             // mouseButton
@@ -199,7 +199,7 @@ namespace PowerPoint
             this.mouseButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.mouseButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.mouseButton.Name = "mouseButton";
-            this.mouseButton.Size = new System.Drawing.Size(23, 22);
+            this.mouseButton.Size = new System.Drawing.Size(Constant.TWENTY_THREE, 22);
             this.mouseButton.Text = "🖱";
             // 
             // undoButton
@@ -207,7 +207,7 @@ namespace PowerPoint
             this.undoButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.undoButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.undoButton.Name = "undoButton";
-            this.undoButton.Size = new System.Drawing.Size(23, 22);
+            this.undoButton.Size = new System.Drawing.Size(Constant.TWENTY_THREE, 22);
             this.undoButton.Text = "⟲";
             // 
             // redoButton
@@ -215,7 +215,7 @@ namespace PowerPoint
             this.redoButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.redoButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.redoButton.Name = "redoButton";
-            this.redoButton.Size = new System.Drawing.Size(23, 22);
+            this.redoButton.Size = new System.Drawing.Size(Constant.TWENTY_THREE, 22);
             this.redoButton.Text = "⟳";
             // 
             // newPageButton
@@ -223,7 +223,7 @@ namespace PowerPoint
             this.newPageButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.newPageButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newPageButton.Name = "newPageButton";
-            this.newPageButton.Size = new System.Drawing.Size(23, 22);
+            this.newPageButton.Size = new System.Drawing.Size(Constant.TWENTY_THREE, 22);
             this.newPageButton.Text = "📰";
             // 
             // saveButton
@@ -231,7 +231,7 @@ namespace PowerPoint
             this.saveButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.saveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(23, 22);
+            this.saveButton.Size = new System.Drawing.Size(Constant.TWENTY_THREE, 22);
             this.saveButton.Text = "💾";
             this.saveButton.Click += new System.EventHandler(this.ClickSaveButton);
             // 
@@ -240,7 +240,7 @@ namespace PowerPoint
             this.loadButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.loadButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.loadButton.Name = "loadButton";
-            this.loadButton.Size = new System.Drawing.Size(23, 22);
+            this.loadButton.Size = new System.Drawing.Size(Constant.TWENTY_THREE, 22);
             this.loadButton.Text = "⬇";
             this.loadButton.Click += new System.EventHandler(this.ClickLoadButton);
             // 

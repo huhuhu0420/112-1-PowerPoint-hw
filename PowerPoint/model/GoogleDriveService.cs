@@ -21,12 +21,10 @@ namespace PowerPoint
             this.CreateNewService(applicationName, clientSecretFileName);
         }
 
+        // google
         private void CreateNewService(string applicationName, string clientSecretFileName)
         {
-            const string USER = "user";
-            const string CREDENTIAL_FOLDER = ".credential/";
             UserCredential credential;
-
             using (FileStream stream = new FileStream(clientSecretFileName, FileMode.Open, FileAccess.Read))
             {
                 string credentialPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
@@ -34,19 +32,18 @@ namespace PowerPoint
                 credential = GoogleWebAuthorizationBroker.AuthorizeAsync(GoogleClientSecrets.Load(stream).Secrets,
                     SCOPES, USER, CancellationToken.None, new FileDataStore(credentialPath, true)).Result;
             }
-
             DriveService service = new DriveService(new BaseClientService.Initializer()
             {
                 HttpClientInitializer = credential,
                 ApplicationName = applicationName
             });
-
             _credential = credential;
             DateTime now = DateTime.Now;
             _timeStamp = UNIXNowTimeStamp;
             _service = service;
         }
 
+        // google
         private int UNIXNowTimeStamp
         {
             get
@@ -57,6 +54,7 @@ namespace PowerPoint
             }
         }
 
+        // google
         public async Task<string> UploadFile(string uploadFileName, string contentType, Action<IUploadProgress> uploadProgressEventHandeler = null, Action<Google.Apis.Drive.v2.Data.File> responseReceivedEventHandler = null)
         {
             FileStream uploadStream = new FileStream(uploadFileName, FileMode.Open, FileAccess.Read);
@@ -72,7 +70,6 @@ namespace PowerPoint
 
             Google.Apis.Drive.v2.Data.File fileToInsert = new Google.Apis.Drive.v2.Data.File { Title = title };
             FilesResource.InsertMediaUpload insertRequest = _service.Files.Insert(fileToInsert, uploadStream, contentType);
-            insertRequest.ChunkSize = FilesResource.InsertMediaUpload.MinimumChunkSize * 2;
 
             if (uploadProgressEventHandeler != null)
                 insertRequest.ProgressChanged += uploadProgressEventHandeler;
@@ -96,7 +93,8 @@ namespace PowerPoint
 
             return insertRequest.ResponseBody.Id;
         }
-        
+
+        // google
         public void DownloadFile(string fileId, string fileName, Action<IDownloadProgress> downloadProgressChangedEventHandeler = null)
         {
             CheckCredentialTimeStamp();
@@ -110,6 +108,7 @@ namespace PowerPoint
             }
         }
 
+        // google
         private void CheckCredentialTimeStamp()
         {
             const int ONE_HOUR_SECOND = 3600;
@@ -118,7 +117,8 @@ namespace PowerPoint
             if ((nowTimeStamp - _timeStamp) > ONE_HOUR_SECOND)
                 this.CreateNewService(_applicationName, _clientSecretFileName);
         }
-        
+
+        // google
         public Google.Apis.Drive.v2.Data.File UpdateFile(string fileName, string fileId, string contentType)
         {
             CheckCredentialTimeStamp();
@@ -140,7 +140,8 @@ namespace PowerPoint
             }
         }
 
-    public void DeleteFile(string fileId)
+        // google
+        public void DeleteFile(string fileId)
         {
             CheckCredentialTimeStamp();
             try
@@ -161,6 +162,7 @@ namespace PowerPoint
         private string _applicationName;
         private string _clientSecretFileName;
         private UserCredential _credential;
-
+        const string USER = "user";
+        const string CREDENTIAL_FOLDER = ".credential/";
     }
 }

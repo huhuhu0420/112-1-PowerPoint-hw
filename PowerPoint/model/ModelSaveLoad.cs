@@ -19,7 +19,7 @@ namespace PowerPoint
             if (_fileId == "")
                 _fileId = await _service.UploadFile(_filePath, "text/plain");
             else
-                _service.UpdateFile(Constant.FILENAME, _fileId, "text/plain");
+                _service.UpdateFile(Constant.FILE_NAME, _fileId, "text/plain");
             Thread.Sleep(Constant.DELAY);
         }
 

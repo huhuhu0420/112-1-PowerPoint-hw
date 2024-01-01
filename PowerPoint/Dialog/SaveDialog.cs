@@ -8,7 +8,7 @@ namespace PowerPoint
         public SaveDialog()
         {
             InitializeComponent();
-            Text = "SaveDialog";
+            Text = Constant.SAVE_DIALOG;
             _isOk = false;
         }
         
@@ -28,7 +28,7 @@ namespace PowerPoint
             {
                 Text = "OK",
                 DialogResult = DialogResult.OK,
-                Size = new System.Drawing.Size(75, 23),
+                Size = new System.Drawing.Size(75, Constant.TWENTY_THREE),
                 Location = new System.Drawing.Point(this.Size.Width/2 + 5, 200),
                 TabIndex = 0,
                 UseVisualStyleBackColor = true,
@@ -50,7 +50,7 @@ namespace PowerPoint
                 Text = "Cancel",
                 DialogResult = DialogResult.Cancel,
                 Location = new System.Drawing.Point(this.Size.Width/2 - 80, 200),
-                Size = new System.Drawing.Size(75, 23),
+                Size = new System.Drawing.Size(75, Constant.TWENTY_THREE),
                 TabIndex = 1,
                 UseVisualStyleBackColor = true,
                 Enabled = true
@@ -62,7 +62,7 @@ namespace PowerPoint
             Controls.Add(_cancelButton);
         }
         
-        
+        // init
         public void InitializeSaveText()
         {
             // saveText
@@ -81,6 +81,7 @@ namespace PowerPoint
             Controls.Add(_saveText);
         }
         
+        // ok
         public bool IsOk()
         {
             return _isOk;

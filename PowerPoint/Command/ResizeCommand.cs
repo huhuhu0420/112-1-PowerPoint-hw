@@ -20,6 +20,7 @@ namespace PowerPoint.Command
             Debug.Print(_newPoint2.ToString());
         }
         
+        // exe
         public void Execute()
         {
             var shapes = _model.GetShapes();
@@ -27,6 +28,7 @@ namespace PowerPoint.Command
             shapes[_index].SetPoint2(_newPoint2);
         }
         
+        // undo
         public void Undo()
         {
             var shapes = _model.GetShapes();

@@ -23,6 +23,7 @@ namespace PowerPoint
         public const string IS_MOUSE_CHECKED = "IsMouseButtonChecked";
         public const string IS_SAVE_BUTTON_ENABLED = "IsSaveButtonEnabled";
         public const int TEN = 10;
+        public const int FIVE = 5;
         public const int FOUR = 4;
         public const int THREE = 3;
         public const int TWO = 2;
@@ -38,16 +39,32 @@ namespace PowerPoint
         public const int EIGHT = 8;
         public const int FOUR_HUNDRED = 400;
         public const int ONE_HUNDRED = 100;
+        public const int ONE_HUNDRED_TWENTY = 120;
+        public const int EIGHTY = 80;
         public const int TWO_HUNDRED = 200;
+        public const int TWO_HUNDRED_FIFTY = 250;
         public const int FIVE_HUNDRED = 500;
+        public const int FOUR_SEVEN = 47;
+        public const int FOUR_ZERO = 40;
+        public const int SEVEN_FIVE = 75;
+        public const int TWENTY_THREE = 23;
+        public const int ONE_THREE_SEVEN = 137;
+        public const int ONE_HUNDRED_FIFTY = 150;
+        public const int ONE_HUNDRED_FOUR = 140;
+        public const int SIXTY = 60;
         public const string CANVAS_WIDTH = "_canvasWidth";
         public const string TOP_LEFT_X = "topLeftX";
         public const string TOP_LEFT_Y = "topLeftY";
         public const string BOTTOM_RIGHT_X = "bottomRightX";
         public const string BOTTOM_RIGHT_Y = "bottomRightY";
         public const string PROJECT_NAME = "PowerPoint";
-        public const string FILENAME = "huhuhu.pptfake";
+        public const string FILE_NAME = "huhuhu.pptfake";
         public const string SLIDE = "Slide";
         public const int DELAY = 3000;
+        public const string SAVE_DIALOG = "SaveDialog";
+        public const string LOAD_DIALOG = "LoadDialog";
+        public const string OK = "OK";
+        public const string CANCEL = "Cancel";
+        public const string LOAD = "Load?";
     }
 }

@@ -133,9 +133,9 @@ namespace PowerPoint
         // encode
         public string GetEncode()
         {
-            var encode =  _type + Constant.COMMA + _point1.X + Constant.COMMA + _point1.Y + Constant.COMMA + _point2.X +
-                   Constant.COMMA + _point2.Y;
-            if (_type == ShapeType.LINE) {
+            var encode =  _type + Constant.COMMA + _point1.X + Constant.COMMA + _point1.Y + Constant.COMMA + _point2.X + Constant.COMMA + _point2.Y;
+            if (_type == ShapeType.LINE)
+            {
                 encode += (Constant.COMMA + ((Line)this).GetLineTypeResult());
             }
             return encode;
