@@ -374,5 +374,78 @@ namespace PowerPointTests
             _robot.ClickByElementName(OK);
             Assert.AreEqual(GetInfo(new Point(0, 0), new Point(Constant.ONE_HUNDRED, Constant.ONE_HUNDRED)), _robot.FindElementByName(INFO_CHINESE + " Row 0").Text);
         }
+        
+        // test
+        [TestMethod]
+        public void IntegrationTest()
+        {
+            _robot.Manage().Window.Size = new Size(1600, 1000);
+            DrawHouse();
+            _robot.ClickByElementName(NEW_PAGE);
+            DrawCat();
+            _robot.ClickByElementName(SAVE);
+            _robot.ClickByElementName(OK);
+            Thread.Sleep(Constant.DELAY + Constant.THOUSAND * 2);
+            Actions actions = new Actions(_robot.GetDriver());
+            actions.SendKeys(OpenQA.Selenium.Keys.Delete).Perform();
+            _robot.ClickByElementName(LOAD);
+            _robot.ClickByElementName(OK);
+        }
+
+        public void DrawHouse()
+        {
+            ActionBuilder actionBuilder = new ActionBuilder();
+            ActionBuilder actionBuilder2 = new ActionBuilder();
+            PointerInputDevice pointer = new PointerInputDevice(PointerKind.Pen);
+            // Draw the base of the house
+            DrawShape(RECTANGLE, new Point(100, 200), new Point(300, 400));
+            actionBuilder
+                .AddAction(CreateMoveTo(pointer, 100, 200))
+                .AddAction(pointer.CreatePointerDown(MouseButton.Left))
+                .AddAction(pointer.CreatePointerUp(MouseButton.Left))
+                .AddAction(pointer.CreatePointerDown(MouseButton.Left))
+                .AddAction(CreateMoveTo(pointer, 150, 300))
+                .AddAction(pointer.CreatePointerUp(MouseButton.Left))
+                .AddAction(CreateMoveTo(pointer, 0, 0))
+                .AddAction(pointer.CreatePointerDown(MouseButton.Left))
+                .AddAction(pointer.CreatePointerUp(MouseButton.Left));
+            _robot.PerformAction(actionBuilder.ToActionSequenceList());
+            _robot.Sleep(1.0);
+            _robot.FindElementByName(UNDO).Click();
+
+            // Draw the roof of the house
+            DrawShape(LINE, new Point(100, 200), new Point(200, 100));
+            DrawShape(LINE, new Point(200, 100), new Point(300, 200));
+
+            // Draw the door of the house
+            _robot.FindElementByName("Open").Click();
+            _robot.FindElementByName(RECTANGLE_CHINESE).Click();
+            _robot.ClickByElementName(NEW_CHINESE);
+            _robot.FindElementByName(Constant.TOP_LEFT_X).SendKeys("180");
+            _robot.FindElementByName(Constant.TOP_LEFT_Y).SendKeys("300");
+            _robot.FindElementByName(Constant.BOTTOM_RIGHT_X).SendKeys("220");
+            _robot.FindElementByName(Constant.BOTTOM_RIGHT_Y).SendKeys("400");
+            _robot.FindElementByName("OK").Click();
+
+            // Draw the windows of the house
+            DrawShape(LINE, new Point(120, 250), new Point(160, 290));
+            DrawShape(LINE, new Point(120, 250), new Point(160, 250));
+            DrawShape(LINE, new Point(120, 290), new Point(160, 290));
+            DrawShape(LINE, new Point(140, 250), new Point(140, 290));
+
+            // Draw the doorknob
+            DrawShape(CIRCLE, new Point(210, 350), new Point(220, 360));
+            actionBuilder2
+                .AddAction(CreateMoveTo(pointer, 210, 350))
+                .AddAction(pointer.CreatePointerDown(MouseButton.Left))
+                .AddAction(CreateMoveTo(pointer, 182, 350))
+                .AddAction(pointer.CreatePointerUp(MouseButton.Left));
+            _robot.PerformAction(actionBuilder2.ToActionSequenceList());
+        }
+
+        public void DrawCat()
+        {
+            DrawShape(CIRCLE, new Point(100, 100), new Point(400, 400));
+        }
     }
 }
