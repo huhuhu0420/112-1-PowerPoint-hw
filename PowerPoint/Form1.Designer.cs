@@ -273,6 +273,7 @@ namespace PowerPoint
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.AccessibleName = "";
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(133, 393);
@@ -296,7 +297,7 @@ namespace PowerPoint
             this.splitContainer2.Panel2.Controls.Add(this.comboBox1);
             this.splitContainer2.Panel2.Controls.Add(this.dataGridView1);
             this.splitContainer2.Size = new System.Drawing.Size(784, 461);
-            this.splitContainer2.SplitterDistance = 472;
+            this.splitContainer2.SplitterDistance = 468;
             this.splitContainer2.SplitterWidth = 6;
             this.splitContainer2.TabIndex = 0;
             // 

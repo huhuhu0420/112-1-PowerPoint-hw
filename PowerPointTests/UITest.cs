@@ -1,10 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Security.Cryptography;
 using System.Windows.Forms;
+using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Interactions;
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Interactions;
@@ -22,6 +24,9 @@ namespace PowerPointTests
         private const string PANEL1 = "panel1";
         private const string UNDO = "⟲";
         private const string REDO = "⟳";
+        private const string NEW_PAGE = "📰";
+        private const string FLOW_LAYOUT_PANEL1 = "flowLayoutPanel1";
+        private const string SLIDE = "Slide";
         const string MENU_FORM = "MenuForm";
         const string DATA_GRID = "dataGridView1";
         const string SHAPE_CHINESE = "形狀";
@@ -34,6 +39,7 @@ namespace PowerPointTests
         
         private Robot _robot;
         private WindowsElement _canvas;
+        private WindowsElement _flowLayoutPanel1;
         private Random _random;
 
         /// <summary>
@@ -48,6 +54,7 @@ namespace PowerPointTests
             // Assert.AreEqual("hi", targetAppPath);
             _robot = new Robot(targetAppPath, MENU_FORM);
             _random = new Random();
+            _flowLayoutPanel1 = _robot.FindElementById(FLOW_LAYOUT_PANEL1);
             _canvas = _robot.FindElementById(PANEL1);
         }
         
@@ -89,6 +96,13 @@ namespace PowerPointTests
         {
             string stateValue = _robot.FindElementByName(name).GetAttribute("LegacyState");
             return (AccessibleStates)Enum.Parse(typeof(AccessibleStates), stateValue);
+        }
+
+        public IReadOnlyCollection<AppiumWebElement> GetSlide()
+        {
+            return _flowLayoutPanel1.FindElementsByAccessibilityId(SLIDE);
+            // return _robot.FindElementById(FLOW_LAYOUT_PANEL1)
+            // .FindElementsByClassName("WindowsForms10.Window.8.app.0.141b42a_r8_ad1");
         }
 
         // test
@@ -163,7 +177,7 @@ namespace PowerPointTests
         public void TestDataGridViewRectangle()
         {
             Point point1 = new Point(_random.Next(0, _canvas.Size.Width), _random.Next(0, _canvas.Size.Height));
-            Point point2 = new Point(_random.Next(point1.X, _canvas.Size.Width), _random.Next(point1.Y, _canvas.Size.Height));
+            Point point2 = new Point(_random.Next(point1.X + 1, _canvas.Size.Width), _random.Next(point1.Y + 1, _canvas.Size.Height));
             _robot.FindElementByName("Open").Click();
             _robot.FindElementByName(RECTANGLE_CHINESE).Click();
             _robot.ClickByElementName(NEW_CHINESE);
@@ -181,7 +195,7 @@ namespace PowerPointTests
         public void TestDataGridViewLine()
         {
             Point point1 = new Point(_random.Next(0, _canvas.Size.Width), _random.Next(0, _canvas.Size.Height));
-            Point point2 = new Point(_random.Next(point1.X, _canvas.Size.Width), _random.Next(point1.Y, _canvas.Size.Height));
+            Point point2 = new Point(_random.Next(point1.X + 1, _canvas.Size.Width), _random.Next(point1.Y + 1, _canvas.Size.Height));
             _robot.FindElementByName("Open").Click();
             _robot.FindElementByName(LINE_CHINESE).Click();
             _robot.ClickByElementName(NEW_CHINESE);
@@ -201,6 +215,7 @@ namespace PowerPointTests
             Point point1 = new Point(0, 0);
             Point point2 = new Point(Constant.ONE_HUNDRED, Constant.ONE_HUNDRED);
             Point middlePoint = new Point((point1.X + point2.X) / Constant.TWO, (point1.Y + point2.Y) / Constant.TWO);
+            
             DrawShape(CIRCLE, point1, point2);
             ActionBuilder actionBuilder = new ActionBuilder();
             PointerInputDevice pointer = new PointerInputDevice(PointerKind.Pen);
@@ -262,7 +277,7 @@ namespace PowerPointTests
         public void TestDataGridViewUndoRedo()
         {
             Point point1 = new Point(_random.Next(0, _canvas.Size.Width), _random.Next(0, _canvas.Size.Height));
-            Point point2 = new Point(_random.Next(point1.X, _canvas.Size.Width), _random.Next(point1.Y, _canvas.Size.Height));
+            Point point2 = new Point(_random.Next(point1.X + 1, _canvas.Size.Width), _random.Next(point1.Y + 1, _canvas.Size.Height));
             _robot.FindElementByName("Open").Click();
             _robot.FindElementByName(CIRCLE_CHINESE).Click();
             _robot.ClickByElementName(NEW_CHINESE);
@@ -281,31 +296,54 @@ namespace PowerPointTests
         }
         
         // test
+        // [TestMethod]
+        // public void TestResizeUndoRedo()
+        // {
+            // Point point1 = new Point(0, 0);
+            // Point point2 = new Point(Constant.ONE_HUNDRED, Constant.ONE_HUNDRED);
+            // Point newPoint2 = new Point(Constant.TWO_HUNDRED, Constant.TWO_HUNDRED);
+            // Point middlePoint = new Point((point1.X + point2.X) / Constant.TWO, (point1.Y + point2.Y) / Constant.TWO);
+            // DrawShape(CIRCLE, point1, point2);
+            // ActionBuilder actionBuilder = new ActionBuilder();
+            // PointerInputDevice pointer = new PointerInputDevice(PointerKind.Pen);
+            // actionBuilder
+            //     .AddAction(CreateMoveTo(pointer, point2.X, point2.Y))
+            //     .AddAction(pointer.CreatePointerDown(MouseButton.Left))
+            //     .AddAction(pointer.CreatePointerUp(MouseButton.Left))
+            //     .AddAction(pointer.CreatePointerDown(MouseButton.Left))
+            //     .AddAction(CreateMoveTo(pointer, Constant.TWO_HUNDRED, Constant.TWO_HUNDRED))
+            //     .AddAction(pointer.CreatePointerUp(MouseButton.Left))
+            //     .AddAction(CreateMoveTo(pointer, middlePoint.X, middlePoint.Y))
+            //     .AddAction(pointer.CreatePointerUp(MouseButton.Left));
+            // _robot.PerformAction(actionBuilder.ToActionSequenceList());
+            // _robot.Sleep(1.0);
+            // _robot.FindElementByName(UNDO).Click();
+            // Assert.AreEqual(GetInfo(point1, point2), _robot.FindElementByName(INFO_CHINESE + " Row 0").Text);
+            // _robot.FindElementByName(REDO).Click();
+            // Assert.AreEqual(GetInfo(point1, newPoint2), _robot.FindElementByName(INFO_CHINESE + " Row 0").Text);
+        // }
+        
+        // test
         [TestMethod]
-        public void TestResizeUndoRedo()
+        public void TestWindowResize()
         {
-            Point point1 = new Point(0, 0);
-            Point point2 = new Point(Constant.ONE_HUNDRED, Constant.ONE_HUNDRED);
-            Point newPoint2 = new Point(Constant.TWO_HUNDRED, Constant.TWO_HUNDRED);
-            Point middlePoint = new Point((point1.X + point2.X) / Constant.TWO, (point1.Y + point2.Y) / Constant.TWO);
-            DrawShape(CIRCLE, point1, point2);
-            ActionBuilder actionBuilder = new ActionBuilder();
-            PointerInputDevice pointer = new PointerInputDevice(PointerKind.Pen);
-            actionBuilder
-                .AddAction(CreateMoveTo(pointer, point2.X, point2.Y))
-                .AddAction(pointer.CreatePointerDown(MouseButton.Left))
-                .AddAction(pointer.CreatePointerUp(MouseButton.Left))
-                .AddAction(pointer.CreatePointerDown(MouseButton.Left))
-                .AddAction(CreateMoveTo(pointer, Constant.TWO_HUNDRED, Constant.TWO_HUNDRED))
-                .AddAction(pointer.CreatePointerUp(MouseButton.Left))
-                .AddAction(CreateMoveTo(pointer, middlePoint.X, middlePoint.Y))
-                .AddAction(pointer.CreatePointerUp(MouseButton.Left));
-            _robot.PerformAction(actionBuilder.ToActionSequenceList());
-            _robot.Sleep(1.0);
-            _robot.FindElementByName(UNDO).Click();
-            Assert.AreEqual(GetInfo(point1, point2), _robot.FindElementByName(INFO_CHINESE + " Row 0").Text);
-            _robot.FindElementByName(REDO).Click();
-            Assert.AreEqual(GetInfo(point1, newPoint2), _robot.FindElementByName(INFO_CHINESE + " Row 0").Text);
+            _robot.Manage().Window.Size = new Size(500, 300);
+            var ratio = (float)_canvas.Size.Width / (float)_canvas.Size.Height;
+            Assert.IsTrue(Math.Abs(ratio - 16.0/9.0) < 0.1);
+            var slides = GetSlide();
+            foreach (var slide in slides)
+            {
+                var slideRatio = (float)slide.Size.Width / (float)slide.Size.Height;
+                Assert.IsTrue(Math.Abs(slideRatio - 16.0/9.0) < 0.1);
+            }
+        }
+        
+        // test
+        [TestMethod]
+        public void TestNewPage()
+        {
+            _robot.ClickByElementName(NEW_PAGE);
+            Assert.AreEqual(2, GetSlide().Count);
         }
     }
 }

@@ -346,6 +346,8 @@ namespace PowerPoint
                 var height = (int)(splitContainer1.Panel1.Width * Constant.RATIO) - Constant.EIGHT;
                 button.Size = new Size(width, height);
                 button.Click += HandleClickPage;
+                button.Name = Constant.SLIDE;
+                button.BackgroundImageLayout = ImageLayout.Stretch;
                 flowLayoutPanel1.Controls.Add(button);
                 flowLayoutPanel1.Controls.SetChildIndex(button, index);
             }

@@ -47,6 +47,7 @@ namespace PowerPoint
         public const string BOTTOM_RIGHT_Y = "bottomRightY";
         public const string PROJECT_NAME = "PowerPoint";
         public const string FILENAME = "huhuhu.pptfake";
+        public const string SLIDE = "Slide";
         public const int DELAY = 3000;
     }
 }

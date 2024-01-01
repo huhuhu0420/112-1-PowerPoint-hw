@@ -5,6 +5,7 @@ using System;
 using System.Threading;
 using System.Windows;
 using System.Collections.Generic;
+using System.Management.Instrumentation;
 using System.Windows.Automation;
 using OpenQA.Selenium;
 using System.Windows.Input;
@@ -203,6 +204,12 @@ namespace PowerPointTests
         public WindowsDriver<WindowsElement> GetDriver()
         {
             return _driver;
+        }
+
+        // test
+        public IOptions Manage()
+        {
+            return _driver.Manage();
         }
     }
 }
