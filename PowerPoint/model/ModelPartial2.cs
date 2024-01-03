@@ -186,6 +186,10 @@ namespace PowerPoint
             SetPageIndex(_pageIndex);
         }
         
+        /// <summary>
+        /// delete
+        /// </summary>
+        /// <param name="index"></param>
         public virtual void DeletePageByIndex(int index)
         {
             _pages.RemovePageByIndex(index);
@@ -222,7 +226,6 @@ namespace PowerPoint
             _tempShape = _shapeFactory.CreateShape(_select.GetShapeType(), _select.GetPoint1(), _select.GetPoint2());
         }
 
-
         /// <summary>
         /// draw
         /// </summary>
@@ -246,6 +249,9 @@ namespace PowerPoint
             }
         }
 
+        /// <summary>
+        /// set
+        /// </summary>
         public virtual void SetSelectNull()
         {
             _select = null;

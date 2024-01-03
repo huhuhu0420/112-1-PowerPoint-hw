@@ -53,6 +53,7 @@ namespace PowerPoint
         public const int ONE_HUNDRED_FIFTY = 150;
         public const int ONE_HUNDRED_FOUR = 140;
         public const int SIXTY = 60;
+        public const int SIXTY_SEVEN = 67;
         public const string SPLASH = "\\";
         public const string CANVAS_WIDTH = "_canvasWidth";
         public const string TOP_LEFT_X = "topLeftX";
@@ -72,5 +73,7 @@ namespace PowerPoint
         public const string BINARY_DIRECTORY = "bin";
         public const string DIRECTORY = "Debug";
         public const string TEXT_PLAIN = "text/plain";
+        public const string MANY_DIRECTORY = "..\\..\\..\\";
+        public const string PAGE = "page";
     }
 }

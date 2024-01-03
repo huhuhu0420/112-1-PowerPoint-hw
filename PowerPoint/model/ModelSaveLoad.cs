@@ -17,9 +17,9 @@ namespace PowerPoint
             // Debug.Print(csv);
             File.WriteAllText(_filePath, csv);
             if (_fileId == "")
-                _fileId = await _service.UploadFile(_filePath, "text/plain");
+                _fileId = await _service.UploadFile(_filePath, Constant.TEXT_PLAIN);
             else
-                _service.UpdateFile(Constant.FILE_NAME, _fileId, "text/plain");
+                _service.UpdateFile(Constant.FILE_NAME, _fileId, Constant.TEXT_PLAIN);
             Thread.Sleep(Constant.DELAY);
         }
 
@@ -43,7 +43,7 @@ namespace PowerPoint
                 {
                     var line = reader.ReadLine();
                     var values = line.Split(',');
-                    if (values[0] == "page")
+                    if (values[0] == Constant.PAGE)
                     {
                         AddPage();
                     }
@@ -65,6 +65,10 @@ namespace PowerPoint
             _service.DeleteFile(_fileId);
         }
 
+        /// <summary>
+        /// read
+        /// </summary>
+        /// <param name="info"></param>
         public void ReadShape(string[] info)
         {
             var shapeName = info[(int)SavedIndex.ShapeName];
@@ -87,13 +91,12 @@ namespace PowerPoint
             LeftTopY,
             RightBottomX,
             RightBottomY,
-            LineType,
+            LineType
         }
         
         GoogleDriveService _service;
         private string _solutionPath;
         private string _filePath;
-        private string _applicationName = "PowerPoint";
         private string _fileId = "";
     }
 }

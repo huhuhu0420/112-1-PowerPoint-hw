@@ -334,7 +334,7 @@ namespace PowerPointTests
         [TestMethod]
         public void TestWindowResize()
         {
-            _robot.Manage().Window.Size = new Size(500, 300);
+            _robot.GetManage().Window.Size = new Size(500, 300);
             var ratio = (float)_canvas.Size.Width / (float)_canvas.Size.Height;
             Assert.IsTrue(Math.Abs(ratio - 16.0/9.0) < 0.1);
             var slides = GetSlide();
@@ -379,7 +379,7 @@ namespace PowerPointTests
         [TestMethod]
         public void IntegrationTest()
         {
-            _robot.Manage().Window.Size = new Size(1600, 1000);
+            _robot.GetManage().Window.Size = new Size(1600, 1000);
             DrawHouse();
             _robot.ClickByElementName(NEW_PAGE);
             DrawCat();

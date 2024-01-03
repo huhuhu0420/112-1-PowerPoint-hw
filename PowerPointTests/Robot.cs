@@ -112,7 +112,7 @@ namespace PowerPointTests
         }
 
         // test
-        public IOptions Manage()
+        public IOptions GetManage()
         {
             return _driver.Manage();
         }

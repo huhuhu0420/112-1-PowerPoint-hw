@@ -151,6 +151,7 @@ namespace PowerPoint.Tests
         
         // test
         [TestMethod]
+
         public void GetPageIndexTest()
         {
             _model.SetPageIndex(0);
@@ -159,6 +160,7 @@ namespace PowerPoint.Tests
         
         // test
         [TestMethod]
+
         public void SetPageIndexTest()
         {
             _model.SetPageIndex(0);
@@ -167,6 +169,7 @@ namespace PowerPoint.Tests
         
         // test
         [TestMethod]
+
         public void AddPageTest()
         {
             _model.AddPage();
@@ -175,6 +178,7 @@ namespace PowerPoint.Tests
         
         // test
         [TestMethod]
+
         public void DeletePageTest()
         {
             _model.DeletePage();
@@ -183,6 +187,7 @@ namespace PowerPoint.Tests
         
         // test
         [TestMethod]
+
         public void DeletePageByIndexTest()
         {
             _model.DeletePageByIndex(0);
@@ -191,6 +196,7 @@ namespace PowerPoint.Tests
         
         // test
         [TestMethod]
+
         public void InsertPageByIndexTest()
         {
             _model.InsertPageByIndex(0, new BindingList<Shape>());
@@ -199,6 +205,7 @@ namespace PowerPoint.Tests
         
         // test
         [TestMethod]
+
         public void GetPagesTest()
         {
             _model.SetSelectNull();
@@ -210,6 +217,7 @@ namespace PowerPoint.Tests
         
         // test
         [TestMethod]
+
         public void ReadFileTest()
         {
             _model.ReadFile();
@@ -219,6 +227,7 @@ namespace PowerPoint.Tests
         
         // test
         [TestMethod]
+
         public void ReadShapeTest()
         {
             var info = new string[] { "LINE", "0", "0", "0", "0", "LeftTop" };
@@ -229,6 +238,7 @@ namespace PowerPoint.Tests
         
         // test
         [TestMethod]
+
         public void LoadTest()
         {
             _model.Load();
@@ -237,6 +247,7 @@ namespace PowerPoint.Tests
         
         // test
         [TestMethod]
+
         public void HandleResizeShapeTest()
         {
             _model.InsertShape(ShapeType.LINE);

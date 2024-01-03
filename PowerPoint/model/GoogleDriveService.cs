@@ -60,11 +60,10 @@ namespace PowerPoint
         public async Task<string> UploadFile(string uploadFileName, string contentType, Action<IUploadProgress> uploadProgressEventHandeler = null, Action<Google.Apis.Drive.v2.Data.File> responseReceivedEventHandler = null)
         {
             FileStream uploadStream = new FileStream(uploadFileName, FileMode.Open, FileAccess.Read);
-            string title = "";
             this.CheckCredentialTimeStamp();
-            title = uploadFileName.Substring(uploadFileName.LastIndexOf(Constant.SPLASH) + 1);
+            string title = uploadFileName.Substring(uploadFileName.LastIndexOf(Constant.SPLASH) + 1);
             Google.Apis.Drive.v2.Data.File fileToInsert = new Google.Apis.Drive.v2.Data.File { Title = title };
-            FilesResource.InsertMediaUpload insertRequest = _service.Files.Insert(fileToInsert, uploadStream, contentType); 
+            FilesResource.InsertMediaUpload insertRequest = _service.Files.Insert(fileToInsert, uploadStream, contentType);
             try
             {
                 await insertRequest.UploadAsync();
@@ -73,12 +72,26 @@ namespace PowerPoint
             {
                 throw exception;
             }
-            finally
-            {
-                uploadStream.Close();
-            }
+            uploadStream.Close();
             return insertRequest.ResponseBody.Id;
         }
+
+        //public async Task<string> UploadFileMore(FilesResource.InsertMediaUpload insertRequest, FileStream uploadStream)
+        //{
+        //    try
+        //    {
+        //        await insertRequest.UploadAsync();
+        //    }
+        //    catch (Exception exception)
+        //    {
+        //        throw exception;
+        //    }
+        //    finally
+        //    {
+        //        uploadStream.Close();
+        //    }
+        //    return insertRequest.ResponseBody.Id;
+        //}
 
         // google
         public void DownloadFile(string fileId, string fileName, Action<IDownloadProgress> downloadProgressChangedEventHandeler = null)

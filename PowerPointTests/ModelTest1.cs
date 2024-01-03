@@ -63,8 +63,8 @@ namespace PowerPoint.Tests
             var point = new PointF(0, 0);
             Global.TopLeftX = 1;
             Global.TopLeftY = 1;
-            Global.BottomRightX = 2;
-            Global.BottomRightY = 2;
+            Global.BottomRightX = Constant.TWO;
+            Global.BottomRightY = Constant.TWO;
             _model.InsertShape(ShapeType.LINE);
             _model.InsertShape(ShapeType.LINE);
             _privateModel.SetField(Constant.SELECT_INDEX, 0);
@@ -85,8 +85,8 @@ namespace PowerPoint.Tests
         {
             Global.TopLeftX = 1;
             Global.TopLeftY = 1;
-            Global.BottomRightX = 2;
-            Global.BottomRightY = 2;
+            Global.BottomRightX = Constant.TWO;
+            Global.BottomRightY = Constant.TWO;
             var point = new PointF(0, 0);
             _model.InsertShape(ShapeType.LINE);
             _model.InsertShape(ShapeType.LINE);
@@ -127,8 +127,8 @@ namespace PowerPoint.Tests
         {
             Global.TopLeftX = 1;
             Global.TopLeftY = 1;
-            Global.BottomRightX = 2;
-            Global.BottomRightY = 2;
+            Global.BottomRightX = Constant.TWO;
+            Global.BottomRightY = Constant.TWO;
             var point = new PointF(0, 0);
             _model.InsertShape(ShapeType.LINE);
             _model.InsertShape(ShapeType.LINE);
@@ -169,8 +169,8 @@ namespace PowerPoint.Tests
         {
             Global.TopLeftX = 1;
             Global.TopLeftY = 1;
-            Global.BottomRightX = 2;
-            Global.BottomRightY = 2;
+            Global.BottomRightX = Constant.TWO;
+            Global.BottomRightY = Constant.TWO;
             var point = new PointF(Constant.TEN, 0);
             _model.InsertShape(ShapeType.LINE);
             _model.InsertShape(ShapeType.LINE);

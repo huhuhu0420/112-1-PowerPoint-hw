@@ -80,7 +80,7 @@ namespace PowerPoint
             Button button = new Button();
             button.BackColor = System.Drawing.SystemColors.ControlLightLight;
             button.Click += HandleClickPage;
-            button.Size = new Size(120, 67);
+            button.Size = new Size(Constant.ONE_HUNDRED_TWENTY, Constant.SIXTY_SEVEN);
             button.Name = Constant.SLIDE;
             newPageButton.Click += ClickNewPageButton;
             flowLayoutPanel1.Controls.Add(button);
@@ -105,7 +105,7 @@ namespace PowerPoint
                 panel1.Width = (int)(panel1.Height / Constant.RATIO) - Constant.EIGHT;
                 panel1.Height = (int)(panel1.Width * Constant.RATIO);
             }
-            panel1.Location = new Point((splitContainer2.Panel1.Width - panel1.Width) / 2, (splitContainer2.Panel1.Height - panel1.Height) / 2);
+            panel1.Location = new Point((splitContainer2.Panel1.Width - panel1.Width) / Constant.TWO, (splitContainer2.Panel1.Height - panel1.Height) / Constant.TWO);
             _presentationModel.SetCanvasSize(panel1.Width, panel1.Height);
             _dialog.SetCanvasSize(new Size(panel1.Width, panel1.Height));
             HandleSlideResize();
@@ -118,7 +118,7 @@ namespace PowerPoint
         {
             flowLayoutPanel1.Width = splitContainer1.Panel1.Width - Constant.EIGHT;
             flowLayoutPanel1.Height = splitContainer1.Panel1.Height;
-            for (var i=0; i<flowLayoutPanel1.Controls.Count; i++)
+            for (var i = 0; i < flowLayoutPanel1.Controls.Count; i++)
             {
                 flowLayoutPanel1.Controls[i].Width = splitContainer1.Panel1.Width - Constant.EIGHT;
                 flowLayoutPanel1.Controls[i].Height = (int)(splitContainer1.Panel1.Width * Constant.RATIO);
@@ -146,11 +146,10 @@ namespace PowerPoint
             if (e.KeyCode == Keys.Delete)
             {
                 var isDeleteShape = _presentationModel.DeleteShape();
-                if (isDeleteShape) return;
-                // if (flowLayoutPanel1.Controls.Count != 1)
-                // {
-                //     flowLayoutPanel1.Controls.RemoveAt(_presentationModel.GetPageIndex());
-                // }
+                if (isDeleteShape)
+                {
+                    return;
+                }
                 _presentationModel.DeletePage();
                 if (_presentationModel.GetPageIndex() == flowLayoutPanel1.Controls.Count)
                 {

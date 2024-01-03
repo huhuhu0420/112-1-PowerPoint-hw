@@ -39,7 +39,7 @@ namespace PowerPoint
             _pages._pagesChanged += HandlePageChanged;
             _shapes = _pages.GetPage(0);
             _service = new GoogleDriveService(APPLICATION_NAME, CLIENT_SECRET_FILE_NAME);
-            _solutionPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\"));
+            _solutionPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Constant.MANY_DIRECTORY));
             _filePath = Path.Combine(_solutionPath, Constant.PROJECT_NAME, Constant.BINARY_DIRECTORY, Constant.DIRECTORY, Constant.FILE_NAME);
             InitializeResizeShape();
         }

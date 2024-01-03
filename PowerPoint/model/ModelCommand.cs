@@ -35,6 +35,7 @@ namespace PowerPoint
             _commandManager.Execute(new MoveCommand(this, index, bias));
         }
         
+        // handle
         public virtual void HandleResizeShape(int index, Shape oldShape)
         {
             _commandManager.Execute(new ResizeCommand(this, oldShape, _shapes[index], index));
