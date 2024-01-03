@@ -105,6 +105,7 @@ namespace PowerPoint
                 panel1.Width = (int)(panel1.Height / Constant.RATIO) - Constant.EIGHT;
                 panel1.Height = (int)(panel1.Width * Constant.RATIO);
             }
+            panel1.Location = new Point((splitContainer2.Panel1.Width - panel1.Width) / 2, (splitContainer2.Panel1.Height - panel1.Height) / 2);
             _presentationModel.SetCanvasSize(panel1.Width, panel1.Height);
             _dialog.SetCanvasSize(new Size(panel1.Width, panel1.Height));
             HandleSlideResize();
