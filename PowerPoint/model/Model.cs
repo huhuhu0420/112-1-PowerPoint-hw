@@ -40,7 +40,7 @@ namespace PowerPoint
             _shapes = _pages.GetPage(0);
             _service = new GoogleDriveService(APPLICATION_NAME, CLIENT_SECRET_FILE_NAME);
             _solutionPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\"));
-            _filePath = Path.Combine(_solutionPath, Constant.PROJECT_NAME, "bin", "Debug", Constant.FILE_NAME);
+            _filePath = Path.Combine(_solutionPath, Constant.PROJECT_NAME, Constant.BINARY_DIRECTORY, Constant.DIRECTORY, Constant.FILE_NAME);
             InitializeResizeShape();
         }
 
@@ -264,29 +264,6 @@ namespace PowerPoint
         {
             _shapes.Clear();
             NotifyModelChanged();
-        }
-        
-        /// <summary>
-        /// draw
-        /// </summary>
-        /// <param name="graphics"></param>
-        public virtual void DrawShapes(IGraphics graphics)
-        {
-            // Debug.Print("draw");
-            foreach (Shape aLine in _shapes)
-                aLine.Draw(graphics);
-        }
-        
-        /// <summary>
-        /// draw
-        /// </summary>
-        /// <param name="graphics"></param>
-        public virtual void DrawSelect(IGraphics graphics)
-        {
-            if (_select != null)
-            {
-                _select.DrawSelect(graphics);
-            }
         }
 
         /// <summary>

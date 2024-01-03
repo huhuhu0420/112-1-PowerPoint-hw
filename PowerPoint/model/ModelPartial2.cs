@@ -221,7 +221,31 @@ namespace PowerPoint
         {
             _tempShape = _shapeFactory.CreateShape(_select.GetShapeType(), _select.GetPoint1(), _select.GetPoint2());
         }
-        
+
+
+        /// <summary>
+        /// draw
+        /// </summary>
+        /// <param name="graphics"></param>
+        public virtual void DrawShapes(IGraphics graphics)
+        {
+            // Debug.Print("draw");
+            foreach (Shape aLine in _shapes)
+                aLine.Draw(graphics);
+        }
+
+        /// <summary>
+        /// draw
+        /// </summary>
+        /// <param name="graphics"></param>
+        public virtual void DrawSelect(IGraphics graphics)
+        {
+            if (_select != null)
+            {
+                _select.DrawSelect(graphics);
+            }
+        }
+
         public virtual void SetSelectNull()
         {
             _select = null;

@@ -38,7 +38,7 @@ namespace PowerPointTests
             options.AddAdditionalCapability("app", targetAppPath);
             options.AddAdditionalCapability("deviceName", "WindowsPC");
             string solutionPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\"));
-            options.AddAdditionalCapability(Constant.WORKING_DIRECTORY, Path.GetFullPath(Path.Combine(solutionPath, Constant.PROJECT_NAME, Constant.BINARY_DIRECTORY, Constant.DEBUG_DIRECTORY)));
+            options.AddAdditionalCapability(Constant.WORKING_DIRECTORY, Path.GetFullPath(Path.Combine(solutionPath, Constant.PROJECT_NAME, Constant.BINARY_DIRECTORY, Constant.DIRECTORY)));
 
             _driver = new WindowsDriver<WindowsElement>(new Uri(WIN_APP_DRIVER_URI), options);
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
@@ -68,16 +68,9 @@ namespace PowerPointTests
                 foreach (var windowHandle in _driver.WindowHandles)
                 {
                     _driver.SwitchTo().Window(windowHandle);
-                    try
-                    {
                         _driver.FindElementByAccessibilityId(formName);
                         _windowHandles.Add(formName, windowHandle);
                         return;
-                    }
-                    catch
-                    {
-
-                    }
                 }
             }
         }

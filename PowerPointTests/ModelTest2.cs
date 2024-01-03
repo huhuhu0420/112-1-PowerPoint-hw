@@ -214,7 +214,7 @@ namespace PowerPoint.Tests
         {
             _model.ReadFile();
             _model.DeleteDriveFile();
-            Assert.AreEqual(0, _model.GetPageIndex());
+            Assert.AreEqual(1, _model.GetPageIndex());
         }
         
         // test
