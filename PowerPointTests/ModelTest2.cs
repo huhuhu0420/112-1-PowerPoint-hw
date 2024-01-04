@@ -218,11 +218,15 @@ namespace PowerPoint.Tests
         // test
         [TestMethod]
 
-        public void ReadFileTest()
+        public async Task ReadFileTest()
         {
+            _model.InsertShape(ShapeType.LINE);
+            Task task = Task.Run(() => _model.Save());
+            await task;
+            _model.Load();
             _model.ReadFile();
             _model.DeleteDriveFile();
-            Assert.AreEqual(1, _model.GetPageIndex());
+            Assert.AreEqual(0, _model.GetPageIndex());
         }
         
         // test
@@ -232,7 +236,6 @@ namespace PowerPoint.Tests
         {
             var info = new string[] { "LINE", "0", "0", "0", "0", "LeftTop" };
             _model.ReadShape(info);
-            _model.Save();
             Assert.AreEqual(1, _model.GetShapes().Count);
         }
         
