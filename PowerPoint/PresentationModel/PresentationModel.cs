@@ -41,14 +41,14 @@ namespace PowerPoint.PresentationModel
         /// <summary>
         /// change
         /// </summary>
-        /// <param name="isadd"></param>
+        /// <param name="isAdd"></param>
         /// <param name="index"></param>
-        public void HandlePagesChanged(bool isadd, int index)
+        public void HandlePagesChanged(bool isAdd, int index)
         {
             if (_pagesChanged != null)
             {
 #pragma warning disable IDE1005 // Delegate invocation can be simplified.
-                _pagesChanged(isadd, index);
+                _pagesChanged(isAdd, index);
 #pragma warning restore IDE1005 // Delegate invocation can be simplified.
             }
         }
@@ -298,6 +298,5 @@ namespace PowerPoint.PresentationModel
 
         readonly bool[] _isButtonChecked = { false, false, false, false };
         private bool _isSaveButtonEnabled = true;
-        private bool _isLoadButtonEnabled = true;
     }
 }

@@ -7,7 +7,9 @@ namespace PowerPoint
     public class Pages
     {
         public delegate void PagesChangedEventHandler(bool isAdd, int index);
+#pragma warning disable IDE1006 // Naming Styles
         public event PagesChangedEventHandler _pagesChanged;
+#pragma warning restore IDE1006 // Naming Styles
         public Pages()
         {
             _pages = new List<BindingList<Shape>>();
@@ -102,6 +104,6 @@ namespace PowerPoint
             return csv.ToString();
         }
         
-        private List<BindingList<Shape>> _pages;
+        private readonly List<BindingList<Shape>> _pages;
     }
 }

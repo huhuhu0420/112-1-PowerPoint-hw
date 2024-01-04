@@ -35,16 +35,18 @@ namespace PowerPointTests
         {
             _root = root;
             var options = new AppiumOptions();
-            options.AddAdditionalCapability("app", targetAppPath);
-            options.AddAdditionalCapability("deviceName", "WindowsPC");
-            string solutionPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\"));
+            options.AddAdditionalCapability(Constant.APP, targetAppPath);
+            options.AddAdditionalCapability(Constant.DEVICE_NAME, Constant.WINDOWS);
+            string solutionPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Constant.MANY_DIRECTORY));
             options.AddAdditionalCapability(Constant.WORKING_DIRECTORY, Path.GetFullPath(Path.Combine(solutionPath, Constant.PROJECT_NAME, Constant.BINARY_DIRECTORY, Constant.DIRECTORY)));
 
             _driver = new WindowsDriver<WindowsElement>(new Uri(WIN_APP_DRIVER_URI), options);
-            _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+            _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(Constant.FIVE);
             _windowHandles = new Dictionary<string, string>
             {
-                { _root, _driver.CurrentWindowHandle }
+                { 
+                    _root, _driver.CurrentWindowHandle 
+                }
             };
         }
 
@@ -68,9 +70,9 @@ namespace PowerPointTests
                 foreach (var windowHandle in _driver.WindowHandles)
                 {
                     _driver.SwitchTo().Window(windowHandle);
-                        _driver.FindElementByAccessibilityId(formName);
-                        _windowHandles.Add(formName, windowHandle);
-                        return;
+                    _driver.FindElementByAccessibilityId(formName);
+                    _windowHandles.Add(formName, windowHandle);
+                    return;
                 }
             }
         }

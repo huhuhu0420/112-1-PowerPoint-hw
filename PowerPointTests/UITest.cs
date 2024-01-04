@@ -102,6 +102,7 @@ namespace PowerPointTests
             return (AccessibleStates)Enum.Parse(typeof(AccessibleStates), stateValue);
         }
 
+        // get slide
         public IReadOnlyCollection<AppiumWebElement> GetSlide()
         {
             return _flowLayoutPanel1.FindElementsByAccessibilityId(SLIDE);
@@ -325,6 +326,7 @@ namespace PowerPointTests
             _robot.PerformAction(actionBuilder.ToActionSequenceList());
             _robot.Sleep(1.0);
             _robot.FindElementByName(UNDO).Click();
+            _robot.Sleep(0.5);
             Assert.AreEqual(GetInfo(point1, point2), _robot.FindElementByName(INFO_CHINESE + " Row 0").Text);
             _robot.FindElementByName(REDO).Click();
             Assert.AreEqual(GetInfo(point1, newPoint2), _robot.FindElementByName(INFO_CHINESE + " Row 0").Text);
@@ -383,6 +385,7 @@ namespace PowerPointTests
             DrawHouse();
             AssertHouse();
             _robot.ClickByElementName(NEW_PAGE);
+            _robot.GetManage().Window.Size = new Size(1800, 800);
             DrawCat();
             _robot.ClickByElementName(SAVE);
             _robot.ClickByElementName(OK);
@@ -394,6 +397,7 @@ namespace PowerPointTests
             AssertCat();
         }
 
+        // house
         public void DrawHouse()
         {
             ActionBuilder actionBuilder = new ActionBuilder();
@@ -402,9 +406,11 @@ namespace PowerPointTests
             // Draw the base of the house
             DrawShape(RECTANGLE, new Point(100, 200), new Point(300, 400));
             actionBuilder
-                .AddAction(CreateMoveTo(pointer, 150, 250))
+                .AddAction(CreateMoveTo(pointer, 100, 200))
                 .AddAction(pointer.CreatePointerDown(MouseButton.Left))
-                .AddAction(CreateMoveTo(pointer, 400, 300))
+                .AddAction(pointer.CreatePointerUp(MouseButton.Left))
+                .AddAction(pointer.CreatePointerDown(MouseButton.Left))
+                .AddAction(CreateMoveTo(pointer, 150, 300))
                 .AddAction(pointer.CreatePointerUp(MouseButton.Left))
                 .AddAction(CreateMoveTo(pointer, 0, 0))
                 .AddAction(pointer.CreatePointerDown(MouseButton.Left))

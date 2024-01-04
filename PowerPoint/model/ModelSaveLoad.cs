@@ -37,12 +37,13 @@ namespace PowerPoint
         // read file
         public virtual void ReadFile()
         {
+            const char COMMA = ',';
             using(var reader = new StreamReader(_filePath))
             {
                 while (!reader.EndOfStream)
                 {
                     var line = reader.ReadLine();
-                    var values = line.Split(',');
+                    var values = line.Split(COMMA);
                     if (values[0] == Constant.PAGE)
                     {
                         AddPage();
@@ -93,10 +94,10 @@ namespace PowerPoint
             RightBottomY,
             LineType
         }
-        
-        GoogleDriveService _service;
-        private string _solutionPath;
-        private string _filePath;
+
+        readonly GoogleDriveService _service;
+        private readonly string _solutionPath;
+        private readonly string _filePath;
         private string _fileId = "";
     }
 }

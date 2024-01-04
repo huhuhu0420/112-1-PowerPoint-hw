@@ -77,8 +77,10 @@ namespace PowerPoint
         /// </summary>
         public void HandleMoreMore()
         {
-            Button button = new Button();
-            button.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            Button button = new Button
+            {
+                BackColor = System.Drawing.SystemColors.ControlLightLight
+            };
             button.Click += HandleClickPage;
             button.Size = new Size(Constant.ONE_HUNDRED_TWENTY, Constant.SIXTY_SEVEN);
             button.Name = Constant.SLIDE;

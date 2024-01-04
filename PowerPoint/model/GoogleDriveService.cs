@@ -32,7 +32,7 @@ namespace PowerPoint
                 string credentialPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
                 credentialPath = Path.Combine(credentialPath, CREDENTIAL_FOLDER + applicationName);
                 credential = GoogleWebAuthorizationBroker.AuthorizeAsync(GoogleClientSecrets.Load(stream).Secrets,
-                    SCOPES, USER, CancellationToken.None, new FileDataStore(credentialPath, true)).Result;
+                    _scopes, USER, CancellationToken.None, new FileDataStore(credentialPath, true)).Result;
             }
             DriveService service = new DriveService(new BaseClientService.Initializer()
             {
@@ -40,7 +40,7 @@ namespace PowerPoint
                 ApplicationName = applicationName
             });
             _credential = credential;
-            DateTime now = DateTime.Now;
+            _ = DateTime.Now;
             _timeStamp = UNIXNowTimeStamp;
             _service = service;
         }
@@ -153,13 +153,11 @@ namespace PowerPoint
             }
         }
         
-        private static readonly string[] SCOPES = new[] { DriveService.Scope.DriveFile, DriveService.Scope.Drive };
+        private static readonly string[] _scopes = new[] { DriveService.Scope.DriveFile, DriveService.Scope.Drive };
         private DriveService _service;
-        private const int KB = 0x400;
-        private const int DOWNLOAD_CHUNK_SIZE = 256 * KB;
         private int _timeStamp;
-        private string _applicationName;
-        private string _clientSecretFileName;
+        private readonly string _applicationName;
+        private readonly string _clientSecretFileName;
         private UserCredential _credential;
         const string USER = "user";
         const string CREDENTIAL_FOLDER = ".credential/";

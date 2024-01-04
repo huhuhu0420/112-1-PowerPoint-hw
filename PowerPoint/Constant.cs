@@ -63,7 +63,7 @@ namespace PowerPoint
         public const string PROJECT_NAME = "PowerPoint";
         public const string FILE_NAME = "huhuhu.pptfake";
         public const string SLIDE = "Slide";
-        public const int DELAY = 3000;
+        public const int DELAY = 10000;
         public const string SAVE_DIALOG = "SaveDialog";
         public const string LOAD_DIALOG = "LoadDialog";
         public const string OK = "OK";
@@ -75,5 +75,8 @@ namespace PowerPoint
         public const string TEXT_PLAIN = "text/plain";
         public const string MANY_DIRECTORY = "..\\..\\..\\";
         public const string PAGE = "page";
+        public const string APP = "app";
+        public const string DEVICE_NAME = "deviceName";
+        public const string WINDOWS = "WindowsPC";
     }
 }
