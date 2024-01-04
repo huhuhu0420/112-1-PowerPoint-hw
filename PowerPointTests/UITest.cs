@@ -385,7 +385,6 @@ namespace PowerPointTests
             DrawHouse();
             AssertHouse();
             _robot.ClickByElementName(NEW_PAGE);
-            _robot.GetManage().Window.Size = new Size(1800, 800);
             DrawCat();
             _robot.ClickByElementName(SAVE);
             _robot.ClickByElementName(OK);
