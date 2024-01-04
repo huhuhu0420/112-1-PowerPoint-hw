@@ -139,6 +139,24 @@ namespace PowerPoint.PresentationModel
                 _cursorChanged(((ResizeState)state).GetCursorForLocation());
             }
         }
+
+        /// <summary>
+        /// delete
+        /// </summary>
+        /// <param name="slideCount"></param>
+        public void Delete(int slideCount)
+        {
+            var isDeleteShape = DeleteShape();
+            if (isDeleteShape)
+            {
+                return;
+            }
+            DeletePage();
+            if (_model.GetPageIndex() == slideCount)
+            {
+                _model.SetPageIndex(slideCount - 1);
+            }
+        }
         
         /// <summary>
         /// delete

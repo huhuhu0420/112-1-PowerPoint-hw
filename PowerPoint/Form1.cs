@@ -147,18 +147,9 @@ namespace PowerPoint
         {
             if (e.KeyCode == Keys.Delete)
             {
-                var isDeleteShape = _presentationModel.DeleteShape();
-                if (isDeleteShape)
-                {
-                    return;
-                }
-                _presentationModel.DeletePage();
-                if (_presentationModel.GetPageIndex() == flowLayoutPanel1.Controls.Count)
-                {
-                    _presentationModel.SetPageIndex(_presentationModel.GetPageIndex() - 1);
-                }
-                dataGridView1.DataSource = _presentationModel.GetShapes();
+                _presentationModel.Delete(flowLayoutPanel1.Controls.Count);
             }
+            dataGridView1.DataSource = _presentationModel.GetShapes();
         }
         
         /// <summary>
