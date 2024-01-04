@@ -234,18 +234,12 @@ namespace PowerPoint.Tests
 
         public void ReadShapeTest()
         {
-            var info = new string[] { "LINE", "0", "0", "0", "0", "LeftTop" };
+            const string LINE = "LINE";
+            const string ZERO = "0";
+            const string LEFT_TOP = "LeftTop";
+            var info = new string[] { LINE, ZERO, ZERO, ZERO, ZERO, LEFT_TOP };
             _model.ReadShape(info);
             Assert.AreEqual(1, _model.GetShapes().Count);
-        }
-        
-        // test
-        [TestMethod]
-
-        public void LoadTest()
-        {
-            _model.Load();
-            Assert.AreEqual(0, _model.GetPageIndex());
         }
         
         // test

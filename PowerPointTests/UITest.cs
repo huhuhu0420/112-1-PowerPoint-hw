@@ -381,6 +381,7 @@ namespace PowerPointTests
         {
             _robot.GetManage().Window.Size = new Size(1600, 1000);
             DrawHouse();
+            AssertHouse();
             _robot.ClickByElementName(NEW_PAGE);
             DrawCat();
             _robot.ClickByElementName(SAVE);
@@ -390,6 +391,7 @@ namespace PowerPointTests
             actions.SendKeys(OpenQA.Selenium.Keys.Delete).Perform();
             _robot.ClickByElementName(LOAD);
             _robot.ClickByElementName(OK);
+            AssertCat();
         }
 
         public void DrawHouse()
@@ -400,11 +402,9 @@ namespace PowerPointTests
             // Draw the base of the house
             DrawShape(RECTANGLE, new Point(100, 200), new Point(300, 400));
             actionBuilder
-                .AddAction(CreateMoveTo(pointer, 100, 200))
+                .AddAction(CreateMoveTo(pointer, 150, 250))
                 .AddAction(pointer.CreatePointerDown(MouseButton.Left))
-                .AddAction(pointer.CreatePointerUp(MouseButton.Left))
-                .AddAction(pointer.CreatePointerDown(MouseButton.Left))
-                .AddAction(CreateMoveTo(pointer, 150, 300))
+                .AddAction(CreateMoveTo(pointer, 400, 300))
                 .AddAction(pointer.CreatePointerUp(MouseButton.Left))
                 .AddAction(CreateMoveTo(pointer, 0, 0))
                 .AddAction(pointer.CreatePointerDown(MouseButton.Left))
@@ -443,9 +443,67 @@ namespace PowerPointTests
             _robot.PerformAction(actionBuilder2.ToActionSequenceList());
         }
 
+        // test
+        public void AssertHouse()
+        {
+            Assert.AreEqual(RECTANGLE_CHINESE, _robot.FindElementByName(SHAPE_CHINESE + " Row 0").Text);
+            Assert.AreEqual(GetInfo(new Point(100, 200), new Point(300, 400)), _robot.FindElementByName(INFO_CHINESE + " Row 0").Text);
+            Assert.AreEqual(LINE_CHINESE, _robot.FindElementByName(SHAPE_CHINESE + " Row 1").Text);
+            Assert.AreEqual(GetInfo(new Point(100, 100), new Point(200, 200)), _robot.FindElementByName(INFO_CHINESE + " Row 1").Text);
+            Assert.AreEqual(LINE_CHINESE, _robot.FindElementByName(SHAPE_CHINESE + " Row 2").Text);
+            Assert.AreEqual(GetInfo(new Point(200, 100), new Point(300, 200)), _robot.FindElementByName(INFO_CHINESE + " Row 2").Text);
+            Assert.AreEqual(RECTANGLE_CHINESE, _robot.FindElementByName(SHAPE_CHINESE + " Row 3").Text);
+            Assert.AreEqual(GetInfo(new Point(180, 300), new Point(220, 400)), _robot.FindElementByName(INFO_CHINESE + " Row 3").Text);
+            Assert.AreEqual(LINE_CHINESE, _robot.FindElementByName(SHAPE_CHINESE + " Row 4").Text);
+            Assert.AreEqual(GetInfo(new Point(120, 250), new Point(160, 290)), _robot.FindElementByName(INFO_CHINESE + " Row 4").Text);
+            Assert.AreEqual(LINE_CHINESE, _robot.FindElementByName(SHAPE_CHINESE + " Row 5").Text);
+            Assert.AreEqual(GetInfo(new Point(120, 250), new Point(160, 250)), _robot.FindElementByName(INFO_CHINESE + " Row 5").Text);
+            Assert.AreEqual(LINE_CHINESE, _robot.FindElementByName(SHAPE_CHINESE + " Row 6").Text);
+            Assert.AreEqual(GetInfo(new Point(120, 290), new Point(160, 290)), _robot.FindElementByName(INFO_CHINESE + " Row 6").Text);
+            Assert.AreEqual(LINE_CHINESE, _robot.FindElementByName(SHAPE_CHINESE + " Row 7").Text);
+        }
+
+        // test
         public void DrawCat()
         {
-            DrawShape(CIRCLE, new Point(100, 100), new Point(400, 400));
+            DrawShape(RECTANGLE, new Point(100, 200), new Point(300, 400));
+            _robot.ClickByElementName(DELETE_CHINESE + " Row 0");
+            
+            // Draw the body of the cat
+            DrawShape(CIRCLE, new Point(100, 200), new Point(300, 400));
+
+            // Draw the head of the cat
+            DrawShape(CIRCLE, new Point(200, 100), new Point(300, 200));
+
+            // Draw the eyes of the cat
+            DrawShape(CIRCLE, new Point(215, 130), new Point(245, 160));
+            DrawShape(CIRCLE, new Point(255, 130), new Point(285, 160));
+
+            // Draw the nose of the cat
+            DrawShape(CIRCLE, new Point(245, 170), new Point(255, 180));
+
+            // Draw the mouth of the cat
+            DrawShape(LINE, new Point(245, 180), new Point(240, 190));
+            DrawShape(LINE, new Point(245, 180), new Point(250, 190));
+
+            // Draw the ears of the cat
+            DrawShape(LINE, new Point(200, 100), new Point(210, 80));
+            DrawShape(LINE, new Point(210, 80), new Point(230, 100));
+            DrawShape(LINE, new Point(270, 100), new Point(290, 80));
+            DrawShape(LINE, new Point(290, 80), new Point(300, 100));
+
+            // Draw the tail of the cat
+            DrawShape(LINE, new Point(300, 300), new Point(400, 250));
+        }
+
+        // test
+        public void AssertCat()
+        {
+            Assert.AreEqual(RECTANGLE_CHINESE, _robot.FindElementByName(SHAPE_CHINESE + " Row 0").Text);
+            Assert.AreEqual(GetInfo(new Point(100, 200), new Point(300, 400)), _robot.FindElementByName(INFO_CHINESE + " Row 0").Text);
+            Assert.AreEqual(LINE_CHINESE, _robot.FindElementByName(SHAPE_CHINESE + " Row 1").Text);
+            Assert.AreEqual(GetInfo(new Point(100, 100), new Point(200, 200)), _robot.FindElementByName(INFO_CHINESE + " Row 1").Text);
+            Assert.AreEqual(LINE_CHINESE, _robot.FindElementByName(SHAPE_CHINESE + " Row 2").Text);
         }
     }
 }
