@@ -304,5 +304,18 @@ namespace PowerPoint.PresentationModel.Tests
             _presentationModel.HandlePagesChanged(true, 1);
             Assert.IsTrue(isCalled);
         }
+        
+        // test
+        [TestMethod]
+        public void DeleteTest()
+        {
+            _mockModel.Setup(model => model.GetSelectIndex()).Returns(0);
+            _presentationModel.Delete(1);
+            _mockModel.Setup(model => model.GetSelectIndex()).Returns(-1);
+            _mockModel.Setup(model => model.GetPageIndex()).Returns(1);
+            _presentationModel.AddPage();
+            _presentationModel.Delete(1);
+            Assert.AreEqual(1, _presentationModel.GetPageIndex());
+        }
     }
 }

@@ -218,11 +218,10 @@ namespace PowerPoint.Tests
         // test
         [TestMethod]
 
-        public async Task ReadFileTest()
+        public void ReadFileTest()
         {
             _model.InsertShape(ShapeType.LINE);
-            Task task = Task.Run(() => _model.Save());
-            await task;
+            _model.Save();
             _model.Load();
             _model.ReadFile();
             _model.DeleteDriveFile();
@@ -251,6 +250,16 @@ namespace PowerPoint.Tests
             _privateModel.SetField(Constant.SELECT_INDEX, 0);
             _model.HandleResizeShape(0, new Circle());
             _mockCommandManager.Verify(m => m.Execute(It.IsAny<ResizeCommand>()), Times.Once);
+        }
+
+        // test
+        [TestMethod]
+        public void SetTempShapeTest()
+        {
+            _privateModel.SetField(Constant.SELECT, new Line());
+            _model.SetTempShape();
+            _model.SetSelectNull();
+            Assert.AreEqual(0, _model.GetShapes().Count);
         }
     }
 }

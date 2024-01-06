@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using WindowPowerPoint;
@@ -78,6 +79,7 @@ namespace PowerPoint
             if (isAdd)
             {
                 HandlePageChangedAdd(index);
+                _presentationModel.SetPageIndex(index);
             }
             else
             {
@@ -99,7 +101,7 @@ namespace PowerPoint
             button.Name = Constant.SLIDE;
             button.BackgroundImageLayout = ImageLayout.Stretch;
             flowLayoutPanel1.Controls.Add(button);
-            flowLayoutPanel1.Controls.SetChildIndex(button, index);
+            // flowLayoutPanel1.Controls.SetChildIndex(button, index);
             button.Focus();
         }
     }

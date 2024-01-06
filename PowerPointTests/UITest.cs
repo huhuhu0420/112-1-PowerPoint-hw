@@ -386,6 +386,7 @@ namespace PowerPointTests
             AssertHouse();
             _robot.ClickByElementName(NEW_PAGE);
             DrawCat();
+            AssertCat();
             _robot.ClickByElementName(SAVE);
             _robot.ClickByElementName(OK);
             Thread.Sleep(Constant.DELAY + Constant.THOUSAND * 2);
@@ -393,7 +394,7 @@ namespace PowerPointTests
             actions.SendKeys(OpenQA.Selenium.Keys.Delete).Perform();
             _robot.ClickByElementName(LOAD);
             _robot.ClickByElementName(OK);
-            AssertCat();
+            Thread.Sleep(Constant.TWO);
         }
 
         // house
@@ -444,6 +445,9 @@ namespace PowerPointTests
                 .AddAction(CreateMoveTo(pointer, 210, 350))
                 .AddAction(pointer.CreatePointerDown(MouseButton.Left))
                 .AddAction(CreateMoveTo(pointer, 182, 350))
+                .AddAction(pointer.CreatePointerUp(MouseButton.Left))
+                .AddAction(CreateMoveTo(pointer, 0, 0))
+                .AddAction(pointer.CreatePointerDown(MouseButton.Left))
                 .AddAction(pointer.CreatePointerUp(MouseButton.Left));
             _robot.PerformAction(actionBuilder2.ToActionSequenceList());
         }
@@ -504,11 +508,16 @@ namespace PowerPointTests
         // test
         public void AssertCat()
         {
-            Assert.AreEqual(RECTANGLE_CHINESE, _robot.FindElementByName(SHAPE_CHINESE + " Row 0").Text);
+            Assert.AreEqual(CIRCLE_CHINESE, _robot.FindElementByName(SHAPE_CHINESE + " Row 0").Text);
             Assert.AreEqual(GetInfo(new Point(100, 200), new Point(300, 400)), _robot.FindElementByName(INFO_CHINESE + " Row 0").Text);
-            Assert.AreEqual(LINE_CHINESE, _robot.FindElementByName(SHAPE_CHINESE + " Row 1").Text);
-            Assert.AreEqual(GetInfo(new Point(100, 100), new Point(200, 200)), _robot.FindElementByName(INFO_CHINESE + " Row 1").Text);
-            Assert.AreEqual(LINE_CHINESE, _robot.FindElementByName(SHAPE_CHINESE + " Row 2").Text);
+            Assert.AreEqual(CIRCLE_CHINESE, _robot.FindElementByName(SHAPE_CHINESE + " Row 1").Text);
+            Assert.AreEqual(GetInfo(new Point(200, 100), new Point(300, 200)), _robot.FindElementByName(INFO_CHINESE + " Row 1").Text);
+            Assert.AreEqual(CIRCLE_CHINESE, _robot.FindElementByName(SHAPE_CHINESE + " Row 2").Text);
+            Assert.AreEqual(GetInfo(new Point(215, 130), new Point(245, 160)), _robot.FindElementByName(INFO_CHINESE + " Row 2").Text);
+            Assert.AreEqual(CIRCLE_CHINESE, _robot.FindElementByName(SHAPE_CHINESE + " Row 3").Text);
+            Assert.AreEqual(GetInfo(new Point(255, 130), new Point(285, 160)), _robot.FindElementByName(INFO_CHINESE + " Row 3").Text);
+            Assert.AreEqual(CIRCLE_CHINESE, _robot.FindElementByName(SHAPE_CHINESE + " Row 4").Text);
+            Assert.AreEqual(GetInfo(new Point(245, 170), new Point(255, 180)), _robot.FindElementByName(INFO_CHINESE + " Row 4").Text);
         }
     }
 }

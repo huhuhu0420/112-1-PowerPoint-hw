@@ -35,6 +35,7 @@ namespace PowerPoint.Tests
         [TestMethod]
         public void AddPageByIndexTest()
         {
+            _pages._pagesChanged += (isAdd, index) => { };
             var page = new System.ComponentModel.BindingList<Shape> { _mockShape.Object };
 
             _pages.AddPageByIndex(0, page);
@@ -46,6 +47,7 @@ namespace PowerPoint.Tests
         [TestMethod]
         public void RemovePageByIndexTest()
         {
+            _pages._pagesChanged += (isAdd, index) => { };
             _pages.AddPage();
             _pages.AddPage();
             var initialCount = _pages.GetPageCount();

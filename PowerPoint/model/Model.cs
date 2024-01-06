@@ -234,7 +234,7 @@ namespace PowerPoint
         /// <param name="bias"></param>
         public virtual void MoveShapeByBias(SizeF bias, int index)
         {
-            Debug.Assert(index >= 0 && index < _shapes.Count);  // index should be valid
+            Debug.Assert(index >= 0 && index < _shapes.Count); // index should be valid
             _shapes[index].SetPoint1(_shapes[index].GetPoint1() + bias);
             _shapes[index].SetPoint2(_shapes[index].GetPoint2() + bias);
             if (_selectIndex == index && _select != null)
